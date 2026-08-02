@@ -338,9 +338,9 @@ export default function Home() {
         
         {/* 
           Overlapping large white content container with rounded top corners.
-          Using repeating graph paper background instead of geometric grid.
+          Using repeating geometric grid background to match the Hero section.
         */}
-        <section className="relative z-40 -translate-y-5 bg-white bg-graph-pattern rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-20 pb-28 px-6 md:px-12 border-t border-slate-100">
+        <section className="relative z-40 -translate-y-5 bg-white bg-grid-pattern rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-20 pb-28 px-6 md:px-12 border-t border-slate-100">
           
           {/* Asymmetric grid container */}
           <div className="max-w-6xl mx-auto w-full relative">
@@ -708,6 +708,11 @@ export default function Home() {
 
             </div>
 
+          </div>
+
+          {/* Bottom Ticket Perforation Divider */}
+          <div className="absolute bottom-0 left-0 right-0 w-full z-50">
+            <div className="w-full ticket-perforation-top h-14" />
           </div>
 
         </section>
