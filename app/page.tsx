@@ -5,27 +5,27 @@ import React, { useState } from 'react';
 // Beautiful inline SVG Icons
 const Icons = {
   Home: () => (
-    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-650" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
     </svg>
   ),
   Speakers: () => (
-    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-650" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
     </svg>
   ),
   Agenda: () => (
-    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-650" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
   ),
   About: () => (
-    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+    <svg className="w-4 h-4 mr-1.5 opacity-85 transition-colors group-hover:text-indigo-650" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   ),
   Ticket: ({ className = "w-4 h-4" }) => (
-    <svg className={`${className} mr-1.5 opacity-90 transition-colors group-hover:text-indigo-600`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+    <svg className={`${className} mr-1.5 opacity-90 transition-colors group-hover:text-indigo-650`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
     </svg>
   ),
@@ -45,7 +45,7 @@ export default function Home() {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-white bg-grid-pattern flex flex-col justify-between overflow-hidden font-display">
+    <div className="relative min-h-screen bg-white bg-grid-pattern flex flex-col justify-between overflow-x-hidden font-display">
       
       {/* Soft Radial Blue/Purple Glows - Adjusted for Light Theme */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-200/25 blur-[140px] pointer-events-none animate-pulse-glow" />
@@ -79,7 +79,7 @@ export default function Home() {
       </header>
 
       {/* Main Section */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between py-12 lg:py-24 gap-16 z-20">
+      <main className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between py-12 lg:py-24 gap-16 z-20">
         
         {/* Left Side Content */}
         <div className="flex-1 flex flex-col items-start gap-8 max-w-xl text-left">
@@ -117,9 +117,9 @@ export default function Home() {
             {/* Venue Block */}
             <div className="flex items-center">
               
-              {/* Host Logo: Overlapping geometric lines */}
+              {/* Host Logo */}
               <div className="p-3 bg-white border border-slate-200/80 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.02)] flex items-center justify-center">
-                <svg className="w-6 h-6 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg className="w-6 h-6 text-indigo-655" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <rect x="3" y="3" width="8" height="8" rx="1.5" className="animate-pulse" />
                   <rect x="13" y="13" width="8" height="8" rx="1.5" />
                   <path d="M13 3l8 8M3 13l8 8" strokeLinecap="round" />
@@ -136,7 +136,7 @@ export default function Home() {
 
           {/* Slogan highlight row - matches reference screenshot light purple/blue style */}
           <div className="flex items-start gap-3 mt-4 bg-indigo-50/70 border border-indigo-100/50 rounded-2xl p-4 w-full">
-            <div className="text-indigo-600 mt-1">
+            <div className="text-indigo-650 mt-1">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
@@ -151,7 +151,7 @@ export default function Home() {
         {/* Right Side Ticket Stack and CTA */}
         <div className="flex-1 flex flex-col items-center justify-center gap-12 w-full max-w-2xl">
           
-          {/* Ticket Stack Container - Made wider */}
+          {/* Ticket Stack Container */}
           <div 
             className="relative w-full max-w-[540px] h-[250px] flex items-center justify-center cursor-pointer select-none"
             onMouseEnter={() => setHovered(true)}
@@ -161,29 +161,27 @@ export default function Home() {
             {/* Ambient Blue Backglow Effect around tickets */}
             <div className="ticket-glow transform translate-y-3" />
 
-            {/* Ticket 3 (Back) - Wider */}
+            {/* Ticket 3 (Back) */}
             <div 
               className={`absolute w-[460px] h-[210px] rounded-3xl border border-white/5 bg-slate-900/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out origin-center
                 ${hovered ? '-translate-x-12 -translate-y-6 rotate-[-9deg] scale-[0.98] opacity-50' : 'rotate-[-6deg] scale-[0.94] opacity-40'}
                 animate-float-ticket-1`}
               style={{ zIndex: 10 }}
             >
-              {/* Dark ticket grid pattern */}
               <div className="absolute inset-0 bg-ticket-grid opacity-10 rounded-3xl" />
             </div>
 
-            {/* Ticket 2 (Middle) - Wider */}
+            {/* Ticket 2 (Middle) */}
             <div 
               className={`absolute w-[470px] h-[215px] rounded-3xl border border-indigo-500/10 bg-slate-950/80 shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center
                 ${hovered ? '-translate-x-4 -translate-y-3 rotate-[-4deg] scale-[0.99] opacity-75' : 'rotate-[-3deg] scale-[0.97] opacity-70'}
                 animate-float-ticket-2`}
               style={{ zIndex: 20 }}
             >
-              {/* Dark ticket grid pattern */}
               <div className="absolute inset-0 bg-ticket-grid opacity-20 rounded-3xl" />
             </div>
 
-            {/* Ticket 1 (Top / Front Active Ticket) - Expanded Width & Authentic Look */}
+            {/* Ticket 1 (Top / Front Active Ticket) */}
             <div 
               className={`absolute w-[490px] h-[220px] rounded-[28px] border border-indigo-500/25 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 shadow-[0_30px_80px_rgba(46,108,255,0.3)] transition-all duration-500 ease-out origin-center overflow-visible
                 ${hovered ? 'translate-x-8 translate-y-3 rotate-[4deg] scale-[1.03]' : 'rotate-[1deg] scale-100'}
@@ -191,27 +189,20 @@ export default function Home() {
               style={{ zIndex: 30 }}
             >
               
-              {/* Dark ticket grid pattern */}
               <div className="absolute inset-0 bg-ticket-grid opacity-45 rounded-[28px]" />
-
-              {/* Glowing card overlay */}
               <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 rounded-[28px] pointer-events-none" />
 
-              {/* Card notches (cutouts) - White in light theme to blend with background */}
-              {/* Top notch */}
+              {/* Card notches (cutouts) */}
               <div className="absolute -top-3.5 left-[74%] w-7 h-7 rounded-full bg-white border-b border-indigo-500/20 z-40" />
-              {/* Bottom notch */}
               <div className="absolute -bottom-3.5 left-[74%] w-7 h-7 rounded-full bg-white border-t border-indigo-500/20 z-40" />
 
               {/* Ticket content split */}
               <div className="flex h-full w-full relative z-10 p-6 items-stretch font-display">
                 
-                {/* Left Section (74%) */}
+                {/* Left Section */}
                 <div className="w-[74%] pr-6 flex flex-col justify-between">
                   
-                  {/* Top logo header */}
                   <div className="flex items-center gap-2">
-                    {/* Small layout squares */}
                     <div className="grid grid-cols-2 gap-0.5">
                       <div className="w-2.5 h-2.5 bg-indigo-400 rounded-sm" />
                       <div className="w-2.5 h-2.5 bg-blue-500 rounded-sm" />
@@ -221,7 +212,6 @@ export default function Home() {
                     <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">Carnival</span>
                   </div>
 
-                  {/* Main Ticket Heading with Logo on Right */}
                   <div className="my-auto flex items-center justify-between">
                     <div>
                       <h2 className="text-2xl font-black text-white tracking-tight leading-none">
@@ -234,7 +224,7 @@ export default function Home() {
                       </p>
                     </div>
 
-                    {/* Diamond Logo exactly matching screenshot */}
+                    {/* Diamond Logo */}
                     <div className="transform rotate-45 grid grid-cols-2 gap-0.5 w-8 h-8 mr-2">
                       <div className="bg-indigo-400 w-3.5 h-3.5 rounded-sm" />
                       <div className="bg-indigo-300 w-3.5 h-3.5 rounded-sm" />
@@ -243,7 +233,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Footer details */}
                   <div className="flex items-center justify-between text-[9px] text-slate-500 font-bold uppercase tracking-wider">
                     <span>MAY 30-31</span>
                     <span className="text-indigo-400 font-extrabold font-tech">NO. 1024-26</span>
@@ -251,18 +240,16 @@ export default function Home() {
 
                 </div>
 
-                {/* Vertical Divider (Dashed) */}
+                {/* Vertical Divider */}
                 <div className="w-px border-l-2 border-dashed border-white/10 h-full relative" />
 
-                {/* Right Section (26%) */}
+                {/* Right Section */}
                 <div className="w-[26%] pl-6 flex flex-col justify-between items-center text-center">
                   
-                  {/* Vertically rotated badge */}
                   <div className="text-[10px] font-black text-indigo-350 tracking-[0.25em] uppercase rotate-90 my-auto whitespace-nowrap">
                     VIP PASS
                   </div>
                   
-                  {/* Edex Sponsor logo */}
                   <div className="flex flex-col items-center">
                     <span className="text-[7px] text-slate-400 font-bold tracking-widest uppercase leading-none">Life School</span>
                     <span className="text-lg font-black text-white leading-none mt-1 select-none">Edex</span>
@@ -276,25 +263,21 @@ export default function Home() {
 
           </div>
 
-          {/* Action buttons (Sold Out & community join) */}
+          {/* Action buttons */}
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-6">
             
-            {/* SOLD OUT Button - Dark theme button to match screenshot exactly */}
             <button className="relative group overflow-hidden bg-[#1E1B4B] hover:bg-[#312E81] text-white border border-[#4338CA] px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_10px_25px_rgba(30,27,75,0.25)] flex items-center justify-center gap-2.5 w-full sm:w-auto">
               <span className="relative z-10 uppercase tracking-widest">SOLD OUT</span>
               <Icons.Ticket className="w-4 h-4 text-white" />
-              {/* Inner glowing pulse */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </button>
 
-            {/* Community Join Box - Light card styling with green text */}
             <a 
               href="https://whatsapp.com" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="group flex items-center bg-white hover:bg-slate-50 border border-slate-200/80 hover:border-emerald-500/40 px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-300 w-full sm:w-auto"
             >
-              {/* Avatar stack */}
               <div className="flex -space-x-2 mr-3.5">
                 <div className="w-7 h-7 rounded-full border border-white bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white">A</div>
                 <div className="w-7 h-7 rounded-full border border-white bg-gradient-to-br from-indigo-400 to-blue-500 flex items-center justify-center text-[10px] font-bold text-white">B</div>
@@ -319,13 +302,83 @@ export default function Home() {
 
       </main>
 
-      {/* Scalloped edge footer division */}
-      <footer className="w-full relative z-30 flex flex-col">
-        {/* Scallop shape divider */}
-        <div className="w-full h-3 scalloped-edge pointer-events-none" />
-        {/* Ribbon bar below scallop (deep dark blue/purple gradient matching reference) */}
-        <div className="w-full h-8 bg-gradient-to-r from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]" />
-      </footer>
+      {/* Ticket Perforation Transition and Next Section */}
+      <div className="w-full relative z-30 flex flex-col mt-12">
+        
+        {/* The thick horizontal royal-blue strip (#3B34A8) with Perforated Edge */}
+        <div className="w-full ticket-perforation-top h-14" />
+        
+        {/* 
+          Overlapping large white content container with rounded top corners.
+          Overlaps by -translate-y-5 (-20px) to cover the lower half of the blue strip.
+          Carries a soft shadow to stand out over the blue strip.
+        */}
+        <section className="relative z-40 -translate-y-5 bg-white bg-grid-pattern rounded-t-[40px] md:rounded-t-[48px] shadow-[0_-15px_40px_rgba(0,0,0,0.06)] pt-16 pb-24 px-6 md:px-12 border-t border-slate-100">
+          
+          <div className="max-w-7xl mx-auto w-full">
+            
+            {/* Grid layout matching screenshot components */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+              
+              {/* Left stat/card block showing ticket elements */}
+              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between min-h-[300px] shadow-lg">
+                <div className="absolute inset-0 bg-ticket-grid opacity-20 pointer-events-none" />
+                
+                {/* Visual indicator of the ticket head */}
+                <div className="flex justify-between items-start z-10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-indigo-500 rounded-full animate-ping" />
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">LIVE EVENT TICKETING</span>
+                  </div>
+                  <span className="text-xs text-indigo-400 font-tech font-bold">1024-26</span>
+                </div>
+
+                <div className="z-10 mt-8">
+                  <h3 className="text-3xl font-black text-white leading-tight">
+                    Kerala Startup <br />
+                    <span className="text-gradient-neon font-extrabold">Carnival 2026</span>
+                  </h3>
+                  <p className="text-slate-400 text-sm mt-3 max-w-sm font-medium">
+                    Fully custom developer and founder ticket passes with cryptographic verification and physical-digital NFC links.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4 mt-8 pt-6 border-t border-slate-800/80 z-10">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">SPONSOR</span>
+                  <span className="text-sm font-black text-white">Edex Life School</span>
+                </div>
+              </div>
+
+              {/* Right statistics container - matching ATTENDEES card in screenshot */}
+              <div className="bg-[#1E1B4B] border border-[#312E81]/60 rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between min-h-[300px] shadow-lg text-white">
+                <div className="absolute inset-0 bg-ticket-grid opacity-15 pointer-events-none" />
+                
+                <div className="z-10">
+                  <span className="text-[11px] font-black text-indigo-300 uppercase tracking-[0.25em] leading-none">ATTENDEES</span>
+                </div>
+
+                <div className="z-10 my-auto text-center py-6">
+                  <h4 className="text-7xl md:text-8xl font-black tracking-tighter text-white font-tech">
+                    500<span className="text-indigo-400">+</span>
+                  </h4>
+                  <p className="text-indigo-200/75 text-sm mt-2 font-medium tracking-wide uppercase">
+                    Developers, Tech founders & Investors
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between z-10 pt-6 border-t border-indigo-900/50 text-[10px] font-bold text-indigo-350 tracking-wider">
+                  <span>RESIDENTIAL PASSES</span>
+                  <span>LIMITED SLOTS</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
 
     </div>
   );
