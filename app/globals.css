@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-bg: #FFFFFF;
+  --color-brand-neon: #2E6CFF;
+  --color-brand-cyan: #06B6D4;
+  --color-brand-purple: #8B5CF6;
+  --color-brand-glow: rgba(46, 108, 255, 0.05);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FFFFFF;
+  --foreground: #0F172A;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Light Background Repeating SVG Pattern (Subtle Indigo) */
+.bg-grid-pattern {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="96" viewBox="0 0 60 96"><g fill-rule="evenodd"><g fill="%234F46E5" fill-opacity="0.08"><path d="M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z"/></g></g></svg>');
+  background-repeat: repeat;
+  background-size: 60px 96px;
+}
+
+/* Dark Ticket Repeating SVG Pattern (Neon Blue Overlay) */
+.bg-ticket-grid {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="96" viewBox="0 0 60 96"><g fill-rule="evenodd"><g fill="%232E6CFF" fill-opacity="0.12"><path d="M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z"/></g></g></svg>');
+  background-repeat: repeat;
+  background-size: 60px 96px;
+}
+
+/* Glassmorphism navigation and container styles for light theme */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(79, 70, 229, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+.glass-card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(79, 70, 229, 0.2);
+  box-shadow: 0 12px 40px 0 rgba(79, 70, 229, 0.08);
+}
+
+/* Floating Animations for Ticket Stack */
+@keyframes float-1 {
+  0%, 100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-5.5deg);
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-2deg);
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(2.5deg);
+  }
+}
+
+.animate-float-ticket-1 {
+  animation: float-1 6s ease-in-out infinite;
+}
+
+.animate-float-ticket-2 {
+  animation: float-2 6.5s ease-in-out infinite;
+}
+
+.animate-float-ticket-3 {
+  animation: float-3 7s ease-in-out infinite;
+}
+
+/* Micro-animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.03);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+/* Custom Scalloped Border Repeating Background (white fill to blend with main bg) */
+.scalloped-edge {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 12 C 6 12, 6 0, 12 0 C 18 0, 18 12, 24 12 Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 24px 12px;
+}
+
+/* Text Gradient Utilities for Light Theme */
+.text-gradient-neon {
+  background: linear-gradient(135deg, #4F46E5 0%, #2E6CFF 50%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
