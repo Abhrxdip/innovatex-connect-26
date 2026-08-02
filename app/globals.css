@@ -169,3 +169,23 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Footer Perforation Scallop Style */
+.footer-perforation {
+  position: relative;
+  background-color: #0A0B1A;
+}
+
+.footer-perforation::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; /* offset by radius to sit at bottom edge */
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background-image: radial-gradient(circle at 10px 12px, transparent 6px, #0A0B1A 7px);
+  background-size: 20px 12px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+}
+

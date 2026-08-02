@@ -977,78 +977,269 @@ export default function Home() {
 
           </div>
 
-          {/* Inquiry Form Section */}
-          <section className="w-full max-w-xl mx-auto px-6 mt-16 mb-28 relative z-10">
-            <div className="bg-slate-50/50 backdrop-blur-sm border border-slate-200/40 rounded-[28px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.01)] text-center">
+          {/* FAQ Section */}
+          <section className="w-full max-w-2xl mx-auto px-6 mt-20 mb-8 relative z-10 text-center">
+            <span className="text-[10px] font-black text-indigo-650 uppercase tracking-widest block mb-2 select-none">
+              • FAQ
+            </span>
+            <h3 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight mb-8">
+              Frequently Asked Questions
+            </h3>
+            
+            <div className="flex flex-col gap-1 text-left bg-slate-50/50 border border-slate-200/40 rounded-[28px] p-6 md:p-8 backdrop-blur-sm shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
+              {[
+                {
+                  q: "Do I need to bring a laptop?",
+                  a: "Yes, we highly recommend bringing a fully charged laptop. Many sessions, workshops, and keynotes include interactive building, live demos, and hands-on coding tracks."
+                },
+                {
+                  q: "Is catering included with the ticket?",
+                  a: "Yes, complimentary lunches, tea/coffee service, and evening snacks are included for all registered pass holders on both days."
+                },
+                {
+                  q: "Where is the event located?",
+                  a: "The event is hosted at the main Science City Auditorium complex, with signs and guides placed at key entrance gates to direct you."
+                },
+                {
+                  q: "What is the refund policy?",
+                  a: "We offer a full 100% refund on ticket cancellations requested at least 7 days prior to the event. For cancellations, reach out via the form below."
+                }
+              ].map((faq, idx) => (
+                <details key={idx} className="group border-b border-slate-200 last:border-b-0 py-4 cursor-pointer">
+                  <summary className="flex justify-between items-center font-display font-extrabold text-slate-800 text-sm md:text-base select-none outline-none list-none [&::-webkit-details-marker]:hidden">
+                    <span>{faq.q}</span>
+                    <span className="relative flex-shrink-0 ml-4 w-3.5 h-3.5 flex items-center justify-center">
+                      <span className="absolute w-3.5 h-0.5 bg-slate-800 rounded-full transition-transform duration-200 group-open:rotate-90" />
+                      <span className="absolute w-3.5 h-0.5 bg-slate-800 rounded-full rotate-90 transition-transform duration-200 group-open:scale-y-0" />
+                    </span>
+                  </summary>
+                  <p className="text-slate-500 text-xs md:text-sm font-medium mt-3 leading-relaxed pr-6">
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          {/* Inquiry / Contact Section */}
+          <section className="w-full max-w-5xl mx-auto px-6 mt-16 mb-24 relative z-10">
+            <div className="bg-white border border-slate-200/50 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col lg:flex-row items-stretch">
               
-              <h3 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight mb-2">
-                Submit an Inquiry
-              </h3>
-              
-              <p className="text-slate-400 text-xs md:text-sm font-medium mb-8">
-                Have questions about the event, corporate bookings, or special accommodations? Drop us a line.
-              </p>
-
-              <form onSubmit={(e) => { e.preventDefault(); alert('Thank you for your inquiry! Our team will get back to you shortly.'); }} className="flex flex-col gap-4 text-left">
+              {/* Left Column: Contact details & Location Map */}
+              <div className="w-full lg:w-[60%] p-6 md:p-10 flex flex-col justify-between gap-8 border-b lg:border-b-0 lg:border-r border-slate-100">
+                
+                {/* Header text */}
                 <div>
-                  <label htmlFor="name" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
-                    Your Name
-                  </label>
-                  <input 
-                    type="text" 
-                    id="name"
-                    required
-                    placeholder="e.g. John Doe"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/70 text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/20 focus:border-indigo-650 transition-all placeholder:text-slate-355"
-                  />
+                  <h3 className="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight leading-none mb-4">
+                    Get in touch
+                  </h3>
+                  <p className="text-slate-400 text-xs md:text-sm font-medium leading-relaxed">
+                    If you have any questions regarding our Services or need help, please fill out the form here. We do our best to respond within 1 business day.
+                  </p>
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
-                    Email Address
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    required
-                    placeholder="e.g. john@example.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/70 text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/20 focus:border-indigo-650 transition-all placeholder:text-slate-355"
-                  />
+                {/* Info pills */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Email */}
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-650 flex-shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Email</p>
+                      <a href="mailto:register@keralastartupcarnival.com" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
+                        register@keralastartupcarnival.com
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-650 flex-shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.387a12.017 12.017 0 01-4.5-4.5c-.155-.44.01-1.047.386-1.328l1.293-.97c.362-.271.527-.734.417-1.173L9.663 3.24c-.125-.501-.575-.852-1.091-.852H4.86c-1.245 0-2.25 1.005-2.25 2.25v1.356z" />
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Phone</p>
+                      <a href="tel:+919995786350" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
+                        +91 99957 86350
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Instagram */}
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-650 flex-shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Instagram</p>
+                      <a href="https://instagram.com/keralastartupcarnival" target="_blank" rel="noopener noreferrer" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
+                        @keralastartupcarnival
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
+                {/* Location Map */}
                 <div>
-                  <label htmlFor="message" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
-                    How can we help?
-                  </label>
-                  <textarea 
-                    id="message"
-                    required
-                    rows={4}
-                    placeholder="Write your query here..."
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/70 text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/20 focus:border-indigo-650 transition-all placeholder:text-slate-355 resize-none"
-                  />
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
+                    Location
+                  </span>
+                  <div className="w-full rounded-2xl overflow-hidden border border-slate-200/50 shadow-sm relative h-[200px]">
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.1265691039825!2d88.37568571120005!3d22.686367379294247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89da44ef9115d%3A0xa6ee8f4d99432d4b!2sJIS%20University!5e0!3m2!1sen!2sin!4v1714488349583!5m2!1sen!2sin" 
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0 }} 
+                      allowFullScreen={true}
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
                 </div>
 
-                <button 
-                  type="submit" 
-                  className="w-full mt-2 py-3.5 bg-[#3B34A8] text-white font-black text-xs uppercase tracking-widest rounded-xl hover:bg-indigo-750 transition-all shadow-[0_10px_20px_rgba(59,52,168,0.15)] flex items-center justify-center gap-2"
-                >
-                  <span>Submit Inquiry</span>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                  </svg>
-                </button>
-              </form>
+              </div>
+
+              {/* Right Column: Inquiry Form */}
+              <div className="w-full lg:w-[40%] p-6 md:p-10 flex flex-col justify-between bg-slate-50/50 backdrop-blur-sm">
+                
+                <form onSubmit={(e) => { e.preventDefault(); alert('Thank you for your message! Our team will respond shortly.'); }} className="flex flex-col gap-4">
+                  <div>
+                    <label htmlFor="name" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
+                      Name
+                    </label>
+                    <input 
+                      type="text" 
+                      id="name"
+                      required
+                      placeholder="Your Name"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/15 focus:border-indigo-650 transition-all placeholder:text-slate-355"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
+                      Email
+                    </label>
+                    <input 
+                      type="email" 
+                      id="email"
+                      required
+                      placeholder="Email Address"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/15 focus:border-indigo-650 transition-all placeholder:text-slate-355"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
+                      Phone
+                    </label>
+                    <input 
+                      type="tel" 
+                      id="phone"
+                      required
+                      placeholder="Phone Number"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/15 focus:border-indigo-650 transition-all placeholder:text-slate-355"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
+                      Message
+                    </label>
+                    <textarea 
+                      id="message"
+                      required
+                      rows={3}
+                      placeholder="Message"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-650/15 focus:border-indigo-650 transition-all placeholder:text-slate-355 resize-none"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="w-full mt-2 py-3.5 bg-[#1E1B4B] hover:bg-slate-900 text-white font-extrabold text-xs uppercase tracking-widest rounded-xl transition-all shadow-[0_4px_12px_rgba(30,27,75,0.1)] flex items-center justify-center gap-2"
+                  >
+                    <span>Submit Message</span>
+                  </button>
+                </form>
+
+              </div>
 
             </div>
           </section>
 
-          {/* Bottom Ticket Perforation Divider */}
-          <div className="absolute bottom-0 left-0 right-0 w-full z-50">
-            <div className="w-full ticket-perforation-top h-14" />
+        </section>
+
+        {/* Footer Section */}
+        <footer className="footer-perforation w-full rounded-t-[48px] px-6 pt-16 pb-10 text-center z-10 relative">
+          {/* Ambient subtle grid inside footer */}
+          <div className="absolute inset-0 bg-ticket-grid opacity-5 pointer-events-none rounded-t-[48px]" />
+          
+          {/* Top Logo and Organization Row */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 max-w-3xl mx-auto mb-10 relative z-10">
+            {/* Left Brand */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-650 flex items-center justify-center text-white font-black text-xl select-none">
+                I
+              </div>
+              <div className="text-left font-display">
+                <span className="font-black text-white tracking-wider text-sm block">INNOVATEX</span>
+                <span className="text-[9px] font-black tracking-widest uppercase text-indigo-400 block">CONNECT &apos;26</span>
+              </div>
+            </div>
+
+            {/* Divider Line in between for larger screens */}
+            <div className="hidden sm:block h-6 w-px bg-slate-800" />
+
+            {/* Right Organized By */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-[9px] font-black tracking-widest text-slate-500 uppercase">ORGANIZED BY</span>
+              <span className="text-sm font-black tracking-wider text-white font-display">INNOVATEX COMMUNITY</span>
+            </div>
           </div>
 
-        </section>
+          {/* Middle Quote & Details */}
+          <div className="flex flex-col items-center gap-5 my-8 relative z-10">
+            {/* Star icon */}
+            <div className="text-indigo-455">
+              <svg className="w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" />
+              </svg>
+            </div>
+
+            {/* Quote */}
+            <blockquote className="text-white font-display font-extrabold text-base md:text-lg italic max-w-lg leading-relaxed tracking-tight">
+              &ldquo;AI-native founders don&apos;t wait. They build. Start now.&rdquo;
+            </blockquote>
+
+            {/* Location Pin */}
+            <div className="inline-flex items-center gap-2 text-indigo-455 font-extrabold text-[10px] md:text-xs tracking-widest uppercase bg-indigo-950/45 px-5 py-2.5 rounded-full border border-indigo-900/30">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+              <span>JIS University, Agarpara, Kolkata</span>
+            </div>
+          </div>
+
+          {/* Divider Line */}
+          <div className="w-full h-px bg-slate-800/40 my-8 max-w-4xl mx-auto relative z-10" />
+
+          {/* Bottom copyright */}
+          <div className="text-[9px] font-black tracking-widest uppercase text-slate-500 relative z-10 select-none">
+            &copy; 2026 INNOVATEX COMMUNITY
+          </div>
+
+        </footer>
 
       </div>
 
