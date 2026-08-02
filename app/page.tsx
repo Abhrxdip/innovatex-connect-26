@@ -69,6 +69,62 @@ const speakersList = [
   },
 ];
 
+const agendaData = [
+  {
+    category: 'DISCOVERY',
+    title: 'Problem discovery and understanding gaps.',
+    time: '09:00AM - 10:20AM',
+    description: 'Step out of your routine and enter a focused environment to start exploring real-world problems. Join us for an extraordinary session.',
+    speakers: [
+      { name: 'Souma Deep', img: '/souma.png' },
+      { name: 'Speaker 2', img: '/souma.png' },
+      { name: 'Speaker 3', img: '/souma.png' }
+    ]
+  },
+  {
+    category: 'AI IDEATION',
+    title: 'AI-assisted idea generation and team formation.',
+    time: '10:30AM - 11:50AM',
+    description: 'Conversations continue beyond sessions. Form small teams and start exploring ideas in a real, actionable way using AI.',
+    speakers: [
+      { name: 'Souma Deep', img: '/souma.png' },
+      { name: 'Speaker 2', img: '/souma.png' }
+    ]
+  },
+  {
+    category: 'RAPID BUILD',
+    title: 'Rapid building begins. Evening reflections.',
+    time: '12:00PM - 01:30PM',
+    description: 'Deeper reflections and informal thinking in a residential setting. Start turning ideas into prototypes.',
+    speakers: [
+      { name: 'Souma Deep', img: '/souma.png' },
+      { name: 'Speaker 2', img: '/souma.png' },
+      { name: 'Speaker 3', img: '/souma.png' }
+    ]
+  },
+  {
+    category: 'PROTOTYPING',
+    title: 'MVP Development & Mentor Feedback Loops.',
+    time: '02:00PM - 03:30PM',
+    description: 'Work directly with engineering leads and mentors to build out core functionalities and validate user flows.',
+    speakers: [
+      { name: 'Souma Deep', img: '/souma.png' },
+      { name: 'Speaker 3', img: '/souma.png' }
+    ]
+  },
+  {
+    category: 'SHOWCASE',
+    title: 'Final Project Pitch & Closing Ceremonies.',
+    time: '03:45PM - 05:00PM',
+    description: 'Present your prototype to a panel of startup founders, early-stage investors, and domain experts.',
+    speakers: [
+      { name: 'Souma Deep', img: '/souma.png' },
+      { name: 'Speaker 2', img: '/souma.png' },
+      { name: 'Speaker 3', img: '/souma.png' }
+    ]
+  }
+];
+
 export default function Home() {
   const [hovered, setHovered] = useState(false);
 
@@ -338,9 +394,9 @@ export default function Home() {
         
         {/* 
           Overlapping large white content container with rounded top corners.
-          Using repeating geometric grid background to match the Hero section.
+          Using repeating graph paper background.
         */}
-        <section className="relative z-40 -translate-y-5 bg-white bg-grid-pattern rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-20 pb-28 px-6 md:px-12 border-t border-slate-100">
+        <section className="relative z-40 -translate-y-5 bg-white bg-graph-pattern rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-20 pb-28 px-6 md:px-12 border-t border-slate-100">
           
           {/* Asymmetric grid container */}
           <div className="max-w-6xl mx-auto w-full relative">
@@ -706,6 +762,102 @@ export default function Home() {
                 ))}
               </div>
 
+            </div>
+
+          </div>
+
+          {/* Agenda / Event Schedule Section */}
+          <div id="agenda" className="max-w-6xl mx-auto w-full mt-40 mb-28 text-center flex flex-col items-center px-4">
+            
+            {/* Pill Badge */}
+            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-indigo-100 bg-indigo-50/50 text-[10px] font-bold text-indigo-700 tracking-wider uppercase mb-6 shadow-sm">
+              <svg className="w-3.5 h-3.5 text-indigo-650 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" />
+              </svg>
+              <span>Event Schedule</span>
+            </div>
+
+            {/* Title */}
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight leading-[1.15] flex items-center justify-center gap-2">
+              Event Schedule <span className="text-[#3B34A8] animate-pulse">✦</span>
+            </h2>
+
+            {/* Subtext */}
+            <p className="text-slate-400 text-sm mt-4 max-w-2xl font-medium leading-relaxed">
+              The flow of the experience is designed to take you from <strong className="text-slate-700">daytime sessions</strong> to <span className="text-[#3B34A8] font-bold">night-time informal thinking</span> and morning clarity.
+            </p>
+
+            {/* Single Day Static Pill Badge */}
+            <div className="bg-slate-100 border border-slate-200/50 px-6 py-2 rounded-full text-xs font-black uppercase text-slate-600 tracking-widest mt-8 mb-16 shadow-sm select-none">
+              Saturday, 5 September 2026
+            </div>
+
+            {/* Agenda List */}
+            <div className="flex flex-col gap-8 w-full max-w-4xl">
+              {agendaData.map((item, index) => (
+                <div 
+                  key={index}
+                  className="group relative rounded-[28px] bg-[#F8FAFC]/90 hover:bg-white border border-slate-200/50 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_15px_35px_rgba(59,52,168,0.05)] transition-all duration-300 ease-out p-6 md:p-8 flex flex-col justify-between"
+                >
+                  {/* Subtle hover background decoration */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/10 to-transparent opacity-0 group-hover:opacity-100 rounded-[28px] transition-opacity duration-300 pointer-events-none" />
+
+                  {/* Top content row */}
+                  <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8 relative z-10">
+                    <div className="flex-1 flex flex-col items-start text-left">
+                      {/* Pill Badge */}
+                      <span className="px-3 py-1 rounded-md bg-indigo-50 border border-indigo-100/60 text-[9px] font-black text-[#3B34A8] tracking-widest uppercase mb-4">
+                        {item.category}
+                      </span>
+                      {/* Title */}
+                      <h3 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight leading-[1.25]">
+                        {item.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Description */}
+                    <div className="w-full md:max-w-md text-left md:text-left">
+                      <p className="text-slate-400 text-xs md:text-sm font-medium leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="border-t border-slate-200/50 my-6 relative z-10" />
+
+                  {/* Bottom info row */}
+                  <div className="flex justify-between items-center w-full relative z-10">
+                    {/* Time */}
+                    <div className="flex flex-col items-start text-left">
+                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Sat. Time
+                      </span>
+                      <span className="text-xs md:text-sm font-black text-slate-700 font-tech">
+                        {item.time}
+                      </span>
+                    </div>
+
+                    {/* Speakers */}
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                        Speakers:
+                      </span>
+                      <div className="flex items-center">
+                        {item.speakers.map((sp, idx) => (
+                          <img 
+                            key={idx}
+                            src={sp.img} 
+                            alt={sp.name}
+                            className="w-7 h-7 rounded-full border-2 border-white -ml-2 first:ml-0 shadow-sm object-cover" 
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              ))}
             </div>
 
           </div>
