@@ -34,8 +34,8 @@ export default function HeroSection() {
               <Icons.Calendar />
             </div>
             <div className="ml-3">
-              <p className="text-slate-800 font-bold text-lg leading-none">May 30,31</p>
-              <p className="text-slate-400 text-xs mt-1 leading-none font-semibold">36 Hours</p>
+              <p className="text-slate-800 font-bold text-lg leading-none">Sept 05</p>
+              <p className="text-slate-400 text-xs mt-1 leading-none font-semibold">8 Hours</p>
             </div>
           </div>
 
@@ -55,8 +55,8 @@ export default function HeroSection() {
             </div>
             
             <div className="ml-3">
-              <p className="text-slate-800 font-bold text-lg leading-none">Lead College</p>
-              <p className="text-slate-400 text-xs mt-1 leading-none font-semibold">Palakkad, KL</p>
+              <p className="text-slate-800 font-bold text-lg leading-none">JIS University</p>
+              <p className="text-slate-400 text-xs mt-1 leading-none font-semibold">Kolkata, WB</p>
             </div>
           </div>
 
@@ -70,7 +70,7 @@ export default function HeroSection() {
             </svg>
           </div>
           <p className="text-indigo-900 font-extrabold text-xs uppercase tracking-wider leading-relaxed">
-            KERALA&apos;S FIRST TWO DAYS RESIDENTIAL STARTUP CARNIVAL.
+            INNOVATEX COMMUNITY&apos;S 8-HOUR MEETUP IN KOLKATA.
           </p>
         </div>
 
@@ -137,15 +137,15 @@ export default function HeroSection() {
                     <div className="w-2.5 h-2.5 bg-purple-500 rounded-sm" />
                     <div className="w-2.5 h-2.5 bg-white rounded-sm" />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">Carnival</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">Meetup</span>
                 </div>
 
                 <div className="my-auto flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-black text-white tracking-tight leading-none">
-                      Kerala <br />
-                      Startup <br />
-                      Carnival
+                      InnovateX <br />
+                      Connect <br />
+                      &apos;26
                     </h2>
                     <p className="text-[9px] text-indigo-400 uppercase tracking-[0.5em] mt-2 font-bold font-tech">
                       2 0 2 6
@@ -162,7 +162,7 @@ export default function HeroSection() {
                 </div>
 
                 <div className="flex items-center justify-between text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-                  <span>MAY 30-31</span>
+                  <span>SEPT 05</span>
                   <span className="text-indigo-400 font-extrabold font-tech">NO. 1024-26</span>
                 </div>
 
@@ -179,8 +179,8 @@ export default function HeroSection() {
                 </div>
                 
                 <div className="flex flex-col items-center">
-                  <span className="text-[7px] text-slate-400 font-bold tracking-widest uppercase leading-none">Life School</span>
-                  <span className="text-lg font-black text-white leading-none mt-1 select-none">Edex</span>
+                  <span className="text-[7px] text-slate-400 font-bold tracking-widest uppercase leading-none">InnovateX</span>
+                  <span className="text-lg font-black text-white leading-none mt-1 select-none">Kolkata</span>
                 </div>
 
               </div>

@@ -20,7 +20,7 @@ export default function AgendaSection() {
 
       {/* Subtext */}
       <p className="text-slate-400 text-sm mt-4 max-w-2xl font-medium leading-relaxed">
-        The flow of the experience is designed to take you from <strong className="text-slate-700">daytime sessions</strong> to <span className="text-[#3B34A8] font-bold">night-time informal thinking</span> and morning clarity.
+        The flow of the experience is designed to take you from <strong className="text-slate-700">problem discovery</strong> to <span className="text-[#3B34A8] font-bold">rapid building</span> and a final project showcase.
       </p>
 
       {/* Single Day Static Pill Badge */}
@@ -67,7 +67,7 @@ export default function AgendaSection() {
               {/* Time */}
               <div className="flex flex-col items-start text-left">
                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">
-                  Sat. Time
+                  Time
                 </span>
                 <span className="text-xs md:text-sm font-black text-slate-700 font-tech">
                   {item.time}

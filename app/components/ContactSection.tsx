@@ -31,8 +31,8 @@ export default function ContactSection() {
               </div>
               <div className="min-w-0">
                 <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Email</p>
-                <a href="mailto:register@keralastartupcarnival.com" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
-                  register@keralastartupcarnival.com
+                <a href="mailto:connect@innovatex.community" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
+                  connect@innovatex.community
                 </a>
               </div>
             </div>
@@ -63,8 +63,8 @@ export default function ContactSection() {
               </div>
               <div className="min-w-0">
                 <p className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Instagram</p>
-                <a href="https://instagram.com/keralastartupcarnival" target="_blank" rel="noopener noreferrer" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
-                  @keralastartupcarnival
+                <a href="https://instagram.com/innovatex.community" target="_blank" rel="noopener noreferrer" className="text-[11px] font-bold text-slate-700 block truncate hover:text-indigo-650 transition-colors">
+                  @innovatex.community
                 </a>
               </div>
             </div>

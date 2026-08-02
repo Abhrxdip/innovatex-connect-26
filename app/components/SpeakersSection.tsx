@@ -32,8 +32,8 @@ function SpeakerCard({ speaker }: { speaker: typeof speakersList[number] }) {
 
           {/* Sponsor logos on top right */}
           <div className="absolute top-5 right-5 flex flex-col items-end text-[7px] text-slate-400 font-bold leading-none z-30">
-            <span>hosted by <strong className="text-[#1E1B5D] text-[8px] font-black">Edex</strong></span>
-            <span className="mt-0.5">in association with <strong className="text-indigo-600 text-[8px] font-black">LEAD-BI</strong></span>
+            <span>hosted by <strong className="text-[#1E1B5D] text-[8px] font-black">InnovateX</strong></span>
+            <span className="mt-0.5">in association with <strong className="text-indigo-600 text-[8px] font-black">JIS-U</strong></span>
           </div>
 
           {/* Grayscale Portrait (slightly overlaps bottom section) */}
@@ -71,9 +71,9 @@ function SpeakerCard({ speaker }: { speaker: typeof speakersList[number] }) {
           {/* Center Badge overlapping dividing edge */}
           <div className="absolute top-[-50px] left-4 w-[100px] h-[100px] rounded-full bg-gradient-to-b from-[#1E1B5D] to-[#2B2A8E] border-[5px] border-white shadow-[0_8px_20px_rgba(30,27,93,0.35)] flex flex-col items-center justify-center text-white z-50 group-hover/card:scale-108 group-hover/card:rotate-[4deg] transition-all duration-500 ease-out">
             <div className="flex flex-col items-center justify-center text-center p-1 font-display select-none">
-              <span className="text-[6.5px] text-indigo-300 font-extrabold uppercase tracking-widest leading-none">Edex</span>
-              <span className="text-xs font-black tracking-tight leading-none mt-1">Kerala</span>
-              <span className="text-xs font-black tracking-tight leading-none mt-0.5">Startup</span>
+              <span className="text-[6.5px] text-indigo-300 font-extrabold uppercase tracking-widest leading-none">InnovateX</span>
+              <span className="text-xs font-black tracking-tight leading-none mt-1">Connect</span>
+              <span className="text-xs font-black tracking-tight leading-none mt-0.5">Meetup</span>
               <span className="text-[8px] font-extrabold text-indigo-200 mt-0.5 uppercase tracking-widest font-tech">2026</span>
             </div>
           </div>
@@ -90,15 +90,15 @@ function SpeakerCard({ speaker }: { speaker: typeof speakersList[number] }) {
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
                 <span className="text-[7.2px] font-black text-indigo-150 uppercase tracking-wide leading-tight max-w-[130px]">
-                  KERALA&apos;S FIRST TWO DAYS RESIDENTIAL STARTUP CARNIVAL.
+                  INNOVATEX COMMUNITY&apos;S 8-HOUR MEETUP IN KOLKATA.
                 </span>
               </div>
 
               {/* Right Date Box */}
               <div className="flex items-center gap-1 text-white shrink-0">
-                <span className="text-[8.5px] font-black uppercase tracking-wider">May</span>
+                <span className="text-[8.5px] font-black uppercase tracking-wider">Sept</span>
                 <div className="bg-black/35 border border-white/10 px-1.5 py-0.5 rounded text-[10px] font-black tracking-widest font-tech leading-none">
-                  30 31
+                  05
                 </div>
                 <span className="text-[6.5px] font-bold text-indigo-200 rotate-90 origin-center leading-none">2026</span>
               </div>
@@ -108,10 +108,10 @@ function SpeakerCard({ speaker }: { speaker: typeof speakersList[number] }) {
             {/* Row 2 */}
             <div className="flex flex-col gap-1.5 items-end w-full">
               <div className="bg-black/20 border border-white/5 px-2.5 py-0.5 rounded-full text-[7px] font-bold tracking-wider uppercase text-indigo-100">
-                LEAD COLLEGE (Autonomous), Palakkad, Kerala
+                JIS University, Agarpara, Kolkata
               </div>
               <div className="bg-black/45 border border-indigo-400/20 px-2.5 py-0.5 rounded-full text-[7.5px] font-black tracking-widest uppercase text-emerald-400">
-                keralastartupcarnival.com
+                innovatex.community
               </div>
             </div>
 
@@ -145,7 +145,7 @@ export default function SpeakersSection() {
       
       {/* Subtext */}
       <p className="text-slate-400 text-sm mt-4 max-w-xl font-medium leading-relaxed">
-        Our mentors and facilitators are here to guide you through your <strong className="text-slate-700">2-day journey</strong> of <span className="text-indigo-650 font-bold">exploration and execution</span>.
+        Our mentors and facilitators are here to guide you through your <strong className="text-slate-700">8-hour journey</strong> of <span className="text-indigo-650 font-bold">exploration and execution</span>.
       </p>
 
       {/* 3+2 Speakers Layout (Top row: 3, Bottom row: 2 centered) */}

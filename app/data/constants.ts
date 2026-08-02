@@ -52,7 +52,7 @@ export const agendaData = [
     category: 'RAPID BUILD',
     title: 'Rapid building begins. Evening reflections.',
     time: '12:00PM - 01:30PM',
-    description: 'Deeper reflections and informal thinking in a residential setting. Start turning ideas into prototypes.',
+    description: 'Deeper reflections and informal thinking in a collaborative setting. Start turning ideas into prototypes.',
     speakers: [
       { name: 'Souma Deep', img: '/souma.png' },
       { name: 'Speaker 2', img: '/souma.png' },
@@ -83,10 +83,10 @@ export const agendaData = [
 ];
 
 export const ticketBenefits = [
-  "Full 2-day session access",
-  "Food arrangements included",
-  "Accommodation support",
-  "Late night breakout sessions",
+  "Full 8-hour session access",
+  "Lunch & high-tea included",
+  "1-on-1 mentor guidance",
+  "Hands-on workshop tracks",
   "Registration kit & certificate",
   "Exclusive community access"
 ];
@@ -98,11 +98,11 @@ export const faqData = [
   },
   {
     q: "Is catering included with the ticket?",
-    a: "Yes, complimentary lunches, tea/coffee service, and evening snacks are included for all registered pass holders on both days."
+    a: "Yes, complimentary lunches, tea/coffee service, and evening snacks are included for all registered pass holders during the meetup."
   },
   {
     q: "Where is the event located?",
-    a: "The event is hosted at the main Science City Auditorium complex, with signs and guides placed at key entrance gates to direct you."
+    a: "The event is hosted at the JIS University campus, Agarpara, Kolkata, with signs and guides placed at key entrance gates to direct you."
   },
   {
     q: "What is the refund policy?",

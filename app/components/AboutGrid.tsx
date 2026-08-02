@@ -40,17 +40,17 @@ export default function AboutGrid() {
           </div>
         </div>
 
-        {/* Bottom Left: Large gradient statistics card (RESIDENTIAL 36h) */}
+        {/* Bottom Left: Large gradient statistics card (DURATION 8h) */}
         <div className="group w-full h-[220px] md:h-[280px] rounded-[28px] bg-gradient-to-br from-[#2D2C85] to-[#4A43C8] shadow-[0_12px_32px_rgba(45,44,133,0.15)] p-8 flex flex-col justify-between text-white relative transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl overflow-hidden">
           <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none" />
           
           <div>
-            <span className="text-[10px] font-bold text-indigo-200/90 uppercase tracking-[0.25em] leading-none">RESIDENTIAL</span>
+            <span className="text-[10px] font-bold text-indigo-200/90 uppercase tracking-[0.25em] leading-none">DURATION</span>
           </div>
 
           <div className="my-auto text-center">
             <h4 className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter font-tech text-white leading-none">
-              36h
+              8h
             </h4>
           </div>
 

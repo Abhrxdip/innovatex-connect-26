@@ -25,7 +25,7 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Kerala Startup Carnival 2026",
+  title: "InnovateX Connect'26",
   description: "Step in, become an AI-native founder.",
 };
 

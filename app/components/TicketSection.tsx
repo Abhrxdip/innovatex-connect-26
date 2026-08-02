@@ -17,12 +17,12 @@ export default function TicketSection() {
 
       {/* Title */}
       <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight leading-[1.15] text-center">
-        The <span className="text-gradient-neon font-black">Carnival Pass</span>
+        The <span className="text-gradient-neon font-black">Event Pass</span>
       </h2>
 
       {/* Subtext */}
       <p className="text-slate-400 text-xs md:text-sm mt-4 max-w-2xl font-medium leading-relaxed text-center">
-        Your basic needs are taken care of so you can focus fully on the <strong className="text-slate-700">2-day experience</strong>.
+        Your basic needs are taken care of so you can focus fully on the <strong className="text-slate-700">8-hour meetup experience</strong>.
       </p>
 
       {/* Ticket Card Container */}
@@ -69,7 +69,7 @@ export default function TicketSection() {
             
             {/* Monospace top labels */}
             <div className="flex justify-between items-center text-[9px] font-black tracking-widest text-slate-400 font-mono select-none">
-              <span>KSC 2026</span>
+              <span>IXC 2026</span>
               <span>ADMIT ONE</span>
             </div>
 
@@ -81,11 +81,11 @@ export default function TicketSection() {
               </span>
               
               <h3 className="text-2xl md:text-3xl font-black tracking-tighter text-slate-800 leading-none">
-                2-DAY PASS
+                FULL PASS
               </h3>
 
               <p className="text-center text-slate-400 text-[10px] font-semibold leading-relaxed max-w-[210px] mt-1 select-none">
-                Secure your access to the full 2-day carnival experience.
+                Secure your access to the full 8-hour meetup experience.
               </p>
             </div>
 
