@@ -3,19 +3,21 @@ import { speakersList } from '../data/constants';
 
 function SpeakerCard({ speaker }: { speaker: typeof speakersList[number] }) {
   return (
-    <div className="relative w-[340px] h-[470px]">
-      
-      {/* Back Card Layer 2 */}
-      <div className="absolute inset-0 rounded-[30px] bg-gradient-to-b from-white to-[#5D49E8] border border-slate-200/20 translate-x-[-20px] translate-y-[24px] rotate-[-6deg] shadow-sm z-0" />
-      
-      {/* Back Card Layer 1 */}
-      <div className="absolute inset-0 rounded-[30px] bg-gradient-to-b from-white to-[#7054F6] border border-slate-200/40 translate-x-[-10px] translate-y-[12px] rotate-[-3deg] shadow-md z-10" />
-      
-      {/* Main Card (Front) */}
-      <div className="relative w-full h-full rounded-[30px] bg-white border border-slate-200/80 shadow-[0_15px_45px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col z-20 group/card transition-all duration-[350ms] ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_25px_50px_rgba(112,84,246,0.18)]">
-        
-        {/* Top White Area */}
-        <div className="relative w-full h-[275px] bg-white bg-graph-pattern overflow-hidden p-5 flex flex-col justify-between select-none">
+    <div className="w-[280px] h-[400px] min-[390px]:w-[320px] min-[390px]:h-[440px] sm:w-[340px] sm:h-[470px] flex items-center justify-center relative">
+      <div className="scale-[0.8] min-[390px]:scale-[0.9] sm:scale-100 origin-center absolute">
+        <div className="relative w-[340px] h-[470px]">
+          
+          {/* Back Card Layer 2 */}
+          <div className="absolute inset-0 rounded-[30px] bg-gradient-to-b from-white to-[#5D49E8] border border-slate-200/20 translate-x-[-20px] translate-y-[24px] rotate-[-6deg] shadow-sm z-0" />
+          
+          {/* Back Card Layer 1 */}
+          <div className="absolute inset-0 rounded-[30px] bg-gradient-to-b from-white to-[#7054F6] border border-slate-200/40 translate-x-[-10px] translate-y-[12px] rotate-[-3deg] shadow-md z-10" />
+          
+          {/* Main Card (Front) */}
+          <div className="relative w-full h-full rounded-[30px] bg-white border border-slate-200/80 shadow-[0_15px_45px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col z-20 group/card transition-all duration-[350ms] ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_25px_50px_rgba(112,84,246,0.18)]">
+            
+            {/* Top White Area */}
+            <div className="relative w-full h-[275px] bg-white bg-graph-pattern overflow-hidden p-5 flex flex-col justify-between select-none">
           
           {/* Sparkle decorative icons */}
           <div className="absolute top-12 left-5 w-4 h-4 text-[#8E73FF] opacity-60">
@@ -118,10 +120,10 @@ function SpeakerCard({ speaker }: { speaker: typeof speakersList[number] }) {
           </div>
 
         </div>
-
       </div>
-
     </div>
+  </div>
+</div>
   );
 }
 

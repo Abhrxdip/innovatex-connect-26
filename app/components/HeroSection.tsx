@@ -81,7 +81,7 @@ export default function HeroSection() {
         
         {/* Ticket Stack Container */}
         <div 
-          className="relative w-full max-w-[540px] h-[250px] flex items-center justify-center cursor-pointer select-none"
+          className="relative w-full max-w-[540px] h-[130px] min-[360px]:h-[160px] min-[390px]:h-[200px] min-[480px]:h-[230px] sm:h-[250px] flex items-center justify-center cursor-pointer select-none"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -89,104 +89,107 @@ export default function HeroSection() {
           {/* Ambient Blue Backglow Effect */}
           <div className="ticket-glow transform translate-y-3" />
 
-          {/* Ticket 3 (Back) */}
-          <div 
-            className={`absolute w-[460px] h-[210px] rounded-3xl border border-white/5 bg-slate-900/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out origin-center
-              ${hovered ? '-translate-x-12 -translate-y-6 rotate-[-9deg] scale-[0.98] opacity-50' : 'rotate-[-6deg] scale-[0.94] opacity-40'}
-              animate-float-ticket-1`}
-            style={{ zIndex: 10 }}
-          >
-            <div className="absolute inset-0 bg-ticket-grid opacity-10 rounded-3xl" />
-          </div>
+          {/* Scaled stack wrapper */}
+          <div className="relative w-[490px] h-[220px] scale-[0.52] min-[360px]:scale-[0.62] min-[390px]:scale-[0.78] min-[480px]:scale-[0.9] sm:scale-100 flex items-center justify-center origin-center transition-transform duration-300">
+            {/* Ticket 3 (Back) */}
+            <div 
+              className={`absolute w-[460px] h-[210px] rounded-3xl border border-white/5 bg-slate-900/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out origin-center
+                ${hovered ? '-translate-x-12 -translate-y-6 rotate-[-9deg] scale-[0.98] opacity-50' : 'rotate-[-6deg] scale-[0.94] opacity-40'}
+                animate-float-ticket-1`}
+              style={{ zIndex: 10 }}
+            >
+              <div className="absolute inset-0 bg-ticket-grid opacity-10 rounded-3xl" />
+            </div>
 
-          {/* Ticket 2 (Middle) */}
-          <div 
-            className={`absolute w-[470px] h-[215px] rounded-3xl border border-indigo-500/10 bg-slate-950/80 shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center
-              ${hovered ? '-translate-x-4 -translate-y-3 rotate-[-4deg] scale-[0.99] opacity-75' : 'rotate-[-3deg] scale-[0.97] opacity-70'}
-              animate-float-ticket-2`}
-            style={{ zIndex: 20 }}
-          >
-            <div className="absolute inset-0 bg-ticket-grid opacity-20 rounded-3xl" />
-          </div>
+            {/* Ticket 2 (Middle) */}
+            <div 
+              className={`absolute w-[470px] h-[215px] rounded-3xl border border-indigo-500/10 bg-slate-950/80 shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center
+                ${hovered ? '-translate-x-4 -translate-y-3 rotate-[-4deg] scale-[0.99] opacity-75' : 'rotate-[-3deg] scale-[0.97] opacity-70'}
+                animate-float-ticket-2`}
+              style={{ zIndex: 20 }}
+            >
+              <div className="absolute inset-0 bg-ticket-grid opacity-20 rounded-3xl" />
+            </div>
 
-          {/* Ticket 1 (Top / Front Active Ticket) */}
-          <div 
-            className={`absolute w-[490px] h-[220px] rounded-[28px] border border-indigo-500/25 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 shadow-[0_30px_80px_rgba(46,108,255,0.3)] transition-all duration-500 ease-out origin-center overflow-visible
-              ${hovered ? 'translate-x-8 translate-y-3 rotate-[4deg] scale-[1.03]' : 'rotate-[1deg] scale-100'}
-              animate-float-ticket-3`}
-            style={{ zIndex: 30 }}
-          >
-            
-            <div className="absolute inset-0 bg-ticket-grid opacity-45 rounded-[28px]" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 rounded-[28px] pointer-events-none" />
-
-            {/* Card notches (cutouts) */}
-            <div className="absolute -top-3.5 left-[74%] w-7 h-7 rounded-full bg-white border-b border-indigo-500/20 z-40" />
-            <div className="absolute -bottom-3.5 left-[74%] w-7 h-7 rounded-full bg-white border-t border-indigo-500/20 z-40" />
-
-            {/* Ticket content split */}
-            <div className="flex h-full w-full relative z-10 p-6 items-stretch font-display">
+            {/* Ticket 1 (Top / Front Active Ticket) */}
+            <div 
+              className={`absolute w-[490px] h-[220px] rounded-[28px] border border-indigo-500/25 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 shadow-[0_30px_80px_rgba(46,108,255,0.3)] transition-all duration-500 ease-out origin-center overflow-visible
+                ${hovered ? 'translate-x-8 translate-y-3 rotate-[4deg] scale-[1.03]' : 'rotate-[1deg] scale-100'}
+                animate-float-ticket-3`}
+              style={{ zIndex: 30 }}
+            >
               
-              {/* Left Section */}
-              <div className="w-[74%] pr-6 flex flex-col justify-between">
-                
-                <div className="flex items-center gap-2">
-                  <div className="grid grid-cols-2 gap-0.5">
-                    <div className="w-2.5 h-2.5 bg-indigo-400 rounded-sm" />
-                    <div className="w-2.5 h-2.5 bg-blue-500 rounded-sm" />
-                    <div className="w-2.5 h-2.5 bg-purple-500 rounded-sm" />
-                    <div className="w-2.5 h-2.5 bg-white rounded-sm" />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">Meetup</span>
-                </div>
+              <div className="absolute inset-0 bg-ticket-grid opacity-45 rounded-[28px]" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 rounded-[28px] pointer-events-none" />
 
-                <div className="my-auto flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-white tracking-tight leading-none">
-                      InnovateX <br />
-                      Connect <br />
-                      &apos;26
-                    </h2>
-                    <p className="text-[9px] text-indigo-400 uppercase tracking-[0.5em] mt-2 font-bold font-tech">
-                      2 0 2 6
-                    </p>
+              {/* Card notches (cutouts) */}
+              <div className="absolute -top-3.5 left-[74%] w-7 h-7 rounded-full bg-white border-b border-indigo-500/20 z-40" />
+              <div className="absolute -bottom-3.5 left-[74%] w-7 h-7 rounded-full bg-white border-t border-indigo-500/20 z-40" />
+
+              {/* Ticket content split */}
+              <div className="flex h-full w-full relative z-10 p-6 items-stretch font-display">
+                
+                {/* Left Section */}
+                <div className="w-[74%] pr-6 flex flex-col justify-between">
+                  
+                  <div className="flex items-center gap-2">
+                    <div className="grid grid-cols-2 gap-0.5">
+                      <div className="w-2.5 h-2.5 bg-indigo-400 rounded-sm" />
+                      <div className="w-2.5 h-2.5 bg-blue-500 rounded-sm" />
+                      <div className="w-2.5 h-2.5 bg-purple-500 rounded-sm" />
+                      <div className="w-2.5 h-2.5 bg-white rounded-sm" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">Meetup</span>
                   </div>
 
-                  {/* Diamond Logo */}
-                  <div className="transform rotate-45 grid grid-cols-2 gap-0.5 w-8 h-8 mr-2">
-                    <div className="bg-indigo-400 w-3.5 h-3.5 rounded-sm" />
-                    <div className="bg-indigo-300 w-3.5 h-3.5 rounded-sm" />
-                    <div className="bg-purple-500 w-3.5 h-3.5 rounded-sm" />
-                    <div className="bg-indigo-500 w-3.5 h-3.5 rounded-sm" />
+                  <div className="my-auto flex items-center justify-between">
+                    <div>
+                      <h2 className="text-2xl font-black text-white tracking-tight leading-none">
+                        InnovateX <br />
+                        Connect <br />
+                        &apos;26
+                      </h2>
+                      <p className="text-[9px] text-indigo-400 uppercase tracking-[0.5em] mt-2 font-bold font-tech">
+                        2 0 2 6
+                      </p>
+                    </div>
+
+                    {/* Diamond Logo */}
+                    <div className="transform rotate-45 grid grid-cols-2 gap-0.5 w-8 h-8 mr-2">
+                      <div className="bg-indigo-400 w-3.5 h-3.5 rounded-sm" />
+                      <div className="bg-indigo-300 w-3.5 h-3.5 rounded-sm" />
+                      <div className="bg-purple-500 w-3.5 h-3.5 rounded-sm" />
+                      <div className="bg-indigo-500 w-3.5 h-3.5 rounded-sm" />
+                    </div>
                   </div>
+
+                  <div className="flex items-center justify-between text-[9px] text-slate-500 font-bold uppercase tracking-wider">
+                    <span>SEPT 05</span>
+                    <span className="text-indigo-400 font-extrabold font-tech">NO. 1024-26</span>
+                  </div>
+
                 </div>
 
-                <div className="flex items-center justify-between text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-                  <span>SEPT 05</span>
-                  <span className="text-indigo-400 font-extrabold font-tech">NO. 1024-26</span>
-                </div>
+                {/* Vertical Divider */}
+                <div className="w-px border-l-2 border-dashed border-white/10 h-full relative" />
 
-              </div>
+                {/* Right Section */}
+                <div className="w-[26%] pl-6 flex flex-col justify-between items-center text-center">
+                  
+                  <div className="text-[10px] font-black text-indigo-350 tracking-[0.25em] uppercase rotate-90 my-auto whitespace-nowrap">
+                    VIP PASS
+                  </div>
+                  
+                  <div className="flex flex-col items-center">
+                    <span className="text-[7px] text-slate-400 font-bold tracking-widest uppercase leading-none">InnovateX</span>
+                    <span className="text-lg font-black text-white leading-none mt-1 select-none">Kolkata</span>
+                  </div>
 
-              {/* Vertical Divider */}
-              <div className="w-px border-l-2 border-dashed border-white/10 h-full relative" />
-
-              {/* Right Section */}
-              <div className="w-[26%] pl-6 flex flex-col justify-between items-center text-center">
-                
-                <div className="text-[10px] font-black text-indigo-350 tracking-[0.25em] uppercase rotate-90 my-auto whitespace-nowrap">
-                  VIP PASS
-                </div>
-                
-                <div className="flex flex-col items-center">
-                  <span className="text-[7px] text-slate-400 font-bold tracking-widest uppercase leading-none">InnovateX</span>
-                  <span className="text-lg font-black text-white leading-none mt-1 select-none">Kolkata</span>
                 </div>
 
               </div>
 
             </div>
-
           </div>
 
         </div>
