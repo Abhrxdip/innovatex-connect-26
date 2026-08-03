@@ -56,7 +56,9 @@ function RegisterForm() {
         throw new Error(data.message || 'Registration failed. Please try again.');
       }
 
-      if (role === 'Community Partner') {
+      if (role === 'Admin') {
+        router.push('/admin');
+      } else if (role === 'Community Partner') {
         router.push('/partner');
       } else {
         router.push('/dashboard');
@@ -69,7 +71,7 @@ function RegisterForm() {
   };
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-xl">
       <div className="glass-card bg-white/90 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/80 relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-600 via-blue-500 to-purple-600" />
 
@@ -82,16 +84,17 @@ function RegisterForm() {
             Create Account
           </h1>
           <p className="text-slate-600 text-xs mt-1">
-            Join 150+ developer attendees in Kolkata
+            Join 150+ developer attendees, partners & organizers in Kolkata
           </p>
         </div>
 
+        {/* Role Selector Grid */}
         <div className="mb-5">
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 text-center">
             Select Your Role
           </label>
-          <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-slate-100/80 rounded-2xl border border-slate-200/60">
-            {['Student', 'Working Professional', 'Community Partner'].map((r) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1.5 bg-slate-100/80 rounded-2xl border border-slate-200/60">
+            {['Student', 'Working Professional', 'Community Partner', 'Admin'].map((r) => (
               <button
                 key={r}
                 type="button"
@@ -126,7 +129,7 @@ function RegisterForm() {
               required
               value={formData.name}
               onChange={handleChange}
-              placeholder="Name"
+              placeholder="Enter Your Name"
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
             />
           </div>
@@ -141,7 +144,7 @@ function RegisterForm() {
               required
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter Your email"
+              placeholder="Enter Your Email"
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
             />
           </div>
@@ -193,6 +196,12 @@ function RegisterForm() {
             </div>
           )}
 
+          {role === 'Admin' && (
+            <div className="p-3 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs">
+              🛡️ <span className="font-bold">Organizer Account:</span> You will gain full admin access to approve tickets, view event analytics, and run QR gate scanners.
+            </div>
+          )}
+
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
               Phone Number
@@ -207,7 +216,7 @@ function RegisterForm() {
             />
           </div>
 
-          {formData.referralCode && (
+          {formData.referralCode && role !== 'Admin' && (
             <div>
               <label className="block text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
                 Referral Code Applied ✨
@@ -231,7 +240,7 @@ function RegisterForm() {
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                Complete Registration
+                Register as {role}
                 <Icons.ArrowRight className="w-4 h-4" />
               </>
             )}
