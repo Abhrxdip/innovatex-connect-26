@@ -3,7 +3,7 @@ import { sendResponse } from "@/src/utils/sendResponse.js";
 import { authenticate } from "@/src/middlewares/auth.middleware.js";
 import { authorize } from "@/src/middlewares/role.middleware.js";
 import { ROLES } from "@/src/config/constants.js";
-import { listTicketsController } from "@/src/controllers/admin.controller.js";
+import { getPartnerDashboardController } from "@/src/controllers/partner.controller.js";
 
 export const GET = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
@@ -11,20 +11,17 @@ export const GET = asyncHandler(async (req) => {
     return authResult.response;
   }
 
-  const roleCheck = authorize(ROLES.ADMIN)(authResult.user);
+  const roleCheck = authorize(ROLES.COMMUNITY_PARTNER, ROLES.ADMIN)(authResult.user);
   if (!roleCheck.authorized) {
     return roleCheck.response;
   }
 
-  const { searchParams } = new URL(req.url);
-  const status = searchParams.get("status");
-
-  const tickets = await listTicketsController(status);
+  const dashboardData = await getPartnerDashboardController(authResult.user._id);
 
   return sendResponse({
     success: true,
     statusCode: 200,
-    message: "Tickets retrieved successfully",
-    data: tickets,
+    message: "Partner dashboard statistics retrieved successfully",
+    data: dashboardData,
   });
 });
