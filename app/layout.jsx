@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Syne, Orbitron } from "next/font/google";
 import "./globals.css";
 
@@ -24,16 +23,12 @@ const orbitron = Orbitron({
   weight: ["400", "500", "700", "900"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "InnovateX Connect'26",
   description: "Step in, become an AI-native founder.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
