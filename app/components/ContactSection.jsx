@@ -6,7 +6,7 @@ export default function ContactSection() {
   return (
     <section className="w-full max-w-5xl mx-auto px-6 mt-16 mb-24 relative z-10">
       <div className="bg-white border border-slate-200/50 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col lg:flex-row items-stretch">
-        
+
         <div className="w-full lg:w-[60%] p-6 md:p-10 flex flex-col justify-between gap-8 border-b lg:border-b-0 lg:border-r border-slate-100">
           <div>
             <h3 className="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight leading-none mb-4">Get in touch</h3>
@@ -53,7 +53,7 @@ export default function ContactSection() {
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Location</span>
             <div className="w-full rounded-2xl overflow-hidden border border-slate-200/50 shadow-sm relative h-[200px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.1265691039825!2d88.37568571120005!3d22.686367379294247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89da44ef9115d%3A0xa6ee8f4d99432d4b!2sJIS%20University!5e0!3m2!1sen!2sin!4v1714488349583!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.404764555675!2d88.37576757601681!3d22.67597127941829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c46c06efd83%3A0x36a29a26ce825e99!2sJIS%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1785765848926!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

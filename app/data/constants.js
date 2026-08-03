@@ -1,5 +1,4 @@
-export const speakersList = [
-  {
+export const speakersList = [{
     name: 'Shan Abdul Salam',
     role: 'FOUNDER, THE ECOM SHOW',
     desc: 'FOUNDER, THE ECOM SHOW',
@@ -26,16 +25,23 @@ export const speakersList = [
   },
 ];
 
-export const agendaData = [
-  {
+export const agendaData = [{
     category: 'DISCOVERY',
     title: 'Problem discovery and understanding gaps.',
     time: '09:00AM - 10:20AM',
     description: 'Step out of your routine and enter a focused environment to start exploring real-world problems. Join us for an extraordinary session.',
-    speakers: [
-      { name: 'Souma Deep', img: '/souma.png' },
-      { name: 'Speaker 2', img: '/souma.png' },
-      { name: 'Speaker 3', img: '/souma.png' }
+    speakers: [{
+        name: 'Souma Deep',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 2',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 3',
+        img: '/souma.png'
+      }
     ]
   },
   {
@@ -43,9 +49,14 @@ export const agendaData = [
     title: 'AI-assisted idea generation and team formation.',
     time: '10:30AM - 11:50AM',
     description: 'Conversations continue beyond sessions. Form small teams and start exploring ideas in a real, actionable way using AI.',
-    speakers: [
-      { name: 'Souma Deep', img: '/souma.png' },
-      { name: 'Speaker 2', img: '/souma.png' }
+    speakers: [{
+        name: 'Souma Deep',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 2',
+        img: '/souma.png'
+      }
     ]
   },
   {
@@ -53,10 +64,18 @@ export const agendaData = [
     title: 'Rapid building begins. Evening reflections.',
     time: '12:00PM - 01:30PM',
     description: 'Deeper reflections and informal thinking in a collaborative setting. Start turning ideas into prototypes.',
-    speakers: [
-      { name: 'Souma Deep', img: '/souma.png' },
-      { name: 'Speaker 2', img: '/souma.png' },
-      { name: 'Speaker 3', img: '/souma.png' }
+    speakers: [{
+        name: 'Souma Deep',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 2',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 3',
+        img: '/souma.png'
+      }
     ]
   },
   {
@@ -64,9 +83,14 @@ export const agendaData = [
     title: 'MVP Development & Mentor Feedback Loops.',
     time: '02:00PM - 03:30PM',
     description: 'Work directly with engineering leads and mentors to build out core functionalities and validate user flows.',
-    speakers: [
-      { name: 'Souma Deep', img: '/souma.png' },
-      { name: 'Speaker 3', img: '/souma.png' }
+    speakers: [{
+        name: 'Souma Deep',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 3',
+        img: '/souma.png'
+      }
     ]
   },
   {
@@ -74,10 +98,18 @@ export const agendaData = [
     title: 'Final Project Pitch & Closing Ceremonies.',
     time: '03:45PM - 05:00PM',
     description: 'Present your prototype to a panel of startup founders, early-stage investors, and domain experts.',
-    speakers: [
-      { name: 'Souma Deep', img: '/souma.png' },
-      { name: 'Speaker 2', img: '/souma.png' },
-      { name: 'Speaker 3', img: '/souma.png' }
+    speakers: [{
+        name: 'Souma Deep',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 2',
+        img: '/souma.png'
+      },
+      {
+        name: 'Speaker 3',
+        img: '/souma.png'
+      }
     ]
   }
 ];
@@ -91,8 +123,7 @@ export const ticketBenefits = [
   "Exclusive community access"
 ];
 
-export const faqData = [
-  {
+export const faqData = [{
     q: "Do I need to bring a laptop?",
     a: "Yes, we highly recommend bringing a fully charged laptop. Many sessions, workshops, and keynotes include interactive building, live demos, and hands-on coding tracks."
   },
