@@ -3,9 +3,9 @@ import { sendResponse } from "@/src/utils/sendResponse.js";
 import { authenticate } from "@/src/middlewares/auth.middleware.js";
 import { authorize } from "@/src/middlewares/role.middleware.js";
 import { ROLES } from "@/src/config/constants.js";
-import { listTicketsController } from "@/src/controllers/admin.controller.js";
+import { scanFoodController } from "@/src/controllers/attendance.controller.js";
 
-export const GET = asyncHandler(async (req) => {
+export const POST = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
   if (!authResult.authenticated) {
     return authResult.response;
@@ -16,15 +16,25 @@ export const GET = asyncHandler(async (req) => {
     return roleCheck.response;
   }
 
-  const { searchParams } = new URL(req.url);
-  const status = searchParams.get("status");
+  const { ticketNumber, counter } = await req.json();
+  if (!ticketNumber) {
+    return sendResponse({
+      success: false,
+      statusCode: 400,
+      message: "Ticket number is required",
+    });
+  }
 
-  const tickets = await listTicketsController(status);
+  const result = await scanFoodController({
+    ticketNumber,
+    adminId: authResult.user._id,
+    counter: counter || "Food Counter 1",
+  });
 
   return sendResponse({
     success: true,
     statusCode: 200,
-    message: "Tickets retrieved successfully",
-    data: tickets,
+    message: "Food coupon redeemed successfully",
+    data: result,
   });
 });
