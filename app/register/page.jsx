@@ -3,8 +3,8 @@
 import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Navbar from '../../components/Navbar';
-import { Icons } from '../../components/Icons';
+import Navbar from '../components/Navbar';
+import { Icons } from '../components/Icons';
 
 function RegisterForm() {
   const router = useRouter();
@@ -71,7 +71,6 @@ function RegisterForm() {
   return (
     <div className="w-full max-w-lg">
       <div className="glass-card bg-white/90 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/80 relative overflow-hidden">
-        {/* Top Gradient Accent */}
         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-600 via-blue-500 to-purple-600" />
 
         <div className="text-center mb-6 pt-2">
@@ -87,7 +86,6 @@ function RegisterForm() {
           </p>
         </div>
 
-        {/* Role Selector Tabs */}
         <div className="mb-5">
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 text-center">
             Select Your Role
@@ -98,10 +96,11 @@ function RegisterForm() {
                 key={r}
                 type="button"
                 onClick={() => setRole(r)}
-                className={`py-2 px-1 text-[11px] sm:text-xs font-bold rounded-xl transition-all duration-300 text-center cursor-pointer ${role === r
-                  ? 'bg-[#1E1B4B] text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
-                  }`}
+                className={`py-2 px-1 text-[11px] sm:text-xs font-bold rounded-xl transition-all duration-300 text-center cursor-pointer ${
+                  role === r
+                    ? 'bg-[#1E1B4B] text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                }`}
               >
                 {r === 'Working Professional' ? 'Professional' : r}
               </button>
@@ -142,7 +141,7 @@ function RegisterForm() {
               required
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter Your email "
+              placeholder="Enter Your email"
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
             />
           </div>
@@ -263,7 +262,6 @@ export default function RegisterPage() {
 
       <Navbar />
 
-      {/* Main Container with generous top padding (pt-32 sm:pt-36) so navbar never overlaps */}
       <main className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32 sm:pt-36 pb-16">
         <Suspense fallback={<div className="text-center text-slate-500 text-sm">Loading...</div>}>
           <RegisterForm />

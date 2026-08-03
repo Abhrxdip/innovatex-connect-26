@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Navbar from '../../components/Navbar';
-import { Icons } from '../../components/Icons';
+import Navbar from '../components/Navbar';
+import { Icons } from '../components/Icons';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -58,18 +58,14 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] bg-grid-pattern flex flex-col justify-between overflow-x-hidden font-display">
-      {/* Soft Radial Ambient Glows */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-200/25 blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-250/20 blur-[170px] pointer-events-none animate-pulse-glow" />
 
       <Navbar />
 
-      {/* Main Container with generous top padding (pt-32 sm:pt-36) so navbar never overlaps */}
       <main className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32 sm:pt-36 pb-16">
         <div className="w-full max-w-md">
-          {/* Main Glassmorphism Ticket Card */}
           <div className="glass-card bg-white/90 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/80 relative overflow-hidden">
-            {/* Top Accent Strip */}
             <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-600 via-blue-500 to-purple-600" />
 
             <div className="text-center mb-6 pt-2">
@@ -103,7 +99,7 @@ export default function LoginPage() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="enter your email "
+                  placeholder="Enter your email"
                   className="w-full px-4 py-3 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
                 />
               </div>
