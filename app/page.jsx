@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] bg-grid-pattern flex flex-col justify-between overflow-x-hidden font-display">
-      
+
       {/* Soft Radial Blue/Purple Glows - Adjusted for Light Theme */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-200/25 blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-250/20 blur-[170px] pointer-events-none animate-pulse-glow" />
@@ -25,13 +25,13 @@ export default function Home() {
 
       {/* Ticket Perforation Transition and Next Section */}
       <div className="w-full relative z-30 flex flex-col mt-12">
-        
+
         {/* The thick horizontal royal-blue strip (#3B34A8) with Perforated Edge */}
         <div className="w-full ticket-perforation-top h-14" />
-        
+
         {/* Overlapping large white content container with rounded top corners. */}
         <section className="relative z-40 -translate-y-5 bg-white bg-graph-pattern rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-20 pb-10 px-6 md:px-12 border-t border-slate-100">
-          
+
           {/* About Grid */}
           <AboutGrid />
 
@@ -58,7 +58,7 @@ export default function Home() {
           </div>
 
           {/* Scalloped Bottom Edge of the white section */}
-          <div 
+          <div
             className="absolute -bottom-[6px] left-0 w-full h-[12px] z-40 pointer-events-none"
             style={{
               backgroundImage: 'radial-gradient(circle at 10px 0px, #FFF 5.5px, transparent 6px)',

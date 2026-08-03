@@ -1,11 +1,18 @@
+'use client';
+
 import React from 'react';
 import { Icons } from './Icons';
+import GetTicketStore from '../state_management/ticket_store';
+import { useStore } from 'zustand';
 
 export default function AboutGrid() {
+  const store = GetTicketStore()
+  const isAvailable = useStore(store, (s) => s.isAvailable)
+  const redirectUrl = useStore(store, (s) => s.redirectUrl)
   return (
-    <div className="max-w-6xl mx-auto w-full relative">
+    <div id="about" className="max-w-6xl mx-auto w-full relative">
       <div className="grid grid-cols-2 gap-4 md:gap-10 relative">
-        
+
         <div className="group w-full h-[170px] min-[390px]:h-[210px] md:h-[280px] rounded-[20px] md:rounded-[28px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 border border-slate-700/50 shadow-[0_12px_32px_rgba(0,0,0,0.08)] relative overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl">
           <div className="absolute inset-0 bg-ticket-grid opacity-15 pointer-events-none" />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -55,9 +62,18 @@ export default function AboutGrid() {
 
       </div>
 
-      <div className="absolute bottom-[-52px] left-1/2 transform -translate-x-1/2 z-50">
-        <button className="relative group overflow-hidden bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 text-white px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_15px_35px_rgba(15,23,42,0.4)] flex items-center justify-center gap-2.5">
-          <span className="relative z-10 uppercase tracking-widest">SOLD OUT</span>
+      <div className="absolute bottom-[-52px] left-1/2 transform -translate-x-1/2 translate-y-[10px] z-50">
+        <button
+          type="button"
+          onClick={() => {
+            if (isAvailable && typeof window !== 'undefined') {
+              window.open(redirectUrl, '_blank', 'noopener,noreferrer')
+            }
+          }}
+          disabled={!isAvailable}
+          className={`relative group overflow-hidden text-white px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_15px_35px_rgba(15,23,42,0.4)] flex items-center justify-center gap-2.5 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800`}
+        >
+          <span className="relative z-10 uppercase tracking-widest ">{isAvailable ? 'GET TICKET' : 'SOLD OUT'}</span>
           <Icons.Ticket className="w-4 h-4 text-white" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
         </button>

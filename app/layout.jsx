@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono, Syne, Orbitron } from "next/font/google";
+import { TicketProvider } from "./state_management/ticket_store"
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${orbitron.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col"><TicketProvider>{children}</TicketProvider></body>
     </html>
   );
 }
