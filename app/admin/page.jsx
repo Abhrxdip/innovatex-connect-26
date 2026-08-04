@@ -49,7 +49,7 @@ export default function AdminDashboardPage() {
       const res = await fetch(`/api/admin/tickets/${ticketId}/approve`, { method: 'POST' });
       const json = await res.json();
       if (!res.ok || !json.success) throw new Error(json.message || 'Approval failed.');
-      setSuccessMsg('Ticket approved & QR Code emailed! 🎉');
+      setSuccessMsg('Ticket approved & QR Code emailed!');
       fetchAdminData();
     } catch (err) { setError(err.message); }
     finally { setActionLoading(null); }
@@ -127,10 +127,10 @@ export default function AdminDashboardPage() {
   const analytics = dashboardData?.analytics || {};
 
   const tabList = [
-    { id: 'overview', label: '📊 Analytics' },
-    { id: 'tickets', label: '🎟️ Approvals' },
-    { id: 'gate', label: '🚪 Gate Scan' },
-    { id: 'food', label: '🍔 Food Scan' },
+    { id: 'overview', label: 'Analytics' },
+    { id: 'tickets', label: 'Approvals' },
+    { id: 'gate', label: 'Gate Scan' },
+    { id: 'food', label: 'Food Scan' },
   ];
 
   const statusColor = (s) =>
@@ -148,7 +148,7 @@ export default function AdminDashboardPage() {
         isOpen={scannerOpen}
         onClose={() => setScannerOpen(false)}
         onScanSuccess={handleQRScanSuccess}
-        title={scannerType === 'gate' ? '🚪 Gate Check-in Scanner' : '🍔 Food Coupon Scanner'}
+        title={scannerType === 'gate' ? 'Gate Check-in Scanner' : 'Food Coupon Scanner'}
         accentColor={scannerType === 'gate' ? 'blue' : 'amber'}
       />
 
@@ -171,7 +171,7 @@ export default function AdminDashboardPage() {
             {/* Header */}
             <div className="glass-card bg-white/90 rounded-3xl p-5 sm:p-8 shadow-xl border border-slate-200/80 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-5">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#1E1B4B] text-white text-xl sm:text-2xl flex items-center justify-center shadow-lg shrink-0">🛡️</div>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#1E1B4B] text-white text-xs sm:text-sm flex items-center justify-center font-bold shadow-lg shrink-0">Admin</div>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">Admin Control Center</h1>
@@ -191,7 +191,7 @@ export default function AdminDashboardPage() {
             </div>
 
             {error && <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs font-bold flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0"/>{error}</div>}
-            {successMsg && <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">✨ {successMsg}</div>}
+            {successMsg && <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">{successMsg}</div>}
 
             {/* OVERVIEW */}
             {activeTab === 'overview' && (
@@ -214,7 +214,6 @@ export default function AdminDashboardPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="glass-card bg-white/90 rounded-3xl p-6 border border-emerald-300/80 shadow-xl bg-emerald-50/30">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-2xl">✅</span>
                       <div>
                         <p className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">Total Gate Check-ins Done</p>
                         <p className="text-[10px] text-slate-500">Attendees physically arrived</p>
@@ -234,7 +233,6 @@ export default function AdminDashboardPage() {
 
                   <div className="glass-card bg-white/90 rounded-3xl p-6 border border-amber-300/80 shadow-xl bg-amber-50/30">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-2xl">🍔</span>
                       <div>
                         <p className="text-[11px] font-bold text-amber-600 uppercase tracking-wider">Total Food Served</p>
                         <p className="text-[10px] text-slate-500">Meal coupons redeemed</p>
@@ -328,7 +326,7 @@ export default function AdminDashboardPage() {
                           <div>
                             <p className="font-bold text-slate-900 text-sm">{t.userId?.name}</p>
                             <p className="text-xs text-slate-500">{t.userId?.email}</p>
-                            <p className="text-xs text-slate-600 mt-1">🎓 {t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium">{t.attendeeType}</span></p>
+                            <p className="text-xs text-slate-600 mt-1">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium">{t.attendeeType}</span></p>
                           </div>
                           {t.status === 'Pending' && (
                             <div className="flex gap-2 pt-2 border-t border-slate-200/60">
@@ -358,7 +356,6 @@ export default function AdminDashboardPage() {
             {activeTab === 'gate' && (
               <ScannerPanel
                 title="Main Gate Check-in Scanner"
-                icon="🚪"
                 iconBg="bg-blue-50 text-blue-600"
                 hint="Scan the attendee's QR ticket at the main entrance."
                 accentColor="blue"
@@ -377,8 +374,7 @@ export default function AdminDashboardPage() {
             {/* FOOD SCAN */}
             {activeTab === 'food' && (
               <ScannerPanel
-                title="Food Counter Coupon Redemption"
-                icon="🍔"
+                title="Food Coupon Redemption"
                 iconBg="bg-amber-50 text-amber-600"
                 hint="Scan the attendee's QR ticket to mark meal coupon as redeemed."
                 accentColor="amber"
@@ -401,7 +397,7 @@ export default function AdminDashboardPage() {
 }
 
 function ScannerPanel({
-  title, icon, iconBg, hint, accentColor, focusRing,
+  title, iconBg, hint, accentColor, focusRing,
   btnLabel, scanType, scanInput, setScanInput,
   scanLoading, scanResult, onOpenCamera, onManualSubmit,
 }) {
@@ -415,7 +411,6 @@ function ScannerPanel({
     <div className="glass-card bg-white/90 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 max-w-2xl mx-auto space-y-6">
       {/* Header */}
       <div className="text-center">
-        <div className={`w-14 h-14 rounded-2xl ${iconBg} flex items-center justify-center mx-auto mb-3 text-2xl font-bold`}>{icon}</div>
         <h2 className="text-xl font-extrabold text-slate-900">{title}</h2>
         <p className="text-slate-500 text-xs mt-1">{hint}</p>
       </div>
@@ -425,7 +420,6 @@ function ScannerPanel({
         onClick={onOpenCamera}
         className={`w-full py-4 rounded-2xl ${camBtnColor} text-white font-extrabold text-sm shadow-lg transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer`}
       >
-        <span className="text-2xl">📷</span>
         <span>Open Camera Scanner</span>
       </button>
 
@@ -466,7 +460,7 @@ function ScannerPanel({
             <div className="w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl font-bold shrink-0 shadow-lg shadow-emerald-500/30">✓</div>
             <div>
               <h3 className="text-sm font-extrabold text-emerald-900">
-                {scanType === 'gate' ? '✅ Check-in Confirmed!' : '🍔 Food Coupon Claimed!'}
+                {scanType === 'gate' ? 'Check-in Confirmed!' : 'Food Coupon Claimed!'}
               </h3>
               <p className="text-xs text-emerald-800 font-medium mt-0.5">
                 <span className="font-bold">{myResult.data?.ticket?.userId?.name}</span>
@@ -478,8 +472,8 @@ function ScannerPanel({
           <div className="pl-14 space-y-1">
             <p className="text-[11px] text-emerald-700 font-mono">
               {scanType === 'gate'
-                ? `📍 Gate: ${myResult.data?.attendance?.gate}`
-                : `📍 Counter: ${myResult.data?.foodScan?.counter}`}
+                ? `Gate: ${myResult.data?.attendance?.gate}`
+                : `Counter: ${myResult.data?.foodScan?.counter}`}
               {' • '}{new Date().toLocaleTimeString()}
             </p>
             <p className="text-[11px] text-emerald-600">
@@ -495,7 +489,7 @@ function ScannerPanel({
       {myResult?.status === 'duplicate' && (
         <div className="p-5 rounded-2xl bg-amber-50 border-2 border-amber-400 space-y-3">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-amber-400 text-white flex items-center justify-center text-xl font-bold shrink-0 shadow-lg shadow-amber-400/30">⚠️</div>
+            <div className="w-11 h-11 rounded-full bg-amber-400 text-white flex items-center justify-center text-xl font-bold shrink-0 shadow-lg shadow-amber-400/30">!</div>
             <div>
               <h3 className="text-sm font-extrabold text-amber-900">
                 {scanType === 'gate' ? 'Already Checked In!' : 'Food Coupon Already Used!'}
@@ -508,8 +502,8 @@ function ScannerPanel({
           <div className="pl-14">
             <p className="text-xs text-amber-800 leading-relaxed">
               {scanType === 'gate'
-                ? '🚫 This attendee has already scanned in at the main gate. Do not allow duplicate entry.'
-                : '🚫 This food coupon has already been redeemed. Each ticket allows one meal only.'}
+                ? 'This attendee has already scanned in at the main gate. Do not allow duplicate entry.'
+                : 'This food coupon has already been redeemed. Each ticket allows one meal only.'}
             </p>
           </div>
           <div className="pl-14 pt-1">
