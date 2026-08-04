@@ -1,17 +1,30 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useStore } from 'zustand';
 import { Icons } from './Icons';
+import GetTicketStore from '../state_management/ticket_store';
 
 export default function HeroSection() {
   const [hovered, setHovered] = useState(false);
+  const store = GetTicketStore();
+  const isAvailable = useStore(store, (state) => state.isAvailable);
+  const redirectUrl = useStore(store, (state) => state.redirectUrl);
+
+  const handleTicketClick = () => {
+    if (!isAvailable || typeof window === 'undefined') {
+      return;
+    }
+
+    window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <main className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between py-12 lg:py-24 gap-16 z-20">
-      
+
       {/* Left Side Content */}
       <div className="flex-1 flex flex-col items-start gap-8 max-w-xl text-left">
-        
+
         {/* Slogan with sparkle */}
         <div className="flex flex-col gap-3 font-display">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-800 leading-[1.12]">
@@ -27,7 +40,7 @@ export default function HeroSection() {
 
         {/* Date and Location Panel - Light Card styling */}
         <div className="flex flex-wrap items-center gap-6 mt-2 font-display">
-          
+
           {/* Date Block */}
           <div className="flex items-center">
             <div className="p-3 bg-white border border-slate-200/80 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.02)] flex items-center justify-center">
@@ -44,7 +57,7 @@ export default function HeroSection() {
 
           {/* Venue Block */}
           <div className="flex items-center">
-            
+
             {/* Host Logo */}
             <div className="p-3 bg-white border border-slate-200/80 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.02)] flex items-center justify-center">
               <svg className="w-6 h-6 text-indigo-655" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -53,7 +66,7 @@ export default function HeroSection() {
                 <path d="M13 3l8 8M3 13l8 8" strokeLinecap="round" />
               </svg>
             </div>
-            
+
             <div className="ml-3">
               <p className="text-slate-800 font-bold text-lg leading-none">JIS University</p>
               <p className="text-slate-400 text-xs mt-1 leading-none font-semibold">Kolkata, WB</p>
@@ -78,21 +91,21 @@ export default function HeroSection() {
 
       {/* Right Side Ticket Stack and CTA */}
       <div className="flex-1 flex flex-col items-center justify-center gap-12 w-full max-w-2xl">
-        
+
         {/* Ticket Stack Container */}
-        <div 
+        <div
           className="relative w-full max-w-[540px] h-[130px] min-[360px]:h-[160px] min-[390px]:h-[200px] min-[480px]:h-[230px] sm:h-[250px] flex items-center justify-center cursor-pointer select-none"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          
+
           {/* Ambient Blue Backglow Effect */}
           <div className="ticket-glow transform translate-y-3" />
 
           {/* Scaled stack wrapper */}
           <div className="relative w-[490px] h-[220px] scale-[0.52] min-[360px]:scale-[0.62] min-[390px]:scale-[0.78] min-[480px]:scale-[0.9] sm:scale-100 flex items-center justify-center origin-center transition-transform duration-300">
             {/* Ticket 3 (Back) */}
-            <div 
+            <div
               className={`absolute w-[460px] h-[210px] rounded-3xl border border-white/5 bg-slate-900/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out origin-center
                 ${hovered ? '-translate-x-12 -translate-y-6 rotate-[-9deg] scale-[0.98] opacity-50' : 'rotate-[-6deg] scale-[0.94] opacity-40'}
                 animate-float-ticket-1`}
@@ -102,7 +115,7 @@ export default function HeroSection() {
             </div>
 
             {/* Ticket 2 (Middle) */}
-            <div 
+            <div
               className={`absolute w-[470px] h-[215px] rounded-3xl border border-indigo-500/10 bg-slate-950/80 shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center
                 ${hovered ? '-translate-x-4 -translate-y-3 rotate-[-4deg] scale-[0.99] opacity-75' : 'rotate-[-3deg] scale-[0.97] opacity-70'}
                 animate-float-ticket-2`}
@@ -112,13 +125,13 @@ export default function HeroSection() {
             </div>
 
             {/* Ticket 1 (Top / Front Active Ticket) */}
-            <div 
+            <div
               className={`absolute w-[490px] h-[220px] rounded-[28px] border border-indigo-500/25 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 shadow-[0_30px_80px_rgba(46,108,255,0.3)] transition-all duration-500 ease-out origin-center overflow-visible
                 ${hovered ? 'translate-x-8 translate-y-3 rotate-[4deg] scale-[1.03]' : 'rotate-[1deg] scale-100'}
                 animate-float-ticket-3`}
               style={{ zIndex: 30 }}
             >
-              
+
               <div className="absolute inset-0 bg-ticket-grid opacity-45 rounded-[28px]" />
               <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 rounded-[28px] pointer-events-none" />
 
@@ -128,10 +141,10 @@ export default function HeroSection() {
 
               {/* Ticket content split */}
               <div className="flex h-full w-full relative z-10 p-6 items-stretch font-display">
-                
+
                 {/* Left Section */}
                 <div className="w-[74%] pr-6 flex flex-col justify-between">
-                  
+
                   <div className="flex items-center gap-2">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div className="w-2.5 h-2.5 bg-indigo-400 rounded-sm" />
@@ -175,11 +188,11 @@ export default function HeroSection() {
 
                 {/* Right Section */}
                 <div className="w-[26%] pl-6 flex flex-col justify-between items-center text-center">
-                  
+
                   <div className="text-[10px] font-black text-indigo-350 tracking-[0.25em] uppercase rotate-90 my-auto whitespace-nowrap">
                     VIP PASS
                   </div>
-                  
+
                   <div className="flex flex-col items-center">
                     <span className="text-[7px] text-slate-400 font-bold tracking-widest uppercase leading-none">InnovateX</span>
                     <span className="text-lg font-black text-white leading-none mt-1 select-none">Kolkata</span>
@@ -196,17 +209,22 @@ export default function HeroSection() {
 
         {/* Action buttons */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-6">
-          
-          <button className="relative group overflow-hidden bg-[#1E1B4B] hover:bg-[#312E81] text-white border border-[#4338CA] px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_10px_25px_rgba(30,27,75,0.25)] flex items-center justify-center gap-2.5 w-full sm:w-auto">
-            <span className="relative z-10 uppercase tracking-widest">SOLD OUT</span>
+
+          <button
+            type="button"
+            onClick={handleTicketClick}
+            disabled={!isAvailable}
+            className={`relative group overflow-hidden text-white border px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_10px_25px_rgba(30,27,75,0.25)] flex items-center justify-center gap-2.5 w-full sm:w-auto bg-[#1E1B4B] hover:bg-[#312E81] border-[#4338CA] cursor-not-allowed opacity-85'}`}
+          >
+            <span className="relative z-10 uppercase tracking-widest">{isAvailable ? 'GET TICKET' : 'SOLD OUT'}</span>
             <Icons.Ticket className="w-4 h-4 text-white" />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </button>
 
-          <a 
-            href="https://whatsapp.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://whatsapp.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center bg-white hover:bg-slate-50 border border-slate-200/80 hover:border-emerald-500/40 px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-300 w-full sm:w-auto"
           >
             <div className="flex -space-x-2 mr-3.5">
@@ -215,7 +233,7 @@ export default function HeroSection() {
               <div className="w-7 h-7 rounded-full border border-white bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-[10px] font-bold text-white">C</div>
               <div className="w-7 h-7 rounded-full border border-white bg-slate-200 flex items-center justify-center text-[8px] font-black text-slate-600">+500</div>
             </div>
-            
+
             <div className="flex flex-col items-start">
               <span className="text-[10px] text-slate-400 uppercase tracking-widest font-extrabold leading-none">JOIN OUR</span>
               <span className="text-xs text-emerald-600 font-bold leading-none mt-1 group-hover:text-emerald-500 transition-colors flex items-center">
