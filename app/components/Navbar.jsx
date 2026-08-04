@@ -2,11 +2,44 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Icons } from './Icons';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  // Fetch user profile to check auth state
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('/api/user/profile');
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setUser(data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      setUser(null);
+      setIsOpen(false);
+      router.push('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -84,56 +117,60 @@ export default function Navbar() {
               </div>
 
               <div className="space-y-1">
-                <Link
-                  href="/login"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 transition-all"
-                >
-                  <div className="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center">
-                    <Icons.User className="w-3.5 h-3.5" />
-                  </div>
-                  <span>Sign In</span>
-                </Link>
+                {loading ? (
+                  <div className="px-3 py-2 text-xs text-slate-500 font-medium text-center">Loading...</div>
+                ) : user ? (
+                  <>
+                    <Link
+                      href={
+                        user.role === 'Admin' ? '/admin' :
+                        user.role === 'Community Partner' ? '/partner' :
+                        '/dashboard'
+                      }
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all"
+                    >
+                      <Icons.Ticket className="w-3.5 h-3.5 text-slate-500" />
+                      <span>My Dashboard</span>
+                    </Link>
 
-                <Link
-                  href="/register"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-[#1E1B4B] hover:bg-[#2E6CFF] transition-all shadow-sm"
-                >
-                  <div className="w-6 h-6 rounded-lg bg-white/20 text-white flex items-center justify-center">
-                    <Icons.UserCheck className="w-3.5 h-3.5" />
-                  </div>
-                  <span>Create Free Account</span>
-                </Link>
+                    <div className="h-px bg-slate-100 my-1" />
 
-                <div className="h-px bg-slate-100 my-1" />
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 hover:text-red-700 transition-all cursor-pointer"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
+                      <span>Logout</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 transition-all"
+                    >
+                      <div className="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center">
+                        <Icons.User className="w-3.5 h-3.5" />
+                      </div>
+                      <span>Sign In</span>
+                    </Link>
 
-                <Link
-                  href="/dashboard"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all"
-                >
-                  <Icons.Ticket className="w-3.5 h-3.5 text-slate-500" />
-                  <span>My Dashboard</span>
-                </Link>
-
-                <Link
-                  href="/partner"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all"
-                >
-                  <Icons.Sparkle />
-                  <span>Partner Portal</span>
-                </Link>
-
-                <Link
-                  href="/admin"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all"
-                >
-                  <Icons.About />
-                  <span>Admin Panel</span>
-                </Link>
+                    <Link
+                      href="/register"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-[#1E1B4B] hover:bg-[#2E6CFF] transition-all shadow-sm"
+                    >
+                      <div className="w-6 h-6 rounded-lg bg-white/20 text-white flex items-center justify-center">
+                        <Icons.UserCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <span>Create Free Account</span>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           )}
