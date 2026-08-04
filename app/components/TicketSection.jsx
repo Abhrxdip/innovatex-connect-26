@@ -82,7 +82,11 @@ export default function TicketSection() {
                 disabled={!isAvailable}
                 onClick={() => {
                   if (isAvailable && typeof window !== 'undefined') {
-                    window.open(redirectUrl, '_blank', 'noopener,noreferrer')
+                    if (redirectUrl.startsWith('http')) {
+                      window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+                    } else {
+                      window.location.href = redirectUrl;
+                    }
                   }
                 }} 
                 className={`flex items-center justify-between w-full px-5 py-3.5 font-black text-xs uppercase tracking-widest rounded-xl transition-all select-none border ${isAvailable ? 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-[0_8px_20px_rgba(16,185,129,0.15)] cursor-pointer border-emerald-400/20' : 'bg-slate-200 text-slate-400 cursor-not-allowed border-slate-300'}`}

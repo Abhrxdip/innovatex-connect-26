@@ -72,11 +72,13 @@ export async function approveTicketController(ticketId, adminId) {
     <img src="${qrCodeDataUrl}" alt="QR Ticket" width="200" height="200"/>
   `;
 
+/*
   await sendEmail({
     to: ticket.userId.email,
     subject: "Ticket Approved - InnovateX Connect '26",
     html: emailHtml,
   });
+*/
 
   return ticket;
 }
