@@ -94,16 +94,21 @@ export default function AdminDashboardPage() {
           playNotifyBeep('warn');
           setScanInput('');
         } else {
+          playNotifyBeep('error');
           throw new Error(msg);
         }
         return;
       }
 
       setScanResult({ type, status: 'success', data: json.data });
+      playNotifyBeep('success');
       setScanInput('');
       fetchAdminData();
-    } catch (err) { setError(err.message); }
-    finally { setScanLoading(false); }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setScanLoading(false);
+    }
   }, [fetchAdminData]);
 
   const handleManualScan = (e, type) => {
@@ -150,6 +155,9 @@ export default function AdminDashboardPage() {
         onScanSuccess={handleQRScanSuccess}
         title={scannerType === 'gate' ? 'Gate Check-in Scanner' : 'Food Coupon Scanner'}
         accentColor={scannerType === 'gate' ? 'blue' : 'amber'}
+        scanResult={scanResult}
+        scanLoading={scanLoading}
+        scanError={error}
       />
 
       <main className="relative z-10 flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-32 sm:pt-36 pb-16">
@@ -524,11 +532,29 @@ function playNotifyBeep(type = 'warn') {
     const gain = ctx.createGain();
     osc.connect(gain);
     gain.connect(ctx.destination);
-    osc.type = type === 'warn' ? 'square' : 'sine';
-    osc.frequency.value = type === 'warn' ? 330 : 880;
-    gain.gain.setValueAtTime(0.2, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.4);
+    
+    if (type === 'success') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.frequency.setValueAtTime(1100, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.3);
+    } else if (type === 'error') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(150, ctx.currentTime);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.6);
+    } else {
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(220, ctx.currentTime);
+      gain.gain.setValueAtTime(0.25, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.5);
+    }
   } catch (_) {}
 }
