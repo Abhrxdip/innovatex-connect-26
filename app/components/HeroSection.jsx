@@ -16,7 +16,11 @@ export default function HeroSection() {
       return;
     }
 
-    window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+    if (redirectUrl.startsWith('http')) {
+      window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      window.location.href = redirectUrl;
+    }
   };
 
   return (
@@ -214,7 +218,7 @@ export default function HeroSection() {
             type="button"
             onClick={handleTicketClick}
             disabled={!isAvailable}
-            className={`relative group overflow-hidden text-white border px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_10px_25px_rgba(30,27,75,0.25)] flex items-center justify-center gap-2.5 w-full sm:w-auto bg-[#1E1B4B] hover:bg-[#312E81] border-[#4338CA] cursor-not-allowed opacity-85'}`}
+            className={`relative group overflow-hidden text-white border px-10 py-3.5 rounded-full font-bold text-sm tracking-widest transition-all shadow-[0_10px_25px_rgba(30,27,75,0.25)] flex items-center justify-center gap-2.5 w-full sm:w-auto bg-[#1E1B4B] hover:bg-[#312E81] border-[#4338CA] ${isAvailable ? 'cursor-pointer' : 'cursor-not-allowed opacity-80'}`}
           >
             <span className="relative z-10 uppercase tracking-widest">{isAvailable ? 'GET TICKET' : 'SOLD OUT'}</span>
             <Icons.Ticket className="w-4 h-4 text-white" />
