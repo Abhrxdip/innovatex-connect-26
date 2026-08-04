@@ -32,9 +32,15 @@ export default function PartnerDashboardPage() {
     fetchPartnerData();
   }, []);
 
+  const getDynamicReferralLink = () => {
+    if (!data?.referralCode || typeof window === 'undefined') return '';
+    return `${window.location.origin}/register?ref=${data.referralCode}`;
+  };
+
   const handleCopy = () => {
-    if (!data?.referralLink) return;
-    navigator.clipboard.writeText(data.referralLink);
+    const link = getDynamicReferralLink();
+    if (!link) return;
+    navigator.clipboard.writeText(link);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -110,7 +116,7 @@ export default function PartnerDashboardPage() {
                 <input
                   type="text"
                   readOnly
-                  value={data?.referralLink || ''}
+                  value={getDynamicReferralLink()}
                   className="flex-1 w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm font-mono font-semibold focus:outline-none"
                 />
                 <button
