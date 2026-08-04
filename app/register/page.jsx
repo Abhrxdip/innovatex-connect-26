@@ -93,8 +93,8 @@ function RegisterForm() {
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 text-center">
             Select Your Role
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1.5 bg-slate-100/80 rounded-2xl border border-slate-200/60">
-            {['Student', 'Working Professional', 'Community Partner', 'Admin'].map((r) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 p-1.5 bg-slate-100/80 rounded-2xl border border-slate-200/60">
+            {['Student', 'Working Professional', 'Community Partner' /*, 'Admin'*/].map((r) => (
               <button
                 key={r}
                 type="button"
