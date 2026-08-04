@@ -10,10 +10,14 @@ export default function QRScannerModal({
   onScanSuccess,
   title = 'Scan QR Code',
   accentColor = 'blue',
+  scanResult,
+  scanLoading,
+  scanError,
 }) {
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [mountKey, setMountKey] = useState(0);
+  const [feedback, setFeedback] = useState(null);
   const scannerRef = useRef(null);
   const cooldownRef = useRef(false);
 
@@ -102,6 +106,53 @@ export default function QRScannerModal({
     }
   }, [cleanup, onScanSuccess]);
 
+  // ── Watch results for visual feedback overlay ─────────────
+  useEffect(() => {
+    if (scanResult) {
+      if (scanResult.status === 'success') {
+        const name = scanResult.data?.ticket?.userId?.name || 'Attendee';
+        const num = scanResult.data?.ticket?.ticketNumber || '';
+        setFeedback({
+          status: 'success',
+          title: accentColor === 'amber' ? 'Food Served' : 'Check-In Success',
+          message: `${name} (${num})`,
+        });
+      } else if (scanResult.status === 'duplicate') {
+        setFeedback({
+          status: 'duplicate',
+          title: accentColor === 'amber' ? 'Already Claimed' : 'Already Checked In',
+          message: scanResult.ticketNumber || '',
+        });
+      }
+
+      const timer = setTimeout(() => {
+        setFeedback(null);
+      }, 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [scanResult, accentColor]);
+
+  useEffect(() => {
+    if (scanError) {
+      setFeedback({
+        status: 'error',
+        title: 'Scan Failed',
+        message: scanError,
+      });
+
+      const timer = setTimeout(() => {
+        setFeedback(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [scanError]);
+
+  useEffect(() => {
+    if (scanLoading) {
+      setFeedback(null);
+    }
+  }, [scanLoading]);
+
   // ── Open/close lifecycle ──────────────────────────────────
   useEffect(() => {
     if (isOpen) {
@@ -150,6 +201,22 @@ export default function QRScannerModal({
         {/* Scanner Region — html5-qrcode renders its own UI here */}
         <div className="relative bg-black">
           <div key={mountKey} id={REGION_ID} className="ixc-scanner-container" />
+
+          {/* Feedback Overlay */}
+          {feedback && (
+            <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20 transition-all duration-300 ${
+              feedback.status === 'success' ? 'bg-emerald-600/95 text-white' :
+              feedback.status === 'duplicate' ? 'bg-amber-600/95 text-white' :
+              'bg-rose-600/95 text-white'
+            }`}>
+              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-4xl mb-4 font-black shadow-lg animate-bounce">
+                {feedback.status === 'success' ? '✓' : feedback.status === 'duplicate' ? '!' : '✕'}
+              </div>
+              <h3 className="text-xl font-black uppercase tracking-wider">{feedback.title}</h3>
+              <p className="text-sm font-semibold mt-2 opacity-90 max-w-[280px] break-all">{feedback.message}</p>
+              <p className="text-[10px] mt-4 font-bold tracking-widest uppercase opacity-60 animate-pulse">Ready for next scan</p>
+            </div>
+          )}
 
           {status === 'starting' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black gap-3 z-10">
