@@ -26,12 +26,18 @@ export async function registerUser({ name, email, password, role, college, compa
   });
 
   if (referralCode) {
-    const partner = await User.findOne({ role: ROLES.COMMUNITY_PARTNER });
+    // Find the specific partner whose ID matches the referral code suffix
+    const partners = await User.find({ role: ROLES.COMMUNITY_PARTNER });
+    const partner = partners.find(p => {
+      const expectedCode = `IXC-${p._id.toString().substring(18).toUpperCase()}`;
+      return expectedCode === referralCode.toUpperCase();
+    });
+
     if (partner) {
       await Referral.create({
         partnerId: partner._id,
         referredUser: user._id,
-        referralCode,
+        referralCode: referralCode.toUpperCase(),
       });
     }
   }
