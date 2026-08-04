@@ -1,14 +1,24 @@
 import QRCode from "qrcode";
 
-export async function generateQRCodeDataURL(payload) {
+/**
+ * Generates a scannable QR code from a plain ticket number string.
+ * We intentionally encode ONLY the ticketNumber (e.g. "IXC-2026-A1B2C3")
+ * and NOT a JSON object, so the QR is low-density and easy for any camera to read.
+ */
+export async function generateQRCodeDataURL(ticketNumber) {
   try {
-    const dataString = typeof payload === "string" ? payload : JSON.stringify(payload);
+    // Always encode just the plain ticket number string
+    const dataString = typeof ticketNumber === "object"
+      ? (ticketNumber.ticketNumber || JSON.stringify(ticketNumber))
+      : String(ticketNumber);
+
     return await QRCode.toDataURL(dataString, {
-      errorCorrectionLevel: "H",
+      errorCorrectionLevel: "M",
       type: "image/png",
-      margin: 2,
+      margin: 3,
+      width: 400,
       color: {
-        dark: "#1E1B4B",
+        dark: "#000000",
         light: "#FFFFFF",
       },
     });
