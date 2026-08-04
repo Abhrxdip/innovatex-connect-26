@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ticket Approved - InnovateX Connect '26</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f8fafc; color: #1e293b; padding: 20px; }
+    .card { max-width: 500px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; }
+    .badge { display: inline-block; background: #dcfce7; color: #166534; font-weight: bold; padding: 4px 12px; border-radius: 9999px; font-size: 12px; }
+    .ticket-num { font-size: 18px; font-weight: bold; color: #1e1b4b; margin: 15px 0; }
+    .qr { margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="badge">Ticket Approved</span>
+    <h2>Your Event Ticket is Ready! 🎉</h2>
+    <p>Hi {{name}},</p>
+    <p>Your registration for InnovateX Connect '26 has been approved by the admin team.</p>
+    <div class="ticket-num">Ticket Number: {{ticketNumber}}</div>
+    <div class="qr">
+      <img src="{{qrCodeDataUrl}}" alt="QR Code Ticket" width="200" height="200" />
+    </div>
+    <p>Please present this QR code at the entrance for event entry and food distribution.</p>
+  </div>
+</body>
+</html>

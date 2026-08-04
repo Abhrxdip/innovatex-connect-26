@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Syne, Orbitron } from "next/font/google";
+import { TicketProvider } from "./state_management/ticket_store"
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,22 +24,18 @@ const orbitron = Orbitron({
   weight: ["400", "500", "700", "900"],
 });
 
-export const metadata: Metadata = {
-  title: "Kerala Startup Carnival 2026",
+export const metadata = {
+  title: "InnovateX Connect'26",
   description: "Step in, become an AI-native founder.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${orbitron.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col"><TicketProvider>{children}</TicketProvider></body>
     </html>
   );
 }
