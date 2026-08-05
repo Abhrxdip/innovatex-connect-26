@@ -46,7 +46,6 @@ export async function registerUser({
   const match = phone.replace(/[\s-]/g, '').match(phoneRegExp)
   if (match) {
     phone = match[1]
-
   } else {
     const error = new Error("Phone number not valid")
     error.statusCode = 400;
@@ -212,6 +211,15 @@ export async function updateUserDetails({
     }
 
     if (phone) {
+      const match = phone.replace(/[\s-]/g, '').match(phoneRegExp)
+      if (match) {
+        phone = match[1]
+      } else {
+        const error = new Error("Phone number not valid")
+        error.statusCode = 400;
+        throw error;
+      }
+
       const userByPhone = await User.findOne({
         phone
       });
