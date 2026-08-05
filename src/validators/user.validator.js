@@ -9,3 +9,4 @@ export const updateProfileSchema = z.object({
   phone: z.string().optional(),
   avatar: z.string().optional(),
 });
+

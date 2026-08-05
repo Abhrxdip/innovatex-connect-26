@@ -4,6 +4,7 @@ import { validate } from "@/src/middlewares/validate.middleware.js";
 import { loginSchema } from "@/src/validators/auth.validator.js";
 import { loginController } from "@/src/controllers/auth.controller.js";
 
+
 export const POST = asyncHandler(async (req) => {
   const validationResult = await validate(loginSchema)(req);
   if (!validationResult.success) {
