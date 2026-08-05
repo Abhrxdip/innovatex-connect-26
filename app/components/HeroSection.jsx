@@ -29,41 +29,41 @@ export default function HeroSection() {
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-350 flex-col px-5 pb-8 pt-24 sm:px-8 lg:px-12 lg:pt-28">
         <div className="flex-1 lg:grid lg:grid-cols-[minmax(0,1.18fr)_minmax(320px,0.82fr)] lg:gap-8">
           <div className="flex h-full flex-col gap-10 lg:gap-12">
-            <div className="max-w-190">
+            <div className="max-w-190 h-full">
               <div className="flex flex-col leading-none">
                 <div className="flex items-end gap-0 sm:gap-1 uppercase text-[#F1FDFD] font-bbh tracking-[-0.06em] drop-shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-                  <span className="text-[clamp(3.6rem,8vw,7.1rem)]">INNOVATE</span>
-                  <span className="text-[clamp(5.1rem,10vw,9rem)] -mb-1 sm:-mb-2">X</span>
+                  <span className="text-[clamp(3.6rem,8vw,6rem)] mt-0 lg:mt-10 mr-5">INNOVATE</span>
+                  <span className="text-[clamp(5.1rem,12vw,20rem)] -mb-1 sm:-mb-3">X</span>
                 </div>
-                <span className="-mt-2 max-w-fit font-bricolage text-[#EE4B15] uppercase tracking-[-0.08em] leading-none text-[clamp(4rem,8.5vw,8rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)] sm:-mt-4">
+                <div className="-ml-2 mt-10 max-w-fit font-bricolage text-[#EE4B15] uppercase tracking-[-0.04em] leading-none text-[clamp(4rem,11vw,20rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.3)] sm:mt-10">
                   CONNECT
-                </span>
+                </div>
               </div>
 
-              <div className="mt-8 flex w-full flex-col gap-0 sm:flex-row sm:gap-0 sm:items-stretch">
+              <div className="mt-8 flex w-full flex-col gap-0 sm:flex-row sm:items-stretch">
                 <button
                   type="button"
                   onClick={handleTicketClick}
                   disabled={!isAvailable}
-                  className={`group flex flex-1 items-center justify-between gap-4 rounded-[28px_0_0_28px] bg-[#F1FDFD] px-6 py-6 text-left shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:min-h-38.5 sm:px-8 sm:py-7 lg:px-10 ${isAvailable ? 'cursor-pointer' : 'cursor-not-allowed opacity-85'}`}
+                  className={`group flex flex-1 items-center gap-6 rounded-3xl bg-[#F1FDFD] px-4 py-4 text-left shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:px-5 sm:py-5 ${isAvailable ? 'cursor-pointer' : 'cursor-not-allowed opacity-85'}`}
                   aria-label={isAvailable ? 'Get ticket' : 'Sold out'}
                 >
-                  <div className="font-blackhan uppercase leading-[0.82] tracking-[-0.06em] text-[#0C1235] text-[clamp(2.8rem,6vw,4.8rem)]">
+                  <div className="font-blackhan uppercase leading-[0.82] tracking-[-0.06em] text-[#0C1235] text-[clamp(2.1rem,4.6vw,3.2rem)]">
                     <div>GET</div>
                     <div>YOUR</div>
                   </div>
-                  <img src="/tickets.svg" alt="" aria-hidden="true" className="h-14 w-14 shrink-0 sm:h-16 sm:w-16 lg:h-18 lg:w-18" />
+                  <img src="/tickets.svg" alt="" aria-hidden="true" className="h-14 w-14 shrink-0 " />
                 </button>
 
                 <a
                   href="https://chat.whatsapp.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-1 items-center rounded-[0_28px_28px_0] bg-[#0C1235] px-6 py-6 text-[#F1FDFD] shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:min-h-38.5 sm:px-8 sm:py-7 lg:px-9"
+                  className="flex flex-1 items-center rounded-r-3xl bg-[#0C1235] px-4 py-4 text-[#F1FDFD] shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:px-5 sm:py-5"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="font-bricolage text-[clamp(2.8rem,5.5vw,4.6rem)] leading-none tracking-[-0.08em] text-[#F1FDFD]">JOIN</span>
-                    <div className="font-bricolage text-[clamp(0.95rem,1.7vw,1.35rem)] uppercase leading-[0.9] tracking-[-0.03em]">
+                    <span className="font-bricolage text-[clamp(2rem,4.2vw,3.4rem)] leading-none tracking-[-0.08em] text-[#F1FDFD]">JOIN</span>
+                    <div className="font-bricolage text-[clamp(0.75rem,1.2vw,1rem)] uppercase leading-[0.9] tracking-[-0.03em]">
                       <div>OUR</div>
                       <div>WHATSAPP</div>
                       <div className="text-[#EE4B15]">COMMUNITY</div>
