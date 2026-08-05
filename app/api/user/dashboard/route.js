@@ -1,7 +1,22 @@
-import { asyncHandler } from "@/src/utils/asyncHandler.js";
-import { sendResponse } from "@/src/utils/sendResponse.js";
-import { authenticate } from "@/src/middlewares/auth.middleware.js";
-import { getUserDashboardController } from "@/src/controllers/user.controller.js";
+import {
+  asyncHandler
+} from "@/src/utils/asyncHandler.js";
+import {
+  sendResponse
+} from "@/src/utils/sendResponse.js";
+import {
+  authenticate
+} from "@/src/middlewares/auth.middleware.js";
+import {
+  getUserDashboardController
+} from "@/src/controllers/user.controller.js";
+import {
+  NextResponse
+} from "next/server";
+
+const isProd = process.env.NODE_ENV === "production";
+const redirectHost = isProd ? process.env.SITE_URL : "http://localhost:3000"
+
 
 export const GET = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
@@ -10,6 +25,16 @@ export const GET = asyncHandler(async (req) => {
   }
 
   const dashboardData = await getUserDashboardController(authResult.user._id);
+  if (!dashboardData.user.role) {
+    const options = {
+      email: dashboardData.user.email,
+      name: dashboardData.user.name,
+      provider: 'google',
+    }
+    const paramsUrl = new URLSearchParams(options)
+    const redirectToRegister = `${redirectHost}/register?${paramsUrl.toString()}`;
+    return NextResponse.redirect(redirectToRegister)
+  }
 
   return sendResponse({
     success: true,

@@ -89,7 +89,7 @@ function RegisterForm() {
         <div className="text-center mb-6 pt-2">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60 mb-2">
             <Icons.Ticket className="w-3.5 h-3.5" />
-            InnovateX Connect '26
+            InnovateX Connect &apos;26
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Create Account
@@ -270,7 +270,9 @@ function RegisterForm() {
         </div>
         {formData.provider !== 'google' &&
           (<a
-            href="/api/auth/google"
+            href={formData.referralCode
+              ? `/api/auth/google?ref=${encodeURIComponent(formData.referralCode)}`
+              : '/api/auth/google'}
             className="w-full py-3 px-6 mb-5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-sm shadow-sm transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -294,7 +296,7 @@ function RegisterForm() {
           </p>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

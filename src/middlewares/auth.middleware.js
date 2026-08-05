@@ -1,5 +1,9 @@
-import { verifyToken } from "../utils/jwt.js";
-import { sendResponse } from "../utils/sendResponse.js";
+import {
+  verifyToken
+} from "../utils/jwt.js";
+import {
+  sendResponse
+} from "../utils/sendResponse.js";
 import User from "../models/User.js";
 
 export async function authenticate(req) {
@@ -29,7 +33,7 @@ export async function authenticate(req) {
       response: sendResponse({
         success: false,
         statusCode: 401,
-        message: "Unauthorized: No token provided",
+        message: "Unauthorized: Not signed in",
       }),
     };
   }
@@ -41,7 +45,7 @@ export async function authenticate(req) {
       response: sendResponse({
         success: false,
         statusCode: 401,
-        message: "Unauthorized: Invalid or expired token",
+        message: "Unauthorized: Invalid or expired credentials",
       }),
     };
   }
@@ -58,5 +62,8 @@ export async function authenticate(req) {
     };
   }
 
-  return { authenticated: true, user };
+  return {
+    authenticated: true,
+    user
+  };
 }

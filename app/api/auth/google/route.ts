@@ -34,9 +34,9 @@ export async function GET(request: NextRequest) {
         })
 
         const referralCode = request.nextUrl.searchParams.get("ref")
+
         if (referralCode) {
-            //? referral cookie for oauth
-            cookieStore.set("ref", referralCode, { name: "Referrer", sameSite: "lax", maxAge: 60 * 10, httpOnly: true, secure: isProd })
+            cookieStore.set("ref", referralCode, { path: "/", sameSite: "lax", maxAge: 60 * 10, httpOnly: true, secure: isProd })
         }
 
         const qs = new URLSearchParams(options)

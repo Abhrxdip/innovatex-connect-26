@@ -1,9 +1,21 @@
-import { asyncHandler } from "@/src/utils/asyncHandler.js";
-import { sendResponse } from "@/src/utils/sendResponse.js";
-import { authenticate } from "@/src/middlewares/auth.middleware.js";
-import { authorize } from "@/src/middlewares/role.middleware.js";
-import { ROLES } from "@/src/config/constants.js";
-import { getPartnerDashboardController } from "@/src/controllers/partner.controller.js";
+import {
+  asyncHandler
+} from "@/src/utils/asyncHandler.js";
+import {
+  sendResponse
+} from "@/src/utils/sendResponse.js";
+import {
+  authenticate
+} from "@/src/middlewares/auth.middleware.js";
+import {
+  authorize
+} from "@/src/middlewares/role.middleware.js";
+import {
+  ROLES
+} from "@/src/config/constants.js";
+import {
+  getPartnerDashboardController
+} from "@/src/controllers/partner.controller.js";
 
 export const GET = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
@@ -17,6 +29,16 @@ export const GET = asyncHandler(async (req) => {
   }
 
   const dashboardData = await getPartnerDashboardController(authResult.user._id);
+  if (!dashboardData.partner.role && dashboardData.partner.email) {
+    const options = {
+      email: dashboardData.partner.email,
+      name: dashboardData.partner.name,
+      provider: 'google',
+    }
+    const paramsUrl = new URLSearchParams(options)
+    const redirectToRegister = `${redirectHost}/register?${paramsUrl.toString()}`;
+    return NextResponse.redirect(redirectToRegister)
+  }
 
   return sendResponse({
     success: true,

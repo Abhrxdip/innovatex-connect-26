@@ -16,6 +16,9 @@ export default function UserDashboardPage() {
     try {
       setLoading(true);
       const res = await fetch('/api/user/dashboard');
+      if (res.redirected) {
+        window.location.href = res.url
+      }
       const json = await res.json();
       if (!res.ok || !json.success) {
         throw new Error(json.message || 'Failed to load user dashboard.');
@@ -240,20 +243,18 @@ export default function UserDashboardPage() {
 
                     {/* Check-in Badges */}
                     <div className="flex flex-wrap items-center gap-3 pt-2">
-                      <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 ${
-                        data.ticket.checkedIn
+                      <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 ${data.ticket.checkedIn
                           ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                           : 'bg-slate-800 text-slate-400 border border-slate-700'
-                      }`}>
+                        }`}>
                         <span className={`w-2 h-2 rounded-full ${data.ticket.checkedIn ? 'bg-emerald-400' : 'bg-slate-500'}`} />
                         {data.ticket.checkedIn ? 'Main Gate Checked In 🟢' : 'Not Checked In Yet'}
                       </div>
 
-                      <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 ${
-                        data.ticket.foodCollected
+                      <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 ${data.ticket.foodCollected
                           ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                           : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                      }`}>
+                        }`}>
                         <span className="text-xs">{data.ticket.foodCollected ? '🍔' : '🎟️'}</span>
                         {data.ticket.foodCollected ? 'Food Claimed' : 'Food Coupon Available'}
                       </div>
