@@ -54,44 +54,44 @@ export default function Navbar() {
 
   return (
     <header className="w-full flex justify-center pt-6 px-4 z-50 fixed top-0 left-0 right-0">
-      <nav className="glass-nav flex items-center justify-between px-3 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700 shadow-lg border border-white/60">
+      <nav className="flex items-center justify-between px-3 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-white shadow-lg bg-[#2B315C]/90 backdrop-blur-md border border-white/10">
         
         {/* Navigation Links */}
         <div className="flex items-center space-x-1 sm:space-x-2">
-          <Link href="/" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <Link href="/" className="group flex items-center px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Home />
             <span className="hidden sm:inline">Home</span>
           </Link>
           
-          <a href="#speakers" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <a href="#speakers" className="group flex items-center px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
           </a>
 
-          <a href="#agenda" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <a href="#agenda" className="group flex items-center px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Agenda />
             <span className="hidden sm:inline">Agenda</span>
           </a>
 
-          <Link href="/leaderboard" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <Link href="/leaderboard" className="group flex items-center px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Sparkle />
             <span className="hidden sm:inline">Leaderboard</span>
           </Link>
 
-          <a href="#ticket" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <a href="#ticket" className="group flex items-center px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Ticket />
             <span className="hidden sm:inline">Ticket</span>
           </a>
         </div>
 
         {/* Separator Dot */}
-        <div className="w-1 h-1 rounded-full bg-slate-300 mx-2" />
+        <div className="w-1 h-1 rounded-full bg-white/30 mx-2" />
 
         {/* User Account / Auth Dropdown Trigger Button */}
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1E1B4B] text-white hover:bg-[#2E6CFF] transition-all duration-300 shadow-md cursor-pointer group"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#090D2B] text-white hover:bg-[#EE4B15] transition-all duration-300 shadow-md cursor-pointer group"
             aria-label="Account Menu"
           >
             <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-white">
