@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -63,12 +64,12 @@ export default function Navbar() {
             <span className="hidden sm:inline">Home</span>
           </Link>
           
-          <a href="#speakers" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <a href="/#speakers" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
           </a>
 
-          <a href="#agenda" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <a href="/#agenda" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
             <Icons.Agenda />
             <span className="hidden sm:inline">Agenda</span>
           </a>
@@ -78,7 +79,7 @@ export default function Navbar() {
             <span className="hidden sm:inline">Leaderboard</span>
           </Link>
 
-          <a href="#ticket" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
+          <a href="/#ticket" className="group flex items-center px-3 py-1.5 rounded-full hover:text-indigo-600 hover:bg-slate-100/60 transition-all">
             <Icons.Ticket />
             <span className="hidden sm:inline">Ticket</span>
           </a>
