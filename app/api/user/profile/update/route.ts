@@ -5,32 +5,37 @@ import { validate } from "@/src/middlewares/validate.middleware.js";
 import { updateProfileSchema } from "@/src/validators/user.validator.js";
 import { getProfileController } from "@/src/controllers/user.controller.js";
 import { updateUserDetails } from "@/src/services/auth.service";
+import { errorHandler } from "@/src/middlewares/error.middleware.js"
 
 
 export async function POST(req: NextRequest) {
-    const authResult = await authenticate(req)
-    if (!authResult.authenticated) {
-        return authResult.response
+    try {
+        const authResult = await authenticate(req)
+        if (!authResult.authenticated) {
+            return authResult.response
+        }
+        const clone = req.clone()
+
+        const validationResult = await validate(updateProfileSchema)(req);
+        if (!validationResult.success) {
+            return validationResult.response;
+        }
+
+        const updatedProfile = await updateUserDetails({
+            _id: authResult.user._id,
+            role: (await clone.json())["role"],
+            college: validationResult.data.college,
+            company: validationResult.data.company,
+            phone: validationResult.data.phone
+        })
+
+        return sendResponse({
+            success: true,
+            statusCode: 200,
+            message: "Profile updated successfully",
+            data: updatedProfile,
+        });
+    } catch (e) {
+        return errorHandler(e)
     }
-    const clone = req.clone()
-
-    const validationResult = await validate(updateProfileSchema)(req);
-    if (!validationResult.success) {
-        return validationResult.response;
-    }
-
-    const updatedProfile = await updateUserDetails({
-        _id: authResult.user._id,
-        role: (await clone.json())["role"],
-        college: validationResult.data.college,
-        company: validationResult.data.company,
-        phone: validationResult.data.phone
-    })
-
-    return sendResponse({
-        success: true,
-        statusCode: 200,
-        message: "Profile updated successfully",
-        data: updatedProfile,
-    });
 }
