@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-b from-[#111436] via-[#0A0C27] to-[#050614] border-t border-white/10 rounded-t-[40px] sm:rounded-t-[48px] px-6 pt-16 pb-12 text-center z-10 relative mt-[-20px] mb-0 overflow-hidden">
+    <footer className="w-full bg-gradient-to-b from-[#111436] via-[#0A0C27] to-[#050614] border-t border-white/10 rounded-t-[32px] sm:rounded-t-[48px] px-4 sm:px-6 pt-12 sm:pt-16 pb-12 text-center z-10 relative mt-[-20px] mb-0 overflow-hidden">
       <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none rounded-[32px]" />
       
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-10 relative z-10 max-w-xl mx-auto">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 mb-8 sm:mb-10 relative z-10 max-w-xl mx-auto">
         <div className="flex items-center gap-2.5">
           <div className="text-left font-display">
             <span className="font-extrabold text-white text-xs sm:text-sm tracking-tight block uppercase leading-none">InnovateX</span>

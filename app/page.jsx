@@ -24,13 +24,13 @@ export default function Home() {
       <HeroSection />
 
       {/* Ticket Perforation Transition and Next Section */}
-      <div className="w-full relative z-30 flex flex-col mt-12">
+      <div className="w-full relative z-30 flex flex-col mt-0 sm:mt-4">
 
         {/* The thick horizontal royal-blue strip (#3B34A8) with Perforated Edge */}
         <div className="w-full ticket-perforation-top h-14" />
 
         {/* Overlapping large white content container with rounded top corners. */}
-        <section className="relative z-40 -translate-y-5 bg-white bg-graph-pattern rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-20 pb-10 px-6 md:px-12 border-t border-slate-100">
+        <section className="relative z-40 -translate-y-5 bg-white bg-graph-pattern rounded-t-[32px] sm:rounded-t-[42px] shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pt-16 sm:pt-20 pb-10 px-3 sm:px-6 md:px-12 border-t border-slate-100">
 
           {/* About Grid */}
           <AboutGrid />

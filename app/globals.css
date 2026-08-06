@@ -12,9 +12,21 @@
   --font-tech: var(--font-orbitron), monospace;
 }
 
+/* Figma hero fonts — mapped inline so utilities resolve the runtime var */
+@theme inline {
+  --font-roboto: var(--font-roboto), system-ui, sans-serif;
+  --font-bbh: var(--font-bbh), sans-serif;
+  --font-bricolage: var(--font-bricolage), sans-serif;
+  --font-blackhan: var(--font-blackhan), sans-serif;
+}
+
 :root {
   --background: #F8FAFC;
   --foreground: #0F172A;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -22,11 +34,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* Light Background Repeating SVG Pattern (Subtle Indigo) */
 .bg-grid-pattern {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="96" viewBox="0 0 60 96"><g fill-rule="evenodd"><g fill="%234F46E5" fill-opacity="0.08"><path d="M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z"/></g></g></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="96" viewBox="0 0 60 96"><g fill-rule="evenodd"><g fill="%23F1FDFD" fill-opacity="0.05"><path d="M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z"/></g></g></svg>');
   background-repeat: repeat;
   background-size: 60px 96px;
 }
@@ -36,6 +49,13 @@ body {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="96" viewBox="0 0 60 96"><g fill-rule="evenodd"><g fill="%232E6CFF" fill-opacity="0.12"><path d="M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z"/></g></g></svg>');
   background-repeat: repeat;
   background-size: 60px 96px;
+}
+
+/* Hero White Sparkle/Star Pattern (the existing star grid tinted #F1FDFD @ 5%) */
+.bg-hero-sparkle {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="101" viewBox="0 0 72 101"><g fill="%23F1FDFD" fill-opacity="0.05"><path d="M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 0 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z"/></g></g></svg>');
+  background-repeat: repeat;
+  background-size: 72px 101px;
 }
 
 /* Subtle Graph Paper Repeating Background (Slate at 5% Opacity) */
@@ -162,30 +182,64 @@ body {
   pointer-events: none;
 }
 
-/* Text Gradient Utilities for Light Theme */
-.text-gradient-neon {
-  background: linear-gradient(135deg, #4F46E5 0%, #2E6CFF 50%, #C084FC 100%);
+/* High-impact crazy animations & shimmers */
+@keyframes gradient-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-shimmer-text {
+  background: linear-gradient(90deg, #EE4B15 0%, #F1FDFD 25%, #3B34A8 50%, #F1FDFD 75%, #EE4B15 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shimmer 5s ease-in-out infinite;
 }
 
-/* Footer Perforation Scallop Style */
-.footer-perforation {
-  position: relative;
-  background-color: #0A0B1A;
+.animate-shimmer-blue {
+  background: linear-gradient(90deg, #3B34A8 0%, #7054F6 25%, #06B6D4 50%, #7054F6 75%, #3B34A8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shimmer 4s ease-in-out infinite;
 }
 
-.footer-perforation::after {
-  content: '';
-  position: absolute;
-  bottom: -6px; /* offset by radius to sit at bottom edge */
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background-image: radial-gradient(circle at 10px 12px, transparent 6px, #0A0B1A 7px);
-  background-size: 20px 12px;
-  background-repeat: repeat-x;
-  pointer-events: none;
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+@keyframes glow-pulse-orange {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(238, 75, 21, 0.4)); }
+  50% { filter: drop-shadow(0 0 30px rgba(238, 75, 21, 0.8)); }
+}
+
+.animate-glow-orange {
+  animation: glow-pulse-orange 3.5s ease-in-out infinite;
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 3s ease-in-out infinite;
 }
 
