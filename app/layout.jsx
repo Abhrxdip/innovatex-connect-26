@@ -27,7 +27,8 @@ const orbitron = Orbitron({
 const bbh = BBH_Hegarty({
   variable: "--font-bbh",
   subsets: ["latin"],
-  weight: ["400"],
+  adjustFontFallback: false,
+  weight: "400",
 });
 
 const bricolage = Bricolage_Grotesque({

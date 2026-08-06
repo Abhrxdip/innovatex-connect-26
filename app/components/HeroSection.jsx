@@ -22,7 +22,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#090D2B] bg-grid-pattern text-[#F1FDFD]">
+    <section id="home" className="relative w-full overflow-hidden bg-[#090D2B] bg-grid-pattern text-[#F1FDFD]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(238,75,21,0.12),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(46,108,255,0.15),transparent_35%),linear-gradient(180deg,rgba(6,10,36,0)_0%,rgba(6,10,36,0.32)_100%)] pointer-events-none" />
       <div className="absolute inset-0 bg-hero-sparkle opacity-70 pointer-events-none animate-pulse-glow" />
 

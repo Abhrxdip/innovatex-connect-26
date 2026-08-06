@@ -56,14 +56,14 @@ export default function Navbar() {
   return (
     <header className="w-full flex justify-center pt-6 px-4 z-50 fixed top-0 left-0 right-0">
       <nav className="flex items-center justify-between px-2.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-white shadow-lg bg-[#2B315C]/90 backdrop-blur-md border border-white/10 max-w-full">
-        
+
         {/* Navigation Links */}
         <div className="flex items-center space-x-0.5 sm:space-x-2">
-          <Link href="/" aria-label="Home" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <a href="/#home" aria-label="Home" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Home />
             <span className="hidden sm:inline">Home</span>
-          </Link>
-          
+          </a>
+
           <a href="/#speakers" aria-label="Speakers" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
@@ -125,8 +125,8 @@ export default function Navbar() {
                     <Link
                       href={
                         user.role === 'Admin' ? '/admin' :
-                        user.role === 'Community Partner' ? '/partner' :
-                        '/dashboard'
+                          user.role === 'Community Partner' ? '/partner' :
+                            '/dashboard'
                       }
                       onClick={() => setIsOpen(false)}
                       className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all"
