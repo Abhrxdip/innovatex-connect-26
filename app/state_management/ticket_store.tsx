@@ -13,7 +13,7 @@ const TicketContext = createContext<TicketStore | null>(null)
 function createTicketStore() {
     return create<TicketState>(() => ({
         isAvailable: (process.env.NEXT_PUBLIC_TICKET_AVAILABLE ?? 'true').toLowerCase() === 'true',
-        redirectUrl: (process.env.NEXT_PUBLIC_TICKET_REDIRECT_URL ?? "/register")
+        redirectUrl: (process.env.NEXT_PUBLIC_TICKET_REDIRECT_URL ?? "/dashboard")
     }))
 }
 

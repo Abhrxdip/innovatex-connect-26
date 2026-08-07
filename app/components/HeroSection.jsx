@@ -10,15 +10,7 @@ export default function HeroSection() {
   const redirectUrl = useStore(store, (state) => state.redirectUrl);
 
   const handleTicketClick = () => {
-    if (!isAvailable || typeof window === 'undefined') {
-      return;
-    }
-
-    if (redirectUrl.startsWith('http')) {
-      window.open(redirectUrl, '_blank', 'noopener,noreferrer');
-    } else {
-      window.location.href = redirectUrl;
-    }
+    window.location.href = redirectUrl;
   };
 
   return (

@@ -4,6 +4,7 @@ import React from 'react';
 import { Icons } from './Icons';
 import GetTicketStore from '../state_management/ticket_store';
 import { useStore } from 'zustand';
+import Link from "next/link"
 
 export default function AboutGrid() {
   const store = GetTicketStore()
@@ -63,20 +64,17 @@ export default function AboutGrid() {
       </div>
 
       <div className="flex justify-center mt-8 sm:mt-12 relative z-40">
-        <button
-          type="button"
-          onClick={() => {
-            if (isAvailable && typeof window !== 'undefined') {
-              window.open(redirectUrl, '_blank', 'noopener,noreferrer')
-            }
-          }}
-          disabled={!isAvailable}
-          className={`relative group overflow-hidden text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm tracking-widest transition-all shadow-[0_15px_35px_rgba(15,23,42,0.35)] flex items-center justify-center gap-2.5 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 whitespace-nowrap hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(59,52,168,0.3)] duration-300`}
-        >
-          <span className="relative z-10 uppercase tracking-widest">{isAvailable ? 'GET TICKET' : 'SOLD OUT'}</span>
-          <Icons.Ticket className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white group-hover:rotate-12 transition-transform duration-300" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-        </button>
+        <Link href={redirectUrl}>
+          <button
+            type="button"
+            disabled={!isAvailable}
+            className={`relative group overflow-hidden text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm tracking-widest transition-all shadow-[0_15px_35px_rgba(15,23,42,0.35)] flex items-center justify-center gap-2.5 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 whitespace-nowrap hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(59,52,168,0.3)] duration-300`}
+          >
+            <span className="relative z-10 uppercase tracking-widest">{isAvailable ? 'GET TICKET' : 'SOLD OUT'}</span>
+            <Icons.Ticket className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white group-hover:rotate-12 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          </button>
+        </Link>
       </div>
 
     </div>

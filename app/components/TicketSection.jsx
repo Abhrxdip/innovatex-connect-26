@@ -9,6 +9,8 @@ export default function TicketSection() {
   const store = GetTicketStore()
   const isAvailable = useStore(store, (s) => s.isAvailable)
   const redirectUrl = useStore(store, (s) => s.redirectUrl)
+
+
   return (
     <div id="ticket" className="max-w-6xl mx-auto w-full mt-24 sm:mt-40 mb-16 sm:mb-20 text-center flex flex-col items-center px-3 sm:px-4 relative z-10">
       <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-indigo-100 bg-indigo-50/50 text-[10px] font-bold text-indigo-700 tracking-wider uppercase mb-6 shadow-sm">
@@ -57,10 +59,10 @@ export default function TicketSection() {
                     50% { transform: rotate(-5deg); }
                   }
                 `}</style>
-                <img 
-                  src="/sold_out.png" 
-                  alt="Sold Out" 
-                  className="w-[160px] sm:w-[180px] md:w-[220px] opacity-90 mix-blend-multiply drop-shadow-xl origin-top" 
+                <img
+                  src="/sold_out.png"
+                  alt="Sold Out"
+                  className="w-[160px] sm:w-[180px] md:w-[220px] opacity-90 mix-blend-multiply drop-shadow-xl origin-top"
                   style={{ animation: 'swing 2.5s ease-in-out infinite' }}
                 />
               </div>
@@ -78,17 +80,13 @@ export default function TicketSection() {
               <p className="text-center text-slate-400 text-[9.5px] sm:text-[10px] font-semibold leading-relaxed max-w-[210px] mt-1 select-none">Secure your access to the full 8-hour meetup experience.</p>
             </div>
             <div className="w-full relative z-10">
-              <button 
+              <button
                 disabled={!isAvailable}
                 onClick={() => {
                   if (isAvailable && typeof window !== 'undefined') {
-                    if (redirectUrl.startsWith('http')) {
-                      window.open(redirectUrl, '_blank', 'noopener,noreferrer');
-                    } else {
-                      window.location.href = redirectUrl;
-                    }
+                    window.location.href = redirectUrl;
                   }
-                }} 
+                }}
                 className={`relative group overflow-hidden flex items-center justify-between w-full px-4 sm:px-5 py-3 sm:py-3.5 font-black text-xs uppercase tracking-widest rounded-xl transition-all select-none border ${isAvailable ? 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-[0_8px_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 cursor-pointer border-emerald-400/20' : 'bg-slate-200 text-slate-400 cursor-not-allowed border-slate-300'}`}
               >
                 <span className="mx-auto pl-4 relative z-10">{isAvailable ? "Register Now" : "Sold Out"}</span>
