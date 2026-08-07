@@ -1,9 +1,21 @@
-import { asyncHandler } from "@/src/utils/asyncHandler.js";
-import { sendResponse } from "@/src/utils/sendResponse.js";
-import { authenticate } from "@/src/middlewares/auth.middleware.js";
-import { validate } from "@/src/middlewares/validate.middleware.js";
-import { bookTicketSchema } from "@/src/validators/ticket.validator.js";
-import { bookTicketController } from "@/src/controllers/ticket.controller.js";
+import {
+  asyncHandler
+} from "@/src/utils/asyncHandler.js";
+import {
+  sendResponse
+} from "@/src/utils/sendResponse.js";
+import {
+  authenticate
+} from "@/src/middlewares/auth.middleware.js";
+import {
+  validate
+} from "@/src/middlewares/validate.middleware.js";
+import {
+  bookTicketSchema
+} from "@/src/validators/ticket.validator.js";
+import {
+  bookTicketController
+} from "@/src/controllers/ticket.controller.js";
 
 export const POST = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
@@ -11,12 +23,9 @@ export const POST = asyncHandler(async (req) => {
     return authResult.response;
   }
 
-  const validationResult = await validate(bookTicketSchema)(req);
-  if (!validationResult.success) {
-    return validationResult.response;
-  }
-
-  const ticket = await bookTicketController(authResult.user._id, validationResult.data);
+  const ticket = await bookTicketController(authResult.user._id, {
+    attendeeType: authResult.user.role ?? 'Student'
+  });
 
   return sendResponse({
     success: true,

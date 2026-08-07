@@ -10,7 +10,6 @@ export default function UserDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [bookingLoading, setBookingLoading] = useState(false);
   const [error, setError] = useState('');
-  const [attendeeType, setAttendeeType] = useState('Student');
 
   const fetchDashboard = async () => {
     try {
@@ -25,7 +24,7 @@ export default function UserDashboardPage() {
       }
       setData(json.data);
       if (json.data?.user?.role) {
-        setAttendeeType(json.data.user.role === 'Working Professional' ? 'Working Professional' : 'Student');
+        console.log(json.data?.user.role)
       }
     } catch (err) {
       setError(err.message);
@@ -35,6 +34,7 @@ export default function UserDashboardPage() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchDashboard();
   }, []);
 
@@ -45,7 +45,6 @@ export default function UserDashboardPage() {
       const res = await fetch('/api/ticket/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ attendeeType }),
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
@@ -152,22 +151,12 @@ export default function UserDashboardPage() {
                 </div>
                 <h2 className="text-2xl font-extrabold text-slate-900">Claim Your Free Conference Ticket</h2>
                 <p className="text-slate-600 text-sm max-w-md mx-auto mt-1 mb-6">
-                  InnovateX Connect '26 is free for accepted student developers & tech professionals.
+                  InnovateX Connect &apos;26 is free for accepted student developers & tech professionals.
                 </p>
 
                 <div className="max-w-xs mx-auto space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Attendee Pass Category
-                    </label>
-                    <select
-                      value={attendeeType}
-                      onChange={(e) => setAttendeeType(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    >
-                      <option value="Student">Student Developer</option>
-                      <option value="Working Professional">Working Professional</option>
-                    </select>
+
                   </div>
 
                   <button
@@ -212,7 +201,7 @@ export default function UserDashboardPage() {
                           OFFICIAL EVENT PASS
                         </span>
                         <h2 className="text-2xl font-black tracking-tight text-white mt-0.5">
-                          InnovateX Connect '26
+                          InnovateX Connect &apos;26
                         </h2>
                       </div>
                       <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
@@ -244,16 +233,16 @@ export default function UserDashboardPage() {
                     {/* Check-in Badges */}
                     <div className="flex flex-wrap items-center gap-3 pt-2">
                       <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 ${data.ticket.checkedIn
-                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                          : 'bg-slate-800 text-slate-400 border border-slate-700'
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                        : 'bg-slate-800 text-slate-400 border border-slate-700'
                         }`}>
                         <span className={`w-2 h-2 rounded-full ${data.ticket.checkedIn ? 'bg-emerald-400' : 'bg-slate-500'}`} />
                         {data.ticket.checkedIn ? 'Main Gate Checked In 🟢' : 'Not Checked In Yet'}
                       </div>
 
                       <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 ${data.ticket.foodCollected
-                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                          : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                        : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
                         }`}>
                         <span className="text-xs">{data.ticket.foodCollected ? '🍔' : '🎟️'}</span>
                         {data.ticket.foodCollected ? 'Food Claimed' : 'Food Coupon Available'}
