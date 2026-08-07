@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 let cached = global.mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = global.mongoose = {
+    conn: null,
+    promise: null
+  };
 }
 
 async function connectDb() {
@@ -14,6 +17,7 @@ async function connectDb() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      maxPoolSize: 5,
     };
 
     cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then((mongooseInstance) => {

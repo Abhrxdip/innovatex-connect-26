@@ -4,7 +4,6 @@ import Referral from "../models/Referral.js";
 import Notification from "../models/Notification.js";
 import { TICKET_STATUS } from "../config/constants.js";
 import { generateQRCodeDataURL } from "../services/qr.service.js";
-import { sendEmail } from "../services/email.service.js";
 
 export async function getAdminDashboardController() {
   const totalUsers = await User.countDocuments();
