@@ -29,8 +29,12 @@ export default function AdminDashboardPage() {
         fetch('/api/admin/dashboard'),
         fetch(`/api/admin/tickets?status=${ticketFilter}`),
       ]);
+      if (dashRes.redirected) {
+        window.location.href = dashRes.url
+      }
       const dashJson = await dashRes.json();
       const tixJson = await tixRes.json();
+
       if (!dashRes.ok || !dashJson.success) throw new Error(dashJson.message || 'Failed to load dashboard.');
       setDashboardData(dashJson.data);
       setTickets(tixJson.data || []);
@@ -140,8 +144,8 @@ export default function AdminDashboardPage() {
 
   const statusColor = (s) =>
     s === 'Approved' ? 'bg-emerald-100 text-emerald-700' :
-    s === 'Pending'  ? 'bg-amber-100 text-amber-700' :
-    'bg-red-100 text-red-700';
+      s === 'Pending' ? 'bg-amber-100 text-amber-700' :
+        'bg-red-100 text-red-700';
 
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] bg-grid-pattern flex flex-col overflow-x-hidden font-display">
@@ -198,7 +202,7 @@ export default function AdminDashboardPage() {
               </div>
             </div>
 
-            {error && <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs font-bold flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0"/>{error}</div>}
+            {error && <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs font-bold flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0" />{error}</div>}
             {successMsg && <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">{successMsg}</div>}
 
             {/* OVERVIEW */}
@@ -532,7 +536,7 @@ function playNotifyBeep(type = 'warn') {
     const gain = ctx.createGain();
     osc.connect(gain);
     gain.connect(ctx.destination);
-    
+
     if (type === 'success') {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(880, ctx.currentTime);
@@ -556,5 +560,5 @@ function playNotifyBeep(type = 'warn') {
       osc.start(ctx.currentTime);
       osc.stop(ctx.currentTime + 0.5);
     }
-  } catch (_) {}
+  } catch (_) { }
 }

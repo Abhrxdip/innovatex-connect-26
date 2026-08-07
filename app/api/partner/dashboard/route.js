@@ -16,16 +16,19 @@ import {
 import {
   getPartnerDashboardController
 } from "@/src/controllers/partner.controller.js";
+import {
+  NextResponse
+} from "next/server";
 
 export const GET = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
   if (!authResult.authenticated) {
-    return authResult.response;
+    return NextResponse.redirect(new URL("/login", req.url))
   }
 
   const roleCheck = authorize(ROLES.COMMUNITY_PARTNER, ROLES.ADMIN)(authResult.user);
   if (!roleCheck.authorized) {
-    return roleCheck.response;
+    return NextResponse.redirect(new URL("/login", req.url))
   }
 
   const dashboardData = await getPartnerDashboardController(authResult.user._id);

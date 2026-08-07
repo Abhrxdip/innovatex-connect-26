@@ -15,6 +15,9 @@ export default function PartnerDashboardPage() {
     try {
       setLoading(true);
       const res = await fetch('/api/partner/dashboard');
+      if (res.redirected) {
+        window.location.href = res.url
+      }
       const json = await res.json();
 
       if (!res.ok || !json.success) {
@@ -176,13 +179,12 @@ export default function PartnerDashboardPage() {
                           </td>
                           <td className="py-3 px-2 text-right">
                             <span
-                              className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                                ref.status === 'Approved'
-                                  ? 'bg-emerald-100 text-emerald-700'
-                                  : ref.status === 'Pending'
+                              className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-bold ${ref.status === 'Approved'
+                                ? 'bg-emerald-100 text-emerald-700'
+                                : ref.status === 'Pending'
                                   ? 'bg-amber-100 text-amber-700'
                                   : 'bg-red-100 text-red-700'
-                              }`}
+                                }`}
                             >
                               {ref.status}
                             </span>
