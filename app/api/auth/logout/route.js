@@ -1,5 +1,9 @@
-import { asyncHandler } from "@/src/utils/asyncHandler.js";
-import { sendResponse } from "@/src/utils/sendResponse.js";
+import {
+  asyncHandler
+} from "@/backend/utils/asyncHandler.js";
+import {
+  sendResponse
+} from "@/backend/utils/sendResponse.js";
 
 export const POST = asyncHandler(async () => {
   const response = sendResponse({

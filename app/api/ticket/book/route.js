@@ -1,21 +1,21 @@
 import {
   asyncHandler
-} from "@/src/utils/asyncHandler.js";
+} from "@/backend/utils/asyncHandler.js";
 import {
   sendResponse
-} from "@/src/utils/sendResponse.js";
+} from "@/backend/utils/sendResponse.js";
 import {
   authenticate
-} from "@/src/middlewares/auth.middleware.js";
+} from "@/backend/middlewares/auth.middleware.js";
 import {
   validate
-} from "@/src/middlewares/validate.middleware.js";
+} from "@/backend/middlewares/validate.middleware.js";
 import {
   bookTicketSchema
-} from "@/src/validators/ticket.validator.js";
+} from "@/backend/validators/ticket.validator.js";
 import {
   bookTicketController
-} from "@/src/controllers/ticket.controller.js";
+} from "@/backend/controllers/ticket.controller.js";
 
 export const POST = asyncHandler(async (req) => {
   const authResult = await authenticate(req);

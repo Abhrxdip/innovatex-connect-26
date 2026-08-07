@@ -1,21 +1,21 @@
 import {
   asyncHandler
-} from "@/src/utils/asyncHandler.js";
+} from "@/backend/utils/asyncHandler.js";
 import {
   sendResponse
-} from "@/src/utils/sendResponse.js";
+} from "@/backend/utils/sendResponse.js";
 import {
   authenticate
-} from "@/src/middlewares/auth.middleware.js";
+} from "@/backend/middlewares/auth.middleware.js";
 import {
   authorize
-} from "@/src/middlewares/role.middleware.js";
+} from "@/backend/middlewares/role.middleware.js";
 import {
   ROLES
-} from "@/src/config/constants.js";
+} from "@/backend/config/constants.js";
 import {
   getAdminDashboardController
-} from "@/src/controllers/admin.controller.js";
+} from "@/backend/controllers/admin.controller.js";
 import {
   NextResponse
 } from "next/server";

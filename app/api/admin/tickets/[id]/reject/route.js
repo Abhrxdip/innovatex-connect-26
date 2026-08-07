@@ -1,9 +1,21 @@
-import { asyncHandler } from "@/src/utils/asyncHandler.js";
-import { sendResponse } from "@/src/utils/sendResponse.js";
-import { authenticate } from "@/src/middlewares/auth.middleware.js";
-import { authorize } from "@/src/middlewares/role.middleware.js";
-import { ROLES } from "@/src/config/constants.js";
-import { rejectTicketController } from "@/src/controllers/admin.controller.js";
+import {
+  asyncHandler
+} from "@/backend/utils/asyncHandler.js";
+import {
+  sendResponse
+} from "@/backend/utils/sendResponse.js";
+import {
+  authenticate
+} from "@/backend/middlewares/auth.middleware.js";
+import {
+  authorize
+} from "@/backend/middlewares/role.middleware.js";
+import {
+  ROLES
+} from "@/backend/config/constants.js";
+import {
+  rejectTicketController
+} from "@/backend/controllers/admin.controller.js";
 
 export const POST = asyncHandler(async (req, context) => {
   const authResult = await authenticate(req);
@@ -16,7 +28,9 @@ export const POST = asyncHandler(async (req, context) => {
     return roleCheck.response;
   }
 
-  const { id } = await context.params;
+  const {
+    id
+  } = await context.params;
   const ticket = await rejectTicketController(id, authResult.user._id);
 
   return sendResponse({

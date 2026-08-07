@@ -1,15 +1,15 @@
 import {
   asyncHandler
-} from "@/src/utils/asyncHandler.js";
+} from "@/backend/utils/asyncHandler.js";
 import {
   sendResponse
-} from "@/src/utils/sendResponse.js";
+} from "@/backend/utils/sendResponse.js";
 import {
   authenticate
-} from "@/src/middlewares/auth.middleware.js";
+} from "@/backend/middlewares/auth.middleware.js";
 import {
   getUserDashboardController
-} from "@/src/controllers/user.controller.js";
+} from "@/backend/controllers/user.controller.js";
 import {
   NextResponse
 } from "next/server";

@@ -1,6 +1,6 @@
-import { asyncHandler } from "@/src/utils/asyncHandler.js";
-import { sendResponse } from "@/src/utils/sendResponse.js";
-import { getLeaderboardController } from "@/src/controllers/leaderboard.controller.js";
+import { asyncHandler } from "@/backend/utils/asyncHandler.js";
+import { sendResponse } from "@/backend/utils/sendResponse.js";
+import { getLeaderboardController } from "@/backend/controllers/leaderboard.controller.js";
 
 export const GET = asyncHandler(async () => {
   const leaderboard = await getLeaderboardController();

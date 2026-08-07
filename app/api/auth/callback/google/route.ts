@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { googleLoginUser } from "@/src/services/auth.service";
+import { googleLoginUser } from "@/backend/services/auth.service";
 import { email } from "zod/v4";
-import { AUTH_PROVIDERS } from "@/src/config/constants";
+import { AUTH_PROVIDERS } from "@/backend/config/constants";
 import { redirectHost } from "../../../constants";
 
 export async function GET(request: NextRequest) {

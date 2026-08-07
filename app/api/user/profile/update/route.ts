@@ -1,11 +1,11 @@
 import { NextRequest } from "next/server";
-import { sendResponse } from "@/src/utils/sendResponse.js";
-import { authenticate } from "@/src/middlewares/auth.middleware.js";
-import { validate } from "@/src/middlewares/validate.middleware.js";
-import { updateProfileSchema } from "@/src/validators/user.validator.js";
-import { getProfileController } from "@/src/controllers/user.controller.js";
-import { updateUserDetails } from "@/src/services/auth.service";
-import { errorHandler } from "@/src/middlewares/error.middleware.js"
+import { sendResponse } from "@/backend/utils/sendResponse.js";
+import { authenticate } from "@/backend/middlewares/auth.middleware.js";
+import { validate } from "@/backend/middlewares/validate.middleware.js";
+import { updateProfileSchema } from "@/backend/validators/user.validator.js";
+import { getProfileController } from "@/backend/controllers/user.controller.js";
+import { updateUserDetails } from "@/backend/services/auth.service";
+import { errorHandler } from "@/backend/middlewares/error.middleware.js"
 
 
 export async function POST(req: NextRequest) {

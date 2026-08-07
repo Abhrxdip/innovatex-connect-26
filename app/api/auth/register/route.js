@@ -3,19 +3,19 @@ import {
 } from "next/server";
 import {
   asyncHandler
-} from "@/src/utils/asyncHandler.js";
+} from "@/backend/utils/asyncHandler.js";
 import {
   sendResponse
-} from "@/src/utils/sendResponse.js";
+} from "@/backend/utils/sendResponse.js";
 import {
   validate
-} from "@/src/middlewares/validate.middleware.js";
+} from "@/backend/middlewares/validate.middleware.js";
 import {
   registerSchema
-} from "@/src/validators/auth.validator.js";
+} from "@/backend/validators/auth.validator.js";
 import {
   registerController
-} from "@/src/controllers/auth.controller.js";
+} from "@/backend/controllers/auth.controller.js";
 
 export const POST = asyncHandler(async (req) => {
   const validationResult = await validate(registerSchema)(req);
