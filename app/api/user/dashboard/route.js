@@ -21,7 +21,7 @@ const redirectHost = isProd ? process.env.SITE_URL : "http://localhost:3000"
 export const GET = asyncHandler(async (req) => {
   const authResult = await authenticate(req);
   if (!authResult.authenticated) {
-    return authResult.response;
+    return NextResponse.redirect(new URL(`/login`, req.url))
   }
 
   const dashboardData = await getUserDashboardController(authResult.user._id);
