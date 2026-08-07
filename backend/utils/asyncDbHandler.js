@@ -1,7 +1,9 @@
-import { sendResponse } from "./sendResponse.js";
+import {
+  sendResponse
+} from "./sendResponse.js";
 import connectDb from "../config/db.js";
 
-export function asyncHandler(handler) {
+export function asyncDbHandler(handler) {
   return async (req, context) => {
     try {
       await connectDb();
@@ -9,7 +11,7 @@ export function asyncHandler(handler) {
     } catch (error) {
       const statusCode = error.statusCode || error.status || 500;
       const message = error.message || "Internal Server Error";
-      
+      console.error("Unable to connect to db" + String(error))
       return sendResponse({
         success: false,
         statusCode,

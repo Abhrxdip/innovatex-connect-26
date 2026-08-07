@@ -1,6 +1,6 @@
 import {
-  asyncHandler
-} from "@/backend/utils/asyncHandler.js";
+  asyncDbHandler
+} from "@/backend/utils/asyncDbHandler.js";
 import {
   sendResponse
 } from "@/backend/utils/sendResponse.js";
@@ -20,7 +20,7 @@ import {
   NextResponse
 } from "next/server";
 
-export const GET = asyncHandler(async (req) => {
+export const GET = asyncDbHandler(async (req) => {
   const authResult = await authenticate(req);
   if (!authResult.authenticated) {
     return NextResponse.redirect(new URL(`/login`, req.url))

@@ -1,8 +1,14 @@
-import { asyncHandler } from "@/backend/utils/asyncHandler.js";
-import { sendResponse } from "@/backend/utils/sendResponse.js";
-import { getLeaderboardController } from "@/backend/controllers/leaderboard.controller.js";
+import {
+  asyncDbHandler
+} from "@/backend/utils/asyncDbHandler.js";
+import {
+  sendResponse
+} from "@/backend/utils/sendResponse.js";
+import {
+  getLeaderboardController
+} from "@/backend/controllers/leaderboard.controller.js";
 
-export const GET = asyncHandler(async () => {
+export const GET = asyncDbHandler(async () => {
   const leaderboard = await getLeaderboardController();
 
   return sendResponse({

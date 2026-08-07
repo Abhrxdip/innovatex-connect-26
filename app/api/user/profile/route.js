@@ -1,6 +1,6 @@
 import {
-  asyncHandler
-} from "@/backend/utils/asyncHandler.js";
+  asyncDbHandler
+} from "@/backend/utils/asyncDbHandler.js";
 import {
   sendResponse
 } from "@/backend/utils/sendResponse.js";
@@ -25,7 +25,7 @@ import {
 } from "zod/v4";
 
 
-export const GET = asyncHandler(async (req) => {
+export const GET = asyncDbHandler(async (req) => {
   const authResult = await authenticate(req);
   if (!authResult.authenticated) {
     return authResult.response;
@@ -43,7 +43,7 @@ export const GET = asyncHandler(async (req) => {
 
 //? Srayash aka @ishu17077 talk to him before adding this block
 //! Very dangerous as this method allows user to change anything about themselves, needs to be limited to specific field update only, not expose entire fields
-//// export const PUT = asyncHandler(async (req) => {
+//// export const PUT = asyncDbHandler(async (req) => {
 ////   const authResult = await authenticate(req);
 ////   if (!authResult.authenticated) {
 ////     return authResult.response;

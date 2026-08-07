@@ -1,6 +1,6 @@
 import {
-  asyncHandler
-} from "@/backend/utils/asyncHandler.js";
+  asyncDbHandler
+} from "@/backend/utils/asyncDbHandler.js";
 import {
   sendResponse
 } from "@/backend/utils/sendResponse.js";
@@ -11,7 +11,7 @@ import {
   getMyTicketController
 } from "@/backend/controllers/ticket.controller.js";
 
-export const GET = asyncHandler(async (req) => {
+export const GET = asyncDbHandler(async (req) => {
   const authResult = await authenticate(req);
   if (!authResult.authenticated) {
     return authResult.response;

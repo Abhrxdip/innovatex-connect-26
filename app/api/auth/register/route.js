@@ -2,8 +2,8 @@ import {
   NextResponse
 } from "next/server";
 import {
-  asyncHandler
-} from "@/backend/utils/asyncHandler.js";
+  asyncDbHandler
+} from "@/backend/utils/asyncDbHandler.js";
 import {
   sendResponse
 } from "@/backend/utils/sendResponse.js";
@@ -17,7 +17,7 @@ import {
   registerController
 } from "@/backend/controllers/auth.controller.js";
 
-export const POST = asyncHandler(async (req) => {
+export const POST = asyncDbHandler(async (req) => {
   const validationResult = await validate(registerSchema)(req);
   if (!validationResult.success) {
     return validationResult.response;

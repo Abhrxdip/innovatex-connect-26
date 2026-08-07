@@ -15,8 +15,8 @@ import {
   AUTH_PROVIDERS
 } from "../config/constants.js";
 import {
-  error
-} from "console";
+  redisClient
+} from "../lib/redis_connection";
 
 const emailSchema = z.string().trim().toLowerCase().email();
 const phoneRegExp = /^(?:\+91|91|0)?([6-9]\d{9})$/;
@@ -264,6 +264,17 @@ export async function loginUser({
     throw error;
   }
   email = emailSchema.parse(email)
+  const loggedInTimes = await redisClient.incr(`login:${email}`)
+  if (loggedInTimes === 1) {
+    await redisClient.expire(`login:${email}`, 600)
+  }
+  if (loggedInTimes > 10) {
+    const error = new Error("Too many requests, please try again later");
+    error.statusCode = 429;
+    throw error
+  }
+
+
   const user = await User.findOne({
     email: email.toLowerCase()
   });
