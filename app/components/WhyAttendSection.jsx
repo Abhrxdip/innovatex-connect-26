@@ -44,7 +44,7 @@ export default function WhyAttendSection() {
               }}
             />
             <div className="relative z-10 grid h-full min-h-0 place-items-center p-6 sm:p-8 md:p-10">
-              <h3 className="max-w-full px-2 text-center font-blackhan text-[clamp(1.95rem,3.7vw,3.5rem)] leading-none tracking-tight text-[#EE4B15]">
+              <h3 className="max-w-full px-2 text-center font-blackhan text-[clamp(1.6rem,2.7vw,2.6rem)] leading-none tracking-tight text-[#EE4B15]">
                 Networking
               </h3>
             </div>
@@ -61,7 +61,7 @@ export default function WhyAttendSection() {
               }}
             />
             <div className="relative z-10 grid h-full min-h-0 place-items-center px-6 py-8 sm:px-8 md:px-10">
-              <h3 className="translate-y-1 font-blackhan text-[clamp(2rem,4.1vw,3.8rem)] text-center leading-none tracking-tight text-[#E0E3EA]">
+              <h3 className="translate-y-1 font-blackhan text-[clamp(1.9rem,3.4vw,3.3rem)] text-center leading-none tracking-tight text-[#E0E3EA]">
                 Inspiring Talks
               </h3>
             </div>
@@ -78,7 +78,7 @@ export default function WhyAttendSection() {
               }}
             />
             <div className="relative z-10 grid h-full min-h-0 place-items-center px-6 py-10 sm:px-8 sm:py-12 md:px-10 md:py-14">
-              <h3 className="translate-y-1 font-blackhan text-[clamp(2.05rem,4.2vw,3.85rem)] text-center leading-none tracking-tight text-[#F1FDFD]">
+              <h3 className="translate-y-1 font-blackhan text-[clamp(1.9rem,3.5vw,3.3rem)] text-center leading-none tracking-tight text-[#F1FDFD]">
                 Community Meetup
               </h3>
             </div>
@@ -95,7 +95,7 @@ export default function WhyAttendSection() {
               }}
             />
             <div className="relative z-10 grid h-full min-h-0 place-items-center px-5 py-8 sm:px-6 md:px-8">
-              <h3 className="translate-y-1 font-blackhan text-[clamp(1.85rem,3.6vw,3.3rem)] text-center leading-[0.92] tracking-tight text-[#EE4B15]">
+              <h3 className="translate-y-1 font-blackhan text-[clamp(1.6rem,2.7vw,2.55rem)] text-center leading-[1.05] tracking-tight text-[#EE4B15]">
                 Swags<br />&amp;<br />Giveaways
               </h3>
             </div>
