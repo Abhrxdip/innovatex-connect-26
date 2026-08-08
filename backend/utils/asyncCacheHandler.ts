@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import RedisInstance from "../lib/redis_connection";
+import RedisInstance from "../config/redis_connection";
 import { sendResponse } from "./sendResponse";
 
 export function asyncCacheHandler(handler: (req: NextRequest, context: unknown) => Promise<NextResponse>): (req: NextRequest, context: unknown) => Promise<NextResponse> {

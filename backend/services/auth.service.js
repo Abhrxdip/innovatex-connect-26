@@ -16,7 +16,7 @@ import {
 } from "../config/constants.js";
 import {
   redisClient
-} from "../lib/redis_connection";
+} from "../config/redis_connection.js";
 
 const emailSchema = z.string().trim().toLowerCase().email();
 const phoneRegExp = /^(?:\+91|91|0)?([6-9]\d{9})$/;
@@ -41,7 +41,18 @@ export async function registerUser({
   }
   email = emailSchema.parse(email)
 
+  if ((await redisClient.get(`otp:${email}`)) === "1") {
+    const error = new Error("OTP already sent. Please wait for 10 minutes")
+    error.statusCode = 400;
+    throw error;
+  }
 
+  await redisClient.set(`otp:${email}`, 1, {
+    expiration: {
+      type: "EX",
+      value: 600,
+    }
+  })
 
   const match = phone.replace(/[\s-]/g, '').match(phoneRegExp)
   if (match) {
