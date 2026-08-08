@@ -3,7 +3,7 @@ import { generateReferralCode } from "../services/referral.service.js";
 import User from "../models/User.js";
 
 export async function getPartnerDashboardController(partnerId) {
-  const user = await User.findById(partnerId).select("-password");
+  const user = await User.findById(partnerId).select("-password -secret");
   const stats = await getPartnerStatsService(partnerId);
 
   const referralCode = `IXC-${partnerId.toString().substring(18).toUpperCase()}`;

@@ -11,17 +11,17 @@ import {
   validate
 } from "@/backend/middlewares/validate.middleware.js";
 import {
-  updateProfileSchema
+  // updateProfileSchema
 } from "@/backend/validators/user.validator.js";
 import {
   getProfileController,
   //// updateProfileController
 } from "@/backend/controllers/user.controller.js";
 import {
-  NextResponse
+  // NextResponse
 } from "next/server";
 import {
-  email
+  // email
 } from "zod/v4";
 
 

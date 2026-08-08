@@ -5,6 +5,12 @@ export const ROLES = {
   ADMIN: "Admin",
 };
 
+export const REGISTRATIONROLES = {
+  STUDENT: "Student",
+  WORKING_PROFESSIONAL: "Working Professional",
+  COMMUNITY_PARTNER: "Community Partner",
+};
+
 export const TICKET_STATUS = {
   PENDING: "Pending",
   APPROVED: "Approved",

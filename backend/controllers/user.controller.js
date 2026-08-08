@@ -3,7 +3,7 @@ import Ticket from "../models/Ticket.js";
 import Notification from "../models/Notification.js";
 
 export async function getProfileController(userId) {
-  const user = await User.findById(userId).select("-password");
+  const user = await User.findById(userId).select("-password -secret");
   if (!user) {
     const error = new Error("User not found");
     error.statusCode = 404;
@@ -16,8 +16,8 @@ export async function updateProfileController(userId, updateData) {
   const user = await User.findByIdAndUpdate(userId, updateData, {
     new: true,
     runValidators: true,
-  }).select("-password");
-  
+  }).select("-password -secret");
+
   if (!user) {
     const error = new Error("User not found");
     error.statusCode = 404;
@@ -27,9 +27,15 @@ export async function updateProfileController(userId, updateData) {
 }
 
 export async function getUserDashboardController(userId) {
-  const user = await User.findById(userId).select("-password");
-  const ticket = await Ticket.findOne({ userId });
-  const notifications = await Notification.find({ userId }).sort({ createdAt: -1 }).limit(5);
+  const user = await User.findById(userId).select("-password -secret");
+  const ticket = await Ticket.findOne({
+    userId
+  });
+  const notifications = await Notification.find({
+    userId
+  }).sort({
+    createdAt: -1
+  }).limit(5);
 
   return {
     user,
