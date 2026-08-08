@@ -23,6 +23,6 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
-export const forgetPassAndtwoFASchema = z.object({
+export const forgetPassAndtwoFARegSchema = z.object({
   email: z.string().email("Invalid email address"),
 })

@@ -16,7 +16,7 @@ import {
 } from "../config/constants.js";
 import {
   redisClient
-} from "../config/redis_connection.js";
+} from "../config/redis_connection";
 
 const emailSchema = z.string().trim().toLowerCase().email();
 const phoneRegExp = /^(?:\+91|91|0)?([6-9]\d{9})$/;
