@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import WhyAttendSection from './components/WhyAttendSection';
 import AboutGrid from './components/AboutGrid';
 import SpeakersSection from './components/SpeakersSection';
 import AgendaSection from './components/AgendaSection';
@@ -22,6 +23,9 @@ export default function Home() {
 
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Why Attend Section - Second Hero */}
+      <WhyAttendSection />
 
       {/* Ticket Perforation Transition and Next Section */}
       <div className="w-full relative z-30 flex flex-col mt-0 sm:mt-4">
