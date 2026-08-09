@@ -41,19 +41,6 @@ export async function registerUser({
   }
   email = emailSchema.parse(email)
 
-  if ((await redisClient.get(`otp:${email}`)) === "1") {
-    const error = new Error("OTP already sent. Please wait for 10 minutes")
-    error.statusCode = 400;
-    throw error;
-  }
-
-  await redisClient.set(`otp:${email}`, 1, {
-    expiration: {
-      type: "EX",
-      value: 600,
-    }
-  })
-
   const match = phone.replace(/[\s-]/g, '').match(phoneRegExp)
   if (match) {
     phone = match[1]

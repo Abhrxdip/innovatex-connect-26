@@ -7,12 +7,13 @@ import {
 } from "@/backend/validators/auth.validator.js";
 
 import {
-    generateOTP
+    generateOTPForRegisteredUsers
 } from "@/backend/services/otp.service"
 
 
 
 import { asyncDbHandler } from "@/backend/utils/asyncDbHandler";
+import { sendResponse } from "@/backend/utils/sendResponse";
 
 export async function POST(req: NextRequest) {
     return asyncDbHandler(async (req: NextRequest) => {
@@ -21,7 +22,15 @@ export async function POST(req: NextRequest) {
             return validation.response
         }
         const { email } = validation.data
-        const otp = await generateOTP({ email: email })
-        console.log(otp)
+        const otp = await generateOTPForRegisteredUsers({ email: email })
+
+        
+
+        return sendResponse({
+            success: true,
+            message: `OTP sent to ${email}`,
+            data: null,
+            statusCode: 200,
+        })
     })(req)
 } 
