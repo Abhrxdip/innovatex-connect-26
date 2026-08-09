@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.redirect(`${rootUrl}?${qs.toString()}`)
     } catch (e) {
         //TODO: Error page
-        NextResponse.redirect(``)
+        NextResponse.redirect(`/register`)
     }
 }
 

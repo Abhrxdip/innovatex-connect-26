@@ -8,9 +8,9 @@ import QRCode from "qrcode";
 export async function generateQRCodeDataURL(ticketNumber) {
   try {
     // Always encode just the plain ticket number string
-    const dataString = typeof ticketNumber === "object"
-      ? (ticketNumber.ticketNumber || JSON.stringify(ticketNumber))
-      : String(ticketNumber);
+    const dataString = typeof ticketNumber === "object" ?
+      (ticketNumber.ticketNumber || JSON.stringify(ticketNumber)) :
+      String(ticketNumber);
 
     return await QRCode.toDataURL(dataString, {
       errorCorrectionLevel: "M",

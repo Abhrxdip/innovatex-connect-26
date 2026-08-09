@@ -5,25 +5,32 @@ import { generateSecret } from "otplib";
 import { redisClient } from "../config/redis_connection";
 
 
-export async function generateOTPForRegisteredUsers({ email }: { email: string }): Promise<string> {
+export async function generateOTPForRegisteredUsers({ email }: { email: string }): Promise<{ otp: string, name: string, email: string }> {
     try {
         const user = await User.findOne({ email: email })
         if (!user) {
             throw new UserNotFoundError("User not found")
         }
-        await checkExists(email);
+        await checkOTPAlreadySent(email);
         if (!user.secret) {
             user.secret = generateSecret()
             await User.findByIdAndUpdate(user._id, { secret: user.secret })
         }
 
-        return await OtpClient.generate({ secret: user.secret })
+        return {
+            email: user.email,
+            name: user.name,
+            otp: await OtpClient.generate({ secret: user.secret }),
+        }
     } catch (e) {
         console.log(`OTP Service Generation error: ${e}`)
-        await removeOTPExists(email).catch(() => null)
+        if (e instanceof OTPAlreadySent) {
+            throw Error("OTP already sent. Please wait for 10 minutes")
+        }
         if (e instanceof UserNotFoundError) {
             throw Error("User not found")
         }
+        await removeOTPExists(email).catch(() => null)
         const error = Error("OTP Generation Error")
         throw error
     }
@@ -31,21 +38,25 @@ export async function generateOTPForRegisteredUsers({ email }: { email: string }
 
 export async function generateOTPForOnboardingUsers({ email }: { email: string }): Promise<string> {
     try {
-        await checkExists(email);
+        await checkOTPAlreadySent(email);
         const secret = generateSecret()
         await redisClient.set(`secret:${email}`, secret, { expiration: { type: "EX", value: 600 } })
         const otp = OtpClient.generate({ secret: secret })
         return otp
     } catch (e) {
+        if (e instanceof OTPAlreadySent) {
+            throw Error("OTP already sent. Please wait for 10 minutes")
+        }
         await removeOTPExists(email).catch(() => null)
         throw Error("OTP generation error, please try again")
     }
 }
 
 
-async function checkExists(email: string) {
+async function checkOTPAlreadySent(email: string) {
     if ((await redisClient.get(`otp:${email}`)) === "1") {
-        const error = new Error("OTP already sent. Please wait for 10 minutes");
+        const error = new OTPAlreadySent("OTP already sent. Please wait for 10 minutes");
+        console.log(error)
         throw error;
     }
 
@@ -95,3 +106,4 @@ export async function verifyOTPForOnboardingUsers({ email, otp }: { email: strin
 
 class UserNotFoundError extends Error { }
 class SecretNotFoundError extends Error { }
+class OTPAlreadySent extends Error { }

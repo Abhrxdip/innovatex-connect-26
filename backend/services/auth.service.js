@@ -17,6 +17,9 @@ import {
 import {
   redisClient
 } from "../config/redis_connection";
+import {
+  verifyOTPForOnboardingUsers
+} from "./otp.service";
 
 const emailSchema = z.string().trim().toLowerCase().email();
 const phoneRegExp = /^(?:\+91|91|0)?([6-9]\d{9})$/;
@@ -29,6 +32,7 @@ export async function registerUser({
   college,
   company,
   phone,
+  otp,
   referralCode,
   auth_provider
 }) {
@@ -73,6 +77,17 @@ export async function registerUser({
     error.statusCode = 400
     throw error
   }
+
+  if (!otp) {
+    const error = Error("OTP not provided")
+    error.statusCode = 400
+    throw error
+  }
+
+  verifyOTPForOnboardingUsers({
+    email,
+    otp
+  })
 
   const user = await User.create({
     name,

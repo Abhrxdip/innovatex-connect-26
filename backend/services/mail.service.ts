@@ -31,7 +31,10 @@ export async function sendTicketConfirmedMail({ name, email, ticket_number, atte
             attendee_type: attendee_type,
             organization: organization,
             qr_code: qr_code,
-        }
+        },
+        attachment: [
+            { content: qr_code, name: "ticket.png" }
+        ]
     })
     console.log(`Ticket Confirmation mail sent. ID: ${res.messageId}`)
 }

@@ -24,5 +24,6 @@ export const loginSchema = z.object({
 });
 
 export const forgetPassAndtwoFARegSchema = z.object({
+  name: z.string().optional(),
   email: z.string().email("Invalid email address"),
 })
