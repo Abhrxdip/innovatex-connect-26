@@ -18,7 +18,8 @@ import {
   redisClient
 } from "../config/redis_connection";
 import {
-  verifyOTPForOnboardingUsers
+  verifyOTPForOnboardingUsers,
+  verifyOTPForRegisteredUsers
 } from "./otp.service";
 
 const emailSchema = z.string().trim().toLowerCase().email();
@@ -330,4 +331,21 @@ export async function loginUser({
     user: userObj,
     token
   };
+}
+
+export async function updatePassword({otp,email, password}){
+  const user = await User.findOne({email: email})
+  if(!user){
+    const error = new Error("User not found")
+    error.statusCode= 401
+    throw error
+  }
+  const isOTPValid = await verifyOTPForRegisteredUsers({email, otp})
+
+  if(!isOTPValid){
+    throw Error("Invalid OTP entered")
+  }
+
+  await User.findByIdAndUpdate(user._id, {password: await hashPassword(password)})
+
 }

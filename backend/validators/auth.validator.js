@@ -72,8 +72,8 @@ export const twoFARegSchema = z.object({
 
 export const forgetPasswordSchema = z.object({
   email: z.string().email("Invalid email address"),
-  password: z.string().minLength(6, "Password must be at least 6 characters"),
-  conf_password: z.string().minLength(6, "Confirm Password must be at least 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  conf_password: z.string().min(6, "Confirm Password must be at least 6 characters"),
   otp: z.string().length(6, "OTP must be 6 digits"),
 }).superRefine((data, ctx) => {
   if (data.password !== data.conf_password) {

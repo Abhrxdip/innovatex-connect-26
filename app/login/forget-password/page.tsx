@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function ForgetPasswordPage() {
     const [formData, setFormData] = useState({
-        mail: "",
+        email: "",
         password: "",
-        newPassword: "",
+        confPassword: "",
         otp: "",
     });
     const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function ForgetPasswordPage() {
     };
 
     const handleSendOtp = async () => {
-        if (!formData.mail) {
+        if (!formData.email) {
             setError("Please enter your email first.");
             return;
         }
@@ -41,7 +41,7 @@ export default function ForgetPasswordPage() {
             const response = await fetch("/api/auth/otp/registered", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: formData.mail }),
+                body: JSON.stringify({ email: formData.email }),
             });
 
             const data = await response.json();
@@ -69,9 +69,9 @@ export default function ForgetPasswordPage() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    mail: formData.mail,
+                    email: formData.email,
                     password: formData.password,
-                    newPassword: formData.newPassword,
+                    conf_password: formData.confPassword,
                     otp: formData.otp,
                 }),
             });
@@ -84,9 +84,9 @@ export default function ForgetPasswordPage() {
 
             setMessage(data.message || "Password updated successfully.");
             setFormData({
-                mail: "",
+                email: "",
                 password: "",
-                newPassword: "",
+                confPassword: "",
                 otp: "",
             });
         } catch (err) {
@@ -131,9 +131,9 @@ export default function ForgetPasswordPage() {
                         <div className="flex flex-col gap-2 sm:flex-row">
                             <input
                                 type="email"
-                                name="mail"
+                                name="email"
                                 required
-                                value={formData.mail}
+                                value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Enter your email"
                                 className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
@@ -141,7 +141,7 @@ export default function ForgetPasswordPage() {
                             <button
                                 type="button"
                                 onClick={handleSendOtp}
-                                disabled={otpLoading || !formData.mail}
+                                disabled={otpLoading || !formData.email}
                                 className="sm:w-36 rounded-xl bg-[#1E1B4B] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-brand-neon disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 {otpLoading ? "Sending..." : "Send OTP"}
@@ -151,7 +151,7 @@ export default function ForgetPasswordPage() {
 
                     <div>
                         <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            Current Password
+                            Password
                         </label>
                         <input
                             type="password"
@@ -159,22 +159,22 @@ export default function ForgetPasswordPage() {
                             required
                             value={formData.password}
                             onChange={handleChange}
-                            placeholder="Enter your current password"
+                            placeholder="Enter your new password"
                             className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
                         />
                     </div>
 
                     <div>
                         <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            New Password
+                            Confirm Password
                         </label>
                         <input
                             type="password"
-                            name="newPassword"
+                            name="confPassword"
                             required
-                            value={formData.newPassword}
+                            value={formData.confPassword}
                             onChange={handleChange}
-                            placeholder="Enter a new password"
+                            placeholder="Type the previous password exactly"
                             className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
                         />
                     </div>

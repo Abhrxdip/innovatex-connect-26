@@ -68,6 +68,14 @@ async function checkOTPAlreadySent(email: string) {
     });
 }
 
+async function otpIncorrectHandler(email: string): Promise<void> {
+    const attemps = await redisClient.incr(`otp_incorrect:${email}`)
+
+    if (attemps > 3) {
+        throw new OTPTriedTooManyTimes()
+    }
+}
+
 async function removeOTPExists(email: string) {
     await redisClient.del(`otp:${email}`)
 }
@@ -79,10 +87,21 @@ export async function verifyOTPForRegisteredUsers({ email, otp }: { email: strin
         }
         const user = await User.findOne({ email: email })
         if (!user) {
-            throw Error("User not found")
+            throw new UserNotFoundError()
         }
-        return (await OtpClient.verify(otp, { secret: user.secret })).valid
+
+        const isValid = (await OtpClient.verify(otp, { secret: user.secret })).valid
+        if (!isValid) {
+            await otpIncorrectHandler(email)
+        }
+        return isValid
     } catch (e) {
+        if (e instanceof OTPTriedTooManyTimes) {
+            throw Error("Too many incorrect attempts. Please try again later")
+        }
+        if (e instanceof UserNotFoundError) {
+            throw Error("User not found.")
+        }
         console.log(`OTP Service Verification error: ${e}`)
         return false
     }
@@ -94,16 +113,27 @@ export async function verifyOTPForOnboardingUsers({ email, otp }: { email: strin
         if (!secret) {
             throw new SecretNotFoundError("Did you generate an OTP?")
         }
-        return (await OtpClient.verify(otp, { secret: secret })).valid
+
+        const isValid = (await OtpClient.verify(otp, { secret: secret })).valid
+        if (!isValid) {
+            await otpIncorrectHandler(email)
+        }
+        return isValid
     } catch (e) {
         if (e instanceof SecretNotFoundError) {
             throw Error("Did you generate an OTP?")
+        }
+        if (e instanceof OTPTriedTooManyTimes) {
+            throw Error("Too many incorrect attempts. Please try again later")
         }
         console.log(`OTP Service Verification error: ${e}`)
         return false
     }
 }
 
+
+
 class UserNotFoundError extends Error { }
 class SecretNotFoundError extends Error { }
 class OTPAlreadySent extends Error { }
+class OTPTriedTooManyTimes extends Error { }

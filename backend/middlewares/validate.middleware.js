@@ -12,12 +12,13 @@ export function validate(schema) {
           field: err.path.join("."),
           message: err.message,
         }));
+        console.log(formattedErrors)
         return {
           success: false,
           response: sendResponse({
             success: false,
             statusCode: 400,
-            message: "Validation Error",
+            message: formattedErrors[0].message,
             errors: formattedErrors,
           }),
         };

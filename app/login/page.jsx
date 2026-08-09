@@ -163,7 +163,17 @@ export default function LoginPage() {
                 >
                   Register Now
                 </Link>
+
               </p>
+              <div className="mt-4 text-center text-sm text-gray-600 dark:text-black">
+                Can&apos;t remember your password?{' '}
+                <Link
+                  href="/login/forget-password"
+                  className="font-semibold text-indigo-600 hover:text-red-500 hover:underline transition-all duration-200 dark:text-red-400 dark:hover:text-red-300"
+                >
+                  Reset it here
+                </Link>
+              </div>
             </div>
           </div>
         </div>
