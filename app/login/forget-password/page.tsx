@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Navbar from "../../components/Navbar";
+import { Icons } from "../../components/Icons";
 
 export default function ForgetPasswordPage() {
     const [formData, setFormData] = useState({
@@ -96,122 +98,154 @@ export default function ForgetPasswordPage() {
         }
     };
 
+    const inputClass = "w-full px-4 py-3 rounded-xl bg-[#090D2B] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#EE4B15]/30 focus:border-[#EE4B15]/60 transition-all placeholder:text-slate-500";
+
     return (
-        <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center px-4 py-12">
-            <div className="w-full max-w-md bg-white/95 border border-slate-200 rounded-3xl shadow-2xl p-6 sm:p-8">
-                <div className="mb-6 text-center">
-                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-indigo-600">
-                        Account Recovery
-                    </p>
-                    <h1 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">
-                        Forgot Password
-                    </h1>
-                    <p className="mt-2 text-sm text-slate-600">
-                        Send an OTP, then use it to reset your password.
-                    </p>
-                </div>
+        <div className="relative min-h-screen bg-[#090D2B] flex flex-col overflow-x-hidden font-display text-white">
+            {/* Subtle background pattern */}
+            <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
-                {error && (
-                    <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                        {error}
-                    </div>
-                )}
+            <Navbar />
 
-                {message && (
-                    <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                        {message}
-                    </div>
-                )}
+            <main className="relative z-10 flex-1 flex items-center justify-center px-4 pt-28 sm:pt-32 pb-12">
+                <div className="w-full max-w-md">
+                    <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/8 relative overflow-hidden">
+                        {/* Top accent line */}
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#EE4B15] via-[#EE4B15]/80 to-[#EE4B15]/40" />
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            Email
-                        </label>
-                        <div className="flex flex-col gap-2 sm:flex-row">
-                            <input
-                                type="email"
-                                name="email"
-                                required
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Enter your email"
-                                className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
-                            />
+                        {/* Header */}
+                        <div className="text-center mb-6 pt-2">
+                            <p className="text-white font-bold text-sm tracking-wide mb-1">InnovateX Connect&apos;26</p>
+                            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                                Account Recovery
+                            </h1>
+                            <p className="mt-2 text-sm text-slate-400">
+                                Send an OTP, then use it to reset your password.
+                            </p>
+                        </div>
+
+                        {error && (
+                            <div className="mb-5 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-xs font-medium flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
+                                {error}
+                            </div>
+                        )}
+
+                        {message && (
+                            <div className="mb-5 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-medium flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                                {message}
+                            </div>
+                        )}
+
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            {/* Email */}
+                            <div>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                    Email Address
+                                </label>
+                                <div className="flex flex-col gap-2 sm:flex-row">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="you@example.com"
+                                        className={inputClass}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleSendOtp}
+                                        disabled={otpLoading || !formData.email}
+                                        className="sm:w-36 py-3 px-4 rounded-xl bg-[#090D2B] border border-white/10 hover:border-white/20 text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                                    >
+                                        {otpLoading ? "Sending..." : "Send OTP"}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Password */}
+                            <div>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                    New Password
+                                </label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    required
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="••••••••"
+                                    className={inputClass}
+                                />
+                            </div>
+
+                            {/* Confirm Password */}
+                            <div>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                    Confirm Password
+                                </label>
+                                <input
+                                    type="password"
+                                    name="confPassword"
+                                    required
+                                    value={formData.confPassword}
+                                    onChange={handleChange}
+                                    placeholder="••••••••"
+                                    className={inputClass}
+                                />
+                            </div>
+
+                            {/* OTP */}
+                            <div>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                    OTP
+                                </label>
+                                <input
+                                    type="text"
+                                    name="otp"
+                                    required
+                                    value={formData.otp}
+                                    onChange={handleChange}
+                                    placeholder="6 digit code"
+                                    inputMode="numeric"
+                                    maxLength={6}
+                                    className={inputClass}
+                                />
+                            </div>
+
+                            {/* Submit */}
                             <button
-                                type="button"
-                                onClick={handleSendOtp}
-                                disabled={otpLoading || !formData.email}
-                                className="sm:w-36 rounded-xl bg-[#1E1B4B] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-brand-neon disabled:cursor-not-allowed disabled:opacity-50"
+                                type="submit"
+                                disabled={loading}
+                                className="w-full mt-2 py-3.5 px-6 rounded-xl bg-[#EE4B15] hover:bg-[#EE4B15]/90 text-white font-bold text-sm shadow-lg shadow-[#EE4B15]/15 hover:shadow-[#EE4B15]/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                             >
-                                {otpLoading ? "Sending..." : "Send OTP"}
+                                {loading ? (
+                                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    <>
+                                        Reset Password
+                                        <Icons.ArrowRight className="w-4 h-4" />
+                                    </>
+                                )}
                             </button>
+                        </form>
+
+                        <div className="text-center mt-6">
+                            <p className="text-slate-400 text-xs">
+                                Remembered your password?{' '}
+                                <Link
+                                    href="/login"
+                                    className="text-[#EE4B15] hover:text-[#EE4B15]/80 font-bold transition-colors"
+                                >
+                                    Back to login
+                                </Link>
+                            </p>
                         </div>
                     </div>
-
-                    <div>
-                        <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            name="password"
-                            required
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder="Enter your new password"
-                            className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            name="confPassword"
-                            required
-                            value={formData.confPassword}
-                            onChange={handleChange}
-                            placeholder="Type the previous password exactly"
-                            className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            OTP
-                        </label>
-                        <input
-                            type="text"
-                            name="otp"
-                            required
-                            value={formData.otp}
-                            onChange={handleChange}
-                            placeholder="6 digit code"
-                            inputMode="numeric"
-                            maxLength={6}
-                            className="w-full rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full rounded-xl bg-[#1E1B4B] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-900/20 transition-all duration-300 hover:bg-brand-neon disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                        {loading ? "Updating..." : "Reset Password"}
-                    </button>
-                </form>
-
-                <div className="mt-5 text-center text-sm text-slate-600">
-                    Remembered your password?{' '}
-                    <Link href="/login" className="font-bold text-blue-600 hover:text-indigo-700">
-                        Back to login
-                    </Link>
                 </div>
-            </div>
+            </main>
         </div>
     );
 }

@@ -4,79 +4,137 @@ import React from 'react';
 import { Icons } from './Icons';
 import GetTicketStore from '../state_management/ticket_store';
 import { useStore } from 'zustand';
-import Link from "next/link"
+import Link from "next/link";
 
 export default function AboutGrid() {
-  const store = GetTicketStore()
-  const isAvailable = useStore(store, (s) => s.isAvailable)
-  const redirectUrl = useStore(store, (s) => s.redirectUrl)
+  const store = GetTicketStore();
+  const isAvailable = useStore(store, (s) => s.isAvailable);
+  const redirectUrl = useStore(store, (s) => s.redirectUrl);
+
   return (
-    <div id="about" className="max-w-6xl mx-auto w-full relative">
-      <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-10 relative">
+    <div id="about" className="max-w-6xl mx-auto w-full py-20 sm:py-28 px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
 
-        <div className="group w-full h-[150px] min-[390px]:h-[190px] sm:h-[230px] md:h-[280px] rounded-[18px] sm:rounded-[24px] md:rounded-[28px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 border border-slate-700/50 shadow-[0_12px_32px_rgba(0,0,0,0.08)] relative overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl">
-          <div className="absolute inset-0 bg-ticket-grid opacity-15 pointer-events-none" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
-            <svg className="w-6 h-6 min-[390px]:w-8 min-[390px]:h-8 md:w-10 md:h-10 text-slate-500/80 mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
-            </svg>
-            <span className="text-[7.5px] min-[390px]:text-[9px] md:text-[10px] text-slate-500 font-extrabold uppercase tracking-widest text-center px-1">InnovateX Community</span>
+      {/* Section Header */}
+      <div className="text-center mb-12 sm:mb-16">
+        <span className="inline-block text-[10px] font-black text-[#EE4B15] uppercase tracking-[0.3em] mb-3 select-none">
+          ✦ ABOUT THE EVENT
+        </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-blackhan text-white tracking-tight leading-[1.1] select-none">
+          What is InnovateX<br />
+          <span className="text-gradient-neon">Connect?</span>
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
+
+        {/* Main Feature Card — animated gradient border */}
+        <div className="md:col-span-8 gradient-border min-h-[280px] sm:min-h-[320px]">
+          <div className="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between bg-[#0C1235] rounded-[24px]">
+            <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none rounded-[24px]" />
+            <div className="relative z-10">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
+                A High-Performance Dev Conference<br className="hidden sm:block" /> for Developers & Founders
+              </h3>
+              <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-medium max-w-2xl">
+                InnovateX Connect&apos;26 is a flagship developer conference in Kolkata, bringing together students, developers, tech enthusiasts, founders, and industry professionals for a day of learning, networking, collaboration, and innovation. Through inspiring speaker sessions, interactive experiences, community networking, and hands-on opportunities, we aim to build a stronger and more connected tech ecosystem where ideas turn into action.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-6 relative z-10">
+              {['INNOVATEX COMMUNITY', 'GDG JISU', 'DEV CONFERENCE', 'WORKSHOP'].map((tag) => (
+                <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-[10px] font-bold text-white uppercase tracking-wider select-none hover:bg-white/20 hover:border-white/30 transition-all duration-200">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="group w-full h-[150px] min-[390px]:h-[190px] sm:h-[230px] md:h-[280px] rounded-[18px] sm:rounded-[24px] md:rounded-[28px] bg-gradient-to-br from-[#2D2C85] to-[#4A43C8] shadow-[0_12px_32px_rgba(45,44,133,0.15)] p-3 min-[390px]:p-5 md:p-8 flex flex-col justify-between text-white relative transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl overflow-hidden">
+        {/* Attendees Stat — tall card */}
+        <div className="md:col-span-4 group bg-[#0C1235]/70 border border-white/5 rounded-[24px] p-6 sm:p-8 flex flex-col justify-between min-h-[220px] sm:min-h-[280px] relative overflow-hidden transition-all duration-300 hover:border-[#EE4B15]/30 hover:shadow-[0_20px_60px_rgba(238,75,21,0.12)]">
           <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none" />
-          <div><span className="text-[7.5px] min-[390px]:text-[9px] md:text-[10px] font-bold text-indigo-200/90 uppercase tracking-[0.12em] md:tracking-[0.25em] leading-none">ATTENDEES</span></div>
-          <div className="my-auto text-center">
-            <h4 className="text-3xl min-[390px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter font-tech text-white leading-none">500<span className="text-indigo-300">+</span></h4>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.25em] select-none relative z-10">ATTENDEES</span>
+          <div className="relative text-center my-auto py-6">
+            <div className="absolute inset-0 bg-[#EE4B15]/8 rounded-full blur-2xl scale-50 group-hover:scale-75 group-hover:bg-[#EE4B15]/15 transition-all duration-500" />
+            <h4 className="text-7xl sm:text-8xl md:text-9xl font-black font-tech text-white leading-none relative z-10 select-none">
+              2<span className="text-[#EE4B15]">00</span><span className="text-[#EE4B15] text-5xl sm:text-6xl align-top">+</span>
+            </h4>
           </div>
-          <div className="text-center">
-            <p className="text-[6.5px] min-[390px]:text-[8.5px] md:text-xs font-black tracking-[0.12em] md:tracking-[0.3em] uppercase text-indigo-150/95 leading-none">MINDS <span className="text-indigo-300">&bull;</span> ONE PLACE.</p>
-          </div>
+          <p className="text-slate-400 text-xs font-semibold leading-relaxed relative z-10">Developers, founders, and tech enthusiasts in one room.</p>
         </div>
 
-        <div className="group w-full h-[150px] min-[390px]:h-[190px] sm:h-[230px] md:h-[280px] rounded-[18px] sm:rounded-[24px] md:rounded-[28px] bg-gradient-to-br from-[#2D2C85] to-[#4A43C8] shadow-[0_12px_32px_rgba(45,44,133,0.15)] p-3 min-[390px]:p-5 md:p-8 flex flex-col justify-between text-white relative transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl overflow-hidden">
+        {/* Duration Stat */}
+        <div className="md:col-span-4 group bg-[#EE4B15] rounded-[24px] p-6 sm:p-8 flex flex-col justify-between min-h-[200px] relative overflow-hidden transition-all duration-300 hover:shadow-[0_20px_60px_rgba(238,75,21,0.3)] hover:scale-[1.02]">
+          <span className="text-[10px] font-bold text-white/70 uppercase tracking-[0.25em] select-none relative z-10">DURATION</span>
+          <div className="relative text-center my-auto py-4">
+            <div className="flex items-baseline justify-center relative z-10">
+              <h4 className="text-7xl sm:text-8xl font-black font-tech text-white leading-none select-none">
+                8
+              </h4>
+              <span className="text-white/80 text-4xl sm:text-5xl font-extrabold ml-1.5 uppercase font-tech tracking-tight select-none">
+                HRS
+              </span>
+            </div>
+            <div className="mt-3 relative z-10">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-white/15 border border-white/20 text-white font-black text-xs sm:text-sm tracking-wider uppercase backdrop-blur-sm select-none">
+                9 AM – 5 PM
+              </span>
+            </div>
+          </div>
+          <p className="text-white/80 text-xs font-bold leading-relaxed relative z-10">Of pure execution — coding, talks, mini-games, and demos.</p>
+        </div>
+
+        {/* Date & Venue Card */}
+        <div className="md:col-span-4 bg-[#0C1235]/70 border border-white/5 rounded-[24px] p-6 sm:p-8 flex flex-col justify-between min-h-[200px] relative overflow-hidden transition-all duration-300 hover:border-[#EE4B15]/30">
           <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none" />
-          <div><span className="text-[7.5px] min-[390px]:text-[9px] md:text-[10px] font-bold text-indigo-200/90 uppercase tracking-[0.12em] md:tracking-[0.25em] leading-none">DURATION</span></div>
-          <div className="my-auto text-center">
-            <h4 className="text-3xl min-[390px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter font-tech text-white leading-none">8h</h4>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.25em] select-none relative z-10">DATE & VENUE</span>
+          <div className="relative z-10 mt-4">
+            <p className="text-2xl sm:text-3xl font-blackhan text-white leading-tight select-none">Sept 05</p>
+            <p className="text-sm font-bold text-[#EE4B15] mt-1 select-none">Saturday, 2026</p>
           </div>
-          <div className="text-center">
-            <p className="text-[6.5px] min-[390px]:text-[8.5px] md:text-xs font-black tracking-[0.12em] md:tracking-[0.3em] uppercase text-indigo-150/95 leading-none">OF PURE EXECUTION</p>
-          </div>
+          <p className="text-slate-400 text-xs font-semibold mt-3 relative z-10">JIS University, Agarpara, Kolkata</p>
         </div>
 
-        <div className="group w-full h-[150px] min-[390px]:h-[190px] sm:h-[230px] md:h-[280px] rounded-[18px] sm:rounded-[24px] md:rounded-[28px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 border border-slate-700/50 shadow-[0_12px_32px_rgba(0,0,0,0.08)] relative overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl">
-          <div className="absolute inset-0 bg-ticket-grid opacity-15 pointer-events-none" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
-            <svg className="w-6 h-6 min-[390px]:w-8 min-[390px]:h-8 md:w-10 md:h-10 text-slate-500/80 mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
-            </svg>
-            <span className="text-[7.5px] min-[390px]:text-[9px] md:text-[10px] text-slate-500 font-extrabold uppercase tracking-widest text-center px-1">Meetup 2026</span>
-          </div>
-        </div>
+        {/* Organized By Card */}
+        <div className="md:col-span-4 bg-[#0C1235]/70 border border-white/5 rounded-[24px] p-6 sm:p-8 flex flex-col justify-between min-h-[200px] relative overflow-hidden transition-all duration-300 hover:border-[#EE4B15]/30">
+          <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none" />
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.25em] select-none relative z-10">ORGANIZED &amp; CO-HOSTED BY</span>
 
-        <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] z-40 w-14 h-14 min-[390px]:w-18 min-[390px]:h-18 md:w-24 md:h-24 rounded-full bg-[#3B34A8] border-4 md:border-[6px] border-white shadow-[0_8px_25px_rgba(59,52,168,0.35)] flex flex-col items-center justify-center text-white select-none shrink-0 animate-float-slow">
-          <span className="text-[7.5px] min-[390px]:text-[9px] md:text-[10px] uppercase font-extrabold tracking-widest text-indigo-200/90 leading-none">Est</span>
-          <span className="text-xs min-[390px]:text-sm md:text-lg font-black leading-none mt-0.5 md:mt-1 font-tech">2026</span>
+          <div className="relative z-10 flex flex-col items-center justify-center gap-4 sm:gap-5 my-auto py-4">
+            {/* Host Logo: InnovateX Community (TOP - BIGGER) */}
+            <img
+              src="/innovatex1.png"
+              alt="InnovateX Community Logo"
+              className="h-14 sm:h-18 md:h-20 w-auto object-contain transition-transform duration-300 hover:scale-105"
+            />
+
+            {/* Horizontal Divider Line */}
+            <div className="w-20 h-px bg-white/10" />
+
+            {/* Co-Host Logo: GDG JISU (UNDERNEATH - BIGGER) */}
+            <img
+              src="/gdgjisu.png"
+              alt="Co-Host Logo"
+              className="h-12 sm:h-15 md:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105 opacity-95"
+            />
+          </div>
         </div>
 
       </div>
 
-      <div className="flex justify-center mt-8 sm:mt-12 relative z-40">
+      {/* CTA Button */}
+      <div className="flex justify-center mt-12 sm:mt-16 relative z-40">
         <Link href={redirectUrl}>
           <button
             type="button"
             disabled={!isAvailable}
-            className={`relative group overflow-hidden text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm tracking-widest transition-all shadow-[0_15px_35px_rgba(15,23,42,0.35)] flex items-center justify-center gap-2.5 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 whitespace-nowrap hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(59,52,168,0.3)] duration-300`}
+            className="relative group overflow-hidden text-white px-10 sm:px-12 py-4 sm:py-4.5 rounded-2xl font-bold text-sm sm:text-base tracking-widest transition-all shadow-[0_15px_40px_rgba(238,75,21,0.25)] flex items-center justify-center gap-3 bg-[#EE4B15] hover:bg-[#EE4B15]/90 hover:-translate-y-1.5 hover:shadow-[0_25px_60px_rgba(238,75,21,0.4)] duration-300 disabled:opacity-50"
           >
-            <span className="relative z-10 uppercase tracking-widest">{isAvailable ? 'GET TICKET' : 'SOLD OUT'}</span>
-            <Icons.Ticket className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white group-hover:rotate-12 transition-transform duration-300" />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <span className="relative z-10 uppercase tracking-[0.2em] font-blackhan">{isAvailable ? 'GET YOUR TICKET' : 'SOLD OUT'}</span>
+            <Icons.Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:rotate-12 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </button>
         </Link>
       </div>
-
     </div>
   );
 }

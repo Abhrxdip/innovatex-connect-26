@@ -1,95 +1,91 @@
+'use client';
+
 import React from 'react';
 import { speakersList } from '../data/constants';
 
 function SpeakerCard({ speaker }) {
   return (
-    <div className="w-full max-w-[280px] min-[390px]:max-w-[320px] sm:max-w-[340px] h-[400px] min-[390px]:h-[440px] sm:h-[470px] flex items-center justify-center relative overflow-visible">
-      <div className="scale-[0.8] min-[390px]:scale-[0.88] sm:scale-100 origin-center absolute">
-        <div className="relative w-[320px] sm:w-[340px] h-[450px] sm:h-[470px]">
-          <div className="absolute inset-0 rounded-[30px] bg-gradient-to-b from-white to-[#5D49E8] border border-slate-200/20 translate-x-[-12px] sm:translate-x-[-20px] translate-y-[16px] sm:translate-y-[24px] rotate-[-4deg] sm:rotate-[-6deg] shadow-sm z-0" />
-          <div className="absolute inset-0 rounded-[30px] bg-gradient-to-b from-white to-[#7054F6] border border-slate-200/40 translate-x-[-6px] sm:translate-x-[-10px] translate-y-[8px] sm:translate-y-[12px] rotate-[-2deg] sm:rotate-[-3deg] shadow-md z-10" />
-          <div className="relative w-full h-full rounded-[30px] bg-white border border-slate-200/80 shadow-[0_15px_45px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col z-20 group/card transition-all duration-[350ms] ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_25px_50px_rgba(112,84,246,0.18)]">
-            <div className="relative w-full h-[260px] sm:h-[275px] bg-white bg-graph-pattern overflow-hidden p-5 flex flex-col justify-between select-none">
-              <div className="absolute top-12 left-5 w-4 h-4 text-[#8E73FF] opacity-60">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" /></svg>
-              </div>
-              <div className="absolute top-20 left-10 w-3 h-3 text-[#8E73FF] opacity-45">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" /></svg>
-              </div>
-              <span className="absolute top-10 left-3 text-[64px] sm:text-[72px] font-black text-slate-100/90 tracking-tighter uppercase pointer-events-none select-none font-display">Speaker</span>
-              <div className="absolute top-5 right-5 flex flex-col items-end text-[7px] text-slate-400 font-bold leading-none z-30">
-                <span>hosted by <strong className="text-[#1E1B5D] text-[8px] font-black">InnovateX</strong></span>
-                <span className="mt-0.5">in association with <strong className="text-indigo-600 text-[8px] font-black">JIS-U</strong></span>
-              </div>
-              <img src="/souma.png" alt={speaker.name} className="absolute bottom-[-10px] left-4 w-[165px] sm:w-[185px] h-[190px] sm:h-[210px] object-cover object-top rounded-t-2xl z-30 grayscale group-hover/card:grayscale-0 transition-all duration-[350ms] ease-out" />
-              <div className="absolute bottom-6 right-5 text-right flex flex-col items-end z-30 max-w-[130px]">
-                <h4 className="text-sm sm:text-base font-black text-[#1E1B5D] leading-tight tracking-tight">{speaker.name}</h4>
-                <span className="text-[8px] sm:text-[8.5px] font-bold text-slate-400 mt-1.5 uppercase tracking-wider">{speaker.role}</span>
-              </div>
-            </div>
-            <div className="relative flex-1 bg-gradient-to-b from-[#846DFF] via-[#7054F6] to-[#5D49E8] overflow-visible">
-              <div className="absolute -top-[6px] left-0 w-full h-[12px] z-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 10px 0px, #FFF 5.5px, transparent 6px)', backgroundSize: '20px 12px', backgroundRepeat: 'repeat-x' }} />
-              <div className="absolute top-[-45px] sm:top-[-50px] left-4 w-[85px] h-[85px] sm:w-[100px] sm:h-[100px] rounded-full bg-gradient-to-b from-[#1E1B5D] to-[#2B2A8E] border-[4px] sm:border-[5px] border-white shadow-[0_8px_20px_rgba(30,27,93,0.35)] flex flex-col items-center justify-center text-white z-50 group-hover/card:scale-108 group-hover/card:rotate-[4deg] transition-all duration-500 ease-out">
-                <div className="flex flex-col items-center justify-center text-center p-1 font-display select-none">
-                  <span className="text-[6px] sm:text-[6.5px] text-indigo-300 font-extrabold uppercase tracking-widest leading-none">InnovateX</span>
-                  <span className="text-[10px] sm:text-xs font-black tracking-tight leading-none mt-0.5 sm:mt-1">Connect</span>
-                  <span className="text-[10px] sm:text-xs font-black tracking-tight leading-none mt-0.5">Meetup</span>
-                  <span className="text-[7px] sm:text-[8px] font-extrabold text-indigo-200 mt-0.5 uppercase tracking-widest font-tech">2026</span>
-                </div>
-              </div>
-              <div className="pt-14 sm:pt-16 pb-5 px-4 sm:px-5 h-full flex flex-col justify-between text-white relative z-30">
-                <div className="flex justify-between items-center w-full">
-                  <div className="flex items-center gap-1.5 text-left">
-                    <svg className="w-3.5 h-3.5 text-indigo-200 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    <span className="text-[7px] sm:text-[7.2px] font-black text-indigo-150 uppercase tracking-wide leading-tight max-w-[120px] sm:max-w-[130px]">INNOVATEX COMMUNITY&apos;S 8-HOUR MEETUP IN KOLKATA.</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-white shrink-0">
-                    <span className="text-[8px] sm:text-[8.5px] font-black uppercase tracking-wider">Sept</span>
-                    <div className="bg-black/35 border border-white/10 px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-black tracking-widest font-tech leading-none">05</div>
-                    <span className="text-[6px] sm:text-[6.5px] font-bold text-indigo-200 rotate-90 origin-center leading-none">2026</span>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-1 sm:gap-1.5 items-end w-full">
-                  <div className="bg-black/20 border border-white/5 px-2 sm:px-2.5 py-0.5 rounded-full text-[6.5px] sm:text-[7px] font-bold tracking-wider uppercase text-indigo-100 truncate max-w-full">JIS University, Agarpara, Kolkata</div>
-                  <div className="bg-black/45 border border-indigo-400/20 px-2 sm:px-2.5 py-0.5 rounded-full text-[7px] sm:text-[7.5px] font-black tracking-widest uppercase text-emerald-400">innovatex.community</div>
-                </div>
-              </div>
-            </div>
+    <div className="group relative w-full max-w-[260px] sm:max-w-[270px] bg-[#0C1235]/80 hover:bg-[#0C1235] border border-white/10 hover:border-[#EE4B15]/50 rounded-[24px] p-4 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(238,75,21,0.18)] cursor-pointer select-none">
+      
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-ticket-grid opacity-10 pointer-events-none rounded-[24px]" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-[#EE4B15]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#EE4B15]/15 transition-all duration-500" />
+
+      {/* Top Header Tag */}
+      <div className="flex items-center justify-between relative z-10 mb-3.5">
+        <span className="px-2.5 py-1 rounded-md bg-[#EE4B15]/10 border border-[#EE4B15]/20 text-[9px] font-black text-[#EE4B15] tracking-widest uppercase">
+          SPEAKER
+        </span>
+        <span className="text-[10px] font-bold text-slate-400 font-mono">SEPT 05</span>
+      </div>
+
+      {/* Speaker Image Frame */}
+      <div className="relative w-full h-[200px] sm:h-[210px] rounded-[18px] bg-gradient-to-b from-[#090D2B] to-[#0C1235] border border-white/10 overflow-hidden flex items-center justify-center mb-4 group-hover:border-[#EE4B15]/30 transition-colors">
+        <img
+          src="/souma.png"
+          alt={speaker.name}
+          className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1235] via-transparent to-transparent opacity-80" />
+        <div className="absolute bottom-2.5 left-3 right-3 text-left z-10">
+          <span className="text-[8px] font-bold text-slate-300 uppercase tracking-widest block">InnovateX Connect &apos;26</span>
+        </div>
+      </div>
+
+      {/* Speaker Text Content */}
+      <div className="relative z-10 text-left flex-1 flex flex-col justify-between">
+        <div>
+          <h3 className="text-lg sm:text-xl font-blackhan text-white tracking-tight leading-tight group-hover:text-[#EE4B15] transition-colors duration-200">
+            {speaker.name}
+          </h3>
+          <p className="text-[10.5px] sm:text-xs font-bold font-tech text-[#EE4B15] mt-1 uppercase tracking-wider line-clamp-1">
+            {speaker.role}
+          </p>
+          <p className="text-slate-400 text-[11px] font-medium mt-1.5 line-clamp-1">
+            {speaker.desc || 'INNOVATEX CONNECT MENTOR'}
+          </p>
+        </div>
+
+        {/* Card Footer Line */}
+        <div className="border-t border-white/5 pt-3 mt-3 flex items-center justify-between text-slate-400">
+          <span className="text-[9px] font-bold uppercase tracking-widest">KOLKATA</span>
+          <div className="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-slate-300 group-hover:bg-[#EE4B15] group-hover:text-white transition-all duration-300">
+            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </div>
         </div>
       </div>
+
     </div>
   );
 }
 
 export default function SpeakersSection() {
   return (
-    <div id="speakers" className="max-w-6xl mx-auto w-full mt-24 sm:mt-32 text-center flex flex-col items-center px-2 sm:px-4">
-      <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-indigo-100 bg-indigo-50/50 text-[10px] font-bold text-indigo-700 tracking-wider uppercase mb-6 shadow-sm">
-        <svg className="w-3.5 h-3.5 text-indigo-650 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" /></svg>
-        <span>Event Speakers</span>
+    <div id="speakers" className="max-w-6xl mx-auto w-full mt-20 sm:mt-28 text-center flex flex-col items-center px-4 sm:px-6 relative z-10">
+      
+      {/* Section Header */}
+      <div className="mb-12 sm:mb-16">
+        <span className="inline-block text-[10px] font-black text-[#EE4B15] uppercase tracking-[0.3em] mb-3 select-none">
+          ✦ SPEAKERS &amp; MENTORS
+        </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-blackhan text-white tracking-tight leading-[1.1] select-none">
+          Learn from those who <br className="hidden sm:inline" />
+          <span className="text-gradient-neon sm:ml-2">actually build.</span>
+        </h2>
+        <p className="text-slate-400 text-sm sm:text-base mt-4 max-w-xl mx-auto font-medium leading-relaxed px-2">
+          Our mentors and facilitators are here to guide you through your <strong className="text-white">8-hour journey</strong> of exploration and execution.
+        </p>
       </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight leading-[1.15]">
-        Learn from those who <br className="hidden sm:inline" />
-        <span className="text-gradient-neon font-black sm:ml-2">actually build.</span>
-      </h2>
-      <p className="text-slate-400 text-xs sm:text-sm mt-3 sm:mt-4 max-w-xl font-medium leading-relaxed px-2">
-        Our mentors and facilitators are here to guide you through your <strong className="text-slate-700">8-hour journey</strong> of <span className="text-indigo-650 font-bold">exploration and execution</span>.
-      </p>
-      <div className="flex flex-col items-center gap-12 sm:gap-16 md:gap-24 w-full mt-16 sm:mt-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 sm:gap-y-16 lg:gap-x-12 lg:gap-y-20 justify-items-center w-full">
-          {speakersList.slice(0, 3).map((speaker, index) => (
-            <SpeakerCard key={index} speaker={speaker} />
-          ))}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 sm:gap-y-16 md:gap-x-12 md:gap-y-20 justify-items-center w-full max-w-4xl">
-          {speakersList.slice(3, 5).map((speaker, index) => (
-            <SpeakerCard key={index} speaker={speaker} />
-          ))}
-        </div>
+
+      {/* Speaker Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 justify-items-center w-full max-w-6xl">
+        {speakersList.map((speaker, index) => (
+          <SpeakerCard key={index} speaker={speaker} />
+        ))}
       </div>
+
     </div>
   );
 }
