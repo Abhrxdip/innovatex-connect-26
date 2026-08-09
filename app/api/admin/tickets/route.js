@@ -34,7 +34,6 @@ export const GET = asyncDbHandler(async (req) => {
   const status = searchParams.get("status");
 
   const tickets = await listTicketsController(status);
-
   return sendResponse({
     success: true,
     statusCode: 200,

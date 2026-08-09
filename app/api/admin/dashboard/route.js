@@ -32,7 +32,6 @@ export const GET = asyncDbHandler(async (req) => {
   }
 
   const dashboardData = await getAdminDashboardController();
-
   return sendResponse({
     success: true,
     statusCode: 200,

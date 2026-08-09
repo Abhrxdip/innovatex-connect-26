@@ -45,6 +45,7 @@ export default function AdminDashboardPage() {
     }
   }, [ticketFilter]);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchAdminData(); }, [fetchAdminData]);
 
   const handleApprove = async (ticketId) => {
@@ -189,7 +190,7 @@ export default function AdminDashboardPage() {
                     <h1 className="text-xl sm:text-2xl font-extrabold text-white">Admin Control Center</h1>
                     <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#EE4B15] text-white">Organizer Portal</span>
                   </div>
-                  <p className="text-slate-400 text-xs sm:text-sm mt-0.5">InnovateX Connect '26 • Gate & Ticket Operations</p>
+                  <p className="text-slate-400 text-xs sm:text-sm mt-0.5">InnovateX Connect &apos;26 • Gate & Ticket Operations</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5 p-1.5 bg-[#090D2B]/50 rounded-2xl border border-white/10">
@@ -302,7 +303,14 @@ export default function AdminDashboardPage() {
                           {tickets.map((t) => (
                             <tr key={t._id} className="hover:bg-white/5 transition-colors">
                               <td className="py-3 px-3 font-mono font-bold text-[#EE4B15]">{t.ticketNumber}</td>
-                              <td className="py-3 px-3"><p className="font-bold text-white">{t.userId?.name}</p><p className="text-[11px] text-slate-400">{t.userId?.email}</p></td>
+                              <td className="py-3 px-3">
+                                <p className="font-bold text-white">{t.userId?.name}</p>
+                                <p className="text-[11px] text-slate-400">{t.userId?.email}</p>
+                                <div className="flex gap-2 mt-1.5">
+                                  <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                                  <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                                </div>
+                              </td>
                               <td className="py-3 px-3 font-medium text-slate-200">{t.attendeeType}</td>
                               <td className="py-3 px-3 text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</td>
                               <td className="py-3 px-3 font-mono text-slate-500 text-[11px]">{new Date(t.createdAt).toLocaleDateString()}</td>
@@ -338,7 +346,11 @@ export default function AdminDashboardPage() {
                           <div>
                             <p className="font-bold text-white text-sm">{t.userId?.name}</p>
                             <p className="text-xs text-slate-400">{t.userId?.email}</p>
-                            <p className="text-xs text-slate-300 mt-1">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium text-slate-200">{t.attendeeType}</span></p>
+                            <div className="flex gap-2 mt-1.5">
+                              <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                              <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                            </div>
+                            <p className="text-xs text-slate-300 mt-2">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium text-slate-200">{t.attendeeType}</span></p>
                           </div>
                           {t.status === 'Pending' && (
                             <div className="flex gap-2 pt-2 border-t border-white/5">

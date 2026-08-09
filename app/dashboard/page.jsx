@@ -124,6 +124,18 @@ export default function UserDashboardPage() {
                     </span>
                   </div>
                   <p className="text-slate-400 text-xs sm:text-sm mt-0.5">{data?.user?.email}</p>
+                  <div className="flex gap-3 mt-1.5 mb-1.5">
+                    {data?.user?.linkedin && (
+                      <a href={data.user.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs font-medium flex items-center gap-1 transition-colors">
+                        🔗 LinkedIn
+                      </a>
+                    )}
+                    {data?.user?.github && (
+                      <a href={data.user.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white text-xs font-medium flex items-center gap-1 transition-colors">
+                        💻 GitHub
+                      </a>
+                    )}
+                  </div>
                   {data?.user?.college && (
                     <p className="text-slate-300 text-xs mt-1 font-medium">🎓 {data.user.college}</p>
                   )}
@@ -154,7 +166,7 @@ export default function UserDashboardPage() {
                     Ticket Rejected ❌
                   </span>
                 )}
-                <button
+                {/* <button
                   onClick={handleLogout}
                   className="px-4 py-2 rounded-xl bg-white/5 text-slate-300 font-bold text-xs border border-white/10 hover:bg-white/10 hover:text-white transition-colors flex items-center gap-1.5 shrink-0"
                 >
@@ -162,7 +174,7 @@ export default function UserDashboardPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
                   Logout
-                </button>
+                </button> */}
               </div>
             </div>
 
