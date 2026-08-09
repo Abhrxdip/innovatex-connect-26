@@ -75,7 +75,7 @@ export default function AdminDashboardPage() {
     setScanLoading(true); setError(''); setScanResult(null);
     try {
       const isGate = type === 'gate';
-      const endpoint = isGate ? '/api/attendance/scan' : '/api/food/scan';
+      const endpoint = isGate ? '/api/attendance/scan' : '/api/food/scan'
       const body = isGate
         ? { ticketNumber, gate: 'Main Gate' }
         : { ticketNumber, counter: 'Food Counter 1' };

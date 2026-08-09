@@ -3,7 +3,7 @@ import {
     validate
 } from "@/backend/middlewares/validate.middleware.js";
 import {
-    forgetPassAndtwoFARegSchema
+    twoFARegSchema
 } from "@/backend/validators/auth.validator.js";
 
 import {
@@ -18,7 +18,7 @@ import { asyncCacheHandler } from "@/backend/utils/asyncCacheHandler";
 import { sendOTPMail } from "@/backend/services/mail.service";
 
 export const POST = asyncCacheHandler(asyncDbHandler(async (req: NextRequest) => {
-    const validation = await validate(forgetPassAndtwoFARegSchema)(req)
+    const validation = await validate(twoFARegSchema)(req)
     if (!validation.success) {
         return validation.response
     }

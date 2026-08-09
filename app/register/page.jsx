@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Navbar from '../components/Navbar';
@@ -11,33 +11,23 @@ function RegisterForm() {
   const searchParams = useSearchParams();
 
   const [role, setRole] = useState('Student');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+  const [formData, setFormData] = useState(() => ({
+    name: searchParams.get('name') || '',
+    email: searchParams.get('email') || '',
     password: '',
     college: '',
     company: '',
     phone: '',
-    referralCode: '',
-    provider: 'manual',
-  });
+    github: '',
+    linkedin: '',
+    otp: '',
+    referralCode: searchParams.get('ref') || '',
+    provider: searchParams.get('provider') || 'manual',
+  }));
   const [loading, setLoading] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpMessage, setOtpMessage] = useState('');
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    const refParam = searchParams.get('ref');
-    const nameParam = searchParams.get('name');
-    const emailParam = searchParams.get('email');
-    const providerParam = searchParams.get('provider');
-
-    setFormData((prev) => ({
-      ...prev,
-      ...(refParam && { referralCode: refParam }),
-      ...(nameParam && { name: nameParam }),
-      ...(emailParam && { email: emailParam }),
-      ...(providerParam && { provider: providerParam }),
-    }));
-  }, [searchParams]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -45,6 +35,38 @@ function RegisterForm() {
       [e.target.name]: e.target.value,
     }));
     if (error) setError('');
+    if (otpMessage) setOtpMessage('');
+  };
+
+  const handleSendOtp = async () => {
+    if (!formData.email) {
+      setError('Please enter your email first.');
+      return;
+    }
+
+    setOtpLoading(true);
+    setError('');
+    setOtpMessage('');
+
+    try {
+      const res = await fetch('/api/auth/otp/onboarding', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: formData.email, name: formData.name }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Unable to send OTP. Please try again.');
+      }
+
+      setOtpMessage(data.message || 'OTP sent successfully.');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setOtpLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -53,12 +75,15 @@ function RegisterForm() {
     setError('');
 
     try {
-
-      const endpoint = formData.provider === 'google' ? '/api/user/profile/update' : '/api/auth/register';
+      const endpoint = '/api/auth/register';
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, role: role }),
+        body: JSON.stringify({
+          ...formData,
+          role,
+          auth_provider: formData.provider,
+        }),
       });
 
       const data = await res.json();
@@ -84,7 +109,7 @@ function RegisterForm() {
   return (
     <div className="w-full max-w-xl">
       <div className="glass-card bg-white/90 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/80 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-600 via-blue-500 to-purple-600" />
+        <div className="absolute top-0 left-0 right-0 h-2 bg-linear-to-r from-indigo-600 via-blue-500 to-purple-600" />
 
         <div className="text-center mb-6 pt-2">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60 mb-2">
@@ -148,19 +173,34 @@ function RegisterForm() {
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
               Email Address
             </label>
-            <input
-              type="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              disabled={formData.provider === 'google'}
-              placeholder="Enter Your Email"
-              className={`w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all ${formData.provider === 'google'
-                ? 'bg-slate-200 text-slate-500 cursor-not-allowed opacity-70'
-                : 'bg-slate-50/80 text-slate-900 focus:bg-white'
-                }`}
-            />
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                disabled={formData.provider === 'google'}
+                placeholder="Enter Your Email"
+                className={`w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all ${formData.provider === 'google'
+                  ? 'bg-slate-200 text-slate-500 cursor-not-allowed opacity-70'
+                  : 'bg-slate-50/80 text-slate-900 focus:bg-white'
+                  }`}
+              />
+              <button
+                type="button"
+                onClick={handleSendOtp}
+                disabled={otpLoading || !formData.email || formData.provider === 'google'}
+                className="sm:w-40 px-4 py-2.5 rounded-xl bg-[#1E1B4B] hover:bg-brand-neon text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {otpLoading ? 'Sending...' : 'Send OTP'}
+              </button>
+            </div>
+            {otpMessage && (
+              <p className="mt-2 text-xs font-medium text-emerald-700">
+                {otpMessage}
+              </p>
+            )}
           </div>
 
           {formData.provider !== 'google' && (
@@ -175,6 +215,25 @@ function RegisterForm() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="At least 6 characters"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+              />
+            </div>
+          )}
+
+          {formData.provider !== 'google' && (
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                OTP
+              </label>
+              <input
+                type="text"
+                name="otp"
+                required
+                value={formData.otp}
+                onChange={handleChange}
+                placeholder="6 digit code sent to your email"
+                inputMode="numeric"
+                maxLength={6}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
               />
             </div>
@@ -232,6 +291,38 @@ function RegisterForm() {
             />
           </div>
 
+          <div>
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              GitHub Profile
+            </label>
+            <input
+              type="url"
+              name="github"
+              value={formData.github}
+              onChange={handleChange}
+              placeholder="https://github.com/username"
+              pattern="https?:\/\/(www\.)?github\.com\/[A-Za-z0-9-]+\/?"
+              title="Enter a valid GitHub profile URL"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              LinkedIn Profile
+            </label>
+            <input
+              type="url"
+              name="linkedin"
+              value={formData.linkedin}
+              onChange={handleChange}
+              placeholder="https://linkedin.com/in/username"
+              pattern="https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9-_%]+\/?"
+              title="Enter a LinkedIn profile URL with /in/ in the path"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+            />
+          </div>
+
           {formData.referralCode && role !== 'Admin' && (
             <div>
               <label className="block text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
@@ -250,7 +341,7 @@ function RegisterForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 px-6 rounded-xl bg-[#1E1B4B] hover:bg-[#2E6CFF] text-white font-bold text-sm shadow-lg shadow-indigo-900/20 hover:shadow-blue-500/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
+            className="w-full py-3.5 px-6 rounded-xl bg-[#1E1B4B] hover:bg-brand-neon text-white font-bold text-sm shadow-lg shadow-indigo-900/20 hover:shadow-blue-500/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
           >
             {loading ? (
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

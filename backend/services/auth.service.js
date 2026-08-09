@@ -84,10 +84,17 @@ export async function registerUser({
     throw error
   }
 
-  verifyOTPForOnboardingUsers({
+  const res = await verifyOTPForOnboardingUsers({
     email,
     otp
   })
+
+  if (!res) {
+    const error = Error("OTP Incorrect")
+    error.statusCode = 401
+    throw error
+  }
+
 
   const user = await User.create({
     name,
