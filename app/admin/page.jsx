@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import QRScannerModal from '../components/QRScannerModal';
+import TicketDetailsModal from '../components/TicketDetailsModal';
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -14,6 +15,10 @@ export default function AdminDashboardPage() {
   const [actionLoading, setActionLoading] = useState(null);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+
+  // Ticket Details Modal state
+  const [selectedTicketDetails, setSelectedTicketDetails] = useState(null);
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
 
   // Scanner state
   const [scannerOpen, setScannerOpen] = useState(false);
@@ -134,6 +139,41 @@ export default function AdminDashboardPage() {
     setScannerOpen(true);
   };
 
+  const exportToCSV = () => {
+    if (tickets.length === 0) return;
+
+    const headers = [
+      'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'LinkedIn', 'GitHub', 'Date Applied'
+    ];
+    
+    const csvRows = [headers.join(',')];
+
+    for (const t of tickets) {
+      const row = [
+        t.ticketNumber,
+        `"${t.userId?.name || ''}"`,
+        `"${t.userId?.email || ''}"`,
+        `"${t.userId?.phone || ''}"`,
+        `"${t.userId?.college || t.userId?.company || ''}"`,
+        `"${t.attendeeType || ''}"`,
+        `"${t.status || ''}"`,
+        `"${t.userId?.linkedin || ''}"`,
+        `"${t.userId?.github || ''}"`,
+        `"${new Date(t.createdAt).toLocaleString()}"`
+      ];
+      csvRows.push(row.join(','));
+    }
+
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `innovatex_tickets_${ticketFilter.toLowerCase()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const analytics = dashboardData?.analytics || {};
 
   const tabList = [
@@ -163,6 +203,15 @@ export default function AdminDashboardPage() {
         scanResult={scanResult}
         scanLoading={scanLoading}
         scanError={error}
+      />
+
+      <TicketDetailsModal
+        isOpen={detailsModalOpen}
+        onClose={() => setDetailsModalOpen(false)}
+        ticket={selectedTicketDetails}
+        onApprove={handleApprove}
+        onReject={handleReject}
+        actionLoading={actionLoading}
       />
 
       <main className="relative z-10 flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-32 sm:pt-36 pb-16">
@@ -274,13 +323,19 @@ export default function AdminDashboardPage() {
                     <h2 className="text-lg font-extrabold text-white">Manage Ticket Applications</h2>
                     <p className="text-slate-400 text-xs mt-0.5">Approve or reject attendee registrations.</p>
                   </div>
-                  <div className="flex items-center gap-1.5 p-1 bg-[#090D2B]/50 rounded-xl w-full sm:w-auto">
-                    {['Pending', 'Approved', 'Rejected'].map((s) => (
-                      <button key={s} onClick={() => setTicketFilter(s)}
-                        className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${ticketFilter === s ? 'bg-[#EE4B15] text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}>
-                        {s}
-                      </button>
-                    ))}
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                    <button onClick={exportToCSV} disabled={tickets.length === 0}
+                      className="w-full sm:w-auto px-4 py-2 text-xs font-bold rounded-lg bg-[#2E6CFF] hover:bg-[#2E6CFF]/80 text-white transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
+                      Export CSV
+                    </button>
+                    <div className="flex items-center gap-1.5 p-1 bg-[#090D2B]/50 rounded-xl w-full sm:w-auto">
+                      {['Pending', 'Approved', 'Rejected'].map((s) => (
+                        <button key={s} onClick={() => setTicketFilter(s)}
+                          className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${ticketFilter === s ? 'bg-[#EE4B15] text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}>
+                          {s}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -304,7 +359,12 @@ export default function AdminDashboardPage() {
                             <tr key={t._id} className="hover:bg-white/5 transition-colors">
                               <td className="py-3 px-3 font-mono font-bold text-[#EE4B15]">{t.ticketNumber}</td>
                               <td className="py-3 px-3">
-                                <p className="font-bold text-white">{t.userId?.name}</p>
+                                <p 
+                                  className="font-bold text-white cursor-pointer hover:text-[#EE4B15] transition-colors"
+                                  onClick={() => { setSelectedTicketDetails(t); setDetailsModalOpen(true); }}
+                                >
+                                  {t.userId?.name}
+                                </p>
                                 <p className="text-[11px] text-slate-400">{t.userId?.email}</p>
                                 <div className="flex gap-2 mt-1.5">
                                   <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
@@ -344,7 +404,12 @@ export default function AdminDashboardPage() {
                             <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${statusColor(t.status)}`}>{t.status}</span>
                           </div>
                           <div>
-                            <p className="font-bold text-white text-sm">{t.userId?.name}</p>
+                            <p 
+                              className="font-bold text-white text-sm cursor-pointer hover:text-[#EE4B15] transition-colors"
+                              onClick={() => { setSelectedTicketDetails(t); setDetailsModalOpen(true); }}
+                            >
+                              {t.userId?.name}
+                            </p>
                             <p className="text-xs text-slate-400">{t.userId?.email}</p>
                             <div className="flex gap-2 mt-1.5">
                               <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
