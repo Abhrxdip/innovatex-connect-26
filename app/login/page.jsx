@@ -40,6 +40,9 @@ export default function LoginPage() {
       if (!res.ok || !data.success) {
         throw new Error(data.message || 'Login failed. Please check your credentials.');
       }
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
 
       const userRole = data.data?.user?.role;
       if (userRole === 'Admin') {
