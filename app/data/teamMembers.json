@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "name": "AARON LOEB",
+    "role": "Leader",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "2",
+    "name": "DREW FEIG",
+    "role": "Marketing",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "3",
+    "name": "SACHA DUBOIS",
+    "role": "Employee",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "4",
+    "name": "JULIANA SILVA",
+    "role": "Employee",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "5",
+    "name": "DHRUBOJOYTI MONDAL",
+    "role": "Convenor",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "6",
+    "name": "JIT SARKAR",
+    "role": "Co-Convenor",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "7",
+    "name": "SK MIRAJUL ISLAM",
+    "role": "Tech Lead",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  },
+  {
+    "id": "8",
+    "name": "SUBHAJIT ROY",
+    "role": "Design Lead",
+    "image": "/pic.jpg",
+    "socials": {
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "x": "https://x.com"
+    }
+  }
+]
