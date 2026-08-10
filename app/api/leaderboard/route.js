@@ -8,8 +8,11 @@ import {
   getLeaderboardController
 } from "@/backend/controllers/leaderboard.controller.js";
 
-export const GET = asyncDbHandler(async () => {
-  const leaderboard = await getLeaderboardController();
+export const GET = asyncDbHandler(async (req) => {
+  const url = new URL(req.url);
+  const isAdmin = url.searchParams.get("admin") === "true";
+
+  const leaderboard = await getLeaderboardController(isAdmin);
 
   return sendResponse({
     success: true,

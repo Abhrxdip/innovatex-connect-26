@@ -98,15 +98,9 @@ export default function LeaderboardPage() {
                   <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
                     {topThree[1].partner?.college || topThree[1].partner?.company || 'Partner'}
                   </p>
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-around text-xs">
-                    <div>
-                      <p className="text-slate-500 font-bold text-[10px]">APPROVED</p>
-                      <p className="text-slate-200 font-extrabold text-lg">{topThree[1].approvedReferrals}</p>
-                    </div>
-                    <div>
-                      <p className="text-slate-500 font-bold text-[10px]">TOTAL</p>
-                      <p className="text-slate-400 font-bold text-sm">{topThree[1].totalReferrals}</p>
-                    </div>
+                  <div className="mt-4 pt-3 border-t border-white/5 flex flex-col items-center justify-center text-xs">
+                    <p className="text-slate-500 font-bold text-[10px] uppercase">Total Signups</p>
+                    <p className="text-slate-200 font-extrabold text-xl">{topThree[1].totalReferrals}</p>
                   </div>
                 </div>
               )}
@@ -124,15 +118,9 @@ export default function LeaderboardPage() {
                   <p className="text-amber-400 text-xs font-semibold truncate max-w-[200px] mx-auto">
                     {topThree[0].partner?.college || topThree[0].partner?.company || 'Top Champion'}
                   </p>
-                  <div className="mt-4 pt-3 border-t border-amber-400/20 flex items-center justify-around text-xs">
-                    <div>
-                      <p className="text-amber-300 font-bold text-[10px]">APPROVED TICKETS</p>
-                      <p className="text-amber-400 font-black text-2xl">{topThree[0].approvedReferrals}</p>
-                    </div>
-                    <div>
-                      <p className="text-amber-300 font-bold text-[10px]">TOTAL CLICKS</p>
-                      <p className="text-amber-400 font-bold text-base">{topThree[0].totalReferrals}</p>
-                    </div>
+                  <div className="mt-4 pt-3 border-t border-amber-400/20 flex flex-col items-center justify-center text-xs">
+                    <p className="text-amber-300 font-bold text-[10px] uppercase">Total Signups</p>
+                    <p className="text-amber-400 font-black text-3xl">{topThree[0].totalReferrals}</p>
                   </div>
                 </div>
               )}
@@ -150,15 +138,9 @@ export default function LeaderboardPage() {
                   <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
                     {topThree[2].partner?.college || topThree[2].partner?.company || 'Partner'}
                   </p>
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-around text-xs">
-                    <div>
-                      <p className="text-slate-500 font-bold text-[10px]">APPROVED</p>
-                      <p className="text-slate-200 font-extrabold text-lg">{topThree[2].approvedReferrals}</p>
-                    </div>
-                    <div>
-                      <p className="text-slate-500 font-bold text-[10px]">TOTAL</p>
-                      <p className="text-slate-400 font-bold text-sm">{topThree[2].totalReferrals}</p>
-                    </div>
+                  <div className="mt-4 pt-3 border-t border-white/5 flex flex-col items-center justify-center text-xs">
+                    <p className="text-slate-500 font-bold text-[10px] uppercase">Total Signups</p>
+                    <p className="text-slate-200 font-extrabold text-xl">{topThree[2].totalReferrals}</p>
                   </div>
                 </div>
               )}
@@ -175,8 +157,7 @@ export default function LeaderboardPage() {
                       <th className="pb-3 px-3">Rank</th>
                       <th className="pb-3 px-3">Partner Name</th>
                       <th className="pb-3 px-3">College / Organization</th>
-                      <th className="pb-3 px-3 text-center">Total Signups</th>
-                      <th className="pb-3 px-3 text-right">Approved Tickets</th>
+                      <th className="pb-3 px-3 text-right">Total Signups</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5 text-xs">
@@ -189,9 +170,8 @@ export default function LeaderboardPage() {
                         <td className="py-3 px-3 text-slate-355 font-medium">
                           {item.partner?.college || item.partner?.company || 'Community Partner'}
                         </td>
-                        <td className="py-3 px-3 text-center font-bold text-slate-300">{item.totalReferrals}</td>
                         <td className="py-3 px-3 text-right font-extrabold text-[#EE4B15] text-sm">
-                          {item.approvedReferrals}
+                          {item.totalReferrals}
                         </td>
                       </tr>
                     ))}

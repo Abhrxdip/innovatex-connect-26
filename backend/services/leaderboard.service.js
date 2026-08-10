@@ -2,7 +2,7 @@ import Referral from "../models/Referral.js";
 import User from "../models/User.js";
 import { ROLES, TICKET_STATUS } from "../config/constants.js";
 
-export async function getLeaderboardService() {
+export async function getLeaderboardService(isAdmin = false) {
   const partners = await User.find({ role: ROLES.COMMUNITY_PARTNER }).select("name email college company avatar");
 
   const leaderboardData = await Promise.all(
@@ -28,10 +28,17 @@ export async function getLeaderboardService() {
   );
 
   leaderboardData.sort((a, b) => {
-    if (b.approvedReferrals !== a.approvedReferrals) {
+    if (isAdmin) {
+      if (b.approvedReferrals !== a.approvedReferrals) {
+        return b.approvedReferrals - a.approvedReferrals;
+      }
+      return b.totalReferrals - a.totalReferrals;
+    } else {
+      if (b.totalReferrals !== a.totalReferrals) {
+        return b.totalReferrals - a.totalReferrals;
+      }
       return b.approvedReferrals - a.approvedReferrals;
     }
-    return b.totalReferrals - a.totalReferrals;
   });
 
   return leaderboardData;
