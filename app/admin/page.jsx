@@ -134,6 +134,43 @@ export default function AdminDashboardPage() {
     setScannerOpen(true);
   };
 
+  const exportToCSV = () => {
+    if (tickets.length === 0) return;
+
+    const headers = [
+      'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'Food', 'Laptop', 'LinkedIn', 'GitHub', 'Date Applied'
+    ];
+    
+    const csvRows = [headers.join(',')];
+
+    for (const t of tickets) {
+      const row = [
+        t.ticketNumber,
+        `"${t.userId?.name || ''}"`,
+        `"${t.userId?.email || ''}"`,
+        `"${t.userId?.phone || ''}"`,
+        `"${t.userId?.college || t.userId?.company || ''}"`,
+        `"${t.attendeeType || ''}"`,
+        `"${t.status || ''}"`,
+        `"${t.userId?.foodPreference || 'N/A'}"`,
+        `"${t.userId?.bringingLaptop ? 'Yes' : 'No'}"`,
+        `"${t.userId?.linkedin || ''}"`,
+        `"${t.userId?.github || ''}"`,
+        `"${new Date(t.createdAt).toLocaleString()}"`
+      ];
+      csvRows.push(row.join(','));
+    }
+
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `innovatex_tickets_${ticketFilter.toLowerCase()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const analytics = dashboardData?.analytics || {};
 
   const tabList = [
@@ -274,13 +311,19 @@ export default function AdminDashboardPage() {
                     <h2 className="text-lg font-extrabold text-white">Manage Ticket Applications</h2>
                     <p className="text-slate-400 text-xs mt-0.5">Approve or reject attendee registrations.</p>
                   </div>
-                  <div className="flex items-center gap-1.5 p-1 !bg-[#090D2B] rounded-xl w-full sm:w-auto">
-                    {['Pending', 'Approved', 'Rejected'].map((s) => (
-                      <button key={s} onClick={() => setTicketFilter(s)}
-                        className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${ticketFilter === s ? 'bg-[#EE4B15] text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}>
-                        {s}
-                      </button>
-                    ))}
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                    <button onClick={exportToCSV} disabled={tickets.length === 0}
+                      className="w-full sm:w-auto px-4 py-2 text-xs font-bold rounded-lg bg-[#2E6CFF] hover:bg-[#2E6CFF]/80 text-white transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
+                      Export CSV
+                    </button>
+                    <div className="flex items-center gap-1.5 p-1 !bg-[#090D2B] rounded-xl w-full sm:w-auto">
+                      {['Pending', 'Approved', 'Rejected'].map((s) => (
+                        <button key={s} onClick={() => setTicketFilter(s)}
+                          className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${ticketFilter === s ? 'bg-[#EE4B15] text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}>
+                          {s}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -312,7 +355,15 @@ export default function AdminDashboardPage() {
                                 </div>
                               </td>
                               <td className="py-3 px-3 font-medium text-slate-200">{t.attendeeType}</td>
-                              <td className="py-3 px-3 text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</td>
+                              <td className="py-3 px-3">
+                                <p className="text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</p>
+                                {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
+                                  <div className="mt-1 flex items-center gap-1.5">
+                                    {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase">🍲 {t.userId.foodPreference}</span>}
+                                    {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase">💻 Laptop</span>}
+                                  </div>
+                                )}
+                              </td>
                               <td className="py-3 px-3 font-mono text-slate-500 text-[11px]">{new Date(t.createdAt).toLocaleDateString()}</td>
                               <td className="py-3 px-3 text-right space-x-2">
                                 {t.status === 'Pending' ? (
@@ -351,6 +402,12 @@ export default function AdminDashboardPage() {
                               <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
                             </div>
                             <p className="text-xs text-slate-300 mt-2">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium text-slate-200">{t.attendeeType}</span></p>
+                            {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
+                              <div className="mt-2 flex items-center gap-2">
+                                {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase">🍲 {t.userId.foodPreference}</span>}
+                                {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase">💻 Laptop</span>}
+                              </div>
+                            )}
                           </div>
                           {t.status === 'Pending' && (
                             <div className="flex gap-2 pt-2 border-t border-white/5">

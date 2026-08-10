@@ -58,6 +58,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  foodPreference: {
+    type: String,
+    default: "",
+  },
+  bringingLaptop: {
+    type: Boolean,
+    default: false,
+  },
   isVerified: {
     type: Boolean,
     default: false,

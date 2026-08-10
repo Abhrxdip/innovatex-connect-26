@@ -23,6 +23,8 @@ function RegisterForm() {
     otp: '',
     referralCode: searchParams.get('ref') || '',
     provider: searchParams.get('provider') || 'manual',
+    foodPreference: '',
+    bringingLaptop: false,
   }));
   const [loading, setLoading] = useState(false);
   const [otpLoading, setOtpLoading] = useState(false);
@@ -118,7 +120,7 @@ function RegisterForm() {
         <div className="text-center mb-6 pt-2">
           <p className="text-white font-bold text-sm tracking-wide mb-1">InnovateX Connect&apos;26</p>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Create Account
+            Register  Account
           </h1>
         </div>
 
@@ -271,6 +273,8 @@ function RegisterForm() {
             )
           }
 
+
+
           {/* Admin info */}
           {
             role === 'Admin' && (
@@ -351,6 +355,55 @@ function RegisterForm() {
                   value={formData.referralCode}
                   className="w-full px-4 py-3 rounded-xl bg-[#EE4B15]/10 border border-[#EE4B15]/20 text-[#EE4B15] font-mono text-sm font-bold"
                 />
+              </div>
+            )
+          }
+
+          {/* Food and Laptop (Student & Professional) */}
+          {
+            (role === 'Student' || role === 'Working Professional') && (
+              <div className="space-y-2 mt-2 mb-4">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[#090D2B] border border-white/10 hover:border-white/20 transition-all">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Food Preference <span className="text-[#EE4B15]">*</span></span>
+                  <div className="flex items-center gap-4">
+                    <label className="flex items-center gap-1.5 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="foodPreference"
+                        value="Veg"
+                        checked={formData.foodPreference === 'Veg'}
+                        onChange={handleChange}
+                        required
+                        className="w-3.5 h-3.5 border-white/20 text-[#EE4B15] focus:ring-[#EE4B15] focus:ring-offset-0 bg-transparent cursor-pointer"
+                      />
+                      <span className="text-xs font-bold text-slate-300">Veg</span>
+                    </label>
+                    <label className="flex items-center gap-1.5 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="foodPreference"
+                        value="Non-Veg"
+                        checked={formData.foodPreference === 'Non-Veg'}
+                        onChange={handleChange}
+                        required
+                        className="w-3.5 h-3.5 border-white/20 text-[#EE4B15] focus:ring-[#EE4B15] focus:ring-offset-0 bg-transparent cursor-pointer"
+                      />
+                      <span className="text-xs font-bold text-slate-300">Non-Veg</span>
+                    </label>
+                  </div>
+                </div>
+
+                <label className="flex items-center justify-between p-3 rounded-xl bg-[#090D2B] border border-white/10 hover:border-white/20 transition-all cursor-pointer">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Bringing Laptop (Mandatory) <span className="text-[#EE4B15]">*</span></span>
+                  <input
+                    type="checkbox"
+                    name="bringingLaptop"
+                    required
+                    checked={formData.bringingLaptop}
+                    onChange={(e) => setFormData(prev => ({...prev, bringingLaptop: e.target.checked}))}
+                    className="w-4 h-4 rounded border-white/20 text-[#EE4B15] focus:ring-[#EE4B15] focus:ring-offset-0 bg-transparent cursor-pointer"
+                  />
+                </label>
               </div>
             )
           }
