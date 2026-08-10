@@ -1,0 +1,786 @@
+[{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda87a"
+  },
+  "name": "Dhrubojyoti Chakraborty",
+  "role": "Convenor",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/Dhrubojyoti1_akxj2z.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.instagram.com/i_am_dhrubojyoti_chakraborty/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda87b"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/dhrubojyoti-chakraborty-567857257/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda87c"
+      }
+    },
+    {
+      "url": "https://github.com/Dhrubojyot/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda87d"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.363Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T13:56:30.388Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda87e"
+  },
+  "name": "Jit Sarkar",
+  "role": "Co-Convenor",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/jit_zy0g2u.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.instagram.com/_________.jitu___________/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda87f"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/jit-sarkar-a597b6271/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda880"
+      }
+    },
+    {
+      "url": "https://www.facebook.com/jit.sarakara.704839",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda881"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T13:57:01.020Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda882"
+  },
+  "name": "Sk Mirajul Islam",
+  "role": "Tech Lead",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/miraj_vsf0d6.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://x.com/SkMirajulI5686",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda883"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/sk-mirajul-islam-876438261/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda884"
+      }
+    },
+    {
+      "url": "https://github.com/skmirajulislam",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda885"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T13:57:22.334Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda886"
+  },
+  "name": "Arnab Das",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/arnab_gaewh8.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://x.com/ArnabCoding",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda887"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/arnab-das-42204b265/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda888"
+      }
+    },
+    {
+      "url": "https://github.com/Arnabdas123456",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda889"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T13:59:20.652Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda88a"
+  },
+  "name": "Souramoy Shee",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/souramoy_ktwoq9.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.instagram.com/soura_shee/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda88b"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/souramoy-shee-16656123a/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda88c"
+      }
+    },
+    {
+      "url": "https://github.com/Souramoy",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda88d"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T13:59:51.536Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda88e"
+  },
+  "name": "Sk Sahil",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/sahil_mnqbcz.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.instagram.com/web_developer_sahil/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda88f"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/programmer-sahil/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda890"
+      }
+    },
+    {
+      "url": "https://github.com/programmer-sahil",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda891"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T14:00:17.652Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda892"
+  },
+  "name": "Sukanta Chowdhury",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/sukanta_o2mdiw.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.instagram.com/hustlewithsukanta/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda893"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/sukantachowdhury/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda894"
+      }
+    },
+    {
+      "url": "http://github.com/sukanta-chowdhury",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda895"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T14:00:36.387Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda896"
+  },
+  "name": "Alokesh Maitra",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/alokesh_va61vv.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.instagram.com/alokesh_maitra/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda897"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/alokesh-maitra-a9a47028b/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda898"
+      }
+    },
+    {
+      "url": "https://github.com/GLXALOKESH",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda899"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T14:00:50.982Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda89a"
+  },
+  "name": "Rupsa Adhikary",
+  "role": "Marketing",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/rupsa_aanmys.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.instagram.com/_r_a_ii__/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda89b"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/rupsa-adhikary-358024286/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda89c"
+      }
+    },
+    {
+      "url": "https://github.com/Rupsa004",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda89d"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.366Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T07:56:52.663Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda89e"
+  },
+  "name": "Adreeraj Das",
+  "role": "Marketing",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/adree_uvombp.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.instagram.com/addreeraj",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda89f"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/adreerajdas",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda8a0"
+      }
+    },
+    {
+      "url": "https://github.com/adreerajdas",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda8a1"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.366Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T14:02:28.235Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a2082a7b7afd16ab9eda8a2"
+  },
+  "name": "Sayan Das",
+  "role": "Designer",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/sayan_rfam5r.png",
+  "category": "coreTeam",
+  "social": [
+    {
+      "url": "https://www.instagram.com/sayandas.neel/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda8a3"
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/in/sayan-das-5937b3343/",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda8a4"
+      }
+    },
+    {
+      "url": "#",
+      "_id": {
+        "$oid": "6a2082a7b7afd16ab9eda8a5"
+      }
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-06-03T19:38:15.366Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T14:02:55.409Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a21c23ebec8a0e62b470a0e"
+  },
+  "name": "Soumadeep Shee",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dljzygnbl/image/upload/v1780597309/innovatex/team/ai1c9kkb0got5nconxsg.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/soumadeep-s/",
+      "_id": {
+        "$oid": "6a21c23ebec8a0e62b470a0f"
+      }
+    },
+    {
+      "url": "https://github.com/souma9830",
+      "_id": {
+        "$oid": "6a21c23ebec8a0e62b470a10"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/soumadeep_shee/",
+      "_id": {
+        "$oid": "6a21c23ebec8a0e62b470a11"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-06-04T18:21:50.462Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T14:03:06.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50a64e33430541d42a647b"
+  },
+  "name": "Abhradip Pal",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1783670407/innovatex/team/cfwzmtmmpqpgw9ujjbtv.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/abhradip-pal-159a20313",
+      "_id": {
+        "$oid": "6a50a64e33430541d42a647c"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/abhrxdi4p?igsh=c2JiZGY1czBra2d6",
+      "_id": {
+        "$oid": "6a50a64e33430541d42a647d"
+      }
+    },
+    {
+      "url": "http://github.com/Abhrxdip",
+      "_id": {
+        "$oid": "6a50a64e33430541d42a647e"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T07:59:10.125Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T08:00:07.838Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50a70c33430541d42a6521"
+  },
+  "name": "Sneha Sarkar",
+  "role": "Content Writer",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1783670539/innovatex/team/hda559nw8ttxskmyypgx.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/snehaeashasarkar-august2024",
+      "_id": {
+        "$oid": "6a50a70c33430541d42a6522"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/snehaeasha?igsh=MXgxOHgyb25jaWkxMA==",
+      "_id": {
+        "$oid": "6a50a70c33430541d42a6523"
+      }
+    },
+    {
+      "url": "https://github.com/SNEHASARKAR2024",
+      "_id": {
+        "$oid": "6a50a70c33430541d42a6524"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T08:02:20.248Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T08:02:20.248Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50a924f6ec2bdeacbabd49"
+  },
+  "name": "Divya Prasad",
+  "role": "Marketing",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1783671075/innovatex/team/gkbua6q2rbetad9i3aps.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/divyaprasad07",
+      "_id": {
+        "$oid": "6a50a924f6ec2bdeacbabd4a"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/all.about_div/",
+      "_id": {
+        "$oid": "6a50a924f6ec2bdeacbabd4b"
+      }
+    },
+    {
+      "url": "https://github.com/divyaprasad07",
+      "_id": {
+        "$oid": "6a50a924f6ec2bdeacbabd4c"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T08:11:16.215Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T08:11:16.215Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50a9a5f6ec2bdeacbabd7a"
+  },
+  "name": "Satavisa Kesh",
+  "role": "Marketing",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1783673283/innovatex/team/dp0drmvmb3cpvr50bkzj.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/satavisa-kesh-b663402b5/",
+      "_id": {
+        "$oid": "6a50a9a5f6ec2bdeacbabd7b"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/_.satavisa._?igsh=eXNqMGdlNG0wczNi",
+      "_id": {
+        "$oid": "6a50a9a5f6ec2bdeacbabd7c"
+      }
+    },
+    {
+      "url": "https://github.com/skesh123",
+      "_id": {
+        "$oid": "6a50a9a5f6ec2bdeacbabd7d"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T08:13:25.534Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T08:48:03.708Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50b1269114d4424e84c5c7"
+  },
+  "name": "Piyali Chakraborty",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1783673174/innovatex/team/izdtcngszogj7ff0yyj1.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/piyali-chakraborty-122118292",
+      "_id": {
+        "$oid": "6a50b1269114d4424e84c5c8"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/__c.h.i.n.i__?igsh=Y2cxNG91ODFkZHBh",
+      "_id": {
+        "$oid": "6a50b1269114d4424e84c5c9"
+      }
+    },
+    {
+      "url": "https://github.com/PIYALI2025",
+      "_id": {
+        "$oid": "6a50b1269114d4424e84c5ca"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T08:45:26.481Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T08:46:15.262Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50b35d1b5a4a9bb0c32c77"
+  },
+  "name": "Akash Kundu",
+  "role": "Design lead",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1783673692/innovatex/team/c7knb5rebcdxk6geyi8j.png",
+  "category": "coreTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/akashkundu010/",
+      "_id": {
+        "$oid": "6a50b35d1b5a4a9bb0c32c78"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/0x.akash/",
+      "_id": {
+        "$oid": "6a50b35d1b5a4a9bb0c32c79"
+      }
+    },
+    {
+      "url": "https://github.com/tech-akash010",
+      "_id": {
+        "$oid": "6a50b35d1b5a4a9bb0c32c7a"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T08:54:53.455Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T08:54:53.455Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a68ff9f833e5467773ce004"
+  },
+  "name": "Subha Prasana Parida",
+  "role": "Marketing & Tech",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1785266079/innovatex/team/wjgjseexoedrwna9yzpk.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/subha-prasana-parida-0b59b3332",
+      "_id": {
+        "$oid": "6a68ff9f833e5467773ce005"
+      }
+    },
+    {
+      "url": "https://github.com/SUBHA22-CODER/",
+      "_id": {
+        "$oid": "6a68ff9f833e5467773ce006"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-28T19:14:39.625Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-28T19:14:39.625Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a690149624a730ed6620cd5"
+  },
+  "name": "Sarthak Dutta",
+  "role": "Designer & Advisor",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1785266503/innovatex/team/oxlcwoipnvab0vhq7bqg.png",
+  "category": "coreTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/sarthak-dutta",
+      "_id": {
+        "$oid": "6a690149624a730ed6620cd6"
+      }
+    },
+    {
+      "url": "https://github.com/sarthak777-06",
+      "_id": {
+        "$oid": "6a690149624a730ed6620cd7"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/wassup.sarthak",
+      "_id": {
+        "$oid": "6a690149624a730ed6620cd8"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-28T19:21:45.915Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-28T19:21:45.915Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a690222624a730ed6620d14"
+  },
+  "name": "Srayash Raj",
+  "role": "Tech Associate",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1785266722/innovatex/team/bs09msptyu0njaqfqa3o.png",
+  "category": "leadership",
+  "social": [
+    {
+      "url": "https://linkedin.com/in/srayash-raj",
+      "_id": {
+        "$oid": "6a690222624a730ed6620d15"
+      }
+    },
+    {
+      "url": "https://github.com/ishu17077",
+      "_id": {
+        "$oid": "6a690222624a730ed6620d16"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/ishu_kumar404",
+      "_id": {
+        "$oid": "6a690222624a730ed6620d17"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-28T19:25:22.973Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-28T19:25:22.973Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a690287624a730ed6620d56"
+  },
+  "name": "Souparna Mandal",
+  "role": "Media",
+  "image": "https://res.cloudinary.com/dpv7vfhdo/image/upload/v1785266879/innovatex/team/krrvwrbvj2uwdwg3ct1k.png",
+  "category": "supportTeam",
+  "social": [
+    {
+      "url": "https://www.linkedin.com/in/souparna-mandal-7341ba2a7/",
+      "_id": {
+        "$oid": "6a690287624a730ed6620d57"
+      }
+    },
+    {
+      "url": "https://github.com/Rico-46",
+      "_id": {
+        "$oid": "6a690287624a730ed6620d58"
+      }
+    },
+    {
+      "url": "https://www.instagram.com/only_souparna_/",
+      "_id": {
+        "$oid": "6a690287624a730ed6620d59"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-28T19:27:03.989Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-28T19:28:00.167Z"
+  },
+  "__v": 0
+}]
