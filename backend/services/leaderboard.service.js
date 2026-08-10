@@ -1,13 +1,20 @@
 import Referral from "../models/Referral.js";
 import User from "../models/User.js";
-import { ROLES, TICKET_STATUS } from "../config/constants.js";
+import {
+  ROLES,
+  TICKET_STATUS
+} from "../config/constants.js";
 
 export async function getLeaderboardService(isAdmin = false) {
-  const partners = await User.find({ role: ROLES.COMMUNITY_PARTNER }).select("name email college company avatar");
+  const partners = await User.find({
+    role: ROLES.COMMUNITY_PARTNER
+  }).select("name email college company avatar");
 
   const leaderboardData = await Promise.all(
     partners.map(async (partner) => {
-      const totalReferrals = await Referral.countDocuments({ partnerId: partner._id });
+      const totalReferrals = await Referral.countDocuments({
+        partnerId: partner._id
+      });
       const approvedReferrals = await Referral.countDocuments({
         partnerId: partner._id,
         status: TICKET_STATUS.APPROVED,
@@ -45,18 +52,16 @@ export async function getLeaderboardService(isAdmin = false) {
 }
 
 export async function getPartnerStatsService(partnerId) {
-  const totalReferrals = await Referral.countDocuments({ partnerId });
-  const pendingReferrals = await Referral.countDocuments({ partnerId, status: TICKET_STATUS.PENDING });
-  const approvedReferrals = await Referral.countDocuments({ partnerId, status: TICKET_STATUS.APPROVED });
+  const totalReferrals = await Referral.countDocuments({
+    partnerId
+  });
+  // const pendingReferrals = await Referral.countDocuments({ partnerId, status: TICKET_STATUS.PENDING });
+  // const approvedReferrals = await Referral.countDocuments({ partnerId, status: TICKET_STATUS.APPROVED });
 
-  const referrals = await Referral.find({ partnerId })
-    .populate("referredUser", "name email college role createdAt github linkedin")
-    .sort({ createdAt: -1 });
 
   return {
     totalReferrals,
-    pendingReferrals,
-    approvedReferrals,
-    referrals,
+    // pendingReferrals,
+    // approvedReferrals,
   };
 }

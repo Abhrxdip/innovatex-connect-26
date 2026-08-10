@@ -127,29 +127,27 @@ export default function PartnerDashboardPage() {
             </div>
 
             {/* Metric Analytics Cards */}
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-[#0C1235] rounded-2xl p-5 border border-white/10 shadow-md">
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Registrations</p>
                 <p className="text-3xl font-extrabold text-white mt-2">{data?.stats?.totalReferrals || 0}</p>
                 <p className="text-[11px] text-slate-400 mt-1">Users signed up using your link</p>
               </div>
 
-              {/*
               <div className="bg-[#0C1235] rounded-2xl p-5 border border-amber-500/20 shadow-md">
-                <p className="text-xs font-bold text-amber-450 uppercase tracking-wider">Pending Approvals</p>
+                <p className="text-xs font-bold text-amber-500 uppercase tracking-wider">Pending Approvals</p>
                 <p className="text-3xl font-extrabold text-amber-300 mt-2">{data?.stats?.pendingReferrals || 0}</p>
                 <p className="text-[11px] text-slate-400 mt-1">Awaiting admin review</p>
               </div>
 
               <div className="bg-[#0C1235] rounded-2xl p-5 border border-emerald-500/20 shadow-md">
-                <p className="text-xs font-bold text-emerald-450 uppercase tracking-wider">Confirmed Tickets</p>
+                <p className="text-xs font-bold text-emerald-500 uppercase tracking-wider">Confirmed Tickets</p>
                 <p className="text-3xl font-extrabold text-emerald-300 mt-2">{data?.stats?.approvedReferrals || 0}</p>
                 <p className="text-[11px] text-slate-400 mt-1">Counts toward Leaderboard rank</p>
               </div>
-              */}
             </div>
 
-            {/* Referred Attendees Audit Table */}
+            {/* Referred Attendees Audit Table
             <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 overflow-hidden">
               <h3 className="text-lg font-extrabold text-white mb-4">Referred Attendees</h3>
 
@@ -202,7 +200,7 @@ export default function PartnerDashboardPage() {
                   No referrals tracked yet. Share your link to start earning points!
                 </p>
               )}
-            </div>
+            </div> */}
           </div>
         )}
       </main>
