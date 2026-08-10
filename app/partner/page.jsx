@@ -64,7 +64,7 @@ export default function PartnerDashboardPage() {
             <p className="text-slate-400 font-medium text-sm">Loading partner metrics...</p>
           </div>
         ) : error && !data ? (
-          <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-8 max-w-lg mx-auto text-center shadow-xl border border-white/10 text-white">
+          <div className="bg-[#0C1235] rounded-3xl p-8 max-w-lg mx-auto text-center shadow-xl border border-white/10 text-white">
             <div className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-4 font-bold text-xl border border-amber-500/20">
               !
             </div>
@@ -80,7 +80,7 @@ export default function PartnerDashboardPage() {
         ) : (
           <div className="space-y-8">
             {/* Header Profile Section */}
-            <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#EE4B15] via-[#C83B0E] to-[#2E6CFF] text-white font-extrabold text-2xl flex items-center justify-center shadow-lg shadow-orange-500/20">
                   🤝
@@ -109,7 +109,7 @@ export default function PartnerDashboardPage() {
             </div>
 
             {/* Shareable Referral Link Widget */}
-            <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 relative overflow-hidden">
+            <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#EE4B15] to-[#2E6CFF]" />
               <h2 className="text-lg font-extrabold text-white mb-1">Your Unique Referral Link</h2>
               <p className="text-slate-300 text-xs mb-4">
@@ -134,19 +134,19 @@ export default function PartnerDashboardPage() {
 
             {/* Metric Analytics Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="glass-card bg-[#0C1235]/90 rounded-2xl p-5 border border-white/10 shadow-md">
+              <div className="bg-[#0C1235] rounded-2xl p-5 border border-white/10 shadow-md">
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Registrations</p>
                 <p className="text-3xl font-extrabold text-white mt-2">{data?.stats?.totalReferrals || 0}</p>
                 <p className="text-[11px] text-slate-400 mt-1">Users signed up using your link</p>
               </div>
 
-              <div className="glass-card bg-[#0C1235]/90 rounded-2xl p-5 border border-amber-500/20 shadow-md bg-amber-500/5">
+              <div className="bg-[#0C1235] rounded-2xl p-5 border border-amber-500/20 shadow-md">
                 <p className="text-xs font-bold text-amber-450 uppercase tracking-wider">Pending Approvals</p>
                 <p className="text-3xl font-extrabold text-amber-300 mt-2">{data?.stats?.pendingReferrals || 0}</p>
                 <p className="text-[11px] text-slate-400 mt-1">Awaiting admin review</p>
               </div>
 
-              <div className="glass-card bg-[#0C1235]/90 rounded-2xl p-5 border border-emerald-500/20 shadow-md bg-emerald-500/5">
+              <div className="bg-[#0C1235] rounded-2xl p-5 border border-emerald-500/20 shadow-md">
                 <p className="text-xs font-bold text-emerald-450 uppercase tracking-wider">Confirmed Tickets</p>
                 <p className="text-3xl font-extrabold text-emerald-300 mt-2">{data?.stats?.approvedReferrals || 0}</p>
                 <p className="text-[11px] text-slate-400 mt-1">Counts toward Leaderboard rank</p>
@@ -154,7 +154,7 @@ export default function PartnerDashboardPage() {
             </div>
 
             {/* Referred Attendees Audit Table */}
-            <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 overflow-hidden">
+            <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 overflow-hidden">
               <h3 className="text-lg font-extrabold text-white mb-4">Referred Attendees</h3>
 
               {data?.stats?.referrals?.length > 0 ? (

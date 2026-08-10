@@ -87,7 +87,7 @@ export default function LeaderboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
               {/* Rank 2 (Silver) */}
               {topThree[1] && (
-                <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-6 border border-slate-700/50 shadow-xl text-center relative order-2 md:order-1 transform hover:-translate-y-1 transition-all">
+                <div className="bg-[#0C1235] rounded-3xl p-6 border border-slate-700/50 shadow-xl text-center relative order-2 md:order-1 transform hover:-translate-y-1 transition-all">
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-slate-700 text-slate-200 font-extrabold text-sm flex items-center justify-center shadow-md">
                     2
                   </div>
@@ -113,7 +113,7 @@ export default function LeaderboardPage() {
 
               {/* Rank 1 (Gold) */}
               {topThree[0] && (
-                <div className="glass-card bg-gradient-to-b from-[#1C170C] to-[#0C1235] rounded-3xl p-7 border-2 border-amber-400/50 shadow-2xl text-center relative order-1 md:order-2 transform hover:-translate-y-2 transition-all">
+                <div className="bg-gradient-to-b from-[#1C170C] to-[#0C1235] rounded-3xl p-7 border-2 border-amber-400/50 shadow-2xl text-center relative order-1 md:order-2 transform hover:-translate-y-2 transition-all">
                   <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-amber-400 text-amber-950 font-black text-base flex items-center justify-center shadow-lg animate-bounce">
                     1
                   </div>
@@ -139,7 +139,7 @@ export default function LeaderboardPage() {
 
               {/* Rank 3 (Bronze) */}
               {topThree[2] && (
-                <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-6 border border-amber-900/30 shadow-xl text-center relative order-3 transform hover:-translate-y-1 transition-all">
+                <div className="bg-[#0C1235] rounded-3xl p-6 border border-amber-900/30 shadow-xl text-center relative order-3 transform hover:-translate-y-1 transition-all">
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-amber-800 text-white font-extrabold text-sm flex items-center justify-center shadow-md">
                     3
                   </div>
@@ -165,7 +165,7 @@ export default function LeaderboardPage() {
             </div>
 
             {/* Complete Rankings Table */}
-            <div className="glass-card bg-[#0C1235]/90 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10">
+            <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10">
               <h2 className="text-lg font-extrabold text-white mb-4">Complete Partner Standings</h2>
 
               <div className="overflow-x-auto">
