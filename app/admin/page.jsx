@@ -209,7 +209,7 @@ export default function AdminDashboardPage() {
         scanError={error}
       />
 
-      <TicketDetailsModal 
+      <TicketDetailsModal
         isOpen={!!selectedTicket}
         onClose={() => setSelectedTicket(null)}
         ticket={selectedTicket}
@@ -360,19 +360,18 @@ export default function AdminDashboardPage() {
                         </thead>
                         <tbody className="divide-y divide-white/5 text-xs">
                           {tickets.map((t) => (
-                            <tr key={t._id} className="hover:bg-white/5 transition-colors">
+                            <tr key={t._id} className="hover:bg-white/5 transition-colors cursor-pointer" onClick={() => setSelectedTicket(t)}>
                               <td className="py-3 px-3 font-mono font-bold text-[#EE4B15]">{t.ticketNumber}</td>
                               <td className="py-3 px-3">
-                                <p 
-                                  className="font-bold text-white hover:text-[#EE4B15] cursor-pointer transition-colors"
-                                  onClick={() => setSelectedTicket(t)}
+                                <p
+                                  className="font-bold text-white hover:text-[#EE4B15] transition-colors"
                                 >
                                   {t.userId?.name}
                                 </p>
                                 <p className="text-[11px] text-slate-400">{t.userId?.email}</p>
                                 <div className="flex gap-2 mt-1.5">
-                                  <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
-                                  <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                                  <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                                  <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
                                 </div>
                               </td>
                               <td className="py-3 px-3 font-medium text-slate-200">{t.attendeeType}</td>
@@ -380,8 +379,8 @@ export default function AdminDashboardPage() {
                                 <p className="text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</p>
                                 {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
                                   <div className="mt-1 flex items-center gap-1.5">
-                                    {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase">🍲 {t.userId.foodPreference}</span>}
-                                    {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase">💻 Laptop</span>}
+                                    {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
+                                    {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> Laptop</span>}
                                   </div>
                                 )}
                               </td>
@@ -389,11 +388,11 @@ export default function AdminDashboardPage() {
                               <td className="py-3 px-3 text-right space-x-2">
                                 {t.status === 'Pending' ? (
                                   <>
-                                    <button onClick={() => handleApprove(t._id)} disabled={actionLoading === t._id}
+                                    <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-50">
                                       Approve & Email QR
                                     </button>
-                                    <button onClick={() => handleReject(t._id)} disabled={actionLoading === t._id}
+                                    <button onClick={(e) => { e.stopPropagation(); handleReject(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 font-bold text-xs transition-all cursor-pointer disabled:opacity-50">
                                       Reject
                                     </button>
@@ -410,38 +409,37 @@ export default function AdminDashboardPage() {
                     {/* Mobile cards */}
                     <div className="block md:hidden space-y-3">
                       {tickets.map((t) => (
-                        <div key={t._id} className="p-4 rounded-2xl !bg-[#090D2B] border border-white/5 space-y-3">
+                        <div key={t._id} className="p-4 rounded-2xl !bg-[#090D2B] border border-white/5 space-y-3 cursor-pointer hover:bg-white/5 transition-colors" onClick={() => setSelectedTicket(t)}>
                           <div className="flex items-center justify-between">
                             <span className="font-mono font-bold text-xs text-[#EE4B15]">{t.ticketNumber}</span>
                             <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${statusColor(t.status)}`}>{t.status}</span>
                           </div>
                           <div>
-                            <p 
-                              className="font-bold text-white text-sm hover:text-[#EE4B15] cursor-pointer transition-colors"
-                              onClick={() => setSelectedTicket(t)}
+                            <p
+                              className="font-bold text-white text-sm hover:text-[#EE4B15] transition-colors"
                             >
                               {t.userId?.name}
                             </p>
                             <p className="text-xs text-slate-400">{t.userId?.email}</p>
                             <div className="flex gap-2 mt-1.5">
-                              <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
-                              <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                              <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                              <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
                             </div>
                             <p className="text-xs text-slate-300 mt-2">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium text-slate-200">{t.attendeeType}</span></p>
                             {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
                               <div className="mt-2 flex items-center gap-2">
-                                {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase">🍲 {t.userId.foodPreference}</span>}
-                                {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase">💻 Laptop</span>}
+                                {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
+                                {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> Laptop</span>}
                               </div>
                             )}
                           </div>
                           {t.status === 'Pending' && (
                             <div className="flex gap-2 pt-2 border-t border-white/5">
-                              <button onClick={() => handleApprove(t._id)} disabled={actionLoading === t._id}
+                              <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                 className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all text-center cursor-pointer disabled:opacity-50">
                                 Approve & Email QR
                               </button>
-                              <button onClick={() => handleReject(t._id)} disabled={actionLoading === t._id}
+                              <button onClick={(e) => { e.stopPropagation(); handleReject(t._id); }} disabled={actionLoading === t._id}
                                 className="py-2 px-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-400 font-bold text-xs transition-all cursor-pointer disabled:opacity-50">
                                 Reject
                               </button>
