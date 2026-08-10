@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import QRScannerModal from '../components/QRScannerModal';
 import TicketDetailsModal from '../components/TicketDetailsModal';
+import { Icons } from '../components/Icons';
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -144,7 +145,7 @@ export default function AdminDashboardPage() {
     if (tickets.length === 0) return;
 
     const headers = [
-      'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'Food', 'Laptop', 'LinkedIn', 'GitHub', 'Date Applied'
+      'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'Food', 'Laptop', 'LinkedIn', 'GitHub', 'Referred By', 'Date Applied'
     ];
 
     const csvRows = [headers.join(',')];
@@ -162,6 +163,7 @@ export default function AdminDashboardPage() {
         `"${t.userId?.bringingLaptop ? 'Yes' : 'No'}"`,
         `"${t.userId?.linkedin || ''}"`,
         `"${t.userId?.github || ''}"`,
+        `"${t.referralData?.partnerId?.name || ''}"`,
         `"${new Date(t.createdAt).toLocaleString()}"`
       ];
       csvRows.push(row.join(','));
@@ -197,7 +199,7 @@ export default function AdminDashboardPage() {
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-650/10 blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-600/10 blur-[170px] pointer-events-none animate-pulse-glow" />
       <Navbar />
-
+     
       <QRScannerModal
         isOpen={scannerOpen}
         onClose={() => setScannerOpen(false)}
@@ -209,7 +211,7 @@ export default function AdminDashboardPage() {
         scanError={error}
       />
 
-      <TicketDetailsModal 
+      <TicketDetailsModal
         isOpen={!!selectedTicket}
         onClose={() => setSelectedTicket(null)}
         ticket={selectedTicket}
@@ -360,28 +362,28 @@ export default function AdminDashboardPage() {
                         </thead>
                         <tbody className="divide-y divide-white/5 text-xs">
                           {tickets.map((t) => (
-                            <tr key={t._id} className="hover:bg-white/5 transition-colors">
+                            <tr key={t._id} className="hover:bg-white/5 transition-colors cursor-pointer" onClick={() => setSelectedTicket(t)}>
                               <td className="py-3 px-3 font-mono font-bold text-[#EE4B15]">{t.ticketNumber}</td>
                               <td className="py-3 px-3">
-                                <p 
-                                  className="font-bold text-white hover:text-[#EE4B15] cursor-pointer transition-colors"
-                                  onClick={() => setSelectedTicket(t)}
+                                <p
+                                  className="font-bold text-white hover:text-[#EE4B15] transition-colors"
                                 >
                                   {t.userId?.name}
                                 </p>
                                 <p className="text-[11px] text-slate-400">{t.userId?.email}</p>
                                 <div className="flex gap-2 mt-1.5">
-                                  <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
-                                  <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                                  <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                                  <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
                                 </div>
                               </td>
                               <td className="py-3 px-3 font-medium text-slate-200">{t.attendeeType}</td>
                               <td className="py-3 px-3">
                                 <p className="text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</p>
-                                {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
-                                  <div className="mt-1 flex items-center gap-1.5">
-                                    {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase">🍲 {t.userId.foodPreference}</span>}
-                                    {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase">💻 Laptop</span>}
+                                {(t.userId?.foodPreference || t.userId?.bringingLaptop || t.referralData?.partnerId?.name) && (
+                                  <div className="mt-1 flex items-center gap-1.5 flex-wrap">
+                                    {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
+                                    {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> Laptop</span>}
+                                    {t.referralData?.partnerId?.name && <span className="px-1.5 py-0.5 rounded bg-orange-500/10 text-[9px] font-bold text-orange-400 border border-orange-500/20 uppercase" title="Referred by">Ref: {t.referralData.partnerId.name}</span>}
                                   </div>
                                 )}
                               </td>
@@ -389,11 +391,11 @@ export default function AdminDashboardPage() {
                               <td className="py-3 px-3 text-right space-x-2">
                                 {t.status === 'Pending' ? (
                                   <>
-                                    <button onClick={() => handleApprove(t._id)} disabled={actionLoading === t._id}
+                                    <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-50">
                                       Approve & Email QR
                                     </button>
-                                    <button onClick={() => handleReject(t._id)} disabled={actionLoading === t._id}
+                                    <button onClick={(e) => { e.stopPropagation(); handleReject(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 font-bold text-xs transition-all cursor-pointer disabled:opacity-50">
                                       Reject
                                     </button>
@@ -410,38 +412,38 @@ export default function AdminDashboardPage() {
                     {/* Mobile cards */}
                     <div className="block md:hidden space-y-3">
                       {tickets.map((t) => (
-                        <div key={t._id} className="p-4 rounded-2xl !bg-[#090D2B] border border-white/5 space-y-3">
+                        <div key={t._id} className="p-4 rounded-2xl !bg-[#090D2B] border border-white/5 space-y-3 cursor-pointer hover:bg-white/5 transition-colors" onClick={() => setSelectedTicket(t)}>
                           <div className="flex items-center justify-between">
                             <span className="font-mono font-bold text-xs text-[#EE4B15]">{t.ticketNumber}</span>
                             <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${statusColor(t.status)}`}>{t.status}</span>
                           </div>
                           <div>
-                            <p 
-                              className="font-bold text-white text-sm hover:text-[#EE4B15] cursor-pointer transition-colors"
-                              onClick={() => setSelectedTicket(t)}
+                            <p
+                              className="font-bold text-white text-sm hover:text-[#EE4B15] transition-colors"
                             >
                               {t.userId?.name}
                             </p>
                             <p className="text-xs text-slate-400">{t.userId?.email}</p>
                             <div className="flex gap-2 mt-1.5">
-                              <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
-                              <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                              <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                              <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
                             </div>
                             <p className="text-xs text-slate-300 mt-2">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium text-slate-200">{t.attendeeType}</span></p>
-                            {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
-                              <div className="mt-2 flex items-center gap-2">
-                                {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase">🍲 {t.userId.foodPreference}</span>}
-                                {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase">💻 Laptop</span>}
+                            {(t.userId?.foodPreference || t.userId?.bringingLaptop || t.referralData?.partnerId?.name) && (
+                              <div className="mt-2 flex items-center gap-2 flex-wrap">
+                                {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
+                                {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> Laptop</span>}
+                                {t.referralData?.partnerId?.name && <span className="px-2 py-1 rounded bg-orange-500/10 text-[10px] font-bold text-orange-400 border border-orange-500/20 uppercase">Ref: {t.referralData.partnerId.name}</span>}
                               </div>
                             )}
                           </div>
                           {t.status === 'Pending' && (
                             <div className="flex gap-2 pt-2 border-t border-white/5">
-                              <button onClick={() => handleApprove(t._id)} disabled={actionLoading === t._id}
+                              <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                 className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all text-center cursor-pointer disabled:opacity-50">
                                 Approve & Email QR
                               </button>
-                              <button onClick={() => handleReject(t._id)} disabled={actionLoading === t._id}
+                              <button onClick={(e) => { e.stopPropagation(); handleReject(t._id); }} disabled={actionLoading === t._id}
                                 className="py-2 px-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-400 font-bold text-xs transition-all cursor-pointer disabled:opacity-50">
                                 Reject
                               </button>
@@ -487,9 +489,9 @@ export default function AdminDashboardPage() {
                           <div className="w-16 h-16 rounded-2xl bg-[#151C47] text-slate-355 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
                             🥈
                           </div>
-                          <h3 className="text-base font-extrabold text-white">{leaderboard[1].partner?.name}</h3>
+                          <h3 className="text-base font-extrabold text-white">{leaderboard[1].partner?.company}</h3>
                           <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
-                            {leaderboard[1].partner?.college || leaderboard[1].partner?.company || 'Partner'}
+                            {leaderboard[1].partner?.college || leaderboard[1].partner?.name || 'Partner'}
                           </p>
                           <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-around text-xs">
                             <div>
@@ -513,9 +515,9 @@ export default function AdminDashboardPage() {
                           <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-amber-950 font-black text-3xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-lg shadow-amber-500/20">
                             🥇
                           </div>
-                          <h3 className="text-lg font-black text-white">{leaderboard[0].partner?.name}</h3>
+                          <h3 className="text-lg font-black text-white">{leaderboard[0].partner?.company}</h3>
                           <p className="text-amber-400 text-xs font-semibold truncate max-w-[200px] mx-auto">
-                            {leaderboard[0].partner?.college || leaderboard[0].partner?.company || 'Top Champion'}
+                            {leaderboard[0].partner?.college || leaderboard[0].partner?.name || 'Top Champion'}
                           </p>
                           <div className="mt-4 pt-3 border-t border-amber-400/20 flex items-center justify-around text-xs">
                             <div>
@@ -539,9 +541,9 @@ export default function AdminDashboardPage() {
                           <div className="w-16 h-16 rounded-2xl bg-[#1C1710] text-amber-500 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
                             🥉
                           </div>
-                          <h3 className="text-base font-extrabold text-white">{leaderboard[2].partner?.name}</h3>
+                          <h3 className="text-base font-extrabold text-white">{leaderboard[2].partner?.company}</h3>
                           <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
-                            {leaderboard[2].partner?.college || leaderboard[2].partner?.company || 'Partner'}
+                            {leaderboard[2].partner?.college || leaderboard[2].partner?.name || 'Partner'}
                           </p>
                           <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-around text-xs">
                             <div>
@@ -567,7 +569,7 @@ export default function AdminDashboardPage() {
                             <tr className="border-b border-white/10 text-[11px] font-extrabold uppercase text-slate-400 tracking-wider">
                               <th className="pb-3 px-3">Rank</th>
                               <th className="pb-3 px-3">Partner Name</th>
-                              <th className="pb-3 px-3">College / Organization</th>
+                              <th className="pb-3 px-3">Name</th>
                               <th className="pb-3 px-3 text-center">Total Signups</th>
                               <th className="pb-3 px-3 text-right">Approved Tickets</th>
                             </tr>
@@ -578,9 +580,9 @@ export default function AdminDashboardPage() {
                                 <td className="py-3 px-3 font-extrabold text-slate-200">
                                   {idx === 0 ? '🥇 #1' : idx === 1 ? '🥈 #2' : idx === 2 ? '🥉 #3' : `#${idx + 1}`}
                                 </td>
-                                <td className="py-3 px-3 font-bold text-white">{item.partner?.name}</td>
+                                <td className="py-3 px-3 font-bold text-white">{item.partner?.company}</td>
                                 <td className="py-3 px-3 text-slate-355 font-medium">
-                                  {item.partner?.college || item.partner?.company || 'Community Partner'}
+                                  {item.partner?.college || item.partner?.name || 'Community Partner'}
                                 </td>
                                 <td className="py-3 px-3 text-center font-bold text-slate-300">{item.totalReferrals}</td>
                                 <td className="py-3 px-3 text-right font-extrabold text-[#EE4B15] text-sm">

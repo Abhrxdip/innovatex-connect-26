@@ -77,14 +77,6 @@ export default function TicketDetailsModal({ isOpen, onClose, ticket, onApprove,
                     {user?.college || user?.company || 'N/A'}
                   </p>
                   <p className="text-[11px] text-slate-400 mt-1">Role: {user?.role}</p>
-                  
-                  {(user?.foodPreference || user?.bringingLaptop || user?.referralCode) && (
-                    <div className="mt-3 pt-3 border-t border-white/10 flex flex-wrap items-center gap-2">
-                      {user?.foodPreference && <span className="px-2 py-1 rounded bg-[#090D2B] border border-white/10 text-[10px] font-bold text-slate-300 uppercase shadow-sm">🍲 {user.foodPreference}</span>}
-                      {user?.bringingLaptop && <span className="px-2 py-1 rounded bg-[#090D2B] border border-white/10 text-[10px] font-bold text-slate-300 uppercase shadow-sm">💻 Laptop</span>}
-                      {user?.referralCode && <span className="px-2 py-1 rounded bg-indigo-500/20 border border-indigo-500/30 text-[10px] font-bold text-indigo-300 uppercase shadow-sm">🎟️ Ref: {user.referralCode}</span>}
-                    </div>
-                  )}
                 </div>
               </div>
               
@@ -137,6 +129,20 @@ export default function TicketDetailsModal({ isOpen, onClose, ticket, onApprove,
                   </a>
                 </div>
               </div>
+
+              {/* Preferences & Info */}
+              {(user?.foodPreference || user?.bringingLaptop || user?.referralCode) && (
+                <div>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Preferences & Info</p>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {user?.foodPreference && <span className="px-2 py-1 rounded bg-[#090D2B] border border-white/10 text-[10px] font-bold text-slate-300 uppercase shadow-sm">{user.foodPreference}</span>}
+                      {user?.bringingLaptop && <span className="px-2 py-1 rounded bg-[#090D2B] border border-white/10 text-[10px] font-bold text-slate-300 uppercase shadow-sm">Laptop</span>}
+                      {user?.referralCode && <span className="px-2 py-1 rounded bg-indigo-500/20 border border-indigo-500/30 text-[10px] font-bold text-indigo-300 uppercase shadow-sm">Ref: {user.referralCode}</span>}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

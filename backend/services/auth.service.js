@@ -114,9 +114,9 @@ export async function registerUser({
     github: github || "",
     linkedin: linkedin || "",
     website: website || "",
-    avatar: avatar || "",
+    avatar: role === ROLES.STUDENT ? `${process.env.SITE_URL}/student.png` : role === ROLES.COMMUNITY_PARTNER ? `${process.env.SITE_URL}/community_partner.png` : `${process.env.SITE_URL}/professional.png` || "",
     foodPreference: foodPreference || "",
-    bringingLaptop: bringingLaptop || false,
+    bringingLaptop: true,
     provider: auth_provider ? auth_provider : AUTH_PROVIDERS.MANUAL,
   });
 
@@ -157,7 +157,8 @@ export async function registerUser({
 export async function googleLoginUser({
   name,
   email,
-  referralCode
+  referralCode,
+  avatar,
 }) {
   if (!emailSchema.safeParse(email).success) {
     const error = new Error("Email not valid");
@@ -170,16 +171,14 @@ export async function googleLoginUser({
     email
   });
   let isNewUser = false;
-
+  console.log("GOOGLE USER PUTTING")
   if (!user) {
     user = await User.create({
       name,
       email: email,
       password: "",
-      role: ROLES.STUDENT,
-      college: "",
-      company: "",
-      phone: "",
+      role: ROLES.UNDEFINED,
+      avatar: avatar != null ? avatar : null,
       provider: AUTH_PROVIDERS.GOOGLE,
     });
     isNewUser = true;
@@ -224,7 +223,10 @@ export async function updateUserDetails({
   role,
   college,
   company,
-  phone
+  phone,
+  github,
+  linkedin,
+  foodPreference,
 }) {
   try {
 
@@ -272,6 +274,10 @@ export async function updateUserDetails({
         college: college ?? '',
         company: company ?? '',
         phone: phone ?? '',
+        github: github ?? '',
+        linkedin: linkedin ?? '',
+        foodPreference: foodPreference ?? '',
+        bringingLaptop: true,
       }
     }, {
       new: true
@@ -345,19 +351,30 @@ export async function loginUser({
   };
 }
 
-export async function updatePassword({otp,email, password}){
-  const user = await User.findOne({email: email})
-  if(!user){
+export async function updatePassword({
+  otp,
+  email,
+  password
+}) {
+  const user = await User.findOne({
+    email: email
+  })
+  if (!user) {
     const error = new Error("User not found")
-    error.statusCode= 401
+    error.statusCode = 401
     throw error
   }
-  const isOTPValid = await verifyOTPForRegisteredUsers({email, otp})
+  const isOTPValid = await verifyOTPForRegisteredUsers({
+    email,
+    otp
+  })
 
-  if(!isOTPValid){
+  if (!isOTPValid) {
     throw Error("Invalid OTP entered")
   }
 
-  await User.findByIdAndUpdate(user._id, {password: await hashPassword(password)})
+  await User.findByIdAndUpdate(user._id, {
+    password: await hashPassword(password)
+  })
 
 }

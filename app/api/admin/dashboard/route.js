@@ -19,6 +19,9 @@ import {
 import {
   NextResponse
 } from "next/server";
+import {
+  redirectToCorrectDashboard
+} from "../../../api/common/redirect_to_correct_dashboard"
 
 export const GET = asyncDbHandler(async (req) => {
   const authResult = await authenticate(req);
@@ -28,7 +31,7 @@ export const GET = asyncDbHandler(async (req) => {
 
   const roleCheck = authorize(ROLES.ADMIN)(authResult.user);
   if (!roleCheck.authorized) {
-    return NextResponse.redirect(new URL("/login", req.url))
+    return redirectToCorrectDashboard(authResult.user.role, req)
   }
 
   const dashboardData = await getAdminDashboardController();

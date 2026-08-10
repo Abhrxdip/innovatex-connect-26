@@ -5,10 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
 import { Icons } from '../components/Icons';
+import Image from "next/image"
 
 /* Inline person avatar SVG component */
-function PersonAvatar({ className = '' }) {
-  return (
+function PersonAvatar({ className = '', src, alt = "Profile Picture" }) {
+  return src ? (
+    <Image src={src} alt={alt} className={className} width={100} height={100}/>
+  ) : (
     <svg className={className} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="40" cy="40" r="40" fill="#1A2040" />
       <circle cx="40" cy="30" r="12" fill="#3B4370" />
@@ -45,9 +48,7 @@ export default function UserDashboardPage() {
         throw new Error(json.message || 'Failed to load user dashboard.');
       }
       setData(json.data);
-      if (json.data?.user?.role) {
-        console.log(json.data?.user.role)
-      }
+
     } catch (err) {
       setError(err.message);
     } finally {
@@ -114,7 +115,7 @@ export default function UserDashboardPage() {
               <div className="flex items-center gap-4">
                 {/* Person Avatar */}
                 <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg shadow-[#EE4B15]/10 border-2 border-[#EE4B15]/30 shrink-0">
-                  <PersonAvatar className="w-full h-full" />
+                  <PersonAvatar className="w-full h-full" src={data.user?.avatar} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -286,6 +287,14 @@ export default function UserDashboardPage() {
                         <span className="text-xs">{data.ticket.foodCollected ? '🍔' : '🎟️'}</span>
                         {data.ticket.foodCollected ? 'Food Claimed' : 'Food Coupon Available'}
                       </div>
+                    </div>
+                    
+                    {/* Mandatory Laptop Note */}
+                    <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
+                      <span className="text-blue-400 font-bold text-sm">ℹ️</span>
+                      <p className="text-blue-200 text-xs font-medium leading-relaxed">
+                        <span className="font-bold text-blue-400">Important:</span> Please remember to bring your laptop. It is <span className="font-bold text-white underline">mandatory</span> for participating in this event.
+                      </p>
                     </div>
                   </div>
 
