@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import QRScannerModal from '../components/QRScannerModal';
 import TicketDetailsModal from '../components/TicketDetailsModal';
+import { Icons } from '../components/Icons';
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -197,7 +198,7 @@ export default function AdminDashboardPage() {
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-650/10 blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-600/10 blur-[170px] pointer-events-none animate-pulse-glow" />
       <Navbar />
-
+     
       <QRScannerModal
         isOpen={scannerOpen}
         onClose={() => setScannerOpen(false)}

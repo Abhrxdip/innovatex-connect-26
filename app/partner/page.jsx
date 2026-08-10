@@ -99,13 +99,7 @@ export default function PartnerDashboardPage() {
                 </div>
               </div>
 
-              <Link
-                href="/leaderboard"
-                className="px-5 py-2.5 rounded-xl bg-orange-500/10 hover:bg-[#EE4B15]/20 text-[#EE4B15] font-bold text-xs border border-orange-500/20 transition-all flex items-center gap-2"
-              >
-                <Icons.Sparkle />
-                View Live Leaderboard
-              </Link>
+              
             </div>
 
             {/* Shareable Referral Link Widget */}
