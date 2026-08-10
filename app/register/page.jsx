@@ -407,6 +407,7 @@ function RegisterForm() {
                 </div>
               </div>
 
+{/* 
               <div>
                 <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
                   Community Logo (Optional)
@@ -437,6 +438,7 @@ function RegisterForm() {
                   </span>
                 </div>
               </div>
+*/}
             </div>
           )}
 

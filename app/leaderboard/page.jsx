@@ -91,15 +91,9 @@ export default function LeaderboardPage() {
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-slate-700 text-slate-200 font-extrabold text-sm flex items-center justify-center shadow-md">
                     2
                   </div>
-                  {topThree[1].partner?.avatar ? (
-                    <div className="w-16 h-16 rounded-2xl overflow-hidden mx-auto mt-2 mb-3 shadow-inner border border-[#151C47]">
-                      <img src={topThree[1].partner.avatar} alt="Logo" className="w-full h-full object-cover bg-white" />
-                    </div>
-                  ) : (
-                    <div className="w-16 h-16 rounded-2xl bg-[#151C47] text-slate-355 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
-                      🥈
-                    </div>
-                  )}
+                  <div className="w-16 h-16 rounded-2xl bg-[#151C47] text-slate-355 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
+                    🥈
+                  </div>
                   <h3 className="text-base font-extrabold text-white">{topThree[1].partner?.name}</h3>
                   <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
                     {topThree[1].partner?.college || topThree[1].partner?.company || 'Partner'}
@@ -123,15 +117,9 @@ export default function LeaderboardPage() {
                   <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-amber-400 text-amber-950 font-black text-base flex items-center justify-center shadow-lg animate-bounce">
                     1
                   </div>
-                  {topThree[0].partner?.avatar ? (
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mt-2 mb-3 shadow-lg shadow-amber-500/20 border-2 border-amber-500">
-                      <img src={topThree[0].partner.avatar} alt="Logo" className="w-full h-full object-cover bg-white" />
-                    </div>
-                  ) : (
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-amber-950 font-black text-3xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-lg shadow-amber-500/20">
-                      🥇
-                    </div>
-                  )}
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-amber-950 font-black text-3xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-lg shadow-amber-500/20">
+                    🥇
+                  </div>
                   <h3 className="text-lg font-black text-white">{topThree[0].partner?.name}</h3>
                   <p className="text-amber-400 text-xs font-semibold truncate max-w-[200px] mx-auto">
                     {topThree[0].partner?.college || topThree[0].partner?.company || 'Top Champion'}
@@ -155,15 +143,9 @@ export default function LeaderboardPage() {
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-amber-800 text-white font-extrabold text-sm flex items-center justify-center shadow-md">
                     3
                   </div>
-                  {topThree[2].partner?.avatar ? (
-                    <div className="w-16 h-16 rounded-2xl overflow-hidden mx-auto mt-2 mb-3 shadow-inner border border-[#1C1710]">
-                      <img src={topThree[2].partner.avatar} alt="Logo" className="w-full h-full object-cover bg-white" />
-                    </div>
-                  ) : (
-                    <div className="w-16 h-16 rounded-2xl bg-[#1C1710] text-amber-500 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
-                      🥉
-                    </div>
-                  )}
+                  <div className="w-16 h-16 rounded-2xl bg-[#1C1710] text-amber-500 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
+                    🥉
+                  </div>
                   <h3 className="text-base font-extrabold text-white">{topThree[2].partner?.name}</h3>
                   <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
                     {topThree[2].partner?.college || topThree[2].partner?.company || 'Partner'}
@@ -203,18 +185,7 @@ export default function LeaderboardPage() {
                         <td className="py-3 px-3 font-extrabold text-slate-200">
                           {idx === 0 ? '🥇 #1' : idx === 1 ? '🥈 #2' : idx === 2 ? '🥉 #3' : `#${idx + 1}`}
                         </td>
-                        <td className="py-3 px-3">
-                          <div className="flex items-center gap-3">
-                            {item.partner?.avatar ? (
-                              <img src={item.partner.avatar} alt="" className="w-8 h-8 rounded-full object-cover bg-white" />
-                            ) : (
-                              <div className="w-8 h-8 rounded-full bg-indigo-900/50 flex items-center justify-center text-indigo-300 font-bold">
-                                {item.partner?.name?.charAt(0) || '?'}
-                              </div>
-                            )}
-                            <span className="font-bold text-white">{item.partner?.name}</span>
-                          </div>
-                        </td>
+                        <td className="py-3 px-3 font-bold text-white">{item.partner?.name}</td>
                         <td className="py-3 px-3 text-slate-355 font-medium">
                           {item.partner?.college || item.partner?.company || 'Community Partner'}
                         </td>
