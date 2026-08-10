@@ -52,7 +52,7 @@ export async function listTicketsController(status) {
     path: "referralData",
     populate: {
       path: "partnerId",
-      select: "name email college company"
+      select: "name email college company foodPreference bringingLaptop"
     }
   }).sort({
     createdAt: -1
