@@ -1,49 +1,41 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
+import teamData from '../data/teamMembers.json';
 
-const TEAM_MEMBERS = [
-  {
-    name: 'AARON LOEB',
-    role: 'Leader',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'DREW FEIG',
-    role: 'Marketing',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'SACHA DUBOIS',
-    role: 'Employee',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'JULIANA SILVA',
-    role: 'Employee',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'DHRUBOJOYTI MONDAL',
-    role: 'Convenor',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'JIT SARKAR',
-    role: 'Co-Convenor',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'SK MIRAJUL ISLAM',
-    role: 'Tech Lead',
-    image: '/pic.jpg',
-  },
-  {
-    name: 'SUBHAJIT ROY',
-    role: 'Design Lead',
-    image: '/pic.jpg',
-  },
-];
+function SocialIcon({ type, url }) {
+  if (!url) return null;
+
+  const icons = {
+    linkedin: (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+      </svg>
+    ),
+    github: (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+      </svg>
+    ),
+    x: (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    ),
+  };
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-white/70 hover:text-[#EE4B15] transition-colors p-1.5 bg-black/40 hover:bg-black/70 rounded-full backdrop-blur-sm"
+      title={type}
+    >
+      {icons[type]}
+    </a>
+  );
+}
 
 function TeamCard({ member }) {
   return (
@@ -72,12 +64,21 @@ function TeamCard({ member }) {
             />
           </div>
 
+          {/* Top-Right Social Links Overlay */}
+          {member.socials && (
+            <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+              {member.socials.linkedin && <SocialIcon type="linkedin" url={member.socials.linkedin} />}
+              {member.socials.github && <SocialIcon type="github" url={member.socials.github} />}
+              {member.socials.x && <SocialIcon type="x" url={member.socials.x} />}
+            </div>
+          )}
+
           {/* Subtle Bottom Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D1A]/60 via-transparent to-transparent opacity-50 pointer-events-none" />
         </div>
       </div>
 
-      {/* 2. Slanted Bottom Name Card */}
+      {/* 2. Slanted Bottom Name Card (Exact Previous Design) */}
       <div
         className="relative w-full py-2.5 px-4 overflow-hidden border-t border-r border-white/70 border-b border-b-white/15 border-l border-l-white/20 shadow-xl group-hover:border-t-white group-hover:border-r-white transition-colors duration-300"
         style={{
@@ -98,7 +99,7 @@ function TeamCard({ member }) {
         {/* Horizontal Fading Orange Strip Line along Bottom Breadth */}
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#EE4B15] via-[#EE4B15]/70 to-transparent z-30 shadow-[0_0_8px_rgba(238,75,21,0.6)]" />
 
-        {/* Un-skewed Name & Role Text */}
+        {/* Un-skewed Name & Role Text (Exact Previous Design) */}
         <div className="pl-4 flex flex-col justify-center relative z-30" style={{ transform: 'skewX(14deg)' }}>
           <h4 className="font-extrabold italic uppercase text-[#FFF5EB] text-sm sm:text-base tracking-wider leading-none font-tech truncate drop-shadow-md">
             {member.name}
@@ -128,8 +129,8 @@ export default function TeamSection() {
 
       {/* Team Cards Grid - 4 Columns Desktop */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 justify-items-stretch w-full px-2">
-        {TEAM_MEMBERS.map((member, index) => (
-          <TeamCard key={index} member={member} />
+        {teamData.map((member) => (
+          <TeamCard key={member.id} member={member} />
         ))}
       </div>
     </section>
