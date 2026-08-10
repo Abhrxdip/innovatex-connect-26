@@ -40,6 +40,8 @@ export const registerSchema = z.object({
   referralCode: z.string().optional(),
   foodPreference: z.string().optional(),
   bringingLaptop: z.boolean().optional(),
+  website: z.string().optional(),
+  avatar: z.string().optional(),
 }).superRefine((data, ctx) => {
   const registrationProvider = data.auth_provider || data.provider || AUTH_PROVIDERS.MANUAL;
 

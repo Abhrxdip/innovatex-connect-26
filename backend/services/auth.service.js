@@ -39,7 +39,9 @@ export async function registerUser({
   github,
   linkedin,
   foodPreference,
-  bringingLaptop
+  bringingLaptop,
+  website,
+  avatar
 }) {
 
   //? Normalize Email first for security and duplicacy
@@ -111,6 +113,8 @@ export async function registerUser({
     phone: phone || "",
     github: github || "",
     linkedin: linkedin || "",
+    website: website || "",
+    avatar: avatar || "",
     foodPreference: foodPreference || "",
     bringingLaptop: bringingLaptop || false,
     provider: auth_provider ? auth_provider : AUTH_PROVIDERS.MANUAL,
