@@ -275,7 +275,7 @@ export async function updateUserDetails({
         company: company ?? '',
         phone: phone ?? '',
         github: github ?? '',
-        linkedin: github ?? '',
+        linkedin: linkedin ?? '',
         foodPreference: foodPreference ?? ''
       }
     }, {
