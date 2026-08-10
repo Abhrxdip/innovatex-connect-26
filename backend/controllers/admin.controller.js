@@ -92,8 +92,6 @@ export async function approveTicketController(ticketId, adminId) {
     message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for your QR code.`,
   });
 
-  console.log(qrCodeDataUrl)
-
   await sendTicketConfirmedMail({
     name: ticket.userId.name,
     attendee_type: ticket.userId.role,
