@@ -35,7 +35,11 @@ export async function registerUser({
   phone,
   otp,
   referralCode,
-  auth_provider
+  auth_provider,
+  github,
+  linkedin,
+  foodPreference,
+  bringingLaptop
 }) {
 
   //? Normalize Email first for security and duplicacy
@@ -105,6 +109,10 @@ export async function registerUser({
     college: college || "",
     company: company || "",
     phone: phone || "",
+    github: github || "",
+    linkedin: linkedin || "",
+    foodPreference: foodPreference || "",
+    bringingLaptop: bringingLaptop || false,
     provider: auth_provider ? auth_provider : AUTH_PROVIDERS.MANUAL,
   });
 
