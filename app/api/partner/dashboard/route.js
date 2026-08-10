@@ -19,6 +19,9 @@ import {
 import {
   NextResponse
 } from "next/server";
+import {
+  redirectToCorrectDashboard
+} from "../../common/redirect_to_correct_dashboard";
 
 export const GET = asyncDbHandler(async (req) => {
   const authResult = await authenticate(req);
@@ -26,9 +29,9 @@ export const GET = asyncDbHandler(async (req) => {
     return NextResponse.redirect(new URL("/login", req.url))
   }
 
-  const roleCheck = authorize(ROLES.COMMUNITY_PARTNER, ROLES.ADMIN)(authResult.user);
+  const roleCheck = authorize(ROLES.COMMUNITY_PARTNER)(authResult.user);
   if (!roleCheck.authorized) {
-    return NextResponse.redirect(new URL("/login", req.url))
+    return redirectToCorrectDashboard(authResult.user.role, req)
   }
 
   const dashboardData = await getPartnerDashboardController(authResult.user._id);

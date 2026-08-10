@@ -16,6 +16,12 @@ import {
 import {
   ROLES
 } from "../../../../backend/config/constants";
+import {
+  authorize
+} from "@/backend/middlewares/role.middleware.js";
+import {
+  redirectToCorrectDashboard
+} from "../../common/redirect_to_correct_dashboard";
 
 const isProd = process.env.NODE_ENV === "production";
 const redirectHost = isProd ? process.env.SITE_URL : "http://localhost:3000"
@@ -38,7 +44,10 @@ export const GET = asyncDbHandler(async (req) => {
     const redirectToRegister = `${redirectHost}/register?${paramsUrl.toString()}`;
     return NextResponse.redirect(redirectToRegister)
   }
-
+  const roleCheck = authorize(ROLES.STUDENT)(authResult.user)
+  if (!roleCheck.authorized) {
+    return redirectToCorrectDashboard(authResult.user.role, req)
+  }
   return sendResponse({
     success: true,
     statusCode: 200,
