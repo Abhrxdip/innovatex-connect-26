@@ -116,7 +116,7 @@ export async function registerUser({
     website: website || "",
     avatar: role === ROLES.STUDENT ? `${process.env.SITE_URL}/student.png` : role === ROLES.COMMUNITY_PARTNER ? `${process.env.SITE_URL}/community_partner.png` : `${process.env.SITE_URL}/professional.png` || "",
     foodPreference: foodPreference || "",
-    bringingLaptop: bringingLaptop || false,
+    bringingLaptop: true,
     provider: auth_provider ? auth_provider : AUTH_PROVIDERS.MANUAL,
   });
 
@@ -276,7 +276,8 @@ export async function updateUserDetails({
         phone: phone ?? '',
         github: github ?? '',
         linkedin: linkedin ?? '',
-        foodPreference: foodPreference ?? ''
+        foodPreference: foodPreference ?? '',
+        bringingLaptop: true,
       }
     }, {
       new: true
