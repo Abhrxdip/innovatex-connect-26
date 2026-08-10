@@ -27,6 +27,9 @@ export async function POST(req: NextRequest) {
             const updatedProfile = await updateUserDetails({
                 _id: authResult.user._id,
                 role: (await clone.json())["role"],
+                foodPreference: validationResult.data.foodPreference,
+                linkedin: validationResult.data.linkedin,
+                github: validationResult.data.github,
                 college: validationResult.data.college,
                 company: validationResult.data.company,
                 phone: validationResult.data.phone

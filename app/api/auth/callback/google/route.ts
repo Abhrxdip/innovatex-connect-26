@@ -55,11 +55,10 @@ export async function GET(request: NextRequest) {
 
 
         const userData = await userResponse.json() as GAuthUserData
-
         cookieStore.delete('oauth_state')
 
         const referralCode = cookieStore.get("ref")?.value;
-        const { user, token, isNewUser } = await googleLoginUser({ name: userData.name, email: userData.email, referralCode });
+        const { user, token, isNewUser } = await googleLoginUser({ name: userData.name, email: userData.email, referralCode, avatar: userData.picture });
 
         const redirectUrl = new URL(isNewUser || !user.phone ? '/register' : '/dashboard', request.url);
         if (isNewUser || !user.phone) {

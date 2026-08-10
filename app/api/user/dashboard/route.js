@@ -13,6 +13,9 @@ import {
 import {
   NextResponse
 } from "next/server";
+import {
+  ROLES
+} from "../../../../backend/config/constants";
 
 const isProd = process.env.NODE_ENV === "production";
 const redirectHost = isProd ? process.env.SITE_URL : "http://localhost:3000"
@@ -25,7 +28,7 @@ export const GET = asyncDbHandler(async (req) => {
   }
 
   const dashboardData = await getUserDashboardController(authResult.user._id);
-  if (!dashboardData.user.role) {
+  if (!dashboardData.user.role || dashboardData.user.role === ROLES.UNDEFINED) {
     const options = {
       email: dashboardData.user.email,
       name: dashboardData.user.name,

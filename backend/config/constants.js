@@ -3,12 +3,14 @@ export const ROLES = {
   WORKING_PROFESSIONAL: "Working Professional",
   COMMUNITY_PARTNER: "Community Partner",
   ADMIN: "Admin",
+  UNDEFINED: "Undefined"
 };
 
 export const REGISTRATIONROLES = {
   STUDENT: "Student",
   WORKING_PROFESSIONAL: "Working Professional",
   COMMUNITY_PARTNER: "Community Partner",
+  UNDEFINED: "Undefined",
 };
 
 export const TICKET_STATUS = {

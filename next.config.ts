@@ -38,6 +38,15 @@ if (missingKeys.length > 0) {
 }
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com', // Matches all hostnames and domains
+      },
+      
+    ],
+  },
   allowedDevOrigins: [
     "localhost"
   ],

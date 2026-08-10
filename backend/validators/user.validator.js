@@ -26,6 +26,8 @@ export const updateProfileSchema = z.object({
   company: z.string().optional(),
   github: githubUrlSchema,
   linkedin: linkedinUrlSchema,
+  foodPreference: z.enum(["Veg", "Non-Veg"]),
+  website: z.string().optional(),
   phone: z.string().optional(),
   avatar: z.string().optional(),
 });
