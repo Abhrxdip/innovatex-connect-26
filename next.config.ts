@@ -43,8 +43,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: '*.googleusercontent.com', // Matches all hostnames and domains
+      }, {
+        protocol: 'https',
+        hostname: new URL(process.env.SITE_URL!).hostname,
+        pathname: '/**', // Allows all images from this domain
       },
-      
+
     ],
   },
   allowedDevOrigins: [
