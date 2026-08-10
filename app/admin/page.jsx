@@ -145,7 +145,7 @@ export default function AdminDashboardPage() {
     if (tickets.length === 0) return;
 
     const headers = [
-      'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'Food', 'Laptop', 'LinkedIn', 'GitHub', 'Date Applied'
+      'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'Food', 'Laptop', 'LinkedIn', 'GitHub', 'Referred By', 'Date Applied'
     ];
 
     const csvRows = [headers.join(',')];
@@ -163,6 +163,7 @@ export default function AdminDashboardPage() {
         `"${t.userId?.bringingLaptop ? 'Yes' : 'No'}"`,
         `"${t.userId?.linkedin || ''}"`,
         `"${t.userId?.github || ''}"`,
+        `"${t.referralData?.partnerId?.name || ''}"`,
         `"${new Date(t.createdAt).toLocaleString()}"`
       ];
       csvRows.push(row.join(','));
@@ -378,10 +379,11 @@ export default function AdminDashboardPage() {
                               <td className="py-3 px-3 font-medium text-slate-200">{t.attendeeType}</td>
                               <td className="py-3 px-3">
                                 <p className="text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</p>
-                                {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
-                                  <div className="mt-1 flex items-center gap-1.5">
+                                {(t.userId?.foodPreference || t.userId?.bringingLaptop || t.referralData?.partnerId?.name) && (
+                                  <div className="mt-1 flex items-center gap-1.5 flex-wrap">
                                     {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
                                     {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> Laptop</span>}
+                                    {t.referralData?.partnerId?.name && <span className="px-1.5 py-0.5 rounded bg-orange-500/10 text-[9px] font-bold text-orange-400 border border-orange-500/20 uppercase" title="Referred by">Ref: {t.referralData.partnerId.name}</span>}
                                   </div>
                                 )}
                               </td>
@@ -427,10 +429,11 @@ export default function AdminDashboardPage() {
                               <a href={t.userId?.github || undefined} target={t.userId?.github ? "_blank" : undefined} rel={t.userId?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
                             </div>
                             <p className="text-xs text-slate-300 mt-2">{t.userId?.college || t.userId?.company || 'N/A'} • <span className="font-medium text-slate-200">{t.attendeeType}</span></p>
-                            {(t.userId?.foodPreference || t.userId?.bringingLaptop) && (
-                              <div className="mt-2 flex items-center gap-2">
+                            {(t.userId?.foodPreference || t.userId?.bringingLaptop || t.referralData?.partnerId?.name) && (
+                              <div className="mt-2 flex items-center gap-2 flex-wrap">
                                 {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
                                 {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> Laptop</span>}
+                                {t.referralData?.partnerId?.name && <span className="px-2 py-1 rounded bg-orange-500/10 text-[10px] font-bold text-orange-400 border border-orange-500/20 uppercase">Ref: {t.referralData.partnerId.name}</span>}
                               </div>
                             )}
                           </div>

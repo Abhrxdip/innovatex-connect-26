@@ -48,9 +48,16 @@ export async function listTicketsController(status) {
   const query = status ? {
     status
   } : {};
-  return await Ticket.find(query).populate("userId", "name email college company role phone github linkedin foodPreference bringingLaptop").sort({
+  const tickets = await Ticket.find(query).populate("userId", "name email college company role phone github linkedin foodPreference bringingLaptop").populate({
+    path: "referralData",
+    populate: {
+      path: "partnerId",
+      select: "name email college company"
+    }
+  }).sort({
     createdAt: -1
   });
+  return tickets
 }
 
 export async function approveTicketController(ticketId, adminId) {
