@@ -77,7 +77,7 @@ function TeamCard({ member }) {
       {/* 1. Slanted Photo Frame */}
       <div className="relative w-full h-[220px] xs:h-[250px] sm:h-[300px] md:h-[320px] lg:h-[350px]">
         <div
-          className="w-full h-full border border-white/15 overflow-hidden relative shadow-xl"
+          className="w-full h-full border border-white/15 overflow-hidden relative shadow-xl bg-gradient-to-b from-[#181E30] via-[#101423] to-[#0A0D18]"
           style={{ transform: 'skewX(-14deg)' }}
         >
           {/* Fading Orange Strip Line along TOP BREADTH */}
@@ -86,17 +86,20 @@ function TeamCard({ member }) {
           {/* Orange Accent Stripe on Left Edge (runs ~42% down left side) */}
           <div className="absolute top-0 left-0 w-2 sm:w-2.5 h-[42%] bg-[#D83A14] z-20 shadow-[0_0_12px_rgba(216,58,20,0.6)]" />
 
-          {/* Un-skewed Inner Photo Container */}
+          {/* Un-skewed Inner Photo Container (Centered studio portrait alignment) */}
           <div
-            className="w-full h-full scale-125 flex items-center justify-center overflow-hidden"
+            className="w-full h-full scale-110 flex items-end justify-center overflow-hidden pt-4"
             style={{ transform: 'skewX(14deg)' }}
           >
             <img
               src={member.image}
               alt={member.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
             />
           </div>
+
+          {/* Subtle Bottom vignette fade to anchor subject cutout */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D18]/80 via-transparent to-transparent pointer-events-none z-20" />
 
           {/* Top-Right Social Links Overlay */}
           {socialList.length > 0 && (
@@ -114,7 +117,7 @@ function TeamCard({ member }) {
 
       {/* 2. Slanted Bottom Name Card */}
       <div
-        className="relative w-full py-2 sm:py-2.5 px-3 sm:px-4 overflow-hidden border-t border-r border-white/70 border-b border-b-white/15 border-l border-l-white/20 shadow-xl"
+        className="relative w-full py-2.5 px-3 sm:px-4 overflow-hidden border-t border-r border-white/70 border-b border-b-white/15 border-l border-l-white/20 shadow-xl min-h-[58px] flex items-center"
         style={{
           transform: 'skewX(-14deg)',
           background:
@@ -134,11 +137,11 @@ function TeamCard({ member }) {
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#EE4B15] via-[#EE4B15]/70 to-transparent z-30 shadow-[0_0_8px_rgba(238,75,21,0.6)]" />
 
         {/* Un-skewed Name & Role Text */}
-        <div className="pl-3 sm:pl-4 flex flex-col justify-center relative z-30" style={{ transform: 'skewX(14deg)' }}>
-          <h4 className="font-extrabold italic uppercase text-[#FFF5EB] text-xs sm:text-sm md:text-base tracking-wider leading-none font-tech truncate drop-shadow-md">
+        <div className="pl-3 sm:pl-4 flex flex-col justify-center relative z-30 w-full" style={{ transform: 'skewX(14deg)' }}>
+          <h4 className="font-extrabold italic uppercase text-[#FFF5EB] text-[11px] xs:text-xs sm:text-sm md:text-sm tracking-wide leading-tight font-tech drop-shadow-md break-words">
             {member.name}
           </h4>
-          <p className="text-[#F5A58A] italic text-[10px] sm:text-xs font-medium tracking-wide mt-1 sm:mt-1.5 font-display capitalize truncate">
+          <p className="text-[#F5A58A] italic text-[10px] sm:text-xs font-medium tracking-wide mt-1 font-display capitalize truncate">
             {member.role}
           </p>
         </div>
