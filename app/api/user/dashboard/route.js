@@ -44,7 +44,7 @@ export const GET = asyncDbHandler(async (req) => {
     const redirectToRegister = `${redirectHost}/register?${paramsUrl.toString()}`;
     return NextResponse.redirect(redirectToRegister)
   }
-  const roleCheck = authorize(ROLES.STUDENT)(authResult.user)
+  const roleCheck = authorize(ROLES.STUDENT, ROLES.WORKING_PROFESSIONAL)(authResult.user)
   if (!roleCheck.authorized) {
     return redirectToCorrectDashboard(authResult.user.role, req)
   }
