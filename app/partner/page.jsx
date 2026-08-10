@@ -99,7 +99,7 @@ export default function PartnerDashboardPage() {
                 </div>
               </div>
 
-              
+
             </div>
 
             {/* Shareable Referral Link Widget */}
@@ -168,7 +168,13 @@ export default function PartnerDashboardPage() {
                     <tbody className="divide-y divide-white/5 text-xs">
                       {data.stats.referrals.map((ref) => (
                         <tr key={ref._id} className="hover:bg-white/5 transition-colors">
-                          <td className="py-3 px-2 font-bold text-white">{ref.referredUser?.name || 'N/A'}</td>
+                          <td className="py-3 px-2">
+                            <p className="font-bold text-white">{ref.referredUser?.name || 'N/A'}</p>
+                            <div className="flex gap-2 mt-1.5">
+                              <a href={ref.referredUser?.linkedin || undefined} target={ref.referredUser?.linkedin ? "_blank" : undefined} rel={ref.referredUser?.linkedin ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${ref.referredUser?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
+                              <a href={ref.referredUser?.github || undefined} target={ref.referredUser?.github ? "_blank" : undefined} rel={ref.referredUser?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${ref.referredUser?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>
+                            </div>
+                          </td>
                           <td className="py-3 px-2 text-slate-300">{ref.referredUser?.email || 'N/A'}</td>
                           <td className="py-3 px-2 text-slate-300">{ref.referredUser?.college || 'Student'}</td>
                           <td className="py-3 px-2 font-mono text-slate-500 text-[11px]">

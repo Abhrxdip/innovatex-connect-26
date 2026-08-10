@@ -50,7 +50,7 @@ export async function getPartnerStatsService(partnerId) {
   const approvedReferrals = await Referral.countDocuments({ partnerId, status: TICKET_STATUS.APPROVED });
 
   const referrals = await Referral.find({ partnerId })
-    .populate("referredUser", "name email college role createdAt")
+    .populate("referredUser", "name email college role createdAt github linkedin")
     .sort({ createdAt: -1 });
 
   return {
