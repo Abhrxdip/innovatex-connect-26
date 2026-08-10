@@ -17,7 +17,7 @@ export async function sendOTPMail({ name, email, otp }: { name: string, email: s
     console.log(`OTP mail sent. ID: ${res.messageId}`)
 }
 
-export async function sendTicketConfirmedMail({ name, email, ticket_number, attendee_type, organization, qr_code }: { name: string, email: string, ticket_number: string, attendee_type: string, organization: string, qr_code: string }): Promise<void> {
+export async function sendTicketConfirmedMail({ name, email, ticket_number, attendee_type, organization, qr_code, foodPreference }: { name: string, email: string, ticket_number: string, attendee_type: string, organization: string, qr_code: string, foodPreference: string }): Promise<void> {
     const res = await mailClient.transactionalEmails.sendTransacEmail({
         to: [{
             email: email,
@@ -31,6 +31,7 @@ export async function sendTicketConfirmedMail({ name, email, ticket_number, atte
             attendee_type: attendee_type,
             organization: organization,
             qr_code: qr_code,
+            foodPreference: foodPreference,
         },
         attachment: [
             { content: qr_code, name: "ticket.png" }

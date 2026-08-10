@@ -98,7 +98,8 @@ export async function approveTicketController(ticketId, adminId) {
     email: ticket.userId.email,
     organization: ticket.userId.role === "Student" ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name : ticket.userId.company ?? ticket.userId.college,
     qr_code: qrCodeDataUrl.split(',')[1],
-    ticket_number: ticket.ticketNumber
+    ticket_number: ticket.ticketNumber,
+    foodPreference: ticket.userId.foodPreference,
   })
 
   return ticket;
