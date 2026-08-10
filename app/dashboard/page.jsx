@@ -288,6 +288,14 @@ export default function UserDashboardPage() {
                         {data.ticket.foodCollected ? 'Food Claimed' : 'Food Coupon Available'}
                       </div>
                     </div>
+                    
+                    {/* Mandatory Laptop Note */}
+                    <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
+                      <span className="text-blue-400 font-bold text-sm">ℹ️</span>
+                      <p className="text-blue-200 text-xs font-medium leading-relaxed">
+                        <span className="font-bold text-blue-400">Important:</span> Please remember to bring your laptop. It is <span className="font-bold text-white underline">mandatory</span> for participating in this event.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Right Side: QR Code */}
