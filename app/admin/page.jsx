@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import QRScannerModal from '../components/QRScannerModal';
+import TicketDetailsModal from '../components/TicketDetailsModal';
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -14,6 +15,7 @@ export default function AdminDashboardPage() {
   const [actionLoading, setActionLoading] = useState(null);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  const [selectedTicket, setSelectedTicket] = useState(null);
 
   // Scanner state
   const [scannerOpen, setScannerOpen] = useState(false);
@@ -140,7 +142,7 @@ export default function AdminDashboardPage() {
     const headers = [
       'Ticket No', 'Name', 'Email', 'Phone', 'College/Company', 'Type', 'Status', 'Food', 'Laptop', 'LinkedIn', 'GitHub', 'Date Applied'
     ];
-    
+
     const csvRows = [headers.join(',')];
 
     for (const t of tickets) {
@@ -200,6 +202,15 @@ export default function AdminDashboardPage() {
         scanResult={scanResult}
         scanLoading={scanLoading}
         scanError={error}
+      />
+
+      <TicketDetailsModal 
+        isOpen={!!selectedTicket}
+        onClose={() => setSelectedTicket(null)}
+        ticket={selectedTicket}
+        onApprove={handleApprove}
+        onReject={handleReject}
+        actionLoading={actionLoading}
       />
 
       <main className="relative z-10 flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-32 sm:pt-36 pb-16">
@@ -347,7 +358,12 @@ export default function AdminDashboardPage() {
                             <tr key={t._id} className="hover:bg-white/5 transition-colors">
                               <td className="py-3 px-3 font-mono font-bold text-[#EE4B15]">{t.ticketNumber}</td>
                               <td className="py-3 px-3">
-                                <p className="font-bold text-white">{t.userId?.name}</p>
+                                <p 
+                                  className="font-bold text-white hover:text-[#EE4B15] cursor-pointer transition-colors"
+                                  onClick={() => setSelectedTicket(t)}
+                                >
+                                  {t.userId?.name}
+                                </p>
                                 <p className="text-[11px] text-slate-400">{t.userId?.email}</p>
                                 <div className="flex gap-2 mt-1.5">
                                   <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
@@ -395,7 +411,12 @@ export default function AdminDashboardPage() {
                             <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${statusColor(t.status)}`}>{t.status}</span>
                           </div>
                           <div>
-                            <p className="font-bold text-white text-sm">{t.userId?.name}</p>
+                            <p 
+                              className="font-bold text-white text-sm hover:text-[#EE4B15] cursor-pointer transition-colors"
+                              onClick={() => setSelectedTicket(t)}
+                            >
+                              {t.userId?.name}
+                            </p>
                             <p className="text-xs text-slate-400">{t.userId?.email}</p>
                             <div className="flex gap-2 mt-1.5">
                               <a href={t.userId?.linkedin || undefined} target={t.userId?.linkedin ? "_blank" : undefined} rel={t.userId?.linkedin ? "noopener noreferrer" : undefined} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${t.userId?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
