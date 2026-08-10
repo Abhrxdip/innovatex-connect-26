@@ -19,7 +19,6 @@ const requiredKeys = [
   'CLOUDINARY_API_KEY',
   'CLOUDINARY_API_SECRET',
   'JWT_EXPIRES_IN',
-  'NODE_ENV',
   'NEXT_PUBLIC_TICKET_AVAILABLE',
   'NEXT_PUBLIC_TICKET_REDIRECT_URL',
   'SITE_URL',
@@ -29,31 +28,32 @@ const requiredKeys = [
   'REDIS_URL'
 ];
 
-const missingKeys = requiredKeys.filter(key => !process.env[key]);
+const isProd = process.env.NODE_ENV === 'production';
+const missingKeys = requiredKeys.filter((key) => !process.env[key]);
 
-if (missingKeys.length > 0) {
+if (isProd && missingKeys.length > 0) {
   throw new Error(
     `Missing required environment variables: ${missingKeys.join(', ')}\nPlease ensure they are set.`
   );
 }
+
+const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.googleusercontent.com', // Matches all hostnames and domains
-      }, {
-        protocol: 'https',
-        hostname: new URL(process.env.SITE_URL!).hostname,
-        pathname: '/**', // Allows all images from this domain
+        hostname: '*.googleusercontent.com',
       },
-
+      {
+        protocol: 'https',
+        hostname: new URL(siteUrl).hostname,
+        pathname: '/**',
+      },
     ],
   },
-  allowedDevOrigins: [
-    "localhost"
-  ],
+  allowedDevOrigins: ['localhost'],
 };
 
 export default nextConfig;
