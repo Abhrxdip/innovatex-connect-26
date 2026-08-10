@@ -87,7 +87,7 @@ export default function PartnerDashboardPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-extrabold text-white">{data?.partner?.name}</h1>
+                    <h1 className="text-2xl font-extrabold text-white">{data?.partner?.company}</h1>
                     <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-orange-500/10 text-[#EE4B15] border border-orange-500/20">
                       Community Partner
                     </span>
@@ -169,7 +169,7 @@ export default function PartnerDashboardPage() {
                       {data.stats.referrals.map((ref) => (
                         <tr key={ref._id} className="hover:bg-white/5 transition-colors">
                           <td className="py-3 px-2">
-                            <p className="font-bold text-white">{ref.referredUser?.name || 'N/A'}</p>
+                            <p className="font-bold text-white">{ref.referredUser?.company || 'N/A'}</p>
                             <div className="flex gap-2 mt-1.5">
                               <a href={ref.referredUser?.linkedin || undefined} target={ref.referredUser?.linkedin ? "_blank" : undefined} rel={ref.referredUser?.linkedin ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${ref.referredUser?.linkedin ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>LinkedIn</a>
                               <a href={ref.referredUser?.github || undefined} target={ref.referredUser?.github ? "_blank" : undefined} rel={ref.referredUser?.github ? "noopener noreferrer" : undefined} onClick={(e) => e.stopPropagation()} className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${ref.referredUser?.github ? 'bg-slate-700/50 text-slate-300 hover:bg-slate-700/80' : 'bg-white/5 text-slate-600 cursor-not-allowed pointer-events-none'}`}>GitHub</a>

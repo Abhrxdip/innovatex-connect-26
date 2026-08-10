@@ -489,9 +489,9 @@ export default function AdminDashboardPage() {
                           <div className="w-16 h-16 rounded-2xl bg-[#151C47] text-slate-355 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
                             🥈
                           </div>
-                          <h3 className="text-base font-extrabold text-white">{leaderboard[1].partner?.name}</h3>
+                          <h3 className="text-base font-extrabold text-white">{leaderboard[1].partner?.company}</h3>
                           <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
-                            {leaderboard[1].partner?.college || leaderboard[1].partner?.company || 'Partner'}
+                            {leaderboard[1].partner?.college || leaderboard[1].partner?.name || 'Partner'}
                           </p>
                           <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-around text-xs">
                             <div>
@@ -515,9 +515,9 @@ export default function AdminDashboardPage() {
                           <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-amber-950 font-black text-3xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-lg shadow-amber-500/20">
                             🥇
                           </div>
-                          <h3 className="text-lg font-black text-white">{leaderboard[0].partner?.name}</h3>
+                          <h3 className="text-lg font-black text-white">{leaderboard[0].partner?.company}</h3>
                           <p className="text-amber-400 text-xs font-semibold truncate max-w-[200px] mx-auto">
-                            {leaderboard[0].partner?.college || leaderboard[0].partner?.company || 'Top Champion'}
+                            {leaderboard[0].partner?.college || leaderboard[0].partner?.name || 'Top Champion'}
                           </p>
                           <div className="mt-4 pt-3 border-t border-amber-400/20 flex items-center justify-around text-xs">
                             <div>
@@ -541,9 +541,9 @@ export default function AdminDashboardPage() {
                           <div className="w-16 h-16 rounded-2xl bg-[#1C1710] text-amber-500 font-bold text-2xl flex items-center justify-center mx-auto mt-2 mb-3 shadow-inner">
                             🥉
                           </div>
-                          <h3 className="text-base font-extrabold text-white">{leaderboard[2].partner?.name}</h3>
+                          <h3 className="text-base font-extrabold text-white">{leaderboard[2].partner?.company}</h3>
                           <p className="text-slate-400 text-xs truncate max-w-[180px] mx-auto">
-                            {leaderboard[2].partner?.college || leaderboard[2].partner?.company || 'Partner'}
+                            {leaderboard[2].partner?.college || leaderboard[2].partner?.name || 'Partner'}
                           </p>
                           <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-around text-xs">
                             <div>
@@ -569,7 +569,7 @@ export default function AdminDashboardPage() {
                             <tr className="border-b border-white/10 text-[11px] font-extrabold uppercase text-slate-400 tracking-wider">
                               <th className="pb-3 px-3">Rank</th>
                               <th className="pb-3 px-3">Partner Name</th>
-                              <th className="pb-3 px-3">College / Organization</th>
+                              <th className="pb-3 px-3">Name</th>
                               <th className="pb-3 px-3 text-center">Total Signups</th>
                               <th className="pb-3 px-3 text-right">Approved Tickets</th>
                             </tr>
@@ -580,9 +580,9 @@ export default function AdminDashboardPage() {
                                 <td className="py-3 px-3 font-extrabold text-slate-200">
                                   {idx === 0 ? '🥇 #1' : idx === 1 ? '🥈 #2' : idx === 2 ? '🥉 #3' : `#${idx + 1}`}
                                 </td>
-                                <td className="py-3 px-3 font-bold text-white">{item.partner?.name}</td>
+                                <td className="py-3 px-3 font-bold text-white">{item.partner?.company}</td>
                                 <td className="py-3 px-3 text-slate-355 font-medium">
-                                  {item.partner?.college || item.partner?.company || 'Community Partner'}
+                                  {item.partner?.college || item.partner?.name || 'Community Partner'}
                                 </td>
                                 <td className="py-3 px-3 text-center font-bold text-slate-300">{item.totalReferrals}</td>
                                 <td className="py-3 px-3 text-right font-extrabold text-[#EE4B15] text-sm">

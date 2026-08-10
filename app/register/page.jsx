@@ -323,17 +323,19 @@ function RegisterForm() {
             )
           }
 
-          {/* Company (Professional) */}
+          {/* Company / Community Name */}
           {
-            role === 'Working Professional' && (
+            (role === 'Working Professional' || role === 'Community Partner') && (
               <div>
-                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Company / Organization</label>
+                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                  {role === 'Community Partner' ? 'Community Name' : 'Company / Organization'}
+                </label>
                 <input
                   type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="e.g. Google / Microsoft"
+                  placeholder={role === 'Community Partner' ? 'e.g. Google Developer Groups' : 'e.g. Google / Microsoft'}
                   className={inputClass}
                 />
               </div>
