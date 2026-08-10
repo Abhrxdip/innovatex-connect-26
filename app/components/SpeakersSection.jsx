@@ -12,11 +12,11 @@ function SpeakerCard({ speaker, index }) {
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#EE4B15] to-transparent" />
 
         <div className="flex h-full flex-col p-4 sm:p-5">
-          <div className="mb-4 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-slate-400">
+          <div className="mb-4 flex flex-col items-start gap-2 text-[9px] uppercase tracking-[0.22em] text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:text-[10px] sm:tracking-[0.3em]">
             <span className="rounded-full border border-[#EE4B15]/20 bg-[#EE4B15]/10 px-2.5 py-1 font-black text-[#EE4B15]">
               SPEAKER {String(index + 1).padStart(2, '0')}
             </span>
-            <span>MENTOR</span>
+            <span className="pl-1 sm:pl-0">MENTOR</span>
           </div>
 
           <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-gradient-to-b from-[#12193f] to-[#070b1e] p-2">
@@ -72,7 +72,7 @@ export default function SpeakersSection() {
         </p>
       </div>
 
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <div className="grid w-full grid-cols-2 gap-3 sm:gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         {speakersList.map((speaker, index) => (
           <SpeakerCard key={`${speaker.name}-${index}`} speaker={speaker} index={index} />
         ))}
