@@ -18,8 +18,8 @@ function RegisterForm() {
     college: '',
     company: '',
     phone: '',
-    github: 'https://github.com/',
-    linkedin: 'https://linkedin.com/in/',
+    github: '',
+    linkedin: '',
     otp: '',
     referralCode: searchParams.get('ref') || '',
     provider: searchParams.get('provider') || 'manual',
@@ -37,12 +37,7 @@ function RegisterForm() {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    if (name === 'github' && !value.startsWith('https://github.com/')) {
-      return;
-    }
-    if (name === 'linkedin' && !value.startsWith('https://linkedin.com/in/')) {
-      return;
-    }
+    // Removed startsWith validation to allow users to paste full profile links
 
     setFormData((prev) => ({
       ...prev,
@@ -389,7 +384,6 @@ function RegisterForm() {
                 required
                 value={formData.linkedin}
                 onChange={handleChange}
-                pattern="https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9-_%]+\/?"
                 placeholder="https://linkedin.com/in/yourprofile"
                 className={`${inputClass} pl-10`}
               />
@@ -412,7 +406,6 @@ function RegisterForm() {
                   required
                   value={formData.github}
                   onChange={handleChange}
-                  pattern="https?:\/\/(www\.)?github\.com\/[A-Za-z0-9-]+\/?"
                   placeholder="https://github.com/yourusername"
                   className={`${inputClass} pl-10`}
                 />

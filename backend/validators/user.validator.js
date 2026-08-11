@@ -5,22 +5,20 @@ import {
   REGISTRATIONROLES
 } from "../config/constants";
 
-const optionalSocialLink = (pattern, message) =>
+const optionalSocialLink = (message) =>
   z.preprocess((value) => {
     if (value === "") {
       return undefined;
     }
     return value;
-  }, z.string().trim().regex(pattern, message).optional());
+  }, z.string().trim().url(message).optional());
 
 const githubUrlSchema = optionalSocialLink(
-  /^https?:\/\/(www\.)?github\.com\/[A-Za-z0-9-]+\/?$/i,
-  "GitHub URL must be a valid GitHub profile link"
+  "GitHub profile must be a valid URL"
 );
 
 const linkedinUrlSchema = optionalSocialLink(
-  /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9-_%]+\/?$/i,
-  "LinkedIn URL must be a valid /in/ profile link"
+  "LinkedIn profile must be a valid URL"
 );
 
 export const updateProfileSchema = z.object({
