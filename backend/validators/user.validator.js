@@ -5,21 +5,17 @@ import {
   REGISTRATIONROLES
 } from "../config/constants";
 
-const optionalSocialLink = (message) =>
+const optionalSocialLink = () =>
   z.preprocess((value) => {
     if (value === "") {
       return undefined;
     }
     return value;
-  }, z.string().trim().url(message).optional());
+  }, z.string().trim().optional());
 
-const githubUrlSchema = optionalSocialLink(
-  "GitHub profile must be a valid URL"
-);
+const githubUrlSchema = optionalSocialLink();
 
-const linkedinUrlSchema = optionalSocialLink(
-  "LinkedIn profile must be a valid URL"
-);
+const linkedinUrlSchema = optionalSocialLink();
 
 export const updateProfileSchema = z.object({
   name: z.string().min(2).optional(),
