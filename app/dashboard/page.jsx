@@ -42,6 +42,7 @@ export default function UserDashboardPage() {
       const res = await fetch('/api/user/dashboard');
       if (res.redirected) {
         window.location.href = res.url
+        return
       }
       const json = await res.json();
       if (!res.ok || !json.success) {

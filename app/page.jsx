@@ -117,7 +117,6 @@ export default function Home() {
 
       {/* Coming Soon Section */}
       <ComingSoon />
-
       {/* Speakers Section */}
       {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
         <SpeakersSection />
@@ -129,7 +128,6 @@ export default function Home() {
         variant="bold"
         speed="fast"
       /> */}
-
       {/* Agenda Section */}
       {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
         <AgendaSection />
@@ -153,9 +151,9 @@ export default function Home() {
       </div>
 
       {/* Contact Section */}
-      <div className="px-3 sm:px-6 md:px-12 relative z-10">
+      {/* <div className="px-3 sm:px-6 md:px-12 relative z-10">
         <ContactSection />
-      </div>
+      </div> */}
 
       {/* Footer */}
       <Footer />

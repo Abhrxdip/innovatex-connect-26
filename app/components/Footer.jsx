@@ -5,18 +5,6 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function Footer() {
-  const handleScrollTo = (e, targetId) => {
-    if (typeof window !== 'undefined') {
-      const isHome = window.location.pathname === '/';
-      const el = document.getElementById(targetId);
-      if (isHome && el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `/#${targetId}`);
-      }
-    }
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -74,10 +62,10 @@ export default function Footer() {
           <div className="md:col-span-3 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0">
             <h4 className="text-white font-extrabold text-sm uppercase tracking-widest mb-6">Quick Links</h4>
             <ul className="space-y-4">
-              <li><Link href="/" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300">Home</Link></li>
-              <li><a href="/#comingsoon" onClick={(e) => handleScrollTo(e, 'comingsoon')} className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Agenda</a></li>
-              <li><a href="/#comingsoon" onClick={(e) => handleScrollTo(e, 'comingsoon')} className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Speakers</a></li>
-              <li><a href="/#ticket" onClick={(e) => handleScrollTo(e, 'ticket')} className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Get Tickets</a></li>
+              <li><a href="/#" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300">Home</a></li>
+              <li><a href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Agenda</a></li>
+              <li><a href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Speakers</a></li>
+              <li><a href="/#ticket" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Get Tickets</a></li>
               <li><Link href="/login" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Dashboard Login</Link></li>
             </ul>
           </div>

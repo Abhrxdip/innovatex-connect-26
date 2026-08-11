@@ -125,63 +125,31 @@ export const ticketBenefits = [
 
 export const faqData = [
   {
-    q: "What is InnovateX Connect ’26?",
-    a: "InnovateX Connect ’26 is a developer-focused community conference designed to bring together students, developers, tech enthusiasts, and industry professionals to learn, connect, and build together."
-  },
-  {
-    q: "Who can attend the event?",
-    a: "The event is open to students, developers, beginners, tech enthusiasts, and anyone interested in technology and software development."
-  },
-  {
     q: "Is the event free?",
-    a: "Yes! 🎉 InnovateX Connect ’26 is completely free to attend. No registration fee is required."
+    a: "Yes! InnovateX Connect ’26 is completely free of cost."
   },
   {
-    q: "Do I need to bring a laptop?",
-    a: "Yes. 💻 Laptop is mandatory.\nParticipants are expected to bring their own laptop for the hands-on workshop and practical activities."
+    q: "Is a laptop mandatory?",
+    a: "Yes. Participants must bring their own laptop for the hands-on workshop."
   },
   {
-    q: "Will there be workshops?",
-    a: "Yes! 🛠️ The conference will include hands-on technical workshops where participants can learn and work on practical concepts with guidance from mentors/speakers."
+    q: "Will I receive a certificate?",
+    a: "Yes! All registered participants will receive a digital participation certificate."
+  },
+  {
+    q: "Will there be a workshop?",
+    a: "Yes! We’ll have an interactive, hands-on developer workshop."
   },
   {
     q: "Will food be provided?",
-    a: "Yes! 🍱 Lunch and beverages will be provided to registered participants free of cost."
+    a: "Yes! Lunch and beverages will be provided to all registered participants."
   },
   {
-    q: "Will participants receive swags?",
-    a: "Yes! 🎁 Participants can expect exclusive swags and goodies as part of the event."
+    q: "Will there be swags?",
+    a: "Absolutely! Participants will get exclusive swags and goodies."
   },
   {
-    q: "Do I need to have prior technical experience?",
-    a: "No. Beginners are welcome! The sessions and workshops will be designed to provide value to participants with different levels of technical experience."
-  },
-  {
-    q: "Is registration required?",
-    a: "Yes. Participants must register for the event in advance. Entry will be subject to successful registration and event capacity."
-  },
-  {
-    q: "What should I bring to the event?",
-    a: "Please bring:\n- 💻 Your laptop\n- 🔌 Laptop charger\n- 📱 Mobile phone\n- 🪪 Valid college/student ID (if applicable)\n- 💡 Your curiosity and enthusiasm to learn!"
-  },
-  {
-    q: "Will I get a certificate?",
-    a: "Certificate availability will depend on the event's participation/attendance policy. Details will be announced by the organizers."
-  },
-  {
-    q: "Can I network with other developers?",
-    a: "Absolutely! 🤝 InnovateX Connect ’26 is not just about sessions and workshops—it is also an opportunity to meet developers, students, speakers, mentors, and members of the tech community."
-  },
-  {
-    q: "What can I expect from InnovateX Connect ’26?",
-    a: "You can expect:\n- 👨‍💻 Developer-focused technical sessions\n- 🛠️ Hands-on workshops\n- 🎤 Industry/community speakers\n- 🤝 Networking opportunities\n- 🎁 Swags & goodies\n- 🍱 Free lunch & beverages\n- 🚀 A strong developer-community experience"
-  },
-  {
-    q: "Is there anything I need to pay for during the event?",
-    a: "No. The event is free to attend, and lunch and beverages will be provided to registered participants."
-  },
-  {
-    q: "Where can I get event updates?",
-    a: "All important announcements, including schedule, venue details, speaker updates, and workshop information, will be shared through the official InnovateX Connect ’26 communication channels."
+    q: "Will lunch and beverages be provided?",
+    a: "Yes! Lunch and beverages will be provided to all registered participants."
   }
 ];
