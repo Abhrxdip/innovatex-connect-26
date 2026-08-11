@@ -142,17 +142,7 @@ export default function HeroSection() {
                 <span className="text-[clamp(4.5rem,16vw,25rem)] leading-none">
                   <span className="text-[#EE4B15]">2</span>
                   <span className="text-[#F1FDFD]">0</span>
-                </span>
-                NAME
-                ￼
-                EMAIL
-                ￼
-                PHONE
-                ￼
-                MESSAGE
-                ￼
-                ￼
-                SUBMIT MESSAGE
+                </span> 
                 <span className="text-[clamp(4.5rem,16vw,25rem)] leading-none -mt-4 sm:-mt-8 lg:-mt-12">
                   <span className="text-[#F1FDFD]">2</span>
                   <span className="text-[#EE4B15]">6</span>
