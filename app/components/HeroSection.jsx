@@ -117,7 +117,7 @@ export default function HeroSection() {
                 </button>
 
                 <a
-                  href="https://chat.whatsapp.com"
+                  href="https://chat.whatsapp.com/L4X2PkdD8v49MSI1iEWUcu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative overflow-hidden flex flex-1 items-center justify-between sm:justify-start gap-4 rounded-2xl sm:rounded-r-3xl sm:rounded-l-none bg-[#0C1235] px-5 py-4 text-[#F1FDFD] border border-white/10 sm:border-l-0 shadow-[0_24px_70px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-1 hover:border-indigo-400/30"
@@ -143,6 +143,16 @@ export default function HeroSection() {
                   <span className="text-[#EE4B15]">2</span>
                   <span className="text-[#F1FDFD]">0</span>
                 </span>
+                NAME
+                ￼
+                EMAIL
+                ￼
+                PHONE
+                ￼
+                MESSAGE
+                ￼
+                ￼
+                SUBMIT MESSAGE
                 <span className="text-[clamp(4.5rem,16vw,25rem)] leading-none -mt-4 sm:-mt-8 lg:-mt-12">
                   <span className="text-[#F1FDFD]">2</span>
                   <span className="text-[#EE4B15]">6</span>
