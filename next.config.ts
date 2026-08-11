@@ -42,9 +42,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.googleusercontent.com', // Matches all hostnames and domains
+        hostname: '*.googleusercontent.com', // Google user content CDN
       },
-      
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com', // Google Drive direct/thumbnail links
+      },
+      {
+        protocol: 'https',
+        hostname: '*.workers.dev', // Cloudflare Workers endpoints
+      },
     ],
   },
   allowedDevOrigins: [
@@ -52,4 +59,4 @@ const nextConfig: NextConfig = {
   ],
 };
 
-export default nextConfig;
+export default nextConfig;
