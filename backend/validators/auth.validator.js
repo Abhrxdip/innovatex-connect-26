@@ -25,7 +25,7 @@ export const registerSchema = z.object({
   role: z.enum(Object.values(REGISTRATIONROLES)).optional(),
   college: z.string().optional(),
   company: z.string().optional(),
-  phone: z.string().optional(),
+  phone: z.string(),
   github: githubUrlSchema,
   linkedin: linkedinUrlSchema,
   provider: z.enum(Object.values(AUTH_PROVIDERS)).optional(),
@@ -55,7 +55,125 @@ export const registerSchema = z.object({
         message: "OTP must be a 6 digit code",
       });
     }
+
+
+    if (data.role === REGISTRATIONROLES.COMMUNITY_PARTNER) {
+      if (!data.company) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["company"],
+          message: "Company cannot be left blank"
+        })
+      }
+      if (!data.linkedin) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["linkedin"],
+        })
+      }
+    }
+    if (data.role === REGISTRATIONROLES.STUDENT) {
+      if (!data.college) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["college"],
+          message: "College cannot be left blank"
+        })
+      }
+      if (!data.linkedin) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["linkedin"],
+          message: "Linkedin URL must be present"
+        })
+      }
+
+      if (!data.github) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["github"],
+          message: "Github URL must be present"
+        })
+      }
+
+      if (!data.bringingLaptop) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["github"],
+          message: "Laptop is required"
+        })
+      }
+      if (!data.foodPreference) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["foodPreference"],
+          message: "Food Preference is required"
+        })
+      }
+    }
   }
+
+  if (data.role === REGISTRATIONROLES.WORKING_PROFESSIONAL) {
+    if (!data.company) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["company"],
+        message: "Company cannot be left blank"
+      })
+    }
+    if (!data.linkedin) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["linkedin"],
+        message: "Linkedin URL must be present"
+      })
+    }
+
+    if (!data.github) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["github"],
+        message: "Github URL must be present"
+      })
+    }
+
+    if (!data.bringingLaptop) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["github"],
+        message: "Laptop is required"
+      })
+    }
+    if (!data.foodPreference) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["foodPreference"],
+        message: "Food Preference is required"
+      })
+    }
+  }
+
+
+  if (data.role === REGISTRATIONROLES.COMMUNITY_PARTNER) {
+      if (!data.company) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["company"],
+        message: "Company cannot be left blank"
+      })
+    }
+    if (!data.linkedin) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["linkedin"],
+        message: "Linkedin URL must be present"
+      })
+    }
+  }
+
+
+
+
 });
 
 export const loginSchema = z.object({

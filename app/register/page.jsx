@@ -219,34 +219,19 @@ function RegisterForm() {
             <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
               Email Address
             </label>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                disabled={formData.provider === 'google'}
-                placeholder="Enter Your Email"
-                className={`w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all ${formData.provider === 'google'
-                  ? 'bg-slate-200 text-slate-500 cursor-not-allowed opacity-70'
-                  : 'bg-slate-50/80 text-slate-900 focus:bg-white'
-                  }`}
-              />
-              <button
-                type="button"
-                onClick={handleSendOtp}
-                disabled={otpLoading || !formData.email || formData.provider === 'google'}
-                className="sm:w-40 px-4 py-2.5 rounded-xl bg-[#1E1B4B] hover:bg-brand-neon text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {otpLoading ? 'Sending...' : 'Send OTP'}
-              </button>
-            </div>
-            {otpMessage && (
-              <p className="mt-2 text-xs font-medium text-emerald-700">
-                {otpMessage}
-              </p>
-            )}
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              disabled={formData.provider === 'google'}
+              placeholder="Enter Your Email"
+              className={`w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all ${formData.provider === 'google'
+                ? 'bg-slate-200 text-slate-500 cursor-not-allowed opacity-70'
+                : 'bg-slate-50/80 text-slate-900 focus:bg-white'
+                }`}
+            />
           </div>
 
           {/* Password */}
@@ -289,26 +274,7 @@ function RegisterForm() {
             </div>
           )}
 
-          {
-            formData.provider !== 'google' && (
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  OTP
-                </label>
-                <input
-                  type="text"
-                  name="otp"
-                  required
-                  value={formData.otp}
-                  onChange={handleChange}
-                  placeholder="6 digit code sent to your email"
-                  inputMode="numeric"
-                  maxLength={6}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
-                />
-              </div>
-            )
-          }
+
 
           {
             role === 'Student' && (
@@ -337,6 +303,7 @@ function RegisterForm() {
                   type="text"
                   name="company"
                   value={formData.company}
+                  required
                   onChange={handleChange}
                   placeholder={role === 'Community Partner' ? 'e.g. Google Developer Groups' : 'e.g. Google / Microsoft'}
                   className={inputClass}
@@ -363,6 +330,7 @@ function RegisterForm() {
               type="tel"
               name="phone"
               value={formData.phone}
+              required
               onChange={handleChange}
               placeholder="+91 98765 43210"
               className={inputClass}
@@ -372,7 +340,7 @@ function RegisterForm() {
           {/* LinkedIn */}
           <div>
             <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
-              LinkedIn Profile <span className="text-[#EE4B15]">*</span>
+              {role === "Community Partner" ? "Community LinkedIn Profile" : "LinkedIn Profile"} <span className="text-[#EE4B15]">*</span>
             </label>
             <div className="relative">
               <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500">
@@ -384,7 +352,7 @@ function RegisterForm() {
                 required
                 value={formData.linkedin}
                 onChange={handleChange}
-                placeholder="https://linkedin.com/in/yourprofile"
+                placeholder="https://linkedin.com/in/profile"
                 className={`${inputClass} pl-10`}
               />
             </div>
@@ -536,6 +504,41 @@ function RegisterForm() {
               </div>
             )
           }
+
+          {/* Email Verification */}
+          {formData.provider !== 'google' && (
+            <div>
+              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                Email Verification (OTP)
+              </label>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="text"
+                  name="otp"
+                  required
+                  value={formData.otp}
+                  onChange={handleChange}
+                  placeholder="6 digit code sent to your email"
+                  inputMode="numeric"
+                  maxLength={6}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={handleSendOtp}
+                  disabled={otpLoading || !formData.email}
+                  className="sm:w-40 px-4 py-2.5 rounded-xl bg-[#1E1B4B] hover:bg-brand-neon text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                >
+                  {otpLoading ? 'Sending...' : 'Send OTP'}
+                </button>
+              </div>
+              {otpMessage && (
+                <p className="mt-2 text-xs font-medium text-emerald-500">
+                  {otpMessage}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Submit */}
           <button

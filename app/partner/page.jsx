@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import { Icons } from '../components/Icons';
+import PersonAvatar from '../components/ProfilePicture';
 
 export default function PartnerDashboardPage() {
   const [data, setData] = useState(null);
@@ -82,9 +82,7 @@ export default function PartnerDashboardPage() {
             {/* Header Profile Section */}
             <div className="bg-[#0C1235] rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#EE4B15] via-[#C83B0E] to-[#2E6CFF] text-white font-extrabold text-2xl flex items-center justify-center shadow-lg shadow-orange-500/20">
-                  🤝
-                </div>
+                <PersonAvatar src={data?.partner?.avatar} alt="Profile pic" />
                 <div>
                   <div className="flex items-center gap-2">
                     <h1 className="text-2xl font-extrabold text-white">{data?.partner?.company}</h1>
@@ -134,17 +132,6 @@ export default function PartnerDashboardPage() {
                 <p className="text-[11px] text-slate-400 mt-1">Users signed up using your link</p>
               </div>
 
-              <div className="bg-[#0C1235] rounded-2xl p-5 border border-amber-500/20 shadow-md">
-                <p className="text-xs font-bold text-amber-500 uppercase tracking-wider">Pending Approvals</p>
-                <p className="text-3xl font-extrabold text-amber-300 mt-2">{data?.stats?.pendingReferrals || 0}</p>
-                <p className="text-[11px] text-slate-400 mt-1">Awaiting admin review</p>
-              </div>
-
-              <div className="bg-[#0C1235] rounded-2xl p-5 border border-emerald-500/20 shadow-md">
-                <p className="text-xs font-bold text-emerald-500 uppercase tracking-wider">Confirmed Tickets</p>
-                <p className="text-3xl font-extrabold text-emerald-300 mt-2">{data?.stats?.approvedReferrals || 0}</p>
-                <p className="text-[11px] text-slate-400 mt-1">Counts toward Leaderboard rank</p>
-              </div>
             </div>
 
             {/* Referred Attendees Audit Table
