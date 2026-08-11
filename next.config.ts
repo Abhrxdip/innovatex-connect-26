@@ -25,7 +25,9 @@ const requiredKeys = [
   'GOOGLE_AUTH_CLIENT_ID',
   'GOOGLE_AUTH_CLIENT_SECRET',
   'BREVO_MAIL_API_KEY',
-  'REDIS_URL'
+  'REDIS_URL',
+  'MAILTRAP_TOKEN',
+  'MAILTRAP_SENDER_MAIL',
 ];
 
 const isProd = process.env.NODE_ENV === 'production';
