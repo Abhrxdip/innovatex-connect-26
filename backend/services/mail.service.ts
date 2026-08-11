@@ -1,8 +1,27 @@
-import { mailClient } from "../config/mail_config";
+import { brevoMailClient, mailtrapClient } from "../config/mail_config";
 
-
+const useMailtrap = process.env.USE_MAILTRAP
 export async function sendOTPMail({ name, email, otp }: { name: string, email: string, otp: string }): Promise<void> {
-    const res = await mailClient.transactionalEmails.sendTransacEmail({
+    if (useMailtrap) {
+        const res = await mailtrapClient.send({
+            from: {
+                email: "connect@innovatexcom.xyz",
+                name: "InnovateX Community",
+            },
+            to: [{ email: email, name: name }],
+            template_uuid: "69251010-10ab-4ae9-97a4-cbc8be0859f8",
+            template_variables: {
+                "params": {
+                    "name": name,
+                    "email": email,
+                    "otp": otp,
+                }
+            }
+        })
+        console.log(res.message_ids)
+        return
+    }
+    const res = await brevoMailClient.transactionalEmails.sendTransacEmail({
         to: [{
             email: email,
             name: name,
@@ -18,7 +37,28 @@ export async function sendOTPMail({ name, email, otp }: { name: string, email: s
 }
 
 export async function sendTicketConfirmedMail({ name, email, ticket_number, attendee_type, organization, qr_code, foodPreference }: { name: string, email: string, ticket_number: string, attendee_type: string, organization: string, qr_code: string, foodPreference: string }): Promise<void> {
-    const res = await mailClient.transactionalEmails.sendTransacEmail({
+    if (useMailtrap) {
+        const res = await mailtrapClient.send({
+            from: {
+                email: "connect@innovatexcom.xyz",
+                name: "InnovateX Community",
+            },
+            to: [{ email: email, name: name }],
+            template_uuid: "b6aeeb46-49c0-48f4-ab7b-826d3c0594c2",
+            template_variables: {
+                "params": {
+                    "name": name,
+                    "ticket_number": ticket_number,
+                    "attendee_type": attendee_type,
+                    "organization": organization,
+                    "foodPreference": foodPreference,
+                }
+            }
+        })
+        console.log(res.message_ids)
+        return
+    }
+    const res = await brevoMailClient.transactionalEmails.sendTransacEmail({
         to: [{
             email: email,
             name: name,
