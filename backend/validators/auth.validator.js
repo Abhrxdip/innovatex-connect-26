@@ -32,7 +32,7 @@ export const registerSchema = z.object({
   auth_provider: z.enum(Object.values(AUTH_PROVIDERS)).optional(),
   otp: z.string().optional(),
   referralCode: z.string().optional(),
-  foodPreference: z.enum(["Veg", "Non-Veg"]).optional(),
+  foodPreference: z.enum(["Veg", "Non-Veg", ""]).optional(),
   bringingLaptop: z.boolean().optional(),
   website: z.string().optional(),
   avatar: z.string().optional(),
