@@ -71,7 +71,7 @@ export default function HeroSection() {
           </button>
 
           <a
-            href="https://chat.whatsapp.com"
+            href="https://chat.whatsapp.com/L4X2PkdD8v49MSI1iEWUcu"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative overflow-hidden flex items-center justify-between gap-4 rounded-2xl bg-[#0C1235] px-5 py-3.5 text-[#F1FDFD] border border-white/15 shadow-xl transition-all active:scale-98"
