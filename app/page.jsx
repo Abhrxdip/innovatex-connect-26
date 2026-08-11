@@ -8,6 +8,7 @@ import TicketSection from './components/TicketSection';
 import FaqSection from './components/FaqSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import ComingSoon from './components/ComingSoon';
 
 function MarqueeBanner({ words, speed = 'normal', variant = 'default' }) {
   const repeated = [...words, ...words, ...words, ...words, ...words, ...words];
@@ -114,10 +115,13 @@ export default function Home() {
         speed="fast"
       />
 
+      {/* Coming Soon Section */}
+      <ComingSoon />
+
       {/* Speakers Section */}
-      <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
+      {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
         <SpeakersSection />
-      </div>
+      </div> */}
 
       {/* Bold Orange Marquee Before Agenda
       <MarqueeBanner
@@ -127,9 +131,9 @@ export default function Home() {
       /> */}
 
       {/* Agenda Section */}
-      <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
+      {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
         <AgendaSection />
-      </div>
+      </div> */}
 
       {/* Ticket Section */}
       <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">

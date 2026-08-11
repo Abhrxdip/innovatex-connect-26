@@ -64,12 +64,12 @@ export default function Navbar() {
             <span className="hidden sm:inline">Home</span>
           </a>
 
-          <a href="/#speakers" aria-label="Speakers" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <a href="/#comingsoon" aria-label="Speakers" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
           </a>
 
-          <a href="/#agenda" aria-label="Agenda" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <a href="/#comingsoon" aria-label="Agenda" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Agenda />
             <span className="hidden sm:inline">Agenda</span>
           </a>

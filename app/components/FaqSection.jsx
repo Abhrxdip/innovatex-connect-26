@@ -16,7 +16,7 @@ export default function FaqSection() {
                 <span className="absolute w-3.5 h-0.5 bg-white group-open:bg-[#EE4B15] rounded-full rotate-90 transition-transform duration-200 group-open:scale-y-0" />
               </span>
             </summary>
-            <p className="text-slate-300 text-xs md:text-sm font-medium mt-2.5 sm:mt-3 leading-relaxed pr-2 sm:pr-6">{faq.a}</p>
+            <p className="text-slate-300 text-xs md:text-sm font-medium mt-2.5 sm:mt-3 leading-relaxed pr-2 sm:pr-6 whitespace-pre-line">{faq.a}</p>
           </details>
         ))}
       </div>

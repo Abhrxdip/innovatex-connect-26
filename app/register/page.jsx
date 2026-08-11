@@ -18,8 +18,8 @@ function RegisterForm() {
     college: '',
     company: '',
     phone: '',
-    github: '',
-    linkedin: '',
+    github: 'https://github.com/',
+    linkedin: 'https://linkedin.com/in/',
     otp: '',
     referralCode: searchParams.get('ref') || '',
     provider: searchParams.get('provider') || 'manual',
@@ -36,6 +36,14 @@ function RegisterForm() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
+    if (name === 'github' && !value.startsWith('https://github.com/')) {
+      return;
+    }
+    if (name === 'linkedin' && !value.startsWith('https://linkedin.com/in/')) {
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
