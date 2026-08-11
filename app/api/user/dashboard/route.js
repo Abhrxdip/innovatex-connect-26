@@ -32,7 +32,10 @@ export const GET = asyncDbHandler(async (req) => {
   if (!authResult.authenticated) {
     return NextResponse.redirect(new URL(`/login`, req.url))
   }
-
+  const roleCheck = authorize(ROLES.STUDENT, ROLES.WORKING_PROFESSIONAL)(authResult.user)
+  if (!roleCheck.authorized) {
+    return redirectToCorrectDashboard(authResult.user.role, req)
+  }
   const dashboardData = await getUserDashboardController(authResult.user._id);
   if (!dashboardData.user.role || dashboardData.user.role === ROLES.UNDEFINED) {
     const options = {
@@ -44,10 +47,7 @@ export const GET = asyncDbHandler(async (req) => {
     const redirectToRegister = `${redirectHost}/register?${paramsUrl.toString()}`;
     return NextResponse.redirect(redirectToRegister)
   }
-  const roleCheck = authorize(ROLES.STUDENT, ROLES.WORKING_PROFESSIONAL)(authResult.user)
-  if (!roleCheck.authorized) {
-    return redirectToCorrectDashboard(authResult.user.role, req)
-  }
+
   return sendResponse({
     success: true,
     statusCode: 200,
