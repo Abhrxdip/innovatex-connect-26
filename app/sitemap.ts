@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "daily",
             lastModified: new Date(),
             priority: 1,
+        },
+        {
+            url: `${baseUrl}/team`,
+            changeFrequency: "daily",
+            lastModified: new Date(),
+            priority: 1,
         }
     ]
 }

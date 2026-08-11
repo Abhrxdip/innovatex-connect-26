@@ -52,6 +52,11 @@ const roboto = Roboto({
 export const metadata = {
   title: "InnovateX Connect'26",
   description: "Step in, become an AI-native founder.",
+  icons: {
+    icon: {
+      url: "/favicon.png?v=1",
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
