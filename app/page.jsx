@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection';
 import WhyAttendSection from './components/WhyAttendSection';
 import AboutGrid from './components/AboutGrid';
 import SpeakersSection from './components/SpeakersSection';
+import CommunityPartnersSection from './components/CommunityPartnersSection';
 import AgendaSection from './components/AgendaSection';
 import TicketSection from './components/TicketSection';
 import FaqSection from './components/FaqSection';
@@ -128,6 +129,10 @@ export default function Home() {
         variant="bold"
         speed="fast"
       /> */}
+
+      {/* Community Partners */}
+      <CommunityPartnersSection />
+
       {/* Agenda Section */}
       {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
         <AgendaSection />
