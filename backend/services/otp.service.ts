@@ -12,15 +12,20 @@ export async function generateOTPForRegisteredUsers({ email }: { email: string }
             throw new UserNotFoundError("User not found")
         }
         await checkOTPAlreadySent(email);
-        if (!user.secret) {
-            user.secret = generateSecret()
-            await User.findByIdAndUpdate(user._id, { secret: user.secret })
-        }
+        // if (!user.secret) {
+        //     user.secret = generateSecret()
+        //     await User.findByIdAndUpdate(user._id, { secret: user.secret })
+        // }
 
+        const otp = `${Math.round(Math.random() * 900000 + 100000)}`;
+        const redisAns = await redisClient.set(`otp_code:${email}`, `${otp}`, { expiration: { type: "EX", value: 600 } })
+        if (!redisAns) {
+            throw Error("Something went wrong, please try again")
+        }
         return {
             email: user.email,
             name: user.name,
-            otp: await OtpClient.generate({ secret: user.secret }),
+            otp: otp
         }
     } catch (e) {
         console.log(`OTP Service Generation error: ${e}`)
@@ -39,9 +44,13 @@ export async function generateOTPForRegisteredUsers({ email }: { email: string }
 export async function generateOTPForOnboardingUsers({ email }: { email: string }): Promise<string> {
     try {
         await checkOTPAlreadySent(email);
-        const secret = generateSecret()
-        await redisClient.set(`secret:${email}`, secret, { expiration: { type: "EX", value: 600 } })
-        const otp = OtpClient.generate({ secret: secret })
+        // const secret = generateSecret()
+        // await redisClient.set(`secret:${email}`, secret, { expiration: { type: "EX", value: 600 } })
+        const otp = `${Math.round(Math.random() * 900000 + 100000)}`;
+        const redisAns = await redisClient.set(`otp_code:${email}`, `${otp}`, { expiration: { type: "EX", value: 600 } })
+        if (!redisAns) {
+            throw Error("Something went wrong, please try again")
+        }
         return otp
     } catch (e) {
         if (e instanceof OTPAlreadySent) {
@@ -90,7 +99,7 @@ export async function verifyOTPForRegisteredUsers({ email, otp }: { email: strin
             throw new UserNotFoundError()
         }
 
-        const isValid = (await OtpClient.verify(otp, { secret: user.secret })).valid
+        const isValid = (await redisClient.get(`otp_code:${email}`)) === otp
         if (!isValid) {
             await otpIncorrectHandler(email)
         }
@@ -109,12 +118,12 @@ export async function verifyOTPForRegisteredUsers({ email, otp }: { email: strin
 
 export async function verifyOTPForOnboardingUsers({ email, otp }: { email: string, otp: string }): Promise<boolean> {
     try {
-        const secret = await redisClient.get(`secret:${email}`)
-        if (!secret) {
-            throw new SecretNotFoundError("Did you generate an OTP?")
-        }
+        // const secret = await redisClient.get(`secret:${email}`)
+        // if (!secret) {
+        //     throw new SecretNotFoundError("Did you generate an OTP?")
+        // }
 
-        const isValid = (await OtpClient.verify(otp, { secret: secret })).valid
+        const isValid = (await redisClient.get(`otp_code:${email}`)) === otp
         if (!isValid) {
             await otpIncorrectHandler(email)
         }
