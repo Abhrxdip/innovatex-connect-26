@@ -9,7 +9,7 @@ export async function bookTicketService({
   userId,
   attendeeType
 }) {
-  const existingTicket = await Ticket.findOne({
+  var existingTicket = await Ticket.findOne({
     userId
   });
   if (existingTicket) {
