@@ -32,15 +32,7 @@ export const POST = asyncCacheHandler(
       user,
       token
     } = await loginController(validationResult.data);
-    // const response = sendResponse({
-    //   success: true,
-    //   statusCode: 200,
-    //   message: "Login successful",
-    //   data: {
-    //     user,
-    //     token
-    //   },
-    // });
+    const response = redirectToCorrectDashboard(user.role, req)
 
     response.cookies.set("token", token, {
       httpOnly: true,
@@ -50,6 +42,6 @@ export const POST = asyncCacheHandler(
       path: "/",
     });
 
-    return redirectToCorrectDashboard(user.role);
+    return response
   })
 );
