@@ -6,17 +6,37 @@ import {
   AUTH_PROVIDERS
 } from "../config/constants.js";
 
-const optionalSocialLink = () =>
-  z.preprocess((value) => {
-    if (value === "") {
-      return undefined;
-    }
-    return value;
-  }, z.string().trim().optional());
+const processUrl = (value) => {
+  if (!value || value === "") return undefined;
+  let v = value.trim();
+  if (!v.startsWith("http://") && !v.startsWith("https://")) {
+    v = "https://" + v;
+  }
+  try {
+    const url = new URL(v);
+    url.search = ""; // remove query parameters
+    return url.toString();
+  } catch (e) {
+    return v;
+  }
+};
 
-const githubUrlSchema = optionalSocialLink();
+const githubUrlSchema = z.preprocess(
+  processUrl,
+  z.string()
+    .url("Github url shared is invalid")
+    .refine(val => val.toLowerCase().includes("github.com"), "Github url shared is invalid")
+    .optional()
+);
 
-const linkedinUrlSchema = optionalSocialLink();
+const linkedinUrlSchema = z.preprocess(
+  processUrl,
+  z.string()
+    .url("Linkedin url shared is invalid")
+    .refine(val => val.toLowerCase().includes("linkedin.com/in"), "Linkedin url shared is invalid")
+    .optional()
+);
+
 
 export const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -69,6 +89,7 @@ export const registerSchema = z.object({
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["linkedin"],
+          message: "Linkedin URL must be present"
         })
       }
     }
@@ -99,7 +120,7 @@ export const registerSchema = z.object({
       if (!data.bringingLaptop) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          path: ["github"],
+          path: ["bringingLaptop"],
           message: "Laptop is required"
         })
       }
@@ -140,7 +161,7 @@ export const registerSchema = z.object({
     if (!data.bringingLaptop) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ["github"],
+        path: ["bringingLaptop"],
         message: "Laptop is required"
       })
     }
@@ -155,7 +176,7 @@ export const registerSchema = z.object({
 
 
   if (data.role === REGISTRATIONROLES.COMMUNITY_PARTNER) {
-      if (!data.company) {
+    if (!data.company) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["company"],
@@ -170,9 +191,6 @@ export const registerSchema = z.object({
       })
     }
   }
-
-
-
 
 });
 

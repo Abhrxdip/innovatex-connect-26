@@ -20,7 +20,18 @@ export async function bookTicketService({
 
 
   const randomCode = Math.floor(100000 + Math.random() * 900000);
-  const ticketNumber = `TICK-${randomCode}`;
+  var ticketNumber = `TICK-${randomCode}`;
+
+  var existingTicket = true
+  while (existingTicket) {
+    if (!(await Ticket.findOne({
+        ticketNumber: ticketNumber
+      }))) {
+      ticketNumber = `TICK-${ Math.floor(100000 + Math.random() * 900000)}`
+      break;
+    }
+  }
+
 
   const ticket = await Ticket.create({
     userId,

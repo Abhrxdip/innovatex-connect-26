@@ -117,8 +117,42 @@ function RegisterForm() {
     }
   };
 
+  const processUrl = (value, domain) => {
+    if (!value || value.trim() === "") return "";
+    let v = value.trim();
+    if (!v.startsWith("http://") && !v.startsWith("https://")) {
+      v = "https://" + v;
+    }
+    try {
+      const url = new URL(v);
+      if (domain && !url.hostname.toLowerCase().includes(domain)) {
+        return null;
+      }
+      url.search = "";
+      return url.toString();
+    } catch (e) {
+      return null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const processedLinkedin = processUrl(formData.linkedin, "linkedin.com");
+    if (processedLinkedin === null) {
+      setError("Please enter a valid LinkedIn URL.");
+      return;
+    }
+
+    let processedGithub = formData.github;
+    if (role !== 'Community Partner') {
+      processedGithub = processUrl(formData.github, "github.com");
+      if (processedGithub === null) {
+        setError("Please enter a valid GitHub URL.");
+        return;
+      }
+    }
+
     setLoading(true);
     setError('');
 
@@ -129,6 +163,8 @@ function RegisterForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          linkedin: processedLinkedin || formData.linkedin,
+          github: role !== 'Community Partner' ? (processedGithub || formData.github) : formData.github,
           role,
           auth_provider: formData.provider,
         }),
@@ -233,6 +269,40 @@ function RegisterForm() {
                 }`}
             />
           </div>
+          {/* Email Verification */}
+          {formData.provider !== 'google' && (
+            <div>
+              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                Email Verification (OTP)
+              </label>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="text"
+                  name="otp"
+                  required
+                  value={formData.otp}
+                  onChange={handleChange}
+                  placeholder="6 digit code sent to your email"
+                  inputMode="numeric"
+                  maxLength={6}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={handleSendOtp}
+                  disabled={otpLoading || !formData.email}
+                  className="sm:w-40 px-4 py-2.5 rounded-xl bg-[#1E1B4B] hover:bg-brand-neon text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                >
+                  {otpLoading ? 'Sending...' : 'Send OTP'}
+                </button>
+              </div>
+              {otpMessage && (
+                <p className="mt-2 text-xs font-medium text-emerald-500">
+                  {otpMessage}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Password */}
           {formData.provider !== 'google' && (
@@ -505,40 +575,6 @@ function RegisterForm() {
             )
           }
 
-          {/* Email Verification */}
-          {formData.provider !== 'google' && (
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
-                Email Verification (OTP)
-              </label>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="text"
-                  name="otp"
-                  required
-                  value={formData.otp}
-                  onChange={handleChange}
-                  placeholder="6 digit code sent to your email"
-                  inputMode="numeric"
-                  maxLength={6}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
-                />
-                <button
-                  type="button"
-                  onClick={handleSendOtp}
-                  disabled={otpLoading || !formData.email}
-                  className="sm:w-40 px-4 py-2.5 rounded-xl bg-[#1E1B4B] hover:bg-brand-neon text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
-                >
-                  {otpLoading ? 'Sending...' : 'Send OTP'}
-                </button>
-              </div>
-              {otpMessage && (
-                <p className="mt-2 text-xs font-medium text-emerald-500">
-                  {otpMessage}
-                </p>
-              )}
-            </div>
-          )}
 
           {/* Submit */}
           <button

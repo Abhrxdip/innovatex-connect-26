@@ -3,25 +3,45 @@ import {
 } from "zod";
 import {
   REGISTRATIONROLES
-} from "../config/constants";
+} from "../config/constants.js";
 
-const optionalSocialLink = () =>
-  z.preprocess((value) => {
-    if (value === "") {
-      return undefined;
-    }
-    return value;
-  }, z.string().trim().optional());
+const processUrl = (value) => {
+  if (!value || value === "") return undefined;
+  let v = value.trim();
+  if (!v.startsWith("http://") && !v.startsWith("https://")) {
+    v = "https://" + v;
+  }
+  try {
+    const url = new URL(v);
+    url.search = ""; // remove query parameters
+    return url.toString();
+  } catch (e) {
+    return v;
+  }
+};
 
-const githubUrlSchema = optionalSocialLink();
+const githubUrlSchema = z.preprocess(
+  processUrl,
+  z.string()
+    .url("Github url shared is invalid")
+    .refine(val => val.toLowerCase().includes("github.com"), "Github url shared is invalid")
+    .optional()
+);
 
-const linkedinUrlSchema = optionalSocialLink();
+const linkedinUrlSchema = z.preprocess(
+  processUrl,
+  z.string()
+    .url("Linkedin url shared is invalid")
+    .refine(val => val.toLowerCase().includes("linkedin.com/in"), "Linkedin url shared is invalid")
+    .optional()
+);
+
 
 export const updateProfileSchema = z.object({
   name: z.string().min(2).optional(),
   college: z.string().optional(),
   company: z.string().optional(),
-  github: githubUrlSchema.optional(),
+  github: githubUrlSchema,
   role: z.enum(Object.values(REGISTRATIONROLES)),
   linkedin: linkedinUrlSchema,
   foodPreference: z.enum(["Veg", "Non-Veg", ""]).optional(""),
@@ -43,6 +63,7 @@ export const updateProfileSchema = z.object({
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["linkedin"],
+        message: "Linkedin URL must be present"
       })
     }
   }
@@ -74,7 +95,7 @@ export const updateProfileSchema = z.object({
     if (!data.bringingLaptop) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ["github"],
+        path: ["bringingLaptop"],
         message: "Laptop is required"
       })
     }
@@ -114,7 +135,7 @@ export const updateProfileSchema = z.object({
     if (!data.bringingLaptop) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ["github"],
+        path: ["bringingLaptop"],
         message: "Laptop is required"
       })
     }

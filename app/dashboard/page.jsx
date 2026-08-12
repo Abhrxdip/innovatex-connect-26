@@ -10,7 +10,7 @@ import Image from "next/image"
 /* Inline person avatar SVG component */
 function PersonAvatar({ className = '', src, alt = "Profile Picture" }) {
   return src ? (
-    <Image src={src} alt={alt} className={className} width={100} height={100}/>
+    <Image src={src} alt={alt} className={className} width={100} height={100} />
   ) : (
     <svg className={className} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="40" cy="40" r="40" fill="#1A2040" />
@@ -116,7 +116,7 @@ export default function UserDashboardPage() {
               <div className="flex items-center gap-4">
                 {/* Person Avatar */}
                 <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg shadow-[#EE4B15]/10 border-2 border-[#EE4B15]/30 shrink-0">
-                  <PersonAvatar className="w-full h-full" src={data.user?.avatar} />
+                  {data?.user && (<PersonAvatar className="w-full h-full" src={data.user?.avatar} />)}
                 </div>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -289,7 +289,7 @@ export default function UserDashboardPage() {
                         {data.ticket.foodCollected ? 'Food Claimed' : 'Food Coupon Available'}
                       </div>
                     </div>
-                    
+
                     {/* Mandatory Laptop Note */}
                     <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
                       <span className="text-blue-400 font-bold text-sm">ℹ️</span>
