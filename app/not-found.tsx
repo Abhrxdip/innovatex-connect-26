@@ -1,7 +1,7 @@
 
 
 import Link from 'next/link';
-import Navbar from './components/Navbar';
+
 
 
 export default function NotFound() {
@@ -14,7 +14,7 @@ export default function NotFound() {
             <div className="pointer-events-none absolute left-1/2 top-8 h-24 w-24 -translate-x-1/2 rounded-full border border-white/10 bg-white/5 blur-[1px] animate-spin-slow" />
 
             <div className="relative z-10 flex min-h-screen flex-col px-4 py-6 sm:px-6 lg:px-10">
-                <Navbar />
+              
                 <section className="relative mx-auto flex w-full max-w-6xl flex-1 items-center">
                     <div className="grid w-full items-center gap-10 py-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-6 lg:py-16">
                         <div className="space-y-6 text-center lg:text-left">

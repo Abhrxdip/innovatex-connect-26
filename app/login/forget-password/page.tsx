@@ -107,7 +107,6 @@ export default function ForgetPasswordPage() {
             {/* Subtle background pattern */}
             <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
-            <Navbar />
 
             <main className="relative z-10 flex-1 flex items-center justify-center px-4 pt-28 sm:pt-32 pb-12">
                 <div className="w-full max-w-md">

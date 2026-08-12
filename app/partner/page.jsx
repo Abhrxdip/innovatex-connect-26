@@ -55,7 +55,7 @@ export default function PartnerDashboardPage() {
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-650/10 blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-600/10 blur-[170px] pointer-events-none animate-pulse-glow" />
 
-      <Navbar />
+
 
       <main className="relative z-10 flex-1 max-w-5xl w-full mx-auto px-4 pt-32 sm:pt-36 pb-16">
         {loading ? (

@@ -17,6 +17,10 @@ import {
   loginController
 } from "@/backend/controllers/auth.controller.js";
 
+import {
+  redirectToCorrectDashboard
+} from "../../common/redirect_to_correct_dashboard"
+
 
 export const POST = asyncCacheHandler(
   asyncDbHandler(async (req) => {
@@ -24,13 +28,19 @@ export const POST = asyncCacheHandler(
     if (!validationResult.success) {
       return validationResult.response;
     }
-    const { user, token } = await loginController(validationResult.data);
-    const response = sendResponse({
-      success: true,
-      statusCode: 200,
-      message: "Login successful",
-      data: { user, token },
-    });
+    const {
+      user,
+      token
+    } = await loginController(validationResult.data);
+    // const response = sendResponse({
+    //   success: true,
+    //   statusCode: 200,
+    //   message: "Login successful",
+    //   data: {
+    //     user,
+    //     token
+    //   },
+    // });
 
     response.cookies.set("token", token, {
       httpOnly: true,
@@ -40,6 +50,6 @@ export const POST = asyncCacheHandler(
       path: "/",
     });
 
-    return response;
+    return redirectToCorrectDashboard(user.role);
   })
 );

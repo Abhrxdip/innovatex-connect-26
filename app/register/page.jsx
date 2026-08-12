@@ -169,6 +169,9 @@ function RegisterForm() {
           auth_provider: formData.provider,
         }),
       });
+      if (res.redirected) {
+        window.location.href = res.url
+      }
 
       const data = await res.json();
 
@@ -176,13 +179,7 @@ function RegisterForm() {
         throw new Error(data.message || 'Registration failed. Please try again.');
       }
 
-      if (role === 'Admin') {
-        router.push('/admin');
-      } else if (role === 'Community Partner') {
-        router.push('/partner');
-      } else {
-        router.push('/dashboard');
-      }
+
     } catch (err) {
       setError(err.message);
     } finally {
@@ -641,8 +638,6 @@ export default function RegisterPage() {
     <div className="relative min-h-screen bg-[#090D2B] flex flex-col overflow-x-hidden font-display text-white">
       {/* Subtle background pattern */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
-
-      <Navbar />
 
       <main className="relative z-10 flex-1 flex items-center justify-center px-4 pt-28 sm:pt-32 pb-12">
         <Suspense fallback={<div className="text-center text-slate-400 text-sm">Loading...</div>}>

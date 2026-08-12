@@ -20,30 +20,16 @@ const processUrl = (value) => {
   }
 };
 
-const githubUrlSchema = z.preprocess(
-  processUrl,
-  z.string()
-    .url("Github url shared is invalid")
-    .refine(val => val.toLowerCase().includes("github.com"), "Github url shared is invalid")
-    .optional()
-);
 
-const linkedinUrlSchema = z.preprocess(
-  processUrl,
-  z.string()
-    .url("Linkedin url shared is invalid")
-    .refine(val => val.toLowerCase().includes("linkedin.com/in"), "Linkedin url shared is invalid")
-    .optional()
-);
 
 
 export const updateProfileSchema = z.object({
   name: z.string().min(2).optional(),
   college: z.string().optional(),
   company: z.string().optional(),
-  github: githubUrlSchema,
+  github: z.string().optional(),
   role: z.enum(Object.values(REGISTRATIONROLES)),
-  linkedin: linkedinUrlSchema,
+  linkedin: z.string().optional(),
   foodPreference: z.enum(["Veg", "Non-Veg", ""]).optional(""),
   bringingLaptop: z.boolean(),
   website: z.string().optional(),

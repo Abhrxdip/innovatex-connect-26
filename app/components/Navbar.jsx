@@ -59,20 +59,20 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-0.5 sm:space-x-2">
-          <a href="/#home" aria-label="Home" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <Link href="/#home" aria-label="Home" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Home />
             <span className="hidden sm:inline">Home</span>
-          </a>
+          </Link>
           { /*//TODO: Change this*/}
-          <a href="/#comingsoon" aria-label="Speakers" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <Link href="/#comingsoon" aria-label="Speakers" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
-          </a>
+          </Link>
 
-          <a href="/#comingsoon" aria-label="Agenda" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <Link href="/#comingsoon" aria-label="Agenda" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Agenda />
             <span className="hidden sm:inline">Agenda</span>
-          </a>
+          </Link>
 
           {/* <Link href="/leaderboard" aria-label="Leaderboard" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
             <Icons.Sparkle />

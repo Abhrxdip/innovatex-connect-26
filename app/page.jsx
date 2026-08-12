@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar';
+
 import HeroSection from './components/HeroSection';
 import WhyAttendSection from './components/WhyAttendSection';
 import AboutGrid from './components/AboutGrid';
@@ -86,8 +86,7 @@ export default function Home() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(238,75,21,0.06),transparent_50%)] pointer-events-none z-0" />
 
       {/* Header */}
-      <Navbar />
-
+   
       {/* Hero Section */}
       <HeroSection />
 

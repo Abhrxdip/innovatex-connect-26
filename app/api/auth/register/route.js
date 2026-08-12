@@ -19,6 +19,7 @@ import {
 import {
   asyncCacheHandler
 } from "@/backend/utils/asyncCacheHandler";
+import { redirectToCorrectDashboard } from "../../common/redirect_to_correct_dashboard";
 
 export const POST = asyncCacheHandler(asyncDbHandler(async (req) => {
   const validationResult = await validate(registerSchema)(req);
@@ -30,15 +31,15 @@ export const POST = asyncCacheHandler(asyncDbHandler(async (req) => {
     token
   } = await registerController(validationResult.data);
 
-  const response = sendResponse({
-    success: true,
-    statusCode: 201,
-    message: "Registration successful",
-    data: {
-      user,
-      token
-    },
-  });
+  // const response = sendResponse({
+  //   success: true,
+  //   statusCode: 201,
+  //   message: "Registration successful",
+  //   data: {
+  //     user,
+  //     token
+  //   },
+  // });
 
   response.cookies.set("token", token, {
     httpOnly: true,
@@ -48,5 +49,5 @@ export const POST = asyncCacheHandler(asyncDbHandler(async (req) => {
     path: "/",
   });
 
-  return response;
+  return redirectToCorrectDashboard(user.role);
 }));

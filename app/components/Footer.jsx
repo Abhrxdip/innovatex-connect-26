@@ -62,10 +62,10 @@ export default function Footer() {
           <div className="md:col-span-3 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0">
             <h4 className="text-white font-extrabold text-sm uppercase tracking-widest mb-6">Quick Links</h4>
             <ul className="space-y-4">
-              <li><a href="/#" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300">Home</a></li>
-              <li><a href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Agenda</a></li>
-              <li><a href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Speakers</a></li>
-              <li><a href="/#ticket" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Get Tickets</a></li>
+              <li><Link href="/#" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300">Home</Link></li>
+              <li><Link href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Agenda</Link></li>
+              <li><Link href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Speakers</Link></li>
+              <li><Link href="/#ticket" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Get Tickets</Link></li>
             </ul>
           </div>
 

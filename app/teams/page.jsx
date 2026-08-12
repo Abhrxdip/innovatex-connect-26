@@ -35,8 +35,7 @@ export default function TeamsPage() {
       </div>
 
       {/* Navbar */}
-      <Navbar />
-
+  
       {/* Main Core Team Section */}
       <main className="relative z-10 flex-1 pt-24 sm:pt-28 pb-16">
         <TeamSection />

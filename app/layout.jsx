@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Syne, Orbitron, BBH_Hegarty, Bricolage_Grotesque, Black_Han_Sans, Roboto } from "next/font/google";
 import { TicketProvider } from "./state_management/ticket_store"
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -111,8 +112,9 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${orbitron.variable} ${bbh.variable} ${bricolage.variable} ${blackHanSans.variable} ${roboto.variable} h-full antialiased`}
     >
+
       <body className="min-h-full flex flex-col"><TicketProvider>{children}</TicketProvider>  <script dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }} id="root-event-schema"
-        type="application/ld+json" strategy="afterInteractive" ></script></body>
+        type="application/ld+json" strategy="afterInteractive" ></script>  <Navbar /></body>
 
     </html>
   );

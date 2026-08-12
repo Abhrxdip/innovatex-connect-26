@@ -87,7 +87,6 @@ export default function UserDashboardPage() {
       {/* Subtle background pattern */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
-      <Navbar />
 
       <main className="relative z-10 flex-1 max-w-5xl w-full mx-auto px-4 pt-28 sm:pt-32 pb-12">
         {loading && !data ? (

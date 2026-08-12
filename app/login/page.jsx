@@ -35,14 +35,14 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
 
       const data = await res.json();
 
       if (!res.ok || !data.success) {
         throw new Error(data.message || 'Login failed. Please check your credentials.');
-      }
-      if (res.redirected) {
-        window.location.href = res.url;
       }
 
       const userRole = data.data?.user?.role;
@@ -67,7 +67,6 @@ export default function LoginPage() {
       {/* Subtle background pattern */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
-      <Navbar />
 
       <main className="relative z-10 flex-1 flex items-center justify-center px-4 pt-28 sm:pt-32 pb-12">
         <div className="w-full max-w-md">
