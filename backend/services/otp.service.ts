@@ -3,6 +3,7 @@ import { OtpClient } from "../config/otp";
 import User from "../models/User";
 import { generateSecret } from "otplib";
 import { redisClient } from "../config/redis_connection";
+import crypto from "crypto"
 
 
 export async function generateOTPForRegisteredUsers({ email }: { email: string }): Promise<{ otp: string, name: string, email: string }> {
@@ -17,7 +18,7 @@ export async function generateOTPForRegisteredUsers({ email }: { email: string }
         //     await User.findByIdAndUpdate(user._id, { secret: user.secret })
         // }
 
-        const otp = `${Math.round(Math.random() * 900000 + 100000)}`;
+        const otp = crypto.randomInt(100000, 999999).toString();
         const redisAns = await redisClient.set(`otp_code:${email}`, `${otp}`, { expiration: { type: "EX", value: 600 } })
         if (!redisAns) {
             throw Error("Something went wrong, please try again")
@@ -46,7 +47,7 @@ export async function generateOTPForOnboardingUsers({ email }: { email: string }
         await checkOTPAlreadySent(email);
         // const secret = generateSecret()
         // await redisClient.set(`secret:${email}`, secret, { expiration: { type: "EX", value: 600 } })
-        const otp = `${Math.round(Math.random() * 900000 + 100000)}`;
+        const otp = crypto.randomInt(100000, 999999).toString();
         const redisAns = await redisClient.set(`otp_code:${email}`, `${otp}`, { expiration: { type: "EX", value: 600 } })
         if (!redisAns) {
             throw Error("Something went wrong, please try again")
