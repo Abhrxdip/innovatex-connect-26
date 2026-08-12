@@ -82,7 +82,7 @@ const eventSchema = {
     }
   },
   'image': [
-    'https://example.com' // High-res event banner
+    'https://connect.innovatexcom.xyz/banner.png' // High-res event banner
   ],
   'description': 'The ultimate tech community gathering and developer conference in Kolkata.',
   'offers': {
