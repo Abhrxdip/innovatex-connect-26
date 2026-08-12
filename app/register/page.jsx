@@ -285,7 +285,7 @@ function RegisterForm() {
                   placeholder="6 digit code sent to your email"
                   inputMode="numeric"
                   maxLength={6}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+                  className="win-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
                 />
                 <button
                   type="button"

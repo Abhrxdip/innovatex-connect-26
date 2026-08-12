@@ -22,7 +22,7 @@ export async function bookTicketService({
   const randomCode = Math.floor(100000 + Math.random() * 900000);
   var ticketNumber = `TICK-${randomCode}`;
 
-  var existingTicket = true
+  existingTicket = true
   while (existingTicket) {
     if (!(await Ticket.findOne({
         ticketNumber: ticketNumber
