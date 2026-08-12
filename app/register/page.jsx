@@ -263,9 +263,9 @@ function RegisterForm() {
               onChange={handleChange}
               disabled={formData.provider === 'google'}
               placeholder="Enter Your Email"
-              className={`w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all ${formData.provider === 'google'
-                ? 'bg-slate-200 text-slate-500 cursor-not-allowed opacity-70'
-                : 'bg-slate-50/80 text-slate-900 focus:bg-white'
+              className={`${inputClass} ${formData.provider === 'google'
+                ? ' text-slate-500 cursor-not-allowed opacity-70'
+                : ''
                 }`}
             />
           </div>
@@ -285,7 +285,7 @@ function RegisterForm() {
                   placeholder="6 digit code sent to your email"
                   inputMode="numeric"
                   maxLength={6}
-                  className="win-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+                  className={inputClass}
                 />
                 <button
                   type="button"
