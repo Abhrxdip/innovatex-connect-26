@@ -80,7 +80,9 @@ async function checkOTPAlreadySent(email: string) {
 
 async function otpIncorrectHandler(email: string): Promise<void> {
     const attemps = await redisClient.incr(`otp_incorrect:${email}`)
-
+    if (attemps === 1) {
+        await redisClient.expire(`otp_incorrect:${email}`, 600)
+    }
     if (attemps > 3) {
         throw new OTPTriedTooManyTimes()
     }
