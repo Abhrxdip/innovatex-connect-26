@@ -9,6 +9,7 @@ import { errorHandler } from "@/backend/middlewares/error.middleware.js"
 import {
     asyncDbHandler
 } from "@/backend/utils/asyncDbHandler";
+import { redirectToCorrectDashboard } from "@/app/api/common/redirect_to_correct_dashboard";
 
 export async function POST(req: NextRequest) {
     return asyncDbHandler(async (req: NextRequest) => {
@@ -24,9 +25,10 @@ export async function POST(req: NextRequest) {
                 return validationResult.response;
             }
 
+            const updatedUser = (await clone.json());
             const updatedProfile = await updateUserDetails({
                 _id: authResult.user._id,
-                role: (await clone.json())["role"],
+                role: updatedUser.role,
                 foodPreference: validationResult.data.foodPreference,
                 linkedin: validationResult.data.linkedin,
                 github: validationResult.data.github,
@@ -35,12 +37,7 @@ export async function POST(req: NextRequest) {
                 phone: validationResult.data.phone
             })
 
-            return sendResponse({
-                success: true,
-                statusCode: 200,
-                message: "Profile updated successfully",
-                data: updatedProfile,
-            });
+            return redirectToCorrectDashboard(updatedProfile.role, req)
         } catch (e) {
             return errorHandler(e)
         }
