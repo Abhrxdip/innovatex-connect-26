@@ -51,20 +51,66 @@ const roboto = Roboto({
 
 export const metadata = {
   title: "InnovateX Connect'26",
-  description: "Step in, become an AI-native founder.",
+  description: "Largest DevConference of InnovateX ever.",
+  keywords: ['Connect', 'InnovateX', "InnovateX Community", "InnovateXcom", "DevConference", "JIS Kolkata", "Kolkata events", "events"],
   icons: {
     icon: {
       url: "/favicon.png?v=1",
     },
   },
-} ;
+};
+
+
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  'name': 'InnovateX Community DevConference',
+  'startDate': '2026-10-05T09:00:00+05:30', // Use ISO 8601 date format (YYYY-MM-DD)
+  'endDate': '2026-10-05T18:00:00+05:30',
+  'eventAttendanceMode': 'physical', // Physical event
+  'eventStatus': 'registrations open',
+  'location': {
+    '@type': 'Place',
+    'name': 'JIS College of Engineering (or specific JIS campus)',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': 'Block A, Phase III, Kalyani', // Update with exact campus address
+      'addressLocality': 'Kolkata',
+      'addressRegion': 'WB',
+      'postalCode': '741235',
+      'addressCountry': 'IN'
+    }
+  },
+  'image': [
+    'https://example.com' // High-res event banner
+  ],
+  'description': 'The ultimate tech community gathering and developer conference in Kolkata.',
+  'offers': {
+    '@type': 'Offer',
+    'url': 'https://connect.innovatexcom.xyz/dashboard', // Link to your registration/ticket page
+    'price': '0', // Set price, or "500" if it is a paid event
+    'priceCurrency': 'INR',
+    'availability': 'available',
+    'validFrom': '2026-08-12'
+  },
+  'performer': {
+    '@type': 'Organization',
+    'name': 'InnovateX Community'
+  },
+  'organizer': {
+    '@type': 'Organization',
+    'name': 'InnovateX',
+    'url': 'https://innovatexcom.xyz'
+  }
+};
+
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${orbitron.variable} ${bbh.variable} ${bricolage.variable} ${blackHanSans.variable} ${roboto.variable} h-full antialiased`}
-    >
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}>
       <body className="min-h-full flex flex-col"><TicketProvider>{children}</TicketProvider></body>
     </html>
   );
