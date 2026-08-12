@@ -16,8 +16,11 @@ import {
 import {
   registerController
 } from "@/backend/controllers/auth.controller.js";
+import {
+  asyncCacheHandler
+} from "@/backend/utils/asyncCacheHandler";
 
-export const POST = asyncDbHandler(async (req) => {
+export const POST = asyncCacheHandler(asyncDbHandler(async (req) => {
   const validationResult = await validate(registerSchema)(req);
   if (!validationResult.success) {
     return validationResult.response;
@@ -46,4 +49,4 @@ export const POST = asyncDbHandler(async (req) => {
   });
 
   return response;
-});
+}));
