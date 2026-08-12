@@ -103,6 +103,7 @@ export async function verifyOTPForRegisteredUsers({ email, otp }: { email: strin
         if (!isValid) {
             await otpIncorrectHandler(email)
         }
+        await redisClient.del(`otp_code:${email}`)
         return isValid
     } catch (e) {
         if (e instanceof OTPTriedTooManyTimes) {
@@ -127,6 +128,7 @@ export async function verifyOTPForOnboardingUsers({ email, otp }: { email: strin
         if (!isValid) {
             await otpIncorrectHandler(email)
         }
+        await redisClient.del(`otp_code:${email}`)
         return isValid
     } catch (e) {
         if (e instanceof SecretNotFoundError) {
