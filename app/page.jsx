@@ -69,6 +69,7 @@ function MarqueeBanner({ words, speed = 'normal', variant = 'default' }) {
 
 export default function Home() {
   return (
+
     <div className="relative min-h-screen bg-[#090D2B] flex flex-col justify-between overflow-x-hidden font-display noise-overlay">
 
       {/* Fixed dot grid */}

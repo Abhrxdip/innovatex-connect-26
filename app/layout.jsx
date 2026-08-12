@@ -61,7 +61,7 @@ export const metadata = {
 };
 
 
-const eventSchema = {
+export const eventSchema = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   'name': 'InnovateX Community DevConference',
@@ -110,8 +110,10 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${orbitron.variable} ${bbh.variable} ${bricolage.variable} ${blackHanSans.variable} ${roboto.variable} h-full antialiased`}
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}>
-      <body className="min-h-full flex flex-col"><TicketProvider>{children}</TicketProvider></body>
+    >
+      <body className="min-h-full flex flex-col"><TicketProvider>{children}</TicketProvider>  <script dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }} id="root-event-schema"
+        type="application/ld+json" strategy="afterInteractive" ></script></body>
+
     </html>
   );
 }
