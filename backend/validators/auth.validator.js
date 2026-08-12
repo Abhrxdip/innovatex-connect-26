@@ -76,6 +76,16 @@ export const registerSchema = z.object({
           message: "Linkedin URL must be present"
         })
       }
+      data.linkedin = (processUrl(data.linkedin) ?? '').toLowerCase()
+      if (!data.linkedin.contains("linkedin.com/in")) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["linkedin"],
+          message: "Linkedin URL must be a valid linkedin.com/in/your-username format"
+        })
+      }
+
+
     }
     if (data.role === REGISTRATIONROLES.STUDENT) {
       if (!data.college) {
@@ -92,12 +102,28 @@ export const registerSchema = z.object({
           message: "Linkedin URL must be present"
         })
       }
+      data.linkedin = (processUrl(data.linkedin) ?? '').toLowerCase()
+      if (!data.linkedin.includes("linkedin.com/in")) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["linkedin"],
+          message: "Linkedin URL must be a valid linkedin.com/in/your-username format"
+        })
+      }
 
       if (!data.github) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["github"],
           message: "Github URL must be present"
+        })
+      }
+      data.github = (processUrl(data.github) ?? '').toLowerCase()
+      if (!data.github.includes("github.com/")) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["github"],
+          message: "Github URL must be a valid github.com/your-username format"
         })
       }
 
@@ -133,6 +159,14 @@ export const registerSchema = z.object({
         message: "Linkedin URL must be present"
       })
     }
+    data.linkedin = (processUrl(data.linkedin) ?? '').toLowerCase()
+    if (!data.linkedin.includes("linkedin.com/in")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["linkedin"],
+        message: "Linkedin URL must be a valid linkedin.com/in/your-username format"
+      })
+    }
 
     if (!data.github) {
       ctx.addIssue({
@@ -141,6 +175,15 @@ export const registerSchema = z.object({
         message: "Github URL must be present"
       })
     }
+    data.github = (processUrl(data.github) ?? '').toLowerCase()
+    if (!data.github.includes("github.com/")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["github"],
+        message: "Github URL must be a valid github.com/your-username format"
+      })
+    }
+
 
     if (!data.bringingLaptop) {
       ctx.addIssue({
@@ -158,23 +201,6 @@ export const registerSchema = z.object({
     }
   }
 
-
-  if (data.role === REGISTRATIONROLES.COMMUNITY_PARTNER) {
-    if (!data.company) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["company"],
-        message: "Company cannot be left blank"
-      })
-    }
-    if (!data.linkedin) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["linkedin"],
-        message: "Linkedin URL must be present"
-      })
-    }
-  }
 
 });
 
