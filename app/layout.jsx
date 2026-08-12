@@ -57,7 +57,7 @@ export const metadata = {
       url: "/favicon.png?v=1",
     },
   },
-};
+} ;
 
 export default function RootLayout({ children }) {
   return (
