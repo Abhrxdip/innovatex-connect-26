@@ -383,7 +383,7 @@ export default function AdminDashboardPage() {
                                   <div className="mt-1 flex items-center gap-1.5 flex-wrap">
                                     {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
                                     {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> Laptop</span>}
-                                    {t.referralData?.partnerId?.name && <span className="px-1.5 py-0.5 rounded bg-orange-500/10 text-[9px] font-bold text-orange-400 border border-orange-500/20 uppercase" title="Referred by">Ref: {t.referralData.partnerId.name}</span>}
+                                    {t.referralData?.partnerId?.company && <span className="px-1.5 py-0.5 rounded bg-orange-500/10 text-[9px] font-bold text-orange-400 border border-orange-500/20 uppercase" title="Referred by">Ref: {t.referralData.partnerId.company}</span>}
                                   </div>
                                 )}
                               </td>
