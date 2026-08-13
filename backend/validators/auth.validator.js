@@ -77,7 +77,7 @@ export const registerSchema = z.object({
         })
       }
       data.linkedin = (processUrl(data.linkedin) ?? '').toLowerCase()
-      if (!data.linkedin.contains("linkedin.com/in")) {
+      if (!data.linkedin.includes("linkedin.com/in")) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["linkedin"],
