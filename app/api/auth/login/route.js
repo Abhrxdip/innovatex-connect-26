@@ -38,7 +38,7 @@ export const POST = asyncCacheHandler(
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60,
+      maxAge: 2592000,
       path: "/",
     });
 
