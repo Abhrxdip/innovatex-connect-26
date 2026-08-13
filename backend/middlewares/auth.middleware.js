@@ -28,6 +28,11 @@ export async function authenticate(req) {
   }
 
   if (!token) {
+    response.cookies.set("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      path: "/",
+    });
     return {
       authenticated: false,
       response: sendResponse({
@@ -40,6 +45,11 @@ export async function authenticate(req) {
 
   const decoded = verifyToken(token);
   if (!decoded) {
+    response.cookies.set("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      path: "/",
+    });
     return {
       authenticated: false,
       response: sendResponse({
@@ -52,6 +62,11 @@ export async function authenticate(req) {
 
   const user = await User.findById(decoded.userId).select("-password");
   if (!user) {
+    response.cookies.set("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      path: "/",
+    });
     return {
       authenticated: false,
       response: sendResponse({
