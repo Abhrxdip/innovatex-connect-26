@@ -71,6 +71,7 @@ export async function GET(request: NextRequest) {
         response.cookies.set('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
+            expires: 2592000,
             sameSite: 'lax',
             path: '/'
         });
