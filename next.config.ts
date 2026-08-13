@@ -61,6 +61,11 @@ const nextConfig: NextConfig = {
         hostname: new URL(siteUrl).hostname,
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+
+      }
     ],
   },
   allowedDevOrigins: ['localhost'],

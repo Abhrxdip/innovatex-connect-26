@@ -1,0 +1,18 @@
+db.users.aggregate([
+    { $lookup:{
+        from:"tickets",
+        localField:"_id",
+        foreignField:"userId",
+        as:"tickets"
+        }},
+    { $addFields: {
+        ticketCount: { $size: "$tickets" }
+        }},
+    {$sort:{
+        ticketCount:1
+        }},
+    {$match:{
+        role: { $in: ["Student", "Admin", "Community Partner", "Working Professional"]},
+        ticketCount: 0,
+    }}
+])
