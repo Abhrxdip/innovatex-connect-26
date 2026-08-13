@@ -198,8 +198,8 @@ export default function AdminDashboardPage() {
     <div className="relative min-h-screen bg-[#090D2B] bg-grid-pattern flex flex-col overflow-x-hidden font-display text-white">
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-650/10 blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-600/10 blur-[170px] pointer-events-none animate-pulse-glow" />
-      
-     
+
+
       <QRScannerModal
         isOpen={scannerOpen}
         onClose={() => setScannerOpen(false)}
@@ -499,7 +499,7 @@ export default function AdminDashboardPage() {
                               <p className="text-slate-200 font-extrabold text-lg">{leaderboard[1].approvedReferrals}</p>
                             </div>
                             <div>
-                              <p className="text-slate-500 font-bold text-[10px]">TOTAL</p>
+                              <p className="text-slate-500 font-bold text-[10px]">TOTAL SIGNUPS</p>
                               <p className="text-slate-400 font-bold text-sm">{leaderboard[1].totalReferrals}</p>
                             </div>
                           </div>
@@ -525,7 +525,7 @@ export default function AdminDashboardPage() {
                               <p className="text-amber-400 font-black text-2xl">{leaderboard[0].approvedReferrals}</p>
                             </div>
                             <div>
-                              <p className="text-amber-300 font-bold text-[10px]">TOTAL CLICKS</p>
+                              <p className="text-amber-300 font-bold text-[10px]">TOTAL SIGNUPS</p>
                               <p className="text-amber-400 font-bold text-base">{leaderboard[0].totalReferrals}</p>
                             </div>
                           </div>
@@ -551,7 +551,7 @@ export default function AdminDashboardPage() {
                               <p className="text-slate-200 font-extrabold text-lg">{leaderboard[2].approvedReferrals}</p>
                             </div>
                             <div>
-                              <p className="text-slate-500 font-bold text-[10px]">TOTAL</p>
+                              <p className="text-slate-500 font-bold text-[10px]">TOTAL SIGNUPS</p>
                               <p className="text-slate-400 font-bold text-sm">{leaderboard[2].totalReferrals}</p>
                             </div>
                           </div>
