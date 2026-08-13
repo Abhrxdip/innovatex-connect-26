@@ -30,7 +30,6 @@ export const GET = asyncDbHandler(async (req) => {
   }
 
   const roleCheck = authorize(ROLES.COMMUNITY_PARTNER)(authResult.user);
-    console.log(roleCheck)
   if (!roleCheck.authorized) {
     return redirectToCorrectDashboard(authResult.user.role, req)
   }

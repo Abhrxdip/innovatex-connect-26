@@ -12,7 +12,6 @@ export function validate(schema) {
           field: err.path.join("."),
           message: err.message,
         }));
-        console.log(formattedErrors)
         return {
           success: false,
           response: sendResponse({
