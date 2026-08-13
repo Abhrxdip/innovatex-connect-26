@@ -26,26 +26,23 @@ export async function authenticate(req) {
       token = cookies.token;
     }
   }
-  // const unAuthorizedResponse = sendResponse({
-  //   success: false,
-  //   statusCode: 401,
-  //   message: "Unauthorized: User not found",
-  // })
 
-  // unAuthorizedResponse.cookies.set("token", "", {
-  //   httpOnly: true,
-  //   expires: new Date(0),
-  //   path: "/",
-  // });
+  const unAuthorizedResponse = sendResponse({
+    success: false,
+    statusCode: 401,
+    message: "Unauthorized: User not found",
+  })
+
+  unAuthorizedResponse.cookies.set("token", "", {
+    httpOnly: true,
+    expires: new Date(0),
+    path: "/",
+  });
 
   if (!token) {
     return {
       authenticated: false,
-      response: sendResponse({
-        success: false,
-        statusCode: 401,
-        message: "Unauthorized: User not found",
-      }),
+      response: unAuthorizedResponse,
     };
   }
 
@@ -53,11 +50,7 @@ export async function authenticate(req) {
   if (!decoded) {
     return {
       authenticated: false,
-      response: sendResponse({
-        success: false,
-        statusCode: 401,
-        message: "Unauthorized: User not found",
-      }),
+      response: unAuthorizedResponse,
     };
   }
 
@@ -65,11 +58,7 @@ export async function authenticate(req) {
   if (!user) {
     return {
       authenticated: false,
-      response: sendResponse({
-        success: false,
-        statusCode: 401,
-        message: "Unauthorized: User not found",
-      }),
+      response: unAuthorizedResponse,
     };
   }
 
