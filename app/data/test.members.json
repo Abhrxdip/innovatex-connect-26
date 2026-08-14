@@ -673,6 +673,42 @@
   },
   {
     "_id": {
+      "$oid": "6a690287624a730ed6620d57"
+    },
+    "name": "Dwipayan Hazari",
+    "role": "Marketing",
+    "image": "https://res.cloudinary.com/dljzygnbl/image/upload/v1786731203/1000724171_suy3d2.jpg",
+    "category": "supportTeam",
+    "social": [
+      {
+        "url": "https://www.linkedin.com/in/dwipayan-hazari-367b00391",
+        "_id": {
+          "$oid": "6a690287624a730ed6620d57"
+        }
+      },
+      {
+        "url": "https://github.com/dwipayanhazari11",
+        "_id": {
+          "$oid": "6a690287624a730ed6620d58"
+        }
+      },
+      {
+        "url": "https://www.instagram.com/isle.born?igsh=MWlrOHhpejdhbHY0dw==&igsi=MWlrOHhpejdhbHY0dw==",
+        "_id": {
+          "$oid": "6a690287624a730ed6620d59"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2026-07-28T19:27:03.989Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-28T19:28:00.167Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
       "$oid": "6a68ff9f833e5467773ce004"
     },
     "name": "Subha Prasana Parida",
