@@ -379,7 +379,7 @@ export default function AdminDashboardPage() {
                               <td className="py-3 px-3 font-medium text-slate-200">{t.attendeeType}</td>
                               <td className="py-3 px-3">
                                 <p className="text-slate-300">{t.userId?.college || t.userId?.company || 'N/A'}</p>
-                                {(t.userId?.foodPreference || t.userId?.bringingLaptop || t.referralData?.partnerId?.name) && (
+                                {(t.userId?.foodPreference || t.userId?.bringingLaptop || t.referralData?.partnerId?.company) && (
                                   <div className="mt-1 flex items-center gap-1.5 flex-wrap">
                                     {t.userId?.foodPreference && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
                                     {t.userId?.bringingLaptop && <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-bold text-slate-400 uppercase"> Laptop</span>}
