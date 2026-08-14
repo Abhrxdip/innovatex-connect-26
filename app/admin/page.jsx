@@ -433,7 +433,7 @@ export default function AdminDashboardPage() {
                               <div className="mt-2 flex items-center gap-2 flex-wrap">
                                 {t.userId?.foodPreference && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> {t.userId.foodPreference}</span>}
                                 {t.userId?.bringingLaptop && <span className="px-2 py-1 rounded bg-white/5 text-[10px] font-bold text-slate-400 uppercase"> Laptop</span>}
-                                {t.referralData?.partnerId?.name && <span className="px-2 py-1 rounded bg-orange-500/10 text-[10px] font-bold text-orange-400 border border-orange-500/20 uppercase">Ref: {t.referralData.partnerId.name}</span>}
+                                {t.referralData?.partnerId?.company && <span className="px-2 py-1 rounded bg-orange-500/10 text-[10px] font-bold text-orange-400 border border-orange-500/20 uppercase">Ref: {t.referralData.partnerId.company}</span>}
                               </div>
                             )}
                           </div>
