@@ -14,7 +14,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative w-full min-h-screen lg:h-screen flex flex-col justify-center overflow-hidden bg-[#090D2B] bg-grid-pattern text-[#F1FDFD]">
+    <section id="home" className="relative w-full min-h-screen lg:h-screen flex flex-col justify-center overflow-hidden bg-[#090D2B] bg-grid-pattern text-[#F1FDFD] cursor-default select-none">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(238,75,21,0.12),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(46,108,255,0.15),transparent_35%),linear-gradient(180deg,rgba(6,10,36,0)_0%,rgba(6,10,36,0.32)_100%)] pointer-events-none" />
       <div className="absolute inset-0 bg-hero-sparkle opacity-70 pointer-events-none animate-pulse-glow" />
 
@@ -142,7 +142,7 @@ export default function HeroSection() {
                 <span className="text-[clamp(4.5rem,16vw,25rem)] leading-none">
                   <span className="text-[#EE4B15]">2</span>
                   <span className="text-[#F1FDFD]">0</span>
-                </span> 
+                </span>
                 <span className="text-[clamp(4.5rem,16vw,25rem)] leading-none -mt-4 sm:-mt-8 lg:-mt-12">
                   <span className="text-[#F1FDFD]">2</span>
                   <span className="text-[#EE4B15]">6</span>

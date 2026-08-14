@@ -53,7 +53,7 @@ export const updateProfileSchema = z.object({
       })
     }
     data.linkedin = (processUrl(data.linkedin) ?? '').toLowerCase()
-    if (!data.linkedin.includes("linkedin.com/in")) {
+    if (!data.linkedin.includes("linkedin.com/")) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["linkedin"],
