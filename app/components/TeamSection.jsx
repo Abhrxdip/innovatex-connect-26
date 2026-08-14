@@ -69,8 +69,8 @@ function TeamCard({ member }) {
   const socialList = Array.isArray(member.social)
     ? member.social.map((s) => ({ type: getSocialType(s.url), url: s.url }))
     : member.socials
-    ? Object.entries(member.socials).map(([type, url]) => ({ type, url }))
-    : [];
+      ? Object.entries(member.socials).map(([type, url]) => ({ type, url }))
+      : [];
 
   return (
     <div className="flex flex-col gap-2 sm:gap-2.5 group select-none w-full max-w-[280px] sm:max-w-none mx-auto">
@@ -157,7 +157,7 @@ export default function TeamSection() {
       <div className="mb-8 sm:mb-12 md:mb-16 text-left max-w-full relative">
         {/* Main Title: THE TEAM */}
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-blackhan italic uppercase tracking-tight select-none flex items-center gap-2 sm:gap-3">
-          <span className="text-white">THE</span>
+          <span className="text-white">THE CORE</span>
           <span className="text-[#EE4B15]">TEAM</span>
         </h2>
 
