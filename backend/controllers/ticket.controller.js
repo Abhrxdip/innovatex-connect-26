@@ -1,7 +1,7 @@
 import {
   requestTicketService,
   getUserTicketService,
-  generatePaymentLinkService
+  createOrderService
 } from "../services/ticket.service";
 
 export async function requestTicketController(userId, data) {
@@ -15,6 +15,6 @@ export async function getMyTicketController(userId) {
   return await getUserTicketService(userId);
 }
 
-export async function generatePaymentLink(user) {
-  return await generatePaymentLinkService(user)
+export async function createOrder(user) {
+  return await createOrderService(user)
 }

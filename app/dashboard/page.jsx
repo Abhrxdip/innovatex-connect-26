@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
 import { Icons } from '../components/Icons';
 import Image from "next/image"
-
+import Script from 'next/script';
 /* Inline person avatar SVG component */
 function PersonAvatar({ className = '', src, alt = "Profile Picture" }) {
   return src ? (
@@ -20,10 +20,58 @@ function PersonAvatar({ className = '', src, alt = "Profile Picture" }) {
   );
 }
 
+function CountdownTimer({ approvedAt }) {
+  const [timeLeft, setTimeLeft] = useState('');
+  const [expired, setExpired] = useState(false);
+
+  useEffect(() => {
+    if (!approvedAt) return;
+
+    const expiryTime = new Date(approvedAt).getTime() + 24 * 60 * 60 * 1000;
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const distance = expiryTime - now;
+
+      if (distance <= 0) {
+        setExpired(true);
+        setTimeLeft('Expired');
+        return false;
+      } else {
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        setTimeLeft(`${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`);
+        return true;
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(() => {
+      if (!updateTimer()) {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [approvedAt]);
+
+  if (expired) {
+    return <span className="text-red-500 font-extrabold text-lg animate-pulse">Payment window expired</span>;
+  }
+
+  return (
+    <span className="font-mono font-extrabold text-red-500 text-lg">
+      {timeLeft || '...'}
+    </span>
+  );
+}
+
 export default function UserDashboardPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [bookingLoading, setBookingLoading] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
 
@@ -82,8 +130,59 @@ export default function UserDashboardPage() {
     }
   };
 
+  const handlePayment = async () => {
+    try {
+      setPaymentLoading(true);
+      setError('');
+      const res = await fetch('/api/payment/razorpay/create-order', {
+        method: 'POST',
+      });
+      const json = await res.json();
+      if (!res.ok || !json.order) {
+        throw new Error(json.message || 'Failed to create payment order.');
+      }
+
+      const { user, order } = json;
+
+      if (!window.Razorpay) {
+        throw new Error("Razorpay SDK failed to load. Please check your connection.");
+      }
+
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
+        amount: order.amount,
+        currency: order.currency,
+        name: "InnovateX Connect '26",
+        description: "Event Ticket Payment",
+        order_id: order.id,
+        handler: async function (response) {
+          await fetchDashboard();
+        },
+        prefill: {
+          name: user.name,
+          email: user.email,
+          contact: user.phone,
+        },
+        theme: {
+          color: "#EE4B15"
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (response) {
+        setError(response.error.description);
+      });
+      rzp.open();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setPaymentLoading(false);
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-[#090D2B] flex flex-col overflow-x-hidden font-display text-white">
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
       {/* Subtle background pattern */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
@@ -157,6 +256,11 @@ export default function UserDashboardPage() {
                     <span className="w-2 h-2 rounded-full bg-amber-500" />
                     Approval Pending ⏳
                   </span>
+                ) : data.ticket.status === 'Payment Required' ? (
+                  <span className="px-4 py-2 rounded-xl bg-green-500/10 text-green-300 font-bold text-xs border border-green-500/20 flex items-center gap-1.5 animate-pulse">
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
+                    Payment Required ₹
+                  </span>
                 ) : data.ticket.status === 'Approved' ? (
                   <span className="px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-300 font-bold text-xs border border-emerald-500/20 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -209,6 +313,42 @@ export default function UserDashboardPage() {
                     ) : (
                       <>
                         Submit your ticket request
+                        <Icons.ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            ) : data.ticket.status === 'Payment Required' ? (
+              /* Payment Required */
+              <div className="bg-[#0C1235] rounded-3xl p-8 shadow-2xl border border-green-500/20 text-center relative overflow-hidden text-white">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-green-500/80 to-green-500/40" />
+                <div className="w-14 h-14 rounded-2xl bg-green-500/10 text-green-400 flex items-center justify-center mx-auto mb-4">
+                  <Icons.Ticket className="w-7 h-7" />
+                </div>
+                <h2 className="text-2xl font-extrabold text-white">Complete Your Payment</h2>
+                <p className="text-slate-300 text-sm max-w-md mx-auto mt-1 mb-4">
+                  Your ticket request has been approved! Please complete the payment to secure your pass.
+                </p>
+                {data.ticket.approvedAt && (
+                  <div className="mb-6 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/40 max-w-sm mx-auto shadow-[0_0_15px_rgba(239,68,68,0.15)]">
+                    <p className="text-red-200 text-sm font-bold text-center flex items-center justify-center gap-2">
+                      <span className="animate-bounce text-lg">🚨</span> Time remaining: <CountdownTimer approvedAt={data.ticket.approvedAt} />
+                    </p>
+                  </div>
+                )}
+
+                <div className="max-w-xs mx-auto space-y-4">
+                  <button
+                    onClick={handlePayment}
+                    disabled={paymentLoading}
+                    className="w-full py-3.5 px-6 rounded-xl bg-[#EE4B15] hover:bg-[#EE4B15]/90 text-white font-bold text-sm shadow-lg shadow-[#EE4B15]/15 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  >
+                    {paymentLoading ? (
+                      <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        Pay Now
                         <Icons.ArrowRight className="w-4 h-4" />
                       </>
                     )}

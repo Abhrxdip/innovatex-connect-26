@@ -68,15 +68,9 @@ export async function approveTicketController(ticketId, adminId) {
     throw error;
   }
 
-  const qrPayload = {
-    ticketNumber: ticket.ticketNumber,
-    userId: ticket.userId._id,
-  };
-  //TODO: Implement in payment callback this generateQR
-  const qrCodeDataUrl = await generateQRCodeDataURL(qrPayload);
+
 
   ticket.status = TICKET_STATUS.PAYMENT_REQUIRED;
-  ticket.qrCode = qrCodeDataUrl;
   ticket.approvedBy = adminId;
   ticket.approvedAt = new Date();
   await ticket.save();

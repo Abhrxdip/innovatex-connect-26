@@ -18,6 +18,7 @@ export const TICKET_STATUS = {
   APPROVED: "Approved",
   REJECTED: "Rejected",
   PAYMENT_REQUIRED: "Payment Required",
+  INVITATION_EXPIRED: "Invitation Expired",
 };
 
 export const ATTENDEE_TYPES = {
@@ -34,5 +35,11 @@ export const SCAN_TYPES = {
   ATTENDANCE: "attendance",
   FOOD: "food",
 };
+
+export const PAYMENT_STATUSES = {
+  SUCCESS: "SUCCESS",
+  FAILED: "FAILED",
+  PENDING: "PENDING",
+}
 
 export const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;

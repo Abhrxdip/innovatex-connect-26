@@ -441,7 +441,7 @@ export default function AdminDashboardPage() {
                             <div className="flex gap-2 pt-2 border-t border-white/5">
                               <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                 className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all text-center cursor-pointer disabled:opacity-50">
-                                Approve & Email QR
+                                Approve & Email Payment
                               </button>
                               <button onClick={(e) => { e.stopPropagation(); handleReject(t._id); }} disabled={actionLoading === t._id}
                                 className="py-2 px-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-400 font-bold text-xs transition-all cursor-pointer disabled:opacity-50">
