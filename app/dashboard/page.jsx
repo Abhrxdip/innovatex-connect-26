@@ -193,10 +193,10 @@ export default function UserDashboardPage() {
                 <div className="w-14 h-14 rounded-2xl bg-[#EE4B15]/10 text-[#EE4B15] flex items-center justify-center mx-auto mb-4">
                   <Icons.Ticket className="w-7 h-7" />
                 </div>
-                <h2 className="text-2xl font-extrabold text-white">Claim Your Free Conference Ticket</h2>
-                <p className="text-slate-300 text-sm max-w-md mx-auto mt-1 mb-6">
+                <h2 className="text-2xl font-extrabold text-white">Get Your Conference Ticket</h2>
+                {/* <p className="text-slate-300 text-sm max-w-md mx-auto mt-1 mb-6">
                   InnovateX Connect &apos;26 is free for accepted student developers & tech professionals.
-                </p>
+                </p> */}
 
                 <div className="max-w-xs mx-auto space-y-4">
                   <button
@@ -208,7 +208,7 @@ export default function UserDashboardPage() {
                       <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     ) : (
                       <>
-                        Submit Free Ticket Request
+                        Submit your ticket request
                         <Icons.ArrowRight className="w-4 h-4" />
                       </>
                     )}

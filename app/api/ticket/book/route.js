@@ -30,7 +30,7 @@ export const POST = asyncDbHandler(async (req) => {
   return sendResponse({
     success: true,
     statusCode: 201,
-    message: "Free ticket request submitted successfully",
+    message: "Ticket request submitted successfully",
     data: ticket,
   });
 });

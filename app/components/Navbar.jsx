@@ -13,6 +13,18 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const linksRef = useRef([]);
+  const [currentHash, setCurrentHash] = useState('');
+
+  // Track hash changes on the client
+  useEffect(() => {
+    setCurrentHash(window.location.hash);
+    const handleHashChange = () => setCurrentHash(window.location.hash);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   // Fetch user profile to check auth state
   useEffect(() => {
     const fetchUser = async () => {
@@ -30,6 +42,51 @@ export default function Navbar() {
     };
     fetchUser();
   }, []);
+
+  const isActive = (...paths) => {
+    if (!pathname) return false;
+    const currentPathWithHash = `${pathname}${currentHash}`;
+    
+    return paths.some(path => {
+      // Special handling for home to not be active if we are on a different hash section
+      if (path === '/') {
+        return pathname === '/' && (!currentHash || currentHash === '#home');
+      }
+      return path === pathname || path === currentPathWithHash || path === currentHash;
+    });
+  };
+
+  useEffect(() => {
+    const updatePillPosition = () => {
+      // Find the index of the first path that is active
+      const activeIndex = [
+        isActive('/'),
+        isActive('/#speakers', '#speakers'),
+        isActive('/#agenda', '/agenda'),
+        isActive('/teams')
+      ].findIndex(Boolean);
+      
+      if (activeIndex !== -1 && linksRef.current[activeIndex]) {
+        const activeEl = linksRef.current[activeIndex];
+        setPillStyle({
+          left: activeEl.offsetLeft,
+          width: activeEl.offsetWidth,
+          opacity: 1
+        });
+      } else {
+        setPillStyle(prev => ({ ...prev, opacity: 0 }));
+      }
+    };
+
+    // A small timeout ensures fonts and layout are fully applied before measuring
+    const timeoutId = setTimeout(updatePillPosition, 50);
+    window.addEventListener('resize', updatePillPosition);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', updatePillPosition);
+    };
+  }, [pathname, currentHash]);
 
   const handleLogout = async () => {
     try {
@@ -58,33 +115,76 @@ export default function Navbar() {
       <nav className="flex items-center justify-between px-2.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-white shadow-lg bg-[#0C1235]/85 backdrop-blur-md border border-white/10 max-w-full">
 
         {/* Navigation Links */}
-        <div className="flex items-center space-x-0.5 sm:space-x-2">
-          <Link href="/#home" aria-label="Home" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+        <div className="flex items-center space-x-0.5 sm:space-x-2 relative">
+          
+          {/* Sliding Background Pill */}
+          <div
+            className="absolute top-0 bottom-0 my-auto h-full bg-white/15 rounded-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+            style={{
+              left: pillStyle.left,
+              width: pillStyle.width,
+              opacity: pillStyle.opacity,
+            }}
+          />
+
+          <Link
+            ref={el => (linksRef.current[0] = el)}
+            href="/#home"
+            aria-label="Home"
+            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/')
+              ? 'text-white'
+              : 'hover:text-white hover:bg-white/5'
+              }`}
+          >
             <Icons.Home />
             <span className="hidden sm:inline">Home</span>
           </Link>
           { /*//TODO: Change this*/}
-          <Link href="/#comingsoon" aria-label="Speakers" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <Link
+            ref={el => (linksRef.current[1] = el)}
+            href="/#comingsoon"
+            aria-label="Speakers"
+            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/#speakers','#speakers')
+              ? 'text-white'
+              : 'hover:text-white hover:bg-white/5'
+              }`}
+          >
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
           </Link>
 
-          <Link href="/#comingsoon" aria-label="Agenda" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          <Link
+            ref={el => (linksRef.current[2] = el)}
+            href="/#comingsoon"
+            aria-label="Agenda"
+            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/#agenda', '/agenda')
+              ? 'text-white'
+              : 'hover:text-white hover:bg-white/5'
+              }`}
+          >
             <Icons.Agenda />
             <span className="hidden sm:inline">Agenda</span>
           </Link>
 
-          {/* <Link href="/leaderboard" aria-label="Leaderboard" className="group flex items-center px-2 sm:px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">
+          {/* <Link
+            href="/leaderboard"
+            aria-label="Leaderboard"
+            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/leaderboard')
+              ? 'text-white bg-white/10'
+              : 'hover:text-white hover:bg-white/10'
+              }`}
+          >
             <Icons.Sparkle />
             <span className="hidden sm:inline">Leaderboard</span>
           </Link> */}
 
           <Link
+            ref={el => (linksRef.current[3] = el)}
             href="/teams"
             aria-label="Teams"
-            className={`group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${pathname === '/teams'
-              ? 'text-white bg-white/10'
-              : 'hover:text-white hover:bg-white/10'
+            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/teams')
+              ? 'text-white'
+              : 'hover:text-white hover:bg-white/5'
               }`}
           >
             <svg className="w-4 h-4 mr-0 sm:mr-1.5 opacity-85 transition-colors group-hover:text-[#EE4B15]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
