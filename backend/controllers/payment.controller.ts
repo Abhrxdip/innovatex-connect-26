@@ -1,8 +1,11 @@
 import { InferSchemaType, ObjectId } from "mongoose";
 import { Payment } from "../models/payment";
-import { PAYMENT_STATUSES, TICKET_STATUS } from "../config/constants";
+import { PAYMENT_STATUSES, ROLES, TICKET_STATUS } from "../config/constants";
 import Ticket from "../models/Ticket";
 import { generateQRCodeDataURL } from "../services/qr.service";
+import { sendTicketConfirmedMail } from "../services/mail.service";
+import Notification from "../models/Notification";
+import Referral from "../models/Referral";
 
 async function findPaymentByOrderId(order_id: string) {
     const payment = await Payment.findOne({ order_id: order_id }).lean()
@@ -14,10 +17,10 @@ async function findPaymentByOrderId(order_id: string) {
     return payment
 }
 
-export async function updatePaymentAndUpdateTicket(event: "SUCCESS" | "FAILED", payload: PaymentCallbackData) {
+export async function updatePaymentAndUpdateTicket(event: "order.paid" | "payment.failed", payload: PaymentCallbackData) {
     try {
         const payment = await findPaymentByOrderId(payload.payment.entity.order_id)
-        if (event === "SUCCESS") {
+        if (event === "order.paid") {
             await Payment.findOneAndUpdate(payment._id, {
                 $set: {
                     amount: payload.payment.entity.amount,
@@ -40,7 +43,7 @@ export async function updatePaymentAndUpdateTicket(event: "SUCCESS" | "FAILED", 
                         updatedAt: new Date(),
                     }
                 })
-                const ticket = await Ticket.findById(payment.ticketId)
+                const ticket = await Ticket.findById(payment.ticketId).populate<{ userId: PopulatedUser }>("userId", "name email college company role phone github linkedin foodPreference bringingLaptop")
                 if (!ticket) {
                     const error = new Error("This Ticket doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
                     error.statusCode = 500
@@ -49,7 +52,27 @@ export async function updatePaymentAndUpdateTicket(event: "SUCCESS" | "FAILED", 
 
                 //TODO: Implement in payment callback this generateQR
                 const qrCodeDataUrl = await generateQRCodeDataURL(ticket.ticketNumber);
-                await Ticket.findByIdAndUpdate(payment._id, { $set: { status: TICKET_STATUS.APPROVED, qrCode: qrCodeDataUrl } })
+                await Ticket.findByIdAndUpdate(payment.ticketId, { $set: { status: TICKET_STATUS.APPROVED, qrCode: qrCodeDataUrl } })
+                await Referral.findOneAndUpdate({
+                    referredUser: ticket.userId._id
+                }, {
+                    status: TICKET_STATUS.PAYMENT_REQUIRED
+                });
+                await Notification.create({
+                    userId: ticket.userId._id,
+                    title: "Ticket Approved 🎉",
+                    message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for your QR code.`,
+                });
+
+                await sendTicketConfirmedMail({
+                    name: ticket.userId.name,
+                    attendee_type: ticket.userId.role,
+                    email: ticket.userId.email,
+                    organization: (ticket.userId.role === ROLES.STUDENT || ticket.userId.role === ROLES.WORKING_PROFESSIONAL ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name! : ticket.userId.company) ?? ticket.userId.college!,
+                    qr_code: qrCodeDataUrl.split(',')[1],
+                    ticket_number: ticket.ticketNumber,
+                    foodPreference: ticket.userId.foodPreference,
+                })
             }
         }
     } catch (e) {
@@ -60,4 +83,14 @@ export async function updatePaymentAndUpdateTicket(event: "SUCCESS" | "FAILED", 
 
 }
 
+
+type PopulatedUser = {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+    college?: string;
+    company?: string;
+    foodPreference: string;
+};
 export type PaymentCallbackData = { payment: { entity: { order_id: string, amount: number, currency: string, method: string, created_at: number } } }

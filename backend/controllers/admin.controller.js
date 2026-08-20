@@ -84,18 +84,20 @@ export async function approveTicketController(ticketId, adminId) {
   await Notification.create({
     userId: ticket.userId._id,
     title: "Ticket Approved 🎉",
-    message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for your QR code.`,
+    message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for next steps.`,
   });
 
-  await sendTicketConfirmedMail({
-    name: ticket.userId.name,
-    attendee_type: ticket.userId.role,
-    email: ticket.userId.email,
-    organization: ticket.userId.role === "Student" ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name : ticket.userId.company ?? ticket.userId.college,
-    qr_code: qrCodeDataUrl.split(',')[1],
-    ticket_number: ticket.ticketNumber,
-    foodPreference: ticket.userId.foodPreference,
-  })
+  //TODO: Send Ticket Payment Asking mail
+
+  // await sendTicketConfirmedMail({
+  //   name: ticket.userId.name,
+  //   attendee_type: ticket.userId.role,
+  //   email: ticket.userId.email,
+  //   organization: ticket.userId.role === "Student" ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name : ticket.userId.company ?? ticket.userId.college,
+  //   qr_code: qrCodeDataUrl.split(',')[1],
+  //   ticket_number: ticket.ticketNumber,
+  //   foodPreference: ticket.userId.foodPreference,
+  // })
 
   return ticket;
 }
