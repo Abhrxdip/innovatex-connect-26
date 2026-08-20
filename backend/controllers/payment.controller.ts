@@ -27,7 +27,7 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
             await Payment.findOneAndUpdate(payment._id, {
                 $set: {
                     amount: payload.payment.entity.amount,
-                    completed_at: new Date(payload.payment.entity.created_at),
+                    completed_at: new Date(payload.payment.entity.created_at * 1000),
                     payload: payload,
                     status: PAYMENT_STATUSES.SUCCESS,
                     payment_method: payload.payment.entity.method,
@@ -67,7 +67,7 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
                 await Payment.findOneAndUpdate(payment._id, {
                     $set: {
                         amount: payload.payment.entity.amount,
-                        completed_at: new Date(payload.payment.entity.created_at),
+                        completed_at: new Date(payload.payment.entity.created_at * 1000),
                         payload: payload,
                         status: PAYMENT_STATUSES.FAILED,
                         payment_method: payload.payment.entity.method,

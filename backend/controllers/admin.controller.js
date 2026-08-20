@@ -11,6 +11,9 @@ import {
 import {
   sendTicketConfirmedMail
 } from "../services/mail.service"
+import {
+  hasExceed24Hours
+} from "../services/ticket.service";
 
 export async function getAdminDashboardController() {
   const totalUsers = await User.countDocuments();
@@ -21,6 +24,12 @@ export async function getAdminDashboardController() {
   const approvedTickets = await Ticket.countDocuments({
     status: TICKET_STATUS.APPROVED
   });
+  const pendingPaymentTickets = await Ticket.countDocuments({
+    status: TICKET_STATUS.PAYMENT_REQUIRED
+  })
+  const expiredTickets = await Ticket.countDocuments({
+    status: TICKET_STATUS.INVITATION_EXPIRED
+  })
   const rejectedTickets = await Ticket.countDocuments({
     status: TICKET_STATUS.REJECTED
   });
@@ -38,6 +47,8 @@ export async function getAdminDashboardController() {
       pendingTickets,
       approvedTickets,
       rejectedTickets,
+      expiredTickets,
+      pendingPaymentTickets,
       checkedInCount,
       foodCollectedCount,
     },
@@ -57,6 +68,22 @@ export async function listTicketsController(status) {
   }).sort({
     createdAt: -1
   });
+  if (status === TICKET_STATUS.PAYMENT_REQUIRED) {
+    const expiredTickets = tickets.filter((ticket) => {
+      return hasExceed24Hours(ticket.approvedAt)
+    })
+    if (expiredTickets.length !== 0) {
+      await Ticket.updateMany({
+        _id: {
+          $in: expiredTickets.map(ticket => ticket._id)
+        }
+      }, {
+        $set: {
+          status: TICKET_STATUS.INVITATION_EXPIRED
+        }
+      })
+    }
+  }
   return tickets
 }
 

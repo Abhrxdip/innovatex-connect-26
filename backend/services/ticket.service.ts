@@ -125,6 +125,6 @@ export async function createOrderService(user: Omit<InferSchemaType<typeof User.
   return order
 }
 
-function hasExceed24Hours(time: Date | undefined | null) {
+export function hasExceed24Hours(time: Date | undefined | null) {
   return (new Date()).getTime() - (time || new Date()).getTime() > TWENTY_FOUR_HOURS_IN_MS
 }
