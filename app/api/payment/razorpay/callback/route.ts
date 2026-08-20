@@ -14,6 +14,6 @@ export async function POST(req: NextRequest) {
         return sendResponse({ success: false, errors: "Invalid Signature", statusCode: 400 })
     }
 
-    await updatePaymentAndUpdateTicket(data.event, data)
+    await updatePaymentAndUpdateTicket(data.event, data["payload"])
     return sendResponse({ success: true, statusCode: 200 })
 }
