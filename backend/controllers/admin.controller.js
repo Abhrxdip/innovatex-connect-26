@@ -9,7 +9,8 @@ import {
   generateQRCodeDataURL
 } from "../services/qr.service.js";
 import {
-  sendTicketConfirmedMail
+  sendTicketConfirmedMail,
+  sendPaymentMail
 } from "../services/mail.service"
 import {
   hasExceed24Hours
@@ -95,8 +96,6 @@ export async function approveTicketController(ticketId, adminId) {
     throw error;
   }
 
-
-
   ticket.status = TICKET_STATUS.PAYMENT_REQUIRED;
   ticket.approvedBy = adminId;
   ticket.approvedAt = new Date();
@@ -116,15 +115,11 @@ export async function approveTicketController(ticketId, adminId) {
 
   //TODO: Send Ticket Payment Asking mail
 
-  // await sendTicketConfirmedMail({
-  //   name: ticket.userId.name,
-  //   attendee_type: ticket.userId.role,
-  //   email: ticket.userId.email,
-  //   organization: ticket.userId.role === "Student" ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name : ticket.userId.company ?? ticket.userId.college,
-  //   qr_code: qrCodeDataUrl.split(',')[1],
-  //   ticket_number: ticket.ticketNumber,
-  //   foodPreference: ticket.userId.foodPreference,
-  // })
+  await sendPaymentMail({
+    email: ticket.userId.email,
+    name: ticket.userId.name
+  })
+  
 
   return ticket;
 }

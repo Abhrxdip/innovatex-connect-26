@@ -10,7 +10,7 @@ import { number } from "zod/v4";
 import { RazorPayApi } from "../config/payment_config";
 import { InferSchemaType, Model, ObjectId } from "mongoose";
 import { Orders } from "razorpay/dist/types/orders";
-import { Payment } from "../models/payment";
+import Payment from "../models/payment"
 
 export async function requestTicketService({
   userId,

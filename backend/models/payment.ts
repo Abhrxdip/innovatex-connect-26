@@ -44,3 +44,5 @@ const paymentSchema = new mongoose.Schema({
 type PaymentType = InferSchemaType<typeof paymentSchema>
 
 export const Payment = mongoose.models.payment as Model<PaymentType> || mongoose.model("payment", paymentSchema)
+
+export default Payment
