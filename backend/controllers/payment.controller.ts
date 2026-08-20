@@ -35,6 +35,34 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
                     updatedAt: new Date(),
                 }
             })
+            const ticket = await Ticket.findById(payment.ticketId).populate<{ userId: PopulatedUser }>("userId", "name email college company role phone github linkedin foodPreference bringingLaptop")
+            if (!ticket) {
+                throw new TicketNotFoundError()
+            }
+
+            const qrCodeDataUrl = await generateQRCodeDataURL(ticket.ticketNumber);
+            await Ticket.findByIdAndUpdate(payment.ticketId, { $set: { status: TICKET_STATUS.APPROVED, qrCode: qrCodeDataUrl } })
+            await Referral.findOneAndUpdate({
+                referredUser: ticket.userId._id
+            }, {
+                status: TICKET_STATUS.PAYMENT_REQUIRED
+            });
+            await Notification.create({
+                userId: ticket.userId._id,
+                title: "Ticket Approved 🎉",
+                message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for your QR code.`,
+            });
+
+            await sendTicketConfirmedMail({
+                name: ticket.userId.name,
+                attendee_type: ticket.userId.role,
+                email: ticket.userId.email,
+                organization: (ticket.userId.role === ROLES.STUDENT || ticket.userId.role === ROLES.WORKING_PROFESSIONAL ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name! : ticket.userId.company) ?? ticket.userId.college!,
+                qr_code: qrCodeDataUrl.split(',')[1],
+                ticket_number: ticket.ticketNumber,
+                foodPreference: ticket.userId.foodPreference,
+            })
+
         } else {
             if (payment.status !== PAYMENT_STATUSES.SUCCESS || payment.status !== PAYMENT_STATUSES.FAILED) {
                 await Payment.findOneAndUpdate(payment._id, {
@@ -47,34 +75,8 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
                         updatedAt: new Date(),
                     }
                 })
-                const ticket = await Ticket.findById(payment.ticketId).populate<{ userId: PopulatedUser }>("userId", "name email college company role phone github linkedin foodPreference bringingLaptop")
-                if (!ticket) {
-                    throw new TicketNotFoundError()
-                }
 
-                //TODO: Implement in payment callback this generateQR
-                const qrCodeDataUrl = await generateQRCodeDataURL(ticket.ticketNumber);
-                await Ticket.findByIdAndUpdate(payment.ticketId, { $set: { status: TICKET_STATUS.APPROVED, qrCode: qrCodeDataUrl } })
-                await Referral.findOneAndUpdate({
-                    referredUser: ticket.userId._id
-                }, {
-                    status: TICKET_STATUS.PAYMENT_REQUIRED
-                });
-                await Notification.create({
-                    userId: ticket.userId._id,
-                    title: "Ticket Approved 🎉",
-                    message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for your QR code.`,
-                });
 
-                await sendTicketConfirmedMail({
-                    name: ticket.userId.name,
-                    attendee_type: ticket.userId.role,
-                    email: ticket.userId.email,
-                    organization: (ticket.userId.role === ROLES.STUDENT || ticket.userId.role === ROLES.WORKING_PROFESSIONAL ? ticket.userId.college : ticket.userId.role === "Community Partner" ? ticket.userId.name! : ticket.userId.company) ?? ticket.userId.college!,
-                    qr_code: qrCodeDataUrl.split(',')[1],
-                    ticket_number: ticket.ticketNumber,
-                    foodPreference: ticket.userId.foodPreference,
-                })
             }
         }
     } catch (e) {
