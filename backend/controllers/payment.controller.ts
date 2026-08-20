@@ -17,7 +17,6 @@ async function findPaymentByOrderId(order_id: string) {
 }
 
 export async function updatePaymentAndUpdateTicket(event: "order.paid" | "payment.failed", payload: PaymentCallbackData) {
-    console.error("Payment: " + payload.payment)
     if (!payload.payment.entity) {
         return
     }
@@ -49,8 +48,8 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
             });
             await Notification.create({
                 userId: ticket.userId._id,
-                title: "Ticket Approved 🎉",
-                message: `Your event ticket (${ticket.ticketNumber}) has been approved! Check your dashboard for your QR code.`,
+                title: "Ticket Confirmed 🎉",
+                message: `Your event ticket (${ticket.ticketNumber}) has been confirmed and your payment is done! Check your dashboard for your QR code.`,
             });
 
             await sendTicketConfirmedMail({
@@ -80,7 +79,7 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
             }
         }
     } catch (e) {
-        console.error(payload.payment.entity)
+        console.error(payload)
         if (e instanceof PaymentNotFoundError) {
             const error = Error("This Payment doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
             error.statusCode = 500
