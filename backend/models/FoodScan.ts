@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType, Model } from "mongoose";
 
 const foodScanSchema = new mongoose.Schema(
   {
@@ -25,7 +25,8 @@ const foodScanSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+type FoodScanType = InferSchemaType<typeof foodScanSchema>
 
-const FoodScan = mongoose.models.FoodScan || mongoose.model("FoodScan", foodScanSchema);
+const FoodScan = mongoose.models.FoodScan as Model<FoodScanType> || mongoose.model("FoodScan", foodScanSchema);
 
 export default FoodScan;

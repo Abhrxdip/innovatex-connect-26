@@ -1,7 +1,7 @@
-import User from "../models/User.js";
-import Ticket from "../models/Ticket.js";
-import Referral from "../models/Referral.js";
-import Notification from "../models/Notification.js";
+import User from "../models/User";
+import Ticket from "../models/Ticket";
+import Referral from "../models/Referral";
+import Notification from "../models/Notification";
 import {
   TICKET_STATUS
 } from "../config/constants.js";
@@ -72,9 +72,10 @@ export async function approveTicketController(ticketId, adminId) {
     ticketNumber: ticket.ticketNumber,
     userId: ticket.userId._id,
   };
+  //TODO: Implement in payment callback this generateQR
   const qrCodeDataUrl = await generateQRCodeDataURL(qrPayload);
 
-  ticket.status = TICKET_STATUS.APPROVED;
+  ticket.status = TICKET_STATUS.PAYMENT_REQUIRED;
   ticket.qrCode = qrCodeDataUrl;
   ticket.approvedBy = adminId;
   ticket.approvedAt = new Date();
@@ -83,7 +84,7 @@ export async function approveTicketController(ticketId, adminId) {
   await Referral.findOneAndUpdate({
     referredUser: ticket.userId._id
   }, {
-    status: TICKET_STATUS.APPROVED
+    status: TICKET_STATUS.PAYMENT_REQUIRED
   });
 
   await Notification.create({

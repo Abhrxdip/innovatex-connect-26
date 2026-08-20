@@ -28,6 +28,10 @@ const requiredKeys = [
   'REDIS_URL',
   'MAILTRAP_TOKEN',
   'MAILTRAP_SENDER_MAIL',
+  'RAZOR_PAY_WEBHOOK_SECRET',
+  'RAZOR_PAY_KEY_ID',
+  'RAZOR_PAY_KEY_SECRET',
+  'TICKET_PRICE_IN_INR',
 ];
 
 const isProd = process.env.NODE_ENV === 'production';

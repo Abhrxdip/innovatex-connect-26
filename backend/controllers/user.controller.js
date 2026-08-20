@@ -1,6 +1,6 @@
-import User from "../models/User.js";
-import Ticket from "../models/Ticket.js";
-import Notification from "../models/Notification.js";
+import User from "../models/User";
+import Ticket from "../models/Ticket";
+import Notification from "../models/Notification";
 
 export async function getProfileController(userId) {
   const user = await User.findById(userId).select("-password -secret");

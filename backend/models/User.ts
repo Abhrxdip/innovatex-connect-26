@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType, Model } from "mongoose";
 import {
   ROLES,
   AUTH_PROVIDERS
@@ -82,6 +82,8 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+type UserType = InferSchemaType<typeof userSchema>
+
+const User = mongoose.models.User as Model<UserType> || mongoose.model("User", userSchema);
 
 export default User;

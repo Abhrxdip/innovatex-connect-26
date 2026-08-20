@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function redirectToCorrectDashboard(role: "Admin" | "Student" | "Community Partner" | "Working Professional" | "Undefined", req: NextRequest): NextResponse {
+export function redirectToCorrectDashboard(role: "Admin" | "Student" | "Community Partner" | "Working Professional" | "Undefined" | string, req: NextRequest): NextResponse {
     switch (role) {
         case "Admin":
             return NextResponse.redirect(new URL("/admin", req.url))

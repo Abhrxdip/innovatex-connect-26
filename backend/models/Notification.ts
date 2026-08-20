@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType, Model } from "mongoose";
 
 const notificationSchema = new mongoose.Schema(
   {
@@ -25,6 +25,8 @@ const notificationSchema = new mongoose.Schema(
   }
 );
 
-const Notification = mongoose.models.Notification || mongoose.model("Notification", notificationSchema);
+type NotificationType = InferSchemaType<typeof notificationSchema>
+
+const Notification = mongoose.models.Notification as Model<NotificationType> || mongoose.model("Notification", notificationSchema);
 
 export default Notification;

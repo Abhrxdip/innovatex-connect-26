@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType, Model } from "mongoose";
 
 const attendanceSchema = new mongoose.Schema(
   {
@@ -26,6 +26,8 @@ const attendanceSchema = new mongoose.Schema(
   }
 );
 
-const Attendance = mongoose.models.Attendance || mongoose.model("Attendance", attendanceSchema);
+type AttendanceType = InferSchemaType<typeof attendanceSchema>
+
+const Attendance = mongoose.models.Attendance as Model<AttendanceType> || mongoose.model("Attendance", attendanceSchema);
 
 export default Attendance;

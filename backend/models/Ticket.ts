@@ -1,8 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType, Model } from "mongoose";
 import {
   TICKET_STATUS,
   ATTENDEE_TYPES
 } from "../config/constants.js";
+import { ReferralType } from "./Referral.js";
 
 const ticketSchema = new mongoose.Schema({
   userId: {
@@ -67,6 +68,10 @@ ticketSchema.set('toJSON', {
   virtuals: true
 });
 
-const Ticket = mongoose.models.Ticket || mongoose.model("Ticket", ticketSchema);
+type TicketType = InferSchemaType<typeof ticketSchema> & { referralData?: ReferralType | null }
+
+
+const Ticket = mongoose.models.Ticket as Model<TicketType> || mongoose.model("Ticket", ticketSchema);
 
 export default Ticket;
+

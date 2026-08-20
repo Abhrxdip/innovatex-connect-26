@@ -1,7 +1,7 @@
-import Ticket from "../models/Ticket.js";
-import Attendance from "../models/Attendance.js";
-import FoodScan from "../models/FoodScan.js";
-import Notification from "../models/Notification.js";
+import Ticket from "../models/Ticket";
+import Attendance from "../models/Attendance";
+import FoodScan from "../models/FoodScan";
+import Notification from "../models/Notification";
 import { TICKET_STATUS } from "../config/constants.js";
 
 export async function scanGateAttendance({ ticketNumber, adminId, gate = "Main Gate" }) {

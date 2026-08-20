@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType, Model } from "mongoose";
 import {
   TICKET_STATUS
 } from "../config/constants.js";
@@ -28,8 +28,9 @@ const referralSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+export type ReferralType = InferSchemaType<typeof referralSchema>;
 
 
-const Referral = mongoose.models.Referral || mongoose.model("Referral", referralSchema);
+const Referral = mongoose.models.Referral as Model<ReferralType> || mongoose.model("Referral", referralSchema);
 
 export default Referral;

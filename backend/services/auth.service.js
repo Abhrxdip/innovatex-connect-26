@@ -1,5 +1,5 @@
-import User from "../models/User.js";
-import Referral from "../models/Referral.js";
+import User from "../models/User";
+import Referral from "../models/Referral";
 import {
   z
 } from "zod"

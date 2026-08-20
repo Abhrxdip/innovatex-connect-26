@@ -1,6 +1,6 @@
 import { getPartnerStatsService } from "../services/leaderboard.service.js";
 import { generateReferralCode } from "../services/referral.service.js";
-import User from "../models/User.js";
+import User from "../models/User";
 
 export async function getPartnerDashboardController(partnerId) {
   const user = await User.findById(partnerId).select("-password -secret");

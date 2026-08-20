@@ -4,7 +4,7 @@ import {
 import {
   sendResponse
 } from "../utils/sendResponse.js";
-import User from "../models/User.js";
+import User from "../models/User";
 
 export async function authenticate(req) {
   let token = null;
@@ -53,8 +53,8 @@ export async function authenticate(req) {
       response: unAuthorizedResponse,
     };
   }
-
-  const user = await User.findById(decoded.userId).select("-password");
+  //? Lean returns just js object without heavy functions and methods which we don't want
+  const user = await User.findById(decoded.userId).select("-password").lean();
   if (!user) {
     return {
       authenticated: false,

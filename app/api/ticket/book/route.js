@@ -14,7 +14,7 @@ import {
   bookTicketSchema
 } from "@/backend/validators/ticket.validator.js";
 import {
-  bookTicketController
+  requestTicketController
 } from "@/backend/controllers/ticket.controller.js";
 
 export const POST = asyncDbHandler(async (req) => {
@@ -23,7 +23,7 @@ export const POST = asyncDbHandler(async (req) => {
     return authResult.response;
   }
 
-  const ticket = await bookTicketController(authResult.user._id, {
+  const ticket = await requestTicketController(authResult.user._id, {
     attendeeType: authResult.user.role ?? 'Student'
   });
 

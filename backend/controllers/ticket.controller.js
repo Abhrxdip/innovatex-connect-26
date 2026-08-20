@@ -1,9 +1,20 @@
-import { bookTicketService, getUserTicketService } from "../services/ticket.service.js";
+import {
+  requestTicketService,
+  getUserTicketService,
+  generatePaymentLinkService
+} from "../services/ticket.service";
 
-export async function bookTicketController(userId, data) {
-  return await bookTicketService({ userId, ...data });
+export async function requestTicketController(userId, data) {
+  return await requestTicketService({
+    userId,
+    ...data
+  });
 }
 
 export async function getMyTicketController(userId) {
   return await getUserTicketService(userId);
+}
+
+export async function generatePaymentLink(user) {
+  return await generatePaymentLinkService(user)
 }

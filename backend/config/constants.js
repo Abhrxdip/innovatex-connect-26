@@ -17,6 +17,7 @@ export const TICKET_STATUS = {
   PENDING: "Pending",
   APPROVED: "Approved",
   REJECTED: "Rejected",
+  PAYMENT_REQUIRED: "Payment Required",
 };
 
 export const ATTENDEE_TYPES = {
@@ -33,3 +34,5 @@ export const SCAN_TYPES = {
   ATTENDANCE: "attendance",
   FOOD: "food",
 };
+
+export const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;
