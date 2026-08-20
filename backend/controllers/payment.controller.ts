@@ -10,14 +10,18 @@ import Referral from "../models/Referral";
 async function findPaymentByOrderId(order_id: string) {
     const payment = await Payment.findOne({ order_id: order_id }).lean()
     if (!payment) {
-        const error = new Error("This Payment doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
-        error.statusCode = 500
+        const error = new PaymentNotFoundError()
         throw error
     }
     return payment
 }
 
 export async function updatePaymentAndUpdateTicket(event: "order.paid" | "payment.failed", payload: PaymentCallbackData) {
+    console.error("Payment: " + payload.payment)
+    if (!payload.payment.entity) {
+        return
+    }
+
     try {
         const payment = await findPaymentByOrderId(payload.payment.entity.order_id)
         if (event === "order.paid") {
@@ -32,7 +36,7 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
                 }
             })
         } else {
-            if (payment.status !== "SUCCESS") {
+            if (payment.status !== PAYMENT_STATUSES.SUCCESS || payment.status !== PAYMENT_STATUSES.FAILED) {
                 await Payment.findOneAndUpdate(payment._id, {
                     $set: {
                         amount: payload.payment.entity.amount,
@@ -45,9 +49,7 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
                 })
                 const ticket = await Ticket.findById(payment.ticketId).populate<{ userId: PopulatedUser }>("userId", "name email college company role phone github linkedin foodPreference bringingLaptop")
                 if (!ticket) {
-                    const error = new Error("This Ticket doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
-                    error.statusCode = 500
-                    throw error
+                    throw new TicketNotFoundError()
                 }
 
                 //TODO: Implement in payment callback this generateQR
@@ -76,6 +78,17 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
             }
         }
     } catch (e) {
+        console.error(payload.payment.entity)
+        if (e instanceof PaymentNotFoundError) {
+            const error = Error("This Payment doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
+            error.statusCode = 500
+            throw error
+        }
+        if (e instanceof TicketNotFoundError) {
+            const error = new Error("This Ticket doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
+            error.statusCode = 500
+            throw error
+        }
         await Payment.create({ amount: payload.payment.entity.amount, completed_at: new Date(payload.payment.entity.created_at), order_id: payload.payment.entity.order_id ?? 'Not Found', payload: payload })
         return e
     }
@@ -83,6 +96,8 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
 
 }
 
+class PaymentNotFoundError extends Error { }
+class TicketNotFoundError extends Error { }
 
 type PopulatedUser = {
     _id: string;

@@ -393,7 +393,7 @@ export default function AdminDashboardPage() {
                                   <>
                                     <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-50">
-                                      Approve & Email QR
+                                      Approve & Email Payment
                                     </button>
                                     <button onClick={(e) => { e.stopPropagation(); handleReject(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 font-bold text-xs transition-all cursor-pointer disabled:opacity-50">
