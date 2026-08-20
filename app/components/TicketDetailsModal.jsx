@@ -147,7 +147,7 @@ export default function TicketDetailsModal({ isOpen, onClose, ticket, onApprove,
           </div>
 
           {/* Action Buttons for Pending */}
-          {ticket.status === 'Pending' && (
+          {(ticket.status === 'Pending' || ticket.status === 'Invitation Expired') && (
             <div className="pt-6 border-t border-white/10 flex gap-3">
               <button
                 onClick={() => { onApprove(ticket._id); onClose(); }}

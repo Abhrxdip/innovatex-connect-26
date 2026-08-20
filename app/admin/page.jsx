@@ -61,7 +61,7 @@ export default function AdminDashboardPage() {
       const res = await fetch(`/api/admin/tickets/${ticketId}/approve`, { method: 'POST' });
       const json = await res.json();
       if (!res.ok || !json.success) throw new Error(json.message || 'Approval failed.');
-      setSuccessMsg('Ticket approved & QR Code emailed!');
+      setSuccessMsg('Ticket approved & Payment sent!');
       fetchAdminData();
     } catch (err) { setError(err.message); }
     finally { setActionLoading(null); }
@@ -335,7 +335,7 @@ export default function AdminDashboardPage() {
                       Export CSV
                     </button>
                     <div className="flex items-center gap-1.5 p-1 !bg-[#090D2B] rounded-xl w-full sm:w-auto">
-                      {['Pending', 'Approved', 'Rejected', "Payment Pending", "Invitation Expired"].map((s) => (
+                      {['Pending', 'Approved', 'Rejected', "Payment Required", "Invitation Expired"].map((s) => (
                         <button key={s} onClick={() => setTicketFilter(s)}
                           className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${ticketFilter === s ? 'bg-[#EE4B15] text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}>
                           {s}
@@ -389,7 +389,7 @@ export default function AdminDashboardPage() {
                               </td>
                               <td className="py-3 px-3 font-mono text-slate-500 text-[11px]">{new Date(t.createdAt).toLocaleDateString()}</td>
                               <td className="py-3 px-3 text-right space-x-2">
-                                {t.status === 'Pending' ? (
+                                {(t.status === 'Pending' || t.status === 'Invitation Expired') ? (
                                   <>
                                     <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                       className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all cursor-pointer disabled:opacity-50">
@@ -437,7 +437,7 @@ export default function AdminDashboardPage() {
                               </div>
                             )}
                           </div>
-                          {t.status === 'Pending' && (
+                          {(t.status === 'Pending' || t.status === 'Invitation Expired') && (
                             <div className="flex gap-2 pt-2 border-t border-white/5">
                               <button onClick={(e) => { e.stopPropagation(); handleApprove(t._id); }} disabled={actionLoading === t._id}
                                 className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all text-center cursor-pointer disabled:opacity-50">

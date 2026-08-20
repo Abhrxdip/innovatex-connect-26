@@ -46,7 +46,7 @@ export default function Navbar() {
   const isActive = (...paths) => {
     if (!pathname) return false;
     const currentPathWithHash = `${pathname}${currentHash}`;
-    
+
     return paths.some(path => {
       // Special handling for home to not be active if we are on a different hash section
       if (path === '/') {
@@ -65,7 +65,7 @@ export default function Navbar() {
         isActive('/#agenda', '/agenda'),
         isActive('/teams')
       ].findIndex(Boolean);
-      
+
       if (activeIndex !== -1 && linksRef.current[activeIndex]) {
         const activeEl = linksRef.current[activeIndex];
         setPillStyle({
@@ -81,7 +81,7 @@ export default function Navbar() {
     // A small timeout ensures fonts and layout are fully applied before measuring
     const timeoutId = setTimeout(updatePillPosition, 50);
     window.addEventListener('resize', updatePillPosition);
-    
+
     return () => {
       clearTimeout(timeoutId);
       window.removeEventListener('resize', updatePillPosition);
@@ -116,7 +116,7 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-0.5 sm:space-x-2 relative">
-          
+
           {/* Sliding Background Pill */}
           <div
             className="absolute top-0 bottom-0 my-auto h-full bg-white/15 rounded-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
@@ -144,7 +144,7 @@ export default function Navbar() {
             ref={el => (linksRef.current[1] = el)}
             href="/#comingsoon"
             aria-label="Speakers"
-            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/#speakers','#speakers')
+            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/#speakers', '#speakers')
               ? 'text-white'
               : 'hover:text-white hover:bg-white/5'
               }`}

@@ -266,6 +266,11 @@ export default function UserDashboardPage() {
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
                     Ticket Confirmed 🎉
                   </span>
+                ) : data.ticket.status === 'Invitation Expired' ? (
+                  <span className="px-4 py-2 rounded-xl bg-red-500/10 text-red-300 font-bold text-xs border border-red-500/20 flex items-center gap-1.5 animate-pulse">
+                    <span className="w-2 h-2 rounded-full bg-red-500" />
+                    Invitation Expired ⏰
+                  </span>
                 ) : (
                   <span className="px-4 py-2 rounded-xl bg-red-500/10 text-red-300 font-bold text-xs border border-red-500/20">
                     Ticket Rejected ❌
@@ -456,6 +461,16 @@ export default function UserDashboardPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+            ) : data.ticket.status === 'Invitation Expired' ? (
+              <div className="bg-[#0C1235] rounded-3xl p-8 shadow-2xl border border-red-500/20 text-center text-white">
+                <div className="w-12 h-12 rounded-2xl bg-red-500/10 text-red-400 flex items-center justify-center mx-auto mb-3 font-bold text-xl">
+                  ⏰
+                </div>
+                <h2 className="text-xl font-extrabold text-white">Payment Window Expired</h2>
+                <p className="text-slate-300 text-xs sm:text-sm max-w-md mx-auto mt-1">
+                  Your approved ticket was not claimed within the 24-hour window. Please contact the organizers to review and re-approve your ticket.
+                </p>
               </div>
             ) : (
               <div className="bg-[#0C1235] rounded-3xl p-8 shadow-2xl border border-red-500/20 text-center text-white">
