@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your InnovateX Connect'26 Ticket is Confirmed!</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-container {
+            max-width: 650px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #1e3a8a;
+        }
+
+        /* Updated Dark Theme Header Styles */
+        .header-section {
+            background-color: #0A0B1A;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-section img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 12px;
+        }
+
+        .header-section h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section h1 span {
+            color: #f97316;
+        }
+
+        .text-content {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .text-content strong {
+            color: #1e3a8a;
+        }
+
+        .text-content a {
+            color: #1e3a8a;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .text-content a:hover {
+            color: #f97316;
+        }
+
+        /* Dark Theme Ticket Styles */
+        .ticket-container {
+            background-color: #0A0B1A;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 24px;
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .ticket-header {
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+
+        .ticket-label {
+            color: #60a5fa;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .ticket-title {
+            margin: 4px 0 0 0;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .ticket-badge {
+            display: inline-block;
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .meta-label {
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: #f1f5f9;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .ticket-notice {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(59, 130, 246, 0.3);
+            text-align: center;
+        }
+
+        .ticket-notice span {
+            font-size: 11px;
+            color: #fb923c;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* WhatsApp Section Styles */
+        .whatsapp-container {
+            margin-top: 35px;
+            text-align: center;
+            background-color: #f0fdf4;
+            border: 1px dashed #22c55e;
+            padding: 24px 20px;
+            border-radius: 12px;
+        }
+
+        .whatsapp-container p {
+            margin: 0 0 16px 0;
+            color: #166534;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: #ffffff !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none !important;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1da851;
+        }
+
+        /* Social Text Section */
+        .social-text {
+            margin-top: 25px;
+            text-align: left;
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .social-text p {
+            margin: 5px 0;
+        }
+
+        .footer-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #edf2f7;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .footer-section p {
+            margin: 8px 0;
+        }
+
+        .footer-section a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-section a:hover {
+            color: #f97316;
+        }
+
+        /* Mobile Responsive Rules */
+        @media only screen and (max-width: 600px) {
+            .main-container {
+                margin: 15px !important;
+                padding: 25px 20px !important;
+            }
+
+            .header-section {
+                padding: 25px 15px !important;
+            }
+
+            .ticket-container {
+                padding: 20px !important;
+            }
+
+            /* Stack table columns into rows */
+            .stack-column {
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Adjust header for mobile */
+            .ticket-header-left {
+                margin-bottom: 15px !important;
+            }
+
+            .ticket-badge-wrapper {
+                text-align: left !important;
+            }
+
+            /* Adjust grid spacing for mobile */
+            .grid-item {
+                padding-bottom: 15px !important;
+            }
+
+            /* Make WhatsApp section smaller on mobile */
+            .whatsapp-container {
+                margin-top: 25px !important;
+                padding: 16px 15px !important;
+            }
+
+            .whatsapp-container p {
+                font-size: 13px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .whatsapp-btn {
+                padding: 10px 20px !important;
+                font-size: 13px !important;
+            }
+
+            /* Center Social Text on Mobile */
+            .social-text {
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <!-- Updated Logo -->
+            <img src="https://connect.innovatexcom.xyz/innovatex-dark.png" alt="Innovate X Logo">
+            <h1>Innovate<span>X</span> Connect'26</h1>
+        </div>
+
+        <div class="text-content">
+            <p>Hello <strong>{{ params.name }}</strong>,</p>
+            <p>Your ticket to InnovateX Connect'26 is confirmed! 🎟️</p>
+
+            <p>This is your official entry pass to the conference. Please keep your ticket and QR code ready for
+                scanning at the main gate.</p>
+            <p>Please find your QR ticket attached to this mail. You can also access it from <a
+                    href="https://connect.innovatexcom.xyz/dashboard" target="_blank">here</a>.</p>
+        </div>
+
+        <!-- The Dark Mode Ticket -->
+        <div class="ticket-container">
+
+            <!-- Ticket Header Row -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" class="ticket-header">
+                <tr>
+                    <td align="left" valign="middle" class="stack-column ticket-header-left">
+                        <div class="ticket-label">OFFICIAL EVENT PASS</div>
+                        <h2 class="ticket-title">InnovateX Connect'26</h2>
+                    </td>
+                    <td align="right" valign="middle" class="stack-column ticket-badge-wrapper">
+                        <span class="ticket-badge">{{ params.ticket_number }}</span>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Ticket Details Row -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <!-- Left Column: Details Grid -->
+                    <td width="100%" valign="top" class="stack-column">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="50%" class="stack-column grid-item" style="padding-bottom: 20px;">
+                                    <div class="meta-label">NAME</div>
+                                    <div class="meta-value">{{ params.name }}</div>
+                                </td>
+                                <td width="50%" class="stack-column grid-item" style="padding-bottom: 20px;">
+                                    <div class="meta-label">CATEGORY</div>
+                                    <div class="meta-value">{{ params.attendee_type }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" class="stack-column grid-item" style="padding-bottom: 20px;">
+                                    <div class="meta-label">DATE & VENUE</div>
+                                    <div class="meta-value" style="font-size: 13px; line-height: 1.6;">
+                                        Date: 5th September 2026<br>
+                                        Venue: JIS University, Agarpara, Kolkata.
+                                    </div>
+                                </td>
+                                <td width="50%" class="stack-column grid-item" style="padding-bottom: 20px;">
+                                    <div class="meta-label">ORGANIZATION</div>
+                                    <div class="meta-value" style="font-size: 13px;">{{ params.organization }}</div>
+                                </td>
+                            </tr>
+                            <!-- Food Category Row -->
+                            <tr>
+                                <td width="100%" colspan="2" class="stack-column grid-item"
+                                    style="padding-bottom: 10px;">
+                                    <div class="meta-label">MEAL PREFERENCE</div>
+                                    <div class="meta-value" style="font-size: 13px;">{{ params.foodPreference }}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Mandatory Laptop Notice inside Ticket -->
+            <div class="ticket-notice">
+                <span>Note: It is mandatory to bring your laptop to this event</span>
+            </div>
+
+        </div>
+
+        <!-- WhatsApp Group Notice -->
+        <div class="whatsapp-container">
+            <p>Join the ATTENDEES WhatsApp Group for further updates. (Mandatory)</p>
+            <a href="https://chat.whatsapp.com/KxUUA6FGkJgH5mVf8699Vv?s=cl&p=a&ilr=4" class="whatsapp-btn"
+                target="_blank">Join WhatsApp Group</a>
+        </div>
+
+        <!-- Social Flex Notice -->
+        <div class="social-text">
+            <p>Your reference ticket is attached to this email. 🎟️</p>
+            <p>Flex it on your socials and don’t forget to tag <strong>InnovateX Engineers Community</strong>!</p>
+        </div>
+
+        <div class="footer-section">
+            <p>Discover more at <a href="https://connect.innovatexcom.xyz" target="_blank">connect.innovatexcom.xyz</a>
+            </p>
+            <p>Organized by InnovateX Community | InnovateX Connect'26</p>
+        </div>
+    </div>
+</body>
+
+</html>

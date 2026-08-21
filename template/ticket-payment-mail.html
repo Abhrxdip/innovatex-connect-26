@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Selected for InnovateX Connect'26!</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-container {
+            max-width: 650px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #1e3a8a;
+        }
+
+        /* Dark Theme Header Styles */
+        .header-section {
+            background-color: #0A0B1A;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-section img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 12px;
+        }
+
+        .header-section h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section h1 span {
+            color: #f97316;
+        }
+
+        /* Content Styles */
+        .text-content {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .text-content strong {
+            color: #1e3a8a;
+        }
+
+        .text-content a {
+            color: #1e3a8a;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .text-content a:hover {
+            color: #f97316;
+        }
+
+        /* Dark Theme Perks Card (Matches Ticket Style) */
+        .dark-card-container {
+            background-color: #0A0B1A;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 24px;
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .dark-card-header {
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        /* Fixed List Styles (Removed ::before) */
+        .perks-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .perks-list li {
+            margin-bottom: 12px;
+            color: #f1f5f9;
+            font-weight: 500;
+            font-size: 14px;
+            display: table;
+            /* Ensures perfect alignment if text wraps */
+            width: 100%;
+        }
+
+        .perks-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .bullet-star {
+            color: #60a5fa;
+            font-size: 16px;
+            display: table-cell;
+            width: 24px;
+            /* Creates consistent spacing */
+            vertical-align: top;
+        }
+
+        .bullet-text {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        /* Call to Action Button */
+        .cta-container {
+            text-align: center;
+            margin: 10px 0 30px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #f97316;
+            color: #ffffff !important;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none !important;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ea580c;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background-color: #fffaf5;
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            margin: 20px 0 0 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .alert-box p {
+            margin: 0;
+            color: #991b1b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Footer Styles */
+        .footer-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #edf2f7;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .footer-section p {
+            margin: 8px 0;
+        }
+
+        .footer-section a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-section a:hover {
+            color: #f97316;
+        }
+
+        /* Mobile Responsive Rules */
+        @media only screen and (max-width: 600px) {
+            .main-container {
+                margin: 15px !important;
+                padding: 25px 20px !important;
+            }
+
+            .header-section {
+                padding: 25px 15px !important;
+            }
+
+            .dark-card-container {
+                padding: 20px !important;
+            }
+
+            .cta-button {
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <div class="header-section">
+            <img src="https://connect.innovatexcom.xyz/innovatex-dark.png" alt="Innovate X Logo">
+            <h1>Innovate<span>X</span> Connect'26</h1>
+        </div>
+
+        <div class="text-content">
+            <p>Hello <strong>{{ params.name }}</strong>,</p>
+
+            <p style="font-size: 22px; font-weight: 800; color: #1e3a8a; margin-top: 25px;">Yoo! 🎉 Your profile has
+                been selected!</p>
+
+            <p>To confirm your spot for <strong>InnovateX Connect’26</strong> on 5th September, book your ticket for a
+                small contribution of just <strong>₹99/-</strong>.</p>
+        </div>
+
+        <!-- Dark Theme Perks Card -->
+        <div class="dark-card-container">
+            <div class="dark-card-header">Your ticket includes:</div>
+            <ul class="perks-list">
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Full event access</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Hands-on workshops</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Community networking</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Mentorship from professionals</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Lunch & Red Bull</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Jamming session</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Lots of swags and goodies</span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">Verified E-certificate
+                    </span>
+                </li>
+                <li>
+                    <span class="bullet-star">&#9733;</span>
+                    <span class="bullet-text">And many more exciting experiences awaiting you!
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="cta-container">
+            <a href="https://connect.innovatexcom.xyz/dashboard" class="cta-button" target="_blank">Book Your Ticket</a>
+        </div>
+
+        <div class="alert-box">
+            <p>⚠️ Pay within 24 hrs to confirm your spot. If you fail to do so, your attendance will not be counted.</p>
+        </div>
+
+        <div class="footer-section">
+            <p>Discover more at <a href="https://connect.innovatexcom.xyz" target="_blank">connect.innovatexcom.xyz</a>
+            </p>
+            <p>Organized by InnovateX Community | InnovateX Connect'26</p>
+        </div>
+
+    </div>
+</body>
+
+</html>
