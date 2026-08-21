@@ -6,10 +6,6 @@ import {
   TICKET_STATUS
 } from "../config/constants.js";
 import {
-  generateQRCodeDataURL
-} from "../services/qr.service.js";
-import {
-  sendTicketConfirmedMail,
   sendPaymentMail
 } from "../services/mail.service"
 import {
@@ -119,7 +115,7 @@ export async function approveTicketController(ticketId, adminId) {
     email: ticket.userId.email,
     name: ticket.userId.name
   })
-  
+
 
   return ticket;
 }
