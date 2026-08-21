@@ -327,37 +327,74 @@ export default function UserDashboardPage() {
             ) : data.ticket.status === 'Payment Required' ? (
               /* Payment Required */
               <div className="bg-[#0C1235] rounded-3xl p-8 shadow-2xl border border-green-500/20 text-center relative overflow-hidden text-white">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-green-500/80 to-green-500/40" />
-                <div className="w-14 h-14 rounded-2xl bg-green-500/10 text-green-400 flex items-center justify-center mx-auto mb-4">
-                  <Icons.Ticket className="w-7 h-7" />
-                </div>
-                <h2 className="text-2xl font-extrabold text-white">Complete Your Payment</h2>
-                <p className="text-slate-300 text-sm max-w-md mx-auto mt-1 mb-4">
-                  Your ticket request has been approved! Please complete the payment to secure your pass.
-                </p>
-                {data.ticket.approvedAt && (
-                  <div className="mb-6 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/40 max-w-sm mx-auto shadow-[0_0_15px_rgba(239,68,68,0.15)]">
-                    <p className="text-red-200 text-sm font-bold text-center flex items-center justify-center gap-2">
-                      <span className="animate-bounce text-lg">🚨</span> Time remaining: <CountdownTimer approvedAt={data.ticket.approvedAt} />
-                    </p>
-                  </div>
-                )}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-green-500 to-transparent" />
 
-                <div className="max-w-xs mx-auto space-y-4">
-                  <button
-                    onClick={handlePayment}
-                    disabled={paymentLoading}
-                    className="w-full py-3.5 px-6 rounded-xl bg-[#EE4B15] hover:bg-[#EE4B15]/90 text-white font-bold text-sm shadow-lg shadow-[#EE4B15]/15 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-                  >
-                    {paymentLoading ? (
-                      <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        Pay Now
-                        <Icons.ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
+                <div className="max-w-lg mx-auto">
+                  {/* Heading */}
+                  <p className="text-green-500 text-xs font-bold uppercase tracking-widest mb-3">Congratulations</p>
+                  <h2 className="text-2xl font-extrabold text-white leading-snug">
+                    Your profile has been selected!
+                  </h2>
+                  <p className="text-slate-400 text-sm mt-3 leading-relaxed">
+                    To confirm your spot for{" "}
+                    <span className="text-white font-semibold">InnovateX Connect&apos;26</span> on{" "}
+                    <span className="text-green-400 font-semibold">5th September</span>, book your
+                    ticket for a small contribution of just{" "}
+                    <span className="text-green-400 font-bold">₹99/-</span>.
+                  </p>
+
+                  {/* Perks */}
+                  <div className="mt-6 text-left border border-white/8 rounded-2xl p-5 bg-white/3">
+                    <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-3">Your ticket includes</p>
+                    <ul className="space-y-2">
+                      {[
+                        "Full event access",
+                        "Hands-on workshops",
+                        "Community networking",
+                        "Mentorship from professionals",
+                        "Lunch & Red Bull",
+                        "Jamming session",
+                        "Lots of swags and goodies",
+                        "And many more exciting experiences awaiting you!",
+                      ].map((perk) => (
+                        <li key={perk} className="flex items-center gap-2.5 text-sm text-slate-300">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
+                          {perk}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="mt-5">
+                    <button
+                      onClick={handlePayment}
+                      disabled={paymentLoading}
+                      className="w-full py-3.5 px-6 rounded-xl bg-[#EE4B15] hover:bg-[#EE4B15]/90 text-white font-bold text-sm shadow-lg shadow-[#EE4B15]/15 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    >
+                      {paymentLoading ? (
+                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      ) : (
+                        <>
+                          Book Your Ticket
+                          <Icons.ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Urgency note */}
+                  {data.ticket.approvedAt && (
+                    <div className="mt-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+                      <p className="text-red-300 text-xs font-medium text-center">
+                        Pay within 24 hours to confirm your spot.{" "}
+                        <span className="font-bold">Failure to do so will result in your attendance not being counted.</span>
+                      </p>
+                      <p className="text-red-200 text-xs font-bold text-center mt-1">
+                        Time remaining: <CountdownTimer approvedAt={data.ticket.approvedAt} />
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : data.ticket.status === 'Pending' ? (
