@@ -338,7 +338,7 @@ export default function UserDashboardPage() {
                   <p className="text-slate-400 text-sm mt-3 leading-relaxed">
                     To confirm your spot for{" "}
                     <span className="text-white font-semibold">InnovateX Connect&apos;26</span> on{" "}
-                    <span className="text-green-400 font-bold">5th September</span>, book your
+                    <span className="text-green-400 font-semibold">5th September</span>, book your
                     ticket for a small contribution of just{" "}
                     <span className="text-green-400 font-bold">₹99/-</span>.
                   </p>
@@ -405,7 +405,11 @@ export default function UserDashboardPage() {
                 </div>
                 <h2 className="text-xl font-extrabold text-white">Registration Under Admin Review</h2>
                 <p className="text-slate-300 text-xs sm:text-sm max-w-md mx-auto mt-1">
-                  Your ticket request (<span className="font-mono font-bold">{data.ticket.ticketNumber}</span>) has been received and is currently pending admin approval. Once your registration is approved, you will receive your payment link and further instructions via email.
+                  Your ticket request (<span className="font-mono font-bold">{data.ticket.ticketNumber}</span>) has been received and is currently pending admin approval.
+                </p>
+                <p className="text-slate-400 text-xs sm:text-sm max-w-md mx-auto mt-1">
+                  Once your registration is approved, you will receive your payment link and further instructions via email.
+                </p>
               </div>
             ) : data.ticket.status === 'Approved' ? (
               /* Approved Ticket - Event Pass */
