@@ -84,7 +84,14 @@ async function getSocialTicketImageBase64() {
 }
 
 export async function sendTicketConfirmedMail({ name, email, ticket_number, attendee_type, organization, qr_code, foodPreference }: { name: string, email: string, ticket_number: string, attendee_type: string, organization: string, qr_code: string, foodPreference: string }): Promise<void> {
+    let socialTicketImageBase64 = null
+    try {
+        socialTicketImageBase64 = await getSocialTicketImageBase64();
+    } catch (e) {
+        socialTicketImageBase64 = null
+    }
     if (useMailtrap) {
+
         const res = await mailtrapClient.send({
             from: {
                 email: "connect@innovatexcom.xyz",
@@ -100,10 +107,10 @@ export async function sendTicketConfirmedMail({ name, email, ticket_number, atte
                     "organization": organization,
                     "foodPreference": foodPreference,
                 }
-            }, attachments: [
+            }, attachments: socialTicketImageBase64 ? [
                 { content: qr_code, filename: "ticket.png" },
-                { content: await getSocialTicketImageBase64(), filename: "InnovateX Connect-26-Ticket.png", }
-            ]
+                { content: socialTicketImageBase64, filename: "InnovateX Connect-26-Ticket.png", }
+            ] : [{ content: qr_code, filename: "ticket.png" },]
         })
         console.log(res.message_ids)
         return
@@ -123,10 +130,10 @@ export async function sendTicketConfirmedMail({ name, email, ticket_number, atte
             qr_code: qr_code,
             foodPreference: foodPreference,
         },
-        attachment: [
+        attachment: socialTicketImageBase64 ? [
             { content: qr_code, name: "ticket.png", },
-            { content: await getSocialTicketImageBase64(), name: "InnovateX Connect-26-Ticket.png" }
-        ]
+            { content: socialTicketImageBase64, name: "InnovateX Connect-26-Ticket.png" }
+        ] : [{ content: qr_code, name: "ticket.png", }]
     })
     console.log(`Ticket Confirmation mail sent. ID: ${res.messageId}`)
 }

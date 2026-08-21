@@ -123,11 +123,10 @@ export const ticketBenefits = [
   "Exclusive community access"
 ];
 
-export const faqData = [
-  // {
-  //   q: "Is the event free?",
-  //   a: "Yes! InnovateX Connect ’26 is completely free of cost."
-  // },
+export const faqData = [{
+    q: "Is InnovateX Connect’26 free?",
+    a: "Yes, registration is totally free of cost. If your profile gets shortlisted, you will receive a payment link to confirm your spot with a minimal contribution amount."
+  },
   {
     q: "Is a laptop mandatory?",
     a: "Yes. Participants must bring their own laptop for the hands-on workshop."
