@@ -357,6 +357,7 @@ export default function UserDashboardPage() {
                         "Lots of swags and goodies",
                         "E-Verified Certificate",
                         "And many more exciting experiences awaiting you!",
+                        "Verified E-certificate"
                       ].map((perk) => (
                         <li key={perk} className="flex items-center gap-2.5 text-sm text-slate-300">
                           <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
