@@ -1,4 +1,4 @@
-import { InferSchemaType, ObjectId } from "mongoose";
+import { InferSchemaType, MongooseError, ObjectId } from "mongoose";
 import { Payment } from "../models/payment";
 import { PAYMENT_STATUSES, ROLES, TICKET_STATUS } from "../config/constants";
 import Ticket from "../models/Ticket";
@@ -91,6 +91,9 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
             error.statusCode = 500
             console.error(error)
             return
+        }
+        if (e instanceof MongooseError) {
+            return e
         }
         await Payment.create({ amount: payload.payment.entity.amount, completed_at: new Date(payload.payment.entity.created_at), order_id: payload.payment.entity.order_id ?? 'Not Found', payload: payload })
         console.error(e)
