@@ -1,27 +1,15 @@
-export const speakersList = [{
-    name: 'Shan Abdul Salam',
-    role: 'FOUNDER, THE ECOM SHOW',
-    desc: 'FOUNDER, THE ECOM SHOW',
+export const speakersList = [
+  {
+    name: 'IMRAN ROSHAN',
+    role: 'CYBERSECURITY AND DEVOPS LEAD',
+    company: 'Senrysa Technologies Ltd.',
+    image: '/imran-roshan.jpeg',
   },
   {
-    name: 'Mohammed Ajmal C',
-    role: 'FOUNDER & CEO, XANDYLEARNING',
-    desc: 'IIT MADRAS | EX-INTEL - FOUNDER AND CEO',
-  },
-  {
-    name: 'Dr. Thomas George K.',
-    role: 'PRESIDENT, LEAD GROUP OF INSTITUTIONS',
-    desc: 'LEAD GROUP OF INSTITUTIONS',
-  },
-  {
-    name: 'Rizwan Ramzan Ahamed',
-    role: 'COFOUNDER & CEO, HACA',
-    desc: 'COFOUNDER & CEO, HACA',
-  },
-  {
-    name: 'Souma Deep',
-    role: 'AI-NATIVE BUILDER',
-    desc: 'INNOVATEX CONNECT 2026 MENTOR',
+    name: 'AVIK AGARWALA',
+    role: 'AI ENGINEER',
+    company: 'TCS',
+    image: '/avik-agarwala.jpeg',
   },
 ];
 

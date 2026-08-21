@@ -116,12 +116,8 @@ export default function Home() {
         speed="fast"
       />
 
-      {/* Coming Soon Section */}
-      <ComingSoon />
       {/* Speakers Section */}
-      {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
-        <SpeakersSection />
-      </div> */}
+      <SpeakersSection />
 
       {/* Bold Orange Marquee Before Agenda
       <MarqueeBanner
