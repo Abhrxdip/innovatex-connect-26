@@ -57,7 +57,7 @@ export default function SpeakersSection() {
           {/* Vertical "SPEAKERS" Solid Orange Typography */}
           <div className="flex items-center justify-center shrink-0 select-none px-2 md:px-0">
             <h2
-              className="font-blackhan text-5xl sm:text-6xl md:text-7xl lg:text-[86px] leading-none [writing-mode:vertical-lr] select-none tracking-[0.08em]"
+              className="font-blackhan text-5xl sm:text-6xl md:text-7xl lg:text-[86px] leading-none md:[writing-mode:vertical-lr] lg:[writing-mode:vertical-lr] select-none tracking-[0.08em]"
               style={{
                 color: 'transparent',
                 WebkitTextStroke: '2px #EE4B15',
