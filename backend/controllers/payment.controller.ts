@@ -83,12 +83,14 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
         if (e instanceof PaymentNotFoundError) {
             const error = Error("This Payment doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
             error.statusCode = 500
-            throw error
+            console.error(error)
+            return
         }
         if (e instanceof TicketNotFoundError) {
             const error = new Error("This Ticket doesn't exist, please contact the organizers for this issue") as Error & { statusCode: number }
             error.statusCode = 500
-            throw error
+            console.error(error)
+            return
         }
         await Payment.create({ amount: payload.payment.entity.amount, completed_at: new Date(payload.payment.entity.created_at), order_id: payload.payment.entity.order_id ?? 'Not Found', payload: payload })
         return e
