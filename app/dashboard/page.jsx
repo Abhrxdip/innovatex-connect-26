@@ -355,7 +355,6 @@ export default function UserDashboardPage() {
                         "Lunch & Red Bull",
                         "Jamming session",
                         "Lots of swags and goodies",
-                        "E-Verified Certificate",
                         "And many more exciting experiences awaiting you!",
                         "Verified E-certificate"
                       ].map((perk) => (
