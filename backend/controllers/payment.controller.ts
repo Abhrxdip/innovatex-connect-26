@@ -93,7 +93,8 @@ export async function updatePaymentAndUpdateTicket(event: "order.paid" | "paymen
             return
         }
         await Payment.create({ amount: payload.payment.entity.amount, completed_at: new Date(payload.payment.entity.created_at), order_id: payload.payment.entity.order_id ?? 'Not Found', payload: payload })
-        return e
+        console.error(e)
+
     }
 
 
