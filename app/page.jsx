@@ -86,7 +86,7 @@ export default function Home() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(238,75,21,0.06),transparent_50%)] pointer-events-none z-0" />
 
       {/* Header */}
-   
+
       {/* Hero Section */}
       <HeroSection />
 
@@ -129,7 +129,8 @@ export default function Home() {
       {/* Community Partners */}
       <CommunityPartnersSection />
 
-      {/* Agenda Section */}
+      {/*TODO: Agenda Section */}
+      <ComingSoon />
       {/* <div className="max-w-6xl mx-auto w-full px-3 sm:px-6 md:px-12 relative z-10">
         <AgendaSection />
       </div> */}

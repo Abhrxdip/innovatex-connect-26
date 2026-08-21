@@ -63,8 +63,9 @@ export default function Footer() {
             <h4 className="text-white font-extrabold text-sm uppercase tracking-widest mb-6">Quick Links</h4>
             <ul className="space-y-4">
               <li><Link href="/#" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300">Home</Link></li>
+              {/* TODO: Implement Agenda */}
               <li><Link href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Agenda</Link></li>
-              <li><Link href="/#comingsoon" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Speakers</Link></li>
+              <li><Link href="/#speakers" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Speakers</Link></li>
               <li><Link href="/#ticket" className="text-slate-400 hover:text-[#EE4B15] text-sm font-medium transition-colors hover:translate-x-1 inline-block duration-300 transition-all">Get Tickets</Link></li>
             </ul>
           </div>

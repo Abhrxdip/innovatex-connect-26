@@ -142,7 +142,7 @@ export default function Navbar() {
           { /*//TODO: Change this*/}
           <Link
             ref={el => (linksRef.current[1] = el)}
-            href="/#comingsoon"
+            href="/#speakers"
             aria-label="Speakers"
             className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/#speakers', '#speakers')
               ? 'text-white'
@@ -152,7 +152,7 @@ export default function Navbar() {
             <Icons.Speakers />
             <span className="hidden sm:inline">Speakers</span>
           </Link>
-
+          {/**TODO: Implement Agenda*/}
           <Link
             ref={el => (linksRef.current[2] = el)}
             href="/#comingsoon"
@@ -165,18 +165,6 @@ export default function Navbar() {
             <Icons.Agenda />
             <span className="hidden sm:inline">Agenda</span>
           </Link>
-
-          {/* <Link
-            href="/leaderboard"
-            aria-label="Leaderboard"
-            className={`relative z-10 group flex items-center px-2 sm:px-3 py-1.5 rounded-full transition-all ${isActive('/leaderboard')
-              ? 'text-white bg-white/10'
-              : 'hover:text-white hover:bg-white/10'
-              }`}
-          >
-            <Icons.Sparkle />
-            <span className="hidden sm:inline">Leaderboard</span>
-          </Link> */}
 
           <Link
             ref={el => (linksRef.current[3] = el)}
